@@ -1,8 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../capital_screen/capital_screen.dart';
+import '../expense_screen/expense_screen.dart';
+import '../invest_screen/invest_screen.dart';
 import '../login_screen/login_screen.dart';
-import '../menu_screen/bangla_001.dart';
+import '../profit_screen/profit_screen.dart';
 import '../widget/colors.dart';
 import '../widget/global_container.dart';
 import 'component/home_member_widget.dart';
@@ -134,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 title: "Capital",
                                 blance: "৳ 8,82,000.00",
                                 onTap: () {
-                                  Get.to(() => const BanglaSongOneScreen());
+                                  Get.to(() => const CapitalScreen());
                                 },
                               ),
                               HomeSummeryChapterItem(
@@ -144,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 title: 'Profit',
                                 blance: "৳ 1,94,780.00",
                                 onTap: () {
-                                  Get.to(() => const BanglaSongOneScreen());
+                                  Get.to(() => const ProfitScreen());
                                 },
                               ),
                               HomeSummeryChapterItem(
@@ -154,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 title: 'Invest',
                                 blance: "৳ 9,20,000.00",
                                 onTap: () {
-                                  Get.to(() => const BanglaSongOneScreen());
+                                  Get.to(() => const InvestScreen());
                                 },
                               ),
                               HomeSummeryChapterItem(
@@ -164,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 title: 'Expense',
                                 blance: "৳ 11,074.00",
                                 onTap: () {
-                                  Get.to(() => const BanglaSongOneScreen());
+                                  Get.to(() => const ExpenseScreen());
                                 },
                               ),
                             ],
@@ -212,8 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       GlobalContainer(
-                        backgroundColor:
-                            ColorRes.backgroundColor.withOpacity(.5),
+                        backgroundColor: ColorRes.white,
                         width: Get.width,
                         child: const HomeMemberTableWidget(
                           firstRow: 'SL',

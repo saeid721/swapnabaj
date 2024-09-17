@@ -4,17 +4,17 @@ import 'screen/splash_screen.dart';
 import 'screen/widget/colors.dart';
 
 void main() {
-  runApp(const FhdaApp());
+  runApp(const SwapnobajApp());
 }
 
-class FhdaApp extends StatelessWidget {
-  const FhdaApp({super.key});
+class SwapnobajApp extends StatelessWidget {
+  const SwapnobajApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Future Hope Development Association',
+      title: 'Swapnobaj',
       theme: ThemeData(
         scaffoldBackgroundColor: ColorRes.backgroundColor,
       ),

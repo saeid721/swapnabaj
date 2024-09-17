@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'capital_screen/capital_screen.dart';
+import 'expense_screen/expense_screen.dart';
+import 'invest_screen/invest_screen.dart';
 import 'login_screen/login_screen.dart';
 import 'menu_screen/bangla_001.dart';
+import 'profit_screen/profit_screen.dart';
 import 'widget/colors.dart';
 import 'widget/chapter_item_widget.dart';
 
@@ -48,33 +52,54 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
               children: [
                 const SizedBox(height: 20),
                 ChapterItem(
+                  title: "Capital",
+                  onTap: () {
+                    Get.to(() => const CapitalScreen());
+                  },
+                ),
+                ChapterItem(
+                  title: "Profit",
+                  onTap: () {
+                    Get.to(() => const ProfitScreen());
+                  },
+                ),
+                ChapterItem(
+                  title: "Invest",
+                  onTap: () {
+                    Get.to(() => const InvestScreen());
+                  },
+                ),
+                ChapterItem(
+                  title: "Expense",
+                  onTap: () {
+                    Get.to(() => const ExpenseScreen());
+                  },
+                ),
+                const SizedBox(height: 5),
+                ChapterItem(
                   title: "Charity",
                   onTap: () {
                     Get.to(() => const BanglaSongOneScreen());
                   },
                 ),
-                const SizedBox(height: 5),
                 ChapterItem(
                   title: 'Galary',
                   onTap: () {
                     Get.to(() => const BanglaSongOneScreen());
                   },
                 ),
-                const SizedBox(height: 5),
                 ChapterItem(
                   title: 'News',
                   onTap: () {
                     Get.to(() => const BanglaSongOneScreen());
                   },
                 ),
-                const SizedBox(height: 5),
                 ChapterItem(
                   title: 'Event',
                   onTap: () {
                     Get.to(() => const BanglaSongOneScreen());
                   },
                 ),
-                const SizedBox(height: 5),
                 ChapterItem(
                   title: 'Notice',
                   onTap: () {
@@ -88,7 +113,6 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                     Get.to(() => const BanglaSongOneScreen());
                   },
                 ),
-                const SizedBox(height: 5),
                 ChapterItem(
                   title: 'Contact Us',
                   onTap: () {
