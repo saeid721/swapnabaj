@@ -37,6 +37,7 @@ class SignInScreen extends StatelessWidget {
               padding: const EdgeInsets.all(10.0),
               child: GlobalContainer(
                 backgroundColor: ColorRes.white,
+                elevation: 1,
                 width: Get.width,
                 borderRadius: 8, // Adjust the width if needed
                 child: Padding(
