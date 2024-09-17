@@ -19,19 +19,19 @@ class MemberCardTableWidget extends StatelessWidget {
         height: 45,
         child: Container(
           decoration: const BoxDecoration(
-            color: ColorRes.green,
+            color: ColorRes.secondaryColor,
             border: Border(
-              top: BorderSide(color: ColorRes.secondaryColor, width: 1),
-              bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
-              left: BorderSide(color: ColorRes.secondaryColor, width: 1),
-              right: BorderSide(color: ColorRes.secondaryColor, width: 1),
+              top: BorderSide(color: ColorRes.borderColor, width: 1),
+              bottom: BorderSide(color: ColorRes.borderColor, width: 1),
+              left: BorderSide(color: ColorRes.borderColor, width: 1),
+              right: BorderSide(color: ColorRes.borderColor, width: 1),
             ),
           ),
           child: Center(
             child: Text(
               text,
               style: const TextStyle(
-                fontSize: 12,
+                fontSize: 13,
                 fontWeight: FontWeight.bold,
                 color: ColorRes.white,
               ),
@@ -85,22 +85,40 @@ class MemberCardTableValueWidget extends StatelessWidget {
                 children: [
                   Text(name,
                       style: const TextStyle(
-                          fontSize: 14, fontWeight: FontWeight.w700),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                        color: ColorRes.textColor,
+                      ),
                       textAlign: TextAlign.center),
                   Text(faterName,
-                      style: const TextStyle(fontSize: 12),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: ColorRes.textColor,
+                      ),
                       textAlign: TextAlign.center),
                   Text(contact,
-                      style: const TextStyle(fontSize: 12),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: ColorRes.textColor,
+                      ),
                       textAlign: TextAlign.center),
                   Text(nid,
-                      style: const TextStyle(fontSize: 12),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: ColorRes.textColor,
+                      ),
                       textAlign: TextAlign.center),
                   Text(email,
-                      style: const TextStyle(fontSize: 12),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: ColorRes.textColor,
+                      ),
                       textAlign: TextAlign.center),
                   Text(address,
-                      style: const TextStyle(fontSize: 10),
+                      style: const TextStyle(
+                        fontSize: 10,
+                        color: ColorRes.textColor,
+                      ),
                       textAlign: TextAlign.center),
                 ],
               ),
@@ -126,9 +144,9 @@ class MemberCardTableValueWidget extends StatelessWidget {
       child: Container(
         decoration: const BoxDecoration(
           border: Border(
-            bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
-            right: BorderSide(color: ColorRes.secondaryColor, width: 1),
-            left: BorderSide(color: ColorRes.secondaryColor, width: 1),
+            bottom: BorderSide(color: ColorRes.borderColor, width: 1),
+            right: BorderSide(color: ColorRes.borderColor, width: 1),
+            left: BorderSide(color: ColorRes.borderColor, width: 1),
           ),
         ),
         child: child,

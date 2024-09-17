@@ -24,15 +24,15 @@ class _HomeScreenDummyDataScreenState extends State<HomeScreenDummyDataScreen> {
       appBar: AppBar(
         elevation: 1,
         shadowColor: ColorRes.borderColor,
-        backgroundColor: ColorRes.primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: ColorRes.white,
+        iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: false,
         title: const Text(
           'Future Hope Development Association',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w700,
-            color: ColorRes.white,
+            color: ColorRes.primaryColor,
           ),
         ),
         actions: [
@@ -182,7 +182,7 @@ class _HomeScreenDummyDataScreenState extends State<HomeScreenDummyDataScreen> {
       child: Column(
         children: [
           GlobalContainer(
-            backgroundColor: ColorRes.backgroundColor.withOpacity(.5),
+            backgroundColor: ColorRes.white,
             width: Get.width,
             child: const HomeMemberTableWidget(
               firstRow: 'SL',
@@ -194,7 +194,7 @@ class _HomeScreenDummyDataScreenState extends State<HomeScreenDummyDataScreen> {
             ),
           ),
           GlobalContainer(
-            backgroundColor: ColorRes.backgroundColor,
+            backgroundColor: ColorRes.white,
             width: Get.width,
             child: ListView.builder(
               shrinkWrap: true,

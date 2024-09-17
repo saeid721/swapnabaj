@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../login_screen/login_screen.dart';
 import '../widget/colors.dart';
+import '../widget/global_container.dart';
 import '../widget/global_text.dart';
 import 'component/member_card_widget.dart';
 import 'component/member_data.dart';
@@ -15,14 +16,15 @@ class MemberScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         shadowColor: ColorRes.borderColor,
-        backgroundColor: ColorRes.primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: ColorRes.white,
+        iconTheme: const IconThemeData(color: ColorRes.primaryColor),
+        centerTitle: false,
         title: const Text(
-          'Future Hope Development Association',
+          'Swapnobaj',
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 22,
             fontWeight: FontWeight.w700,
-            color: ColorRes.white,
+            color: ColorRes.primaryColor,
           ),
         ),
         actions: [
@@ -48,23 +50,29 @@ class MemberScreen extends StatelessWidget {
               color: ColorRes.primaryColor,
             ),
             const SizedBox(height: 10),
-            buildTableHeaders(),
-            ListView.builder(
-              itemCount: name.length,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {
-                return MemberCardTableValueWidget(
-                  serial: sl[index],
-                  name: name[index],
-                  faterName: fatherName[index],
-                  contact: contact[index],
-                  nid: nid[index],
-                  email: email[index],
-                  address: address[index],
-                  imagePath: image[index],
-                );
-              },
+            GlobalContainer(
+              child: Column(
+                children: [
+                  buildTableHeaders(),
+                  ListView.builder(
+                    itemCount: name.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      return MemberCardTableValueWidget(
+                        serial: sl[index],
+                        name: name[index],
+                        faterName: fatherName[index],
+                        contact: contact[index],
+                        nid: nid[index],
+                        email: email[index],
+                        address: address[index],
+                        imagePath: image[index],
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
           ],

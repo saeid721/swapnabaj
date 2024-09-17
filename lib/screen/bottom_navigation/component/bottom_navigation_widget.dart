@@ -63,8 +63,8 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                           item.value.icon,
                           size: 25,
                           color: selectedIndex == item.key
-                              ? ColorRes.primaryColor
-                              : ColorRes.green,
+                              ? ColorRes.capitalColor
+                              : ColorRes.profitColor,
                         ),
                         const SizedBox(
                           height: 5,
@@ -72,8 +72,8 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                         GlobalText(
                           str: item.value.text,
                           color: selectedIndex == item.key
-                              ? ColorRes.primaryColor
-                              : ColorRes.green,
+                              ? ColorRes.capitalColor
+                              : ColorRes.profitColor,
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
                           textAlign: TextAlign.center,

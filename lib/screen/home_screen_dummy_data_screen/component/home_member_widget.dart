@@ -27,7 +27,7 @@ class HomeMemberTableWidget extends StatelessWidget {
       height: 40,
       width: Get.width,
       decoration: const BoxDecoration(
-        color: ColorRes.green,
+        color: ColorRes.secondaryColor,
         borderRadius: BorderRadius.only(
           topRight: Radius.circular(5),
           topLeft: Radius.circular(5),
@@ -40,10 +40,10 @@ class HomeMemberTableWidget extends StatelessWidget {
             width: 30,
             decoration: const BoxDecoration(
               border: Border(
-                left: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                right: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                top: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                left: BorderSide(color: ColorRes.primaryColor, width: 1),
+                right: BorderSide(color: ColorRes.primaryColor, width: 1),
+                top: BorderSide(color: ColorRes.primaryColor, width: 1),
+                bottom: BorderSide(color: ColorRes.primaryColor, width: 1),
               ),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -63,9 +63,9 @@ class HomeMemberTableWidget extends StatelessWidget {
             child: Container(
               decoration: const BoxDecoration(
                 border: Border(
-                  right: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                  top: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                  bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                  right: BorderSide(color: ColorRes.primaryColor, width: 1),
+                  top: BorderSide(color: ColorRes.primaryColor, width: 1),
+                  bottom: BorderSide(color: ColorRes.primaryColor, width: 1),
                 ),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -90,9 +90,9 @@ class HomeMemberTableWidget extends StatelessWidget {
             width: 30,
             decoration: const BoxDecoration(
               border: Border(
-                right: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                top: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                right: BorderSide(color: ColorRes.primaryColor, width: 1),
+                top: BorderSide(color: ColorRes.primaryColor, width: 1),
+                bottom: BorderSide(color: ColorRes.primaryColor, width: 1),
               ),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -113,9 +113,9 @@ class HomeMemberTableWidget extends StatelessWidget {
             width: 75,
             decoration: const BoxDecoration(
               border: Border(
-                right: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                top: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                right: BorderSide(color: ColorRes.primaryColor, width: 1),
+                top: BorderSide(color: ColorRes.primaryColor, width: 1),
+                bottom: BorderSide(color: ColorRes.primaryColor, width: 1),
               ),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -136,9 +136,9 @@ class HomeMemberTableWidget extends StatelessWidget {
             width: 65,
             decoration: const BoxDecoration(
               border: Border(
-                right: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                top: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                right: BorderSide(color: ColorRes.primaryColor, width: 1),
+                top: BorderSide(color: ColorRes.primaryColor, width: 1),
+                bottom: BorderSide(color: ColorRes.primaryColor, width: 1),
               ),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -159,9 +159,9 @@ class HomeMemberTableWidget extends StatelessWidget {
             width: 90,
             decoration: const BoxDecoration(
               border: Border(
-                right: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                top: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                right: BorderSide(color: ColorRes.primaryColor, width: 1),
+                top: BorderSide(color: ColorRes.primaryColor, width: 1),
+                bottom: BorderSide(color: ColorRes.primaryColor, width: 1),
               ),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -209,8 +209,8 @@ class HomeMemberTableValueWidget extends StatelessWidget {
       width: Get.width,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(8),
-          bottomRight: Radius.circular(8),
+          bottomLeft: Radius.circular(5),
+          bottomRight: Radius.circular(5),
         ),
       ),
       child: Row(
@@ -220,17 +220,15 @@ class HomeMemberTableValueWidget extends StatelessWidget {
             width: 30,
             decoration: const BoxDecoration(
                 border: Border(
-                    left: BorderSide(color: ColorRes.secondaryColor, width: 1),
-                    bottom:
-                        BorderSide(color: ColorRes.secondaryColor, width: 1),
-                    right:
-                        BorderSide(color: ColorRes.secondaryColor, width: 1))),
+                    left: BorderSide(color: ColorRes.borderColor, width: 1),
+                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
+                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Align(
               alignment: Alignment.center,
               child: GlobalText(
                 str: firstColumn,
-                color: ColorRes.primaryColor,
+                color: ColorRes.secondaryColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Roboto',
@@ -243,16 +241,15 @@ class HomeMemberTableValueWidget extends StatelessWidget {
             child: Container(
               decoration: const BoxDecoration(
                   border: Border(
-                      bottom:
-                          BorderSide(color: ColorRes.secondaryColor, width: 1),
-                      right: BorderSide(
-                          color: ColorRes.secondaryColor, width: 1))),
+                      bottom: BorderSide(color: ColorRes.borderColor, width: 1),
+                      right:
+                          BorderSide(color: ColorRes.borderColor, width: 1))),
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Align(
                 alignment: Alignment.center,
                 child: GlobalText(
                   str: secondColumn,
-                  color: ColorRes.primaryColor,
+                  color: ColorRes.secondaryColor,
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Roboto',
@@ -267,14 +264,12 @@ class HomeMemberTableValueWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             decoration: const BoxDecoration(
                 border: Border(
-                    bottom:
-                        BorderSide(color: ColorRes.secondaryColor, width: 1),
-                    right:
-                        BorderSide(color: ColorRes.secondaryColor, width: 1))),
+                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
+                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
             child: Center(
               child: GlobalText(
                 str: thirdColumn,
-                color: ColorRes.primaryColor,
+                color: ColorRes.secondaryColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Roboto',
@@ -288,14 +283,12 @@ class HomeMemberTableValueWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             decoration: const BoxDecoration(
                 border: Border(
-                    bottom:
-                        BorderSide(color: ColorRes.secondaryColor, width: 1),
-                    right:
-                        BorderSide(color: ColorRes.secondaryColor, width: 1))),
+                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
+                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
             child: Center(
               child: GlobalText(
                 str: fourColumn,
-                color: ColorRes.primaryColor,
+                color: ColorRes.secondaryColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Roboto',
@@ -309,14 +302,12 @@ class HomeMemberTableValueWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             decoration: const BoxDecoration(
                 border: Border(
-                    bottom:
-                        BorderSide(color: ColorRes.secondaryColor, width: 1),
-                    right:
-                        BorderSide(color: ColorRes.secondaryColor, width: 1))),
+                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
+                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
             child: Center(
               child: GlobalText(
                 str: fiveColumn,
-                color: ColorRes.primaryColor,
+                color: ColorRes.secondaryColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Roboto',
@@ -329,15 +320,14 @@ class HomeMemberTableValueWidget extends StatelessWidget {
             width: 90,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             decoration: const BoxDecoration(
-                border: Border(
-                    bottom:
-                        BorderSide(color: ColorRes.secondaryColor, width: 1),
-                    right:
-                        BorderSide(color: ColorRes.secondaryColor, width: 1))),
+              border: Border(
+                  bottom: BorderSide(color: ColorRes.borderColor, width: 1),
+                  right: BorderSide(color: ColorRes.borderColor, width: 1)),
+            ),
             child: Center(
               child: GlobalText(
                 str: sixColumn,
-                color: ColorRes.primaryColor,
+                color: ColorRes.secondaryColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
                 fontFamily: 'Roboto',

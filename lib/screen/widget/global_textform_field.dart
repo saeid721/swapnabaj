@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'global_image_loader.dart';
@@ -97,7 +95,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                     widget.titleText ?? "",
                     style: widget.titleStyle ??
                         const TextStyle(
-                            color: ColorRes.primaryColor,
+                            color: ColorRes.textColor,
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
                             fontFamily: 'Rubik'),
@@ -111,7 +109,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                             widget.titleText ?? "",
                             style: widget.titleStyle ??
                                 const TextStyle(
-                                    color: ColorRes.primaryColor,
+                                    color: ColorRes.textColor,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w700,
                                     fontFamily: 'Rubik'),
@@ -128,15 +126,6 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                   ],
                 ),
               ),
-        //   : GlobalText(
-        // str: widget.titleText ?? "",
-        // color: ColorRes.textColor,
-        // fontSize: 16,
-        // fontWeight: FontWeight.w400,
-        // textAlign: TextAlign.center,
-        // fontFamily: 'Rubik',
-        // ),
-        /// When I give the title text it will take the sizedbox
         widget.titleText != null
             ? const SizedBox(height: 5)
             : const SizedBox.shrink(),
@@ -161,8 +150,8 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                 hintStyle: widget.hintTextStyle ??
                     const TextStyle(
                         fontSize: 12,
-                        color: ColorRes.secondaryColor,
-                        fontWeight: FontWeight.w400,
+                        color: ColorRes.textColor,
+                        fontWeight: FontWeight.w300,
                         fontFamily: 'Rubik'),
                 contentPadding: widget.contentPadding,
                 labelText: widget.labelText,
@@ -184,7 +173,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                         child: Icon(
                           isVisible ? Icons.visibility_off : Icons.visibility,
                           size: 18,
-                          color: ColorRes.secondaryColor,
+                          color: ColorRes.textColor,
                         ),
                       )
                     : widget.sufixIcon,
@@ -195,7 +184,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                 hintStyle: widget.hintTextStyle ??
                     const TextStyle(
                         fontSize: 12,
-                        color: ColorRes.secondaryColor,
+                        color: ColorRes.textColor,
                         fontWeight: FontWeight.w400,
                         fontFamily: 'Rubik'),
                 labelText: widget.labelText,
@@ -218,12 +207,12 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                         },
                         child: GlobalImageLoader(
                           imagePath: isVisible ? Images.eye1 : Images.eye1,
-                          color: ColorRes.secondaryColor,
+                          color: ColorRes.textColor,
                         ),
                       )
                     : widget.sufixIcon,
               ),
-          cursorColor: ColorRes.secondaryColor,
+          cursorColor: ColorRes.textColor,
           validator: widget.validator ??
               (val) {
                 if (val!.isEmpty) {
@@ -235,7 +224,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                 return null;
               },
           style: const TextStyle(
-              color: ColorRes.secondaryColor,
+              color: ColorRes.textColor,
               fontWeight: FontWeight.w400,
               fontSize: 13,
               fontFamily: 'Rubik'),

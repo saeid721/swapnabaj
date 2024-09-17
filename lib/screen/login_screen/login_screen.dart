@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import '../widget/colors.dart';
 import '../widget/global_button.dart';
 import '../widget/global_container.dart';
-import '../widget/global_image_loader.dart';
 import '../widget/global_textform_field.dart';
-import '../widget/images.dart';
 import '../widget/input_decoration.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -20,69 +18,65 @@ class SignInScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         shadowColor: ColorRes.borderColor,
-        backgroundColor: ColorRes.primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: ColorRes.white,
+        iconTheme: const IconThemeData(color: ColorRes.capitalColor),
         centerTitle: false,
         title: const Text(
           'Sign In',
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 22,
             fontWeight: FontWeight.w700,
-            color: ColorRes.white,
+            color: ColorRes.capitalColor,
           ),
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              children: [
-                const SizedBox(height: 10),
-                GlobalContainer(
-                  backgroundColor: ColorRes.backgroundColor,
-                  width: Get.width,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const SizedBox(height: 40),
-                        const Center(
-                          child: GlobalImageLoader(
-                            imagePath: Images.appLogo,
-                            width: 250,
-                            fit: BoxFit.fitWidth,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        GlobalTextFormField(
-                          controller: emailController,
-                          titleText: 'Email',
-                          hintText: 'Enter Your Email',
-                          decoration: borderDecoration,
-                        ),
-                        const SizedBox(height: 10),
-                        GlobalTextFormField(
-                          controller: passwordController,
-                          titleText: 'Password',
-                          hintText: 'Enter Your Password',
-                          decoration: borderDecoration,
-                          isDense: true,
-                          isPasswordField: true,
-                        ),
-                        const SizedBox(height: 20),
-                        GlobalButtonWidget(
-                          str: 'SIGN IN',
-                          height: 45,
-                          onTap: () {},
-                        ),
-                      ],
-                    ),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GlobalContainer(
+                backgroundColor: ColorRes.white,
+                width: Get.width * 0.9, // Adjust the width if needed
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // const Center(
+                      //   child: GlobalImageLoader(
+                      //     imagePath: Images.appLogo,
+                      //     width: 250,
+                      //     fit: BoxFit.fitWidth,
+                      //   ),
+                      // ),
+                      // const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: emailController,
+                        titleText: 'Email',
+                        hintText: 'Enter Your Email',
+                        decoration: borderDecoration,
+                      ),
+                      const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: passwordController,
+                        titleText: 'Password',
+                        hintText: 'Enter Your Password',
+                        decoration: borderDecoration,
+                        isDense: true,
+                        isPasswordField: true,
+                      ),
+                      const SizedBox(height: 20),
+                      GlobalButtonWidget(
+                        str: 'SIGN IN',
+                        height: 45,
+                        onTap: () {},
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
             ),
           ),
         ),

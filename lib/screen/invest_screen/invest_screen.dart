@@ -15,15 +15,15 @@ class InvestScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         shadowColor: ColorRes.borderColor,
-        backgroundColor: ColorRes.primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: ColorRes.white,
+        iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: false,
         title: const Text(
-          'Future Hope Development Association',
+          'Swapnobaj',
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 22,
             fontWeight: FontWeight.w700,
-            color: ColorRes.white,
+            color: ColorRes.primaryColor,
           ),
         ),
         actions: [
@@ -62,7 +62,7 @@ class InvestScreen extends StatelessWidget {
                   ),
                 ),
                 GlobalContainer(
-                  backgroundColor: ColorRes.backgroundColor,
+                  backgroundColor: ColorRes.white,
                   width: Get.width,
                   child: ListView.builder(
                     shrinkWrap: true,
@@ -72,8 +72,7 @@ class InvestScreen extends StatelessWidget {
                       return const InvestTableValueWidget(
                         firstColumn: '001',
                         secondColumn: '10/09/2024',
-                        thirdColumn:
-                            "মোফাজ্জল ভাইয়ের জমি ভাড়া বাবদ ২০২২৪ সালের জন্য।",
+                        thirdColumn: "আতিক এর জমি ভাড়া বাবদ ২০২৪ সালের জন্য।",
                         fourColumn: '1,00,000',
                       );
                     },

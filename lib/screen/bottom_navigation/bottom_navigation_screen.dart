@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../home_screen_dummy_data_screen/home_screen_dummy_data.dart';
+import '../home_screen/home_screen.dart';
 import '../profit_screen/profit_screen.dart';
 import '../side_menu_screen.dart';
 import '../invest_screen/invest_screen.dart';
@@ -25,7 +25,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 
   static final List<Widget> _deshBoardBottomScreen = <Widget>[
     //const HomeScreen(),
-    const HomeScreenDummyDataScreen(),
+    const HomeScreen(),
     const MemberScreen(),
     const InvestScreen(),
     const ProfitScreen(),

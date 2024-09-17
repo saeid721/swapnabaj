@@ -51,12 +51,12 @@ class ChapterItem extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w600,
-                  color: ColorRes.primaryColor,
+                  color: ColorRes.textColor,
                 ),
               ),
               Icon(
                 icon,
-                color: ColorRes.borderColor,
+                color: ColorRes.textColor,
                 size: 16,
               ),
             ],

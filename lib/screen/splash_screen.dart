@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'bottom_navigation/bottom_navigation_screen.dart';
-import 'widget/colors.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -14,24 +13,14 @@ class SplashScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/Logo.png',
-              height: 250,
-              width: 250,
-            ), 
-            // const Text(
-            //   textAlign: TextAlign.center,
-            //   'Future Hope Development Association',
-            //   style: TextStyle(
-            //       color: ColorRes.primaryColor,
-            //       fontSize: 24,
-            //       fontWeight: FontWeight.w700),
-            // ),
-          ],
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/SplashScreen.jpg'),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

@@ -55,14 +55,11 @@ class _GlobalButtonWidgetState extends State<GlobalButtonWidget> {
           padding: EdgeInsets.zero,
           foregroundColor: widget.foregroundColor,
           shadowColor: Colors.transparent,
-          backgroundColor: widget.buttomColor ?? ColorRes.primaryColor,
+          backgroundColor: widget.buttomColor ?? ColorRes.secondaryColor,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(widget.radius ?? 5),
               side: BorderSide(
                   width: 1, color: widget.borderColor ?? Colors.transparent)),
-          // disabledForegroundColor: Colors.transparent,
-          // disabledBackgroundColor: Colors.transparent,
-          // overlayColor: MaterialStateProperty.all(Colors.transparent), // Set overlayColor to remove the press shadow
           maximumSize: Size(widget.width ?? size(context).width, widget.height),
           minimumSize: Size(widget.width ?? size(context).width, widget.height),
         ),
@@ -101,13 +98,3 @@ class _GlobalButtonWidgetState extends State<GlobalButtonWidget> {
     );
   }
 }
-
-// data: ThemeData(
-//   disabledColor: Colors.transparent,
-//   focusColor: Colors.transparent,
-//   hoverColor: Colors.transparent,
-//   indicatorColor: Colors.transparent,
-//   highlightColor: Colors.transparent,
-//   hintColor: Colors.transparent,
-//
-// ),

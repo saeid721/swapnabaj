@@ -27,31 +27,31 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return [
       PieChartSectionData(
-        color: ColorRes.primaryColor,
+        color: ColorRes.capitalColor,
         value: capital / total * 100,
         title: '',
         radius: 50,
       ),
       PieChartSectionData(
-        color: ColorRes.green,
+        color: ColorRes.profitColor,
         value: profit / total * 100,
         title: '',
         radius: 50,
       ),
       PieChartSectionData(
-        color: Colors.orange,
+        color: ColorRes.investColor,
         value: invest / total * 100,
         title: '',
         radius: 50,
       ),
       PieChartSectionData(
-        color: ColorRes.red,
+        color: ColorRes.expenseColor,
         value: expense / total * 100,
         title: '',
         radius: 50,
       ),
       PieChartSectionData(
-        color: ColorRes.balck,
+        color: ColorRes.green,
         value: balance / total * 100,
         title: '',
         radius: 50,
@@ -65,15 +65,15 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         elevation: 1,
         shadowColor: ColorRes.borderColor,
-        backgroundColor: ColorRes.primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: ColorRes.white,
+        iconTheme: const IconThemeData(color: ColorRes.capitalColor),
         centerTitle: false,
         title: const Text(
-          'Future Hope Development Association',
+          'Swapnobaj',
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 22,
             fontWeight: FontWeight.w700,
-            color: ColorRes.white,
+            color: ColorRes.capitalColor,
           ),
         ),
         actions: [
@@ -128,9 +128,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             children: [
                               HomeSummeryChapterItem(
-                                titleColor: ColorRes.primaryColor,
-                                blanceColor: ColorRes.primaryColor,
-                                borderColor: ColorRes.primaryColor,
+                                titleColor: ColorRes.capitalColor,
+                                blanceColor: ColorRes.capitalColor,
+                                borderColor: ColorRes.capitalColor,
                                 title: "Capital",
                                 blance: "৳ 8,82,000.00",
                                 onTap: () {
@@ -138,9 +138,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               ),
                               HomeSummeryChapterItem(
-                                titleColor: ColorRes.green,
-                                blanceColor: ColorRes.green,
-                                borderColor: ColorRes.green,
+                                titleColor: ColorRes.profitColor,
+                                blanceColor: ColorRes.profitColor,
+                                borderColor: ColorRes.profitColor,
                                 title: 'Profit',
                                 blance: "৳ 1,94,780.00",
                                 onTap: () {
@@ -148,9 +148,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               ),
                               HomeSummeryChapterItem(
-                                titleColor: Colors.orange,
-                                blanceColor: Colors.orange,
-                                borderColor: Colors.orange,
+                                titleColor: ColorRes.investColor,
+                                blanceColor: ColorRes.investColor,
+                                borderColor: ColorRes.investColor,
                                 title: 'Invest',
                                 blance: "৳ 9,20,000.00",
                                 onTap: () {
@@ -158,25 +158,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 },
                               ),
                               HomeSummeryChapterItem(
-                                titleColor: ColorRes.red,
-                                blanceColor: ColorRes.red,
-                                borderColor: ColorRes.red,
+                                titleColor: ColorRes.expenseColor,
+                                blanceColor: ColorRes.expenseColor,
+                                borderColor: ColorRes.expenseColor,
                                 title: 'Expense',
                                 blance: "৳ 11,074.00",
                                 onTap: () {
                                   Get.to(() => const BanglaSongOneScreen());
                                 },
                               ),
-                              // HomeSummeryChapterItem(
-                              //   titleColor: ColorRes.balck,
-                              //   blanceColor: ColorRes.balck,
-                              //   borderColor: ColorRes.balck,
-                              //   title: 'Balance',
-                              //   blance: "৳ 1,45,706.00",
-                              //   onTap: () {
-                              //     Get.to(() => const ());
-                              //   },
-                              // ),
                             ],
                           ),
                         ),
@@ -192,9 +182,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       children: [
                         HomeSummeryChapterItem(
-                          titleColor: ColorRes.balck,
-                          blanceColor: ColorRes.balck,
-                          borderColor: ColorRes.balck,
+                          titleColor: ColorRes.green,
+                          blanceColor: ColorRes.green,
+                          borderColor: ColorRes.green,
                           title: 'Current Balance',
                           blance: "৳ 1,45,706.00",
                           onTap: () {
@@ -203,9 +193,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 5),
                         HomeSummeryChapterItem(
-                          titleColor: ColorRes.primaryColor,
-                          blanceColor: ColorRes.primaryColor,
-                          borderColor: ColorRes.primaryColor,
+                          titleColor: ColorRes.balck,
+                          blanceColor: ColorRes.balck,
+                          borderColor: ColorRes.balck,
                           title: "Net Balance",
                           blance: "৳ 10,65,706.00",
                           onTap: () {
@@ -235,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       GlobalContainer(
-                        backgroundColor: ColorRes.backgroundColor,
+                        backgroundColor: ColorRes.white,
                         width: Get.width,
                         child: ListView.builder(
                           shrinkWrap: true,
@@ -244,11 +234,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           itemBuilder: (ctx, index) {
                             return const HomeMemberTableValueWidget(
                               firstColumn: '01',
-                              secondColumn: 'Mr. Mizan',
+                              secondColumn: 'Mr. Atiq',
                               thirdColumn: '1',
-                              fourColumn: '68,500',
-                              fiveColumn: '13,326',
-                              sixColumn: '81,826',
+                              fourColumn: '60,000',
+                              fiveColumn: '5,000',
+                              sixColumn: '65,000',
                             );
                           },
                         ),
