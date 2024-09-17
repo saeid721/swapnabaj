@@ -1,0 +1,359 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../bottom_navigation/component/bottom_navigation_widget.dart';
+import '../../widget/colors.dart';
+
+class HomeMemberTableWidget extends StatelessWidget {
+  final String firstRow;
+  final String secondRow;
+  final String thirdRow;
+  final String fourRow;
+  final String fiveRow;
+  final String sixRow;
+
+  const HomeMemberTableWidget({
+    super.key,
+    required this.firstRow,
+    required this.secondRow,
+    required this.thirdRow,
+    required this.fourRow,
+    required this.fiveRow,
+    required this.sixRow,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 40,
+      width: Get.width,
+      decoration: const BoxDecoration(
+        color: ColorRes.green,
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(5),
+          topLeft: Radius.circular(5),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: 30,
+            decoration: const BoxDecoration(
+              border: Border(
+                left: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                right: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                top: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Center(
+              child: GlobalText(
+                str: firstRow,
+                color: ColorRes.white,
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Roboto',
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              decoration: const BoxDecoration(
+                border: Border(
+                  right: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                  top: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                  bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                ),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Center(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: GlobalText(
+                    str: secondRow,
+                    color: ColorRes.white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'Roboto',
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    maxLines: 1,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            width: 30,
+            decoration: const BoxDecoration(
+              border: Border(
+                right: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                top: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Center(
+              child: GlobalText(
+                str: thirdRow,
+                color: ColorRes.white,
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+            ),
+          ),
+          Container(
+            width: 75,
+            decoration: const BoxDecoration(
+              border: Border(
+                right: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                top: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Center(
+              child: GlobalText(
+                str: fourRow,
+                color: ColorRes.white,
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+            ),
+          ),
+          Container(
+            width: 65,
+            decoration: const BoxDecoration(
+              border: Border(
+                right: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                top: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Center(
+              child: GlobalText(
+                str: fiveRow,
+                color: ColorRes.white,
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+            ),
+          ),
+          Container(
+            width: 75,
+            decoration: const BoxDecoration(
+              border: Border(
+                right: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                top: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                bottom: BorderSide(color: ColorRes.secondaryColor, width: 1),
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Center(
+              child: GlobalText(
+                str: sixRow,
+                color: ColorRes.white,
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HomeMemberTableValueWidget extends StatelessWidget {
+  final String firstColumn;
+  final String secondColumn;
+  final String thirdColumn;
+  final String fourColumn;
+  final String fiveColumn;
+  final String sixColumn;
+
+  const HomeMemberTableValueWidget({
+    super.key,
+    required this.firstColumn,
+    required this.secondColumn,
+    required this.thirdColumn,
+    required this.fourColumn,
+    required this.fiveColumn,
+    required this.sixColumn,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 38,
+      width: Get.width,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(8),
+          bottomRight: Radius.circular(8),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            width: 30,
+            decoration: const BoxDecoration(
+                border: Border(
+                    left: BorderSide(color: ColorRes.secondaryColor, width: 1),
+                    bottom:
+                        BorderSide(color: ColorRes.secondaryColor, width: 1),
+                    right:
+                        BorderSide(color: ColorRes.secondaryColor, width: 1))),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Align(
+              alignment: Alignment.center,
+              child: GlobalText(
+                str: firstColumn,
+                color: ColorRes.primaryColor,
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              decoration: const BoxDecoration(
+                  border: Border(
+                      bottom:
+                          BorderSide(color: ColorRes.secondaryColor, width: 1),
+                      right: BorderSide(
+                          color: ColorRes.secondaryColor, width: 1))),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Align(
+                alignment: Alignment.center,
+                child: GlobalText(
+                  str: secondColumn,
+                  color: ColorRes.primaryColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Roboto',
+                  textAlign: TextAlign.left,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            width: 30,
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom:
+                        BorderSide(color: ColorRes.secondaryColor, width: 1),
+                    right:
+                        BorderSide(color: ColorRes.secondaryColor, width: 1))),
+            child: Center(
+              child: GlobalText(
+                str: thirdColumn,
+                color: ColorRes.primaryColor,
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+            ),
+          ),
+          Container(
+            width: 75,
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom:
+                        BorderSide(color: ColorRes.secondaryColor, width: 1),
+                    right:
+                        BorderSide(color: ColorRes.secondaryColor, width: 1))),
+            child: Center(
+              child: GlobalText(
+                str: fourColumn,
+                color: ColorRes.primaryColor,
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+            ),
+          ),
+          Container(
+            width: 65,
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom:
+                        BorderSide(color: ColorRes.secondaryColor, width: 1),
+                    right:
+                        BorderSide(color: ColorRes.secondaryColor, width: 1))),
+            child: Center(
+              child: GlobalText(
+                str: fiveColumn,
+                color: ColorRes.primaryColor,
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+            ),
+          ),
+          Container(
+            width: 75,
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom:
+                        BorderSide(color: ColorRes.secondaryColor, width: 1),
+                    right:
+                        BorderSide(color: ColorRes.secondaryColor, width: 1))),
+            child: Center(
+              child: GlobalText(
+                str: sixColumn,
+                color: ColorRes.primaryColor,
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
