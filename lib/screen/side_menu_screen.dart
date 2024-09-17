@@ -43,10 +43,10 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
-            padding: const EdgeInsets.only(left: 5, right: 0),
+            padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
               children: [
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 ChapterItem(
                   title: "Charity",
                   onTap: () {

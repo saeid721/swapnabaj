@@ -35,7 +35,7 @@ class BanglaSongOneScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(15),
                 child: GlobalContainer(
-                  backgroundColor: const Color.fromARGB(255, 241, 252, 236),
+                  backgroundColor: ColorRes.white,
                   elevation: 2.0,
                   borderCornerRadius: BorderRadius.circular(10),
                   bottomBorderColor: ColorRes.borderColor,
@@ -46,6 +46,7 @@ class BanglaSongOneScreen extends StatelessWidget {
                       str:
                           """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
                       textAlign: TextAlign.justify,
+                      color: ColorRes.textColor,
                     ),
                   ),
                 ),

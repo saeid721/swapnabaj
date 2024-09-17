@@ -16,15 +16,15 @@ class _AboutScreenState extends State<AboutScreen> {
       appBar: AppBar(
         elevation: 1,
         shadowColor: ColorRes.borderColor,
-        backgroundColor: ColorRes.primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
-        //centerTitle: true,
+        backgroundColor: ColorRes.white,
+        iconTheme: const IconThemeData(color: ColorRes.primaryColor),
+        centerTitle: false,
         title: const Text(
-          'Future Hope Development Association',
+          'Swapnobaj',
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 22,
             fontWeight: FontWeight.w700,
-            color: ColorRes.white,
+            color: ColorRes.primaryColor,
           ),
         ),
         actions: [
