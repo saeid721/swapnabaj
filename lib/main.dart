@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'screen/splash_screen.dart';
-import 'screen/widget/colors.dart';
+
+import 'global_widget/colors.dart';
+import 'splash_screen.dart';
 
 void main() {
   runApp(const SwapnobajApp());
