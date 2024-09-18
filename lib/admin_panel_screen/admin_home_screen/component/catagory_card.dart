@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:swapnabaj/global_widget/global_sizedbox.dart';
 import '../../../global_widget/colors.dart';
 
-const double cardHeight = 100.0;
-const double imageWidth = 40.0;
-const double imageHeight = 40.0;
+const double cardHeight = 80.0;
+const double imageWidth = 30.0;
+const double imageHeight = 30.0;
 
 class CatagoryCard extends StatelessWidget {
   final String imagePath;
@@ -37,7 +38,7 @@ class CatagoryCard extends StatelessWidget {
             color: ColorRes.white,
           ),
           padding: const EdgeInsets.all(5),
-          child: Column(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
@@ -46,14 +47,14 @@ class CatagoryCard extends StatelessWidget {
                 height: imageHeight,
                 fit: BoxFit.cover,
               ),
-              const SizedBox(height: 5),
+              sizedBoxW(10),
               Text(
                 title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 22,
                   color: titleColor, // Apply dynamic title color
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],

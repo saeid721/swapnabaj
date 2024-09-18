@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../global_widget/global_button.dart';
+import '../../global_widget/global_textform_field.dart';
+import '../../global_widget/input_decoration.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 import '../../global_widget/colors.dart';
 import '../../global_widget/global_container.dart';
-import '../../global_widget/global_text.dart';
 import 'component/admin_profit_widget.dart';
 
 class AdminProfitScreen extends StatelessWidget {
@@ -11,6 +13,9 @@ class AdminProfitScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController profitDateCon = TextEditingController();
+    final TextEditingController profitCommentsCon = TextEditingController();
+    final TextEditingController profitAmountCon = TextEditingController();
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -43,14 +48,48 @@ class AdminProfitScreen extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: 10),
-                const GlobalText(
-                  str: """Profit""",
-                  fontSize: 20,
-                  textAlign: TextAlign.center,
-                  fontWeight: FontWeight.w700,
-                  color: ColorRes.primaryColor,
+                GlobalContainer(
+                  backgroundColor: ColorRes.white,
+                  elevation: 1,
+                  width: Get.width,
+                  borderRadius: 8, // Adjust the width if needed
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GlobalTextFormField(
+                          controller: profitDateCon,
+                          titleText: 'Date',
+                          hintText: 'Profit Date',
+                          decoration: borderDecoration,
+                        ),
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: profitCommentsCon,
+                          titleText: 'Comments',
+                          hintText: 'Enter Profit Comments',
+                          decoration: borderDecoration,
+                        ),
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: profitAmountCon,
+                          titleText: 'Amount',
+                          hintText: 'Enter Profit Amount',
+                          decoration: borderDecoration,
+                        ),
+                        const SizedBox(height: 20),
+                        GlobalButtonWidget(
+                          str: 'Submit',
+                          height: 45,
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 GlobalContainer(
                   backgroundColor: ColorRes.backgroundColor,
                   width: Get.width,

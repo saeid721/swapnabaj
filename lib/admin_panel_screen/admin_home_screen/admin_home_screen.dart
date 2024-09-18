@@ -89,7 +89,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             onPressed: () {
               Get.to(() => const SignInScreen());
             },
-            icon: const Icon(Icons.login),
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
@@ -224,18 +224,18 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         children: [
                           Expanded(
                             child: CatagoryCard(
-                              imagePath: 'assets/images/logo.png',
+                              imagePath: 'assets/images/capital.png',
                               title: 'Deposit',
-                              titleColor: Colors.red,
+                              titleColor: ColorRes.capitalColor,
                               onTap: () =>
                                   Get.to(() => const AdminCapitalScreen()),
                             ),
                           ),
                           Expanded(
                             child: CatagoryCard(
-                              imagePath: 'assets/images/logo.png',
+                              imagePath: 'assets/images/profit.png',
                               title: 'Profit',
-                              titleColor: Colors.red,
+                              titleColor: ColorRes.profitColor,
                               onTap: () =>
                                   Get.to(() => const AdminProfitScreen()),
                             ),
@@ -246,18 +246,18 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         children: [
                           Expanded(
                             child: CatagoryCard(
-                              imagePath: 'assets/images/logo.png',
+                              imagePath: 'assets/images/invest.png',
                               title: 'Invest',
-                              titleColor: Colors.red,
+                              titleColor: ColorRes.investColor,
                               onTap: () =>
                                   Get.to(() => const AdminInvestScreen()),
                             ),
                           ),
                           Expanded(
                             child: CatagoryCard(
-                              imagePath: 'assets/images/logo.png',
+                              imagePath: 'assets/images/expense.png',
                               title: 'Expense',
-                              titleColor: Colors.red,
+                              titleColor: ColorRes.expenseColor,
                               onTap: () =>
                                   Get.to(() => const AdminExpenseScreen()),
                             ),
@@ -268,8 +268,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 10),
                 Padding(
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(0),
                   child: Column(
                     children: [
                       GlobalContainer(
