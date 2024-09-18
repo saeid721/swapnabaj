@@ -13,6 +13,7 @@ import '../admin_profit_screen/admin_profit_screen.dart';
 import '../../global_widget/colors.dart';
 import '../../global_widget/global_container.dart';
 import 'component/admin_home_member_widget.dart';
+import 'component/catagory_card.dart';
 import 'component/home_summery_chapter_item_widget.dart';
 
 class AdminHomeScreen extends StatefulWidget {
@@ -188,95 +189,6 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                     padding: const EdgeInsets.all(5.0),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Get.to(() => const AdminCapitalScreen());
-                              },
-                              child: const GlobalContainer(
-                                width: 140,
-                                height: 140,
-                                elevation: 2,
-                                backgroundColor: ColorRes.backgroundColor,
-                                child: Center(
-                                  child: Text(
-                                    'Deposit',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(() => const AdminProfitScreen());
-                              },
-                              child: const GlobalContainer(
-                                width: 140,
-                                height: 140,
-                                elevation: 2,
-                                backgroundColor: ColorRes.backgroundColor,
-                                child: Center(
-                                  child: Text(
-                                    'Profit',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Get.to(() => const AdminInvestScreen());
-                              },
-                              child: const GlobalContainer(
-                                width: 140,
-                                height: 140,
-                                elevation: 2,
-                                backgroundColor: ColorRes.backgroundColor,
-                                child: Center(
-                                  child: Text(
-                                    'Invest',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(() => const AdminExpenseScreen());
-                              },
-                              child: const GlobalContainer(
-                                width: 140,
-                                height: 140,
-                                elevation: 2,
-                                backgroundColor: ColorRes.backgroundColor,
-                                child: Center(
-                                  child: Text(
-                                    'Expense',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                GlobalContainer(
-                  backgroundColor: ColorRes.backgroundColor,
-                  width: Get.width,
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      children: [
                         HomeSummeryChapterItem(
                           titleColor: ColorRes.green,
                           blanceColor: ColorRes.green,
@@ -303,6 +215,59 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
+                GlobalContainer(
+                  backgroundColor: ColorRes.backgroundColor,
+                  width: Get.width,
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CatagoryCard(
+                              imagePath: 'assets/images/logo.png',
+                              title: 'Deposit',
+                              titleColor: Colors.red,
+                              onTap: () =>
+                                  Get.to(() => const AdminCapitalScreen()),
+                            ),
+                          ),
+                          Expanded(
+                            child: CatagoryCard(
+                              imagePath: 'assets/images/logo.png',
+                              title: 'Profit',
+                              titleColor: Colors.red,
+                              onTap: () =>
+                                  Get.to(() => const AdminProfitScreen()),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CatagoryCard(
+                              imagePath: 'assets/images/logo.png',
+                              title: 'Invest',
+                              titleColor: Colors.red,
+                              onTap: () =>
+                                  Get.to(() => const AdminInvestScreen()),
+                            ),
+                          ),
+                          Expanded(
+                            child: CatagoryCard(
+                              imagePath: 'assets/images/logo.png',
+                              title: 'Expense',
+                              titleColor: Colors.red,
+                              onTap: () =>
+                                  Get.to(() => const AdminExpenseScreen()),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 5),
+                    ],
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(5),
                   child: Column(

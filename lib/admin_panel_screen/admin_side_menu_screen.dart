@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../global_widget/chapter_item_widget.dart';
 import 'admin_capital_screen/admin_capital_screen.dart';
 import 'admin_expense_screen/admin_expense_screen.dart';
+import 'admin_home_screen/admin_home_screen.dart';
 import 'admin_invest_screen/admin_invest_screen.dart';
 import 'admin_login_screen/admin_login_screen.dart';
 import 'admin_menu_screen/admin_bangla_001.dart';
@@ -117,6 +118,14 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                   title: 'Contact Us',
                   onTap: () {
                     Get.to(() => const BanglaSongOneScreen());
+                  },
+                ),
+                const SizedBox(height: 5),
+                const SizedBox(height: 5),
+                ChapterItem(
+                  title: 'Admin',
+                  onTap: () {
+                    Get.to(() => const AdminHomeScreen());
                   },
                 ),
                 const SizedBox(height: 5),
