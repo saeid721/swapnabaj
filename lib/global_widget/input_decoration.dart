@@ -19,6 +19,31 @@ InputDecoration inputDecoration = InputDecoration(
       borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
 );
 
+InputDecoration inputDropDecoration = InputDecoration(
+  filled: true,
+  fillColor: ColorRes.white,
+  isDense: true,
+  contentPadding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+  border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 1, color: ColorRes.borderColor)),
+  errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 1, color: ColorRes.borderColor)),
+  focusedErrorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 1, color: ColorRes.borderColor)),
+  focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 1, color: ColorRes.borderColor)),
+  enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 1, color: ColorRes.borderColor)),
+  disabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: const BorderSide(width: 1, color: ColorRes.borderColor)),
+);
+
 InputDecoration nonInputField = const InputDecoration(
   border: InputBorder.none,
   errorBorder: InputBorder.none,
@@ -47,22 +72,22 @@ InputDecoration borderDecoration = InputDecoration(
   isDense: true,
   border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: ColorRes.secondaryColor, width: 1)),
+      borderSide: const BorderSide(color: ColorRes.borderColor, width: 1)),
   errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: ColorRes.secondaryColor, width: 1)),
+      borderSide: const BorderSide(color: ColorRes.borderColor, width: 1)),
   focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: ColorRes.secondaryColor, width: 1)),
+      borderSide: const BorderSide(color: ColorRes.borderColor, width: 1)),
   focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: ColorRes.secondaryColor, width: 1)),
+      borderSide: const BorderSide(color: ColorRes.borderColor, width: 1)),
   enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: ColorRes.secondaryColor, width: 1)),
+      borderSide: const BorderSide(color: ColorRes.borderColor, width: 1)),
   disabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(8),
-      borderSide: const BorderSide(color: ColorRes.secondaryColor, width: 1)),
+      borderSide: const BorderSide(color: ColorRes.borderColor, width: 1)),
 );
 
 InputDecoration dateInputDecoration = InputDecoration(

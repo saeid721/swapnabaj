@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../global_widget/global_button.dart';
+import '../../global_widget/global_dropdown_fromfield.dart';
 import '../../global_widget/global_textform_field.dart';
 import '../../global_widget/input_decoration.dart';
 import '../admin_login_screen/admin_login_screen.dart';
@@ -22,19 +25,11 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
     {"firstColumn": "01", "secondColumn": "Mr. Atiq", "thirdColumn": "60000"},
     {"firstColumn": "02", "secondColumn": "Mr. Shamim", "thirdColumn": "80000"},
     {"firstColumn": "03", "secondColumn": "Mr. Sohel", "thirdColumn": "80000"},
-    {
-      "firstColumn": "04",
-      "secondColumn": "Mr. Shakhawat",
-      "thirdColumn": "80000"
-    },
+    {"firstColumn": "04", "secondColumn": "Shakhawat", "thirdColumn": "80000"},
     {"firstColumn": "05", "secondColumn": "Mr. Taimur", "thirdColumn": "80000"},
     {"firstColumn": "06", "secondColumn": "Mr. Kafi", "thirdColumn": "80000"},
     {"firstColumn": "07", "secondColumn": "Mr. Ismail", "thirdColumn": "80000"},
-    {
-      "firstColumn": "08",
-      "secondColumn": "Mr. Shamsul",
-      "thirdColumn": "80000"
-    },
+    {"firstColumn": "08", "secondColumn": "Shamsul", "thirdColumn": "80000"},
     // Add more data items here
   ];
 
@@ -47,10 +42,10 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
   @override
   Widget build(BuildContext context) {
     double totalAmount = getTotalAmount(); // Calculating total amount
-
     final TextEditingController depositDateCon = TextEditingController();
-    final TextEditingController depositorNameCon = TextEditingController();
     final TextEditingController depositAmountCon = TextEditingController();
+    String selectDepositorName = '0';
+
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -101,11 +96,27 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                           decoration: borderDecoration,
                         ),
                         const SizedBox(height: 10),
-                        GlobalTextFormField(
-                          controller: depositorNameCon,
-                          titleText: 'Comments',
-                          hintText: 'Depositor Name',
-                          decoration: borderDecoration,
+                        CustomDropDownFormField(
+                          value: selectDepositorName,
+                          titleText: "Select Depositor Name",
+                          hintText: "Select Depositor Name",
+                          isDense: true,
+                          filled: true,
+                          items: const [
+                            "Atiq",
+                            "Saeid",
+                            "Shohel",
+                          ],
+                          sufixIcon:
+                              const Icon(Icons.keyboard_arrow_down_sharp),
+                          onChanged: (val) {
+                            setState(
+                              () {
+                                selectDepositorName = val!;
+                                log("Value: $val");
+                              },
+                            );
+                          },
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
