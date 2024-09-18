@@ -32,7 +32,7 @@ class MemberScreen extends StatelessWidget {
             onPressed: () {
               Get.to(() => const SignInScreen());
             },
-            icon: const Icon(Icons.login),
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),

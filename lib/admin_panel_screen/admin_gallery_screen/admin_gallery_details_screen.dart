@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../global_widget/colors.dart';
+import '../admin_login_screen/admin_login_screen.dart';
 
 class DetailsPage extends StatelessWidget {
   final String imagePath;
@@ -18,21 +20,23 @@ class DetailsPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         shadowColor: ColorRes.borderColor,
-        backgroundColor: ColorRes.primaryColor,
-        iconTheme: const IconThemeData(color: Colors.white),
-        //centerTitle: true,
+        backgroundColor: ColorRes.white,
+        iconTheme: const IconThemeData(color: ColorRes.primaryColor),
+        centerTitle: false,
         title: const Text(
-          'Future Hope Development Association',
+          'Swapnobaj',
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 22,
             fontWeight: FontWeight.w700,
-            color: ColorRes.white,
+            color: ColorRes.primaryColor,
           ),
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              Get.to(() => const SignInScreen());
+            },
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../global_widget/colors.dart';
+import '../admin_login_screen/admin_login_screen.dart';
 
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({super.key});
@@ -24,8 +26,10 @@ class ContactUsScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              Get.to(() => const SignInScreen());
+            },
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),

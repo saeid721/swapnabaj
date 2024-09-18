@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../global_widget/colors.dart';
+import '../admin_login_screen/admin_login_screen.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -28,8 +30,10 @@ class _AboutScreenState extends State<AboutScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications),
+            onPressed: () {
+              Get.to(() => const SignInScreen());
+            },
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
