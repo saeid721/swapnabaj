@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../global_widget/date_time_formator.dart';
 import '../../global_widget/global_button.dart';
 import '../../global_widget/global_textform_field.dart';
 import '../../global_widget/input_decoration.dart';
+import '../../global_widget/show_date_time_picker.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 import '../../global_widget/colors.dart';
 import '../../global_widget/global_container.dart';
 import 'component/admin_invest_widget.dart';
 
-class AdminInvestScreen extends StatelessWidget {
+class AdminInvestScreen extends StatefulWidget {
   const AdminInvestScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController investDateCon = TextEditingController();
-    final TextEditingController commentsCon = TextEditingController();
-    final TextEditingController investAmountCon = TextEditingController();
+  _AdminInvestScreenState createState() => _AdminInvestScreenState();
+}
 
+class _AdminInvestScreenState extends State<AdminInvestScreen> {
+  final TextEditingController selectDepositDateCon = TextEditingController();
+  final TextEditingController commentsCon = TextEditingController();
+  final TextEditingController investAmountCon = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -61,10 +68,30 @@ class AdminInvestScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GlobalTextFormField(
-                          controller: investDateCon,
-                          titleText: 'Date',
-                          hintText: 'Invest Date',
-                          decoration: borderDecoration,
+                          controller: selectDepositDateCon,
+                          titleText: 'Select Date',
+                          hintText: "Select Date".tr,
+                          titleStyle: const TextStyle(
+                              color: ColorRes.textColor,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'Roboto'),
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          filled: true,
+                          sufixIcon: GestureDetector(
+                              onTap: () async {
+                                var pickedDate =
+                                    await showDateOnlyPicker(context);
+                                setState(() {
+                                  String formattedDate = DateTimeFormatter
+                                      .showDateOnlyYear
+                                      .format(pickedDate);
+                                  selectDepositDateCon.text = formattedDate;
+                                });
+                              },
+                              child: const Icon(Icons.calendar_month,
+                                  color: ColorRes.textColor, size: 20)),
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(

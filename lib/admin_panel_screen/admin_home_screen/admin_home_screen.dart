@@ -101,14 +101,14 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
               children: [
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     GlobalContainer(
                       width: 140,
-                      height: 140, // Reduce the container width
+                      height: 140,
                       backgroundColor: ColorRes.backgroundColor,
                       child: Padding(
                         padding: const EdgeInsets.all(5),
@@ -269,43 +269,38 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: Column(
-                    children: [
-                      GlobalContainer(
-                        backgroundColor: ColorRes.white,
-                        width: Get.width,
-                        child: const HomeMemberTableWidget(
-                          firstRow: 'SL',
-                          secondRow: 'Name',
-                          thirdRow: '%',
-                          fourRow: 'Diposit',
-                          fiveRow: 'Profit',
-                          sixRow: 'Blance',
-                        ),
+                Column(
+                  children: [
+                    GlobalContainer(
+                      backgroundColor: ColorRes.backgroundColor,
+                      width: Get.width,
+                      child: const HomeMemberTableWidget(
+                        firstRow: 'SL',
+                        secondRow: 'Name',
+                        thirdRow: 'Diposit',
+                        fourRow: 'Profit',
+                        fiveRow: 'Blance',
                       ),
-                      GlobalContainer(
-                        backgroundColor: ColorRes.white,
-                        width: Get.width,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 10,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (ctx, index) {
-                            return const HomeMemberTableValueWidget(
-                              firstColumn: '01',
-                              secondColumn: 'Mr. Atiq',
-                              thirdColumn: '1',
-                              fourColumn: '60,000',
-                              fiveColumn: '5,000',
-                              sixColumn: '65,000',
-                            );
-                          },
-                        ),
+                    ),
+                    GlobalContainer(
+                      backgroundColor: ColorRes.white,
+                      width: Get.width,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 16,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) {
+                          return const HomeMemberTableValueWidget(
+                            firstColumn: '01',
+                            secondColumn: 'Atiqur Rahman',
+                            thirdColumn: '6,00,000',
+                            fourColumn: '50,000',
+                            fiveColumn: '10,65,000',
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

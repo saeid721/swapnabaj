@@ -97,7 +97,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                         const TextStyle(
                             color: ColorRes.textColor,
                             fontSize: 12,
-                            fontWeight: FontWeight.w700,
+                            fontWeight: FontWeight.w400,
                             fontFamily: 'Rubik'),
                   )
             : SizedBox(
@@ -111,7 +111,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                                 const TextStyle(
                                     color: ColorRes.textColor,
                                     fontSize: 12,
-                                    fontWeight: FontWeight.w700,
+                                    fontWeight: FontWeight.w400,
                                     fontFamily: 'Rubik'),
                           ),
                     sizedBoxW(2),

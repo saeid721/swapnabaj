@@ -9,7 +9,6 @@ class HomeMemberTableWidget extends StatelessWidget {
   final String thirdRow;
   final String fourRow;
   final String fiveRow;
-  final String sixRow;
 
   const HomeMemberTableWidget({
     super.key,
@@ -18,13 +17,12 @@ class HomeMemberTableWidget extends StatelessWidget {
     required this.thirdRow,
     required this.fourRow,
     required this.fiveRow,
-    required this.sixRow,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 30,
       width: Get.width,
       decoration: const BoxDecoration(
         color: ColorRes.profitColor,
@@ -90,7 +88,7 @@ class HomeMemberTableWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: 30,
+            width: 75,
             decoration: const BoxDecoration(
               border: Border(
                 right: BorderSide(color: ColorRes.borderColor, width: 1),
@@ -113,29 +111,6 @@ class HomeMemberTableWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: 75,
-            decoration: const BoxDecoration(
-              border: Border(
-                right: BorderSide(color: ColorRes.borderColor, width: 1),
-                top: BorderSide(color: ColorRes.borderColor, width: 1),
-                bottom: BorderSide(color: ColorRes.borderColor, width: 1),
-              ),
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Center(
-              child: GlobalText(
-                str: fourRow,
-                color: ColorRes.white,
-                fontSize: 13,
-                fontWeight: FontWeight.w700,
-                fontFamily: 'Roboto',
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-              ),
-            ),
-          ),
-          Container(
             width: 65,
             decoration: const BoxDecoration(
               border: Border(
@@ -147,7 +122,7 @@ class HomeMemberTableWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Center(
               child: GlobalText(
-                str: fiveRow,
+                str: fourRow,
                 color: ColorRes.white,
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
@@ -173,7 +148,7 @@ class HomeMemberTableWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Center(
               child: GlobalText(
-                str: sixRow,
+                str: fiveRow,
                 color: ColorRes.white,
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
@@ -196,7 +171,6 @@ class HomeMemberTableValueWidget extends StatelessWidget {
   final String thirdColumn;
   final String fourColumn;
   final String fiveColumn;
-  final String sixColumn;
 
   const HomeMemberTableValueWidget({
     super.key,
@@ -205,13 +179,12 @@ class HomeMemberTableValueWidget extends StatelessWidget {
     required this.thirdColumn,
     required this.fourColumn,
     required this.fiveColumn,
-    required this.sixColumn,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 30,
+      height: 26,
       width: Get.width,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -235,7 +208,7 @@ class HomeMemberTableValueWidget extends StatelessWidget {
               child: GlobalText(
                 str: firstColumn,
                 color: ColorRes.textColor,
-                fontSize: 12,
+                fontSize: 11,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,
@@ -257,33 +230,13 @@ class HomeMemberTableValueWidget extends StatelessWidget {
                 child: GlobalText(
                   str: secondColumn,
                   color: ColorRes.textColor,
-                  fontSize: 12,
+                  fontSize: 11,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Roboto',
                   textAlign: TextAlign.left,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
-              ),
-            ),
-          ),
-          Container(
-            width: 30,
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            decoration: const BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
-                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
-            child: Center(
-              child: GlobalText(
-                str: thirdColumn,
-                color: ColorRes.textColor,
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                fontFamily: 'Roboto',
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
               ),
             ),
           ),
@@ -296,9 +249,9 @@ class HomeMemberTableValueWidget extends StatelessWidget {
                     right: BorderSide(color: ColorRes.borderColor, width: 1))),
             child: Center(
               child: GlobalText(
-                str: fourColumn,
+                str: thirdColumn,
                 color: ColorRes.textColor,
-                fontSize: 12,
+                fontSize: 11,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,
@@ -316,9 +269,9 @@ class HomeMemberTableValueWidget extends StatelessWidget {
                     right: BorderSide(color: ColorRes.borderColor, width: 1))),
             child: Center(
               child: GlobalText(
-                str: fiveColumn,
+                str: fourColumn,
                 color: ColorRes.textColor,
-                fontSize: 12,
+                fontSize: 11,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,
@@ -336,9 +289,9 @@ class HomeMemberTableValueWidget extends StatelessWidget {
                     right: BorderSide(color: ColorRes.borderColor, width: 1))),
             child: Center(
               child: GlobalText(
-                str: sixColumn,
+                str: fiveColumn,
                 color: ColorRes.textColor,
-                fontSize: 12,
+                fontSize: 11,
                 fontWeight: FontWeight.w500,
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,

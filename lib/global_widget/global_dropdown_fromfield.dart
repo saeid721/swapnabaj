@@ -69,7 +69,7 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
                     const TextStyle(
                         color: ColorRes.textColor,
                         fontSize: 12,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w400,
                         fontFamily: 'Roboto'),
                 textAlign: TextAlign.center,
               ),
@@ -88,7 +88,7 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                         color: ColorRes.textColor,
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w400,
                         fontSize: 12,
                         fontFamily: 'Rubik'),
                   ),

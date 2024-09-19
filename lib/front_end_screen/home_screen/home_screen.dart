@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
               children: [
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -209,19 +209,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 10),
                 Column(
                   children: [
                     GlobalContainer(
-                      backgroundColor: ColorRes.white,
+                      backgroundColor: ColorRes.backgroundColor,
                       width: Get.width,
                       child: const HomeMemberTableWidget(
                         firstRow: 'SL',
                         secondRow: 'Name',
-                        thirdRow: '%',
-                        fourRow: 'Diposit',
-                        fiveRow: 'Profit',
-                        sixRow: 'Blance',
+                        thirdRow: 'Diposit',
+                        fourRow: 'Profit',
+                        fiveRow: 'Blance',
                       ),
                     ),
                     GlobalContainer(
@@ -234,11 +233,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (ctx, index) {
                           return const HomeMemberTableValueWidget(
                             firstColumn: '01',
-                            secondColumn: 'Mr. Atiq',
-                            thirdColumn: '1',
-                            fourColumn: '60,000',
-                            fiveColumn: '5,000',
-                            sixColumn: '65,000',
+                            secondColumn: 'Atiqur Rahman',
+                            thirdColumn: '6,00,000',
+                            fourColumn: '50,000',
+                            fiveColumn: '10,65,000',
                           );
                         },
                       ),

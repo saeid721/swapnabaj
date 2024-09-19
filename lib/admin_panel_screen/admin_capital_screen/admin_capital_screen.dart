@@ -118,8 +118,6 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
     // @override
     // void initState() {
     //   super.initState();
-    //   String formattedToday =
-    //       DateTimeFormatter.showDateOnlyYear.format(DateTime.now());
     // }
 
     return Scaffold(
@@ -171,7 +169,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                           hintText: "Select Date".tr,
                           titleStyle: const TextStyle(
                               color: ColorRes.textColor,
-                              fontSize: 14,
+                              fontSize: 12,
                               fontWeight: FontWeight.w400,
                               fontFamily: 'Roboto'),
                           isDense: true,
@@ -266,7 +264,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 10),
                 Column(
                   children: [
                     const GlobalText(
@@ -278,7 +276,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                     ),
                     const SizedBox(height: 10),
                     GlobalContainer(
-                      backgroundColor: ColorRes.white,
+                      backgroundColor: ColorRes.backgroundColor,
                       width: Get.width,
                       child: const CapitalSummeryTableWidget(
                         firstRow: 'SL',
