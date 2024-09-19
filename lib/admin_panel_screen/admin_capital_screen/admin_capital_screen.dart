@@ -1,17 +1,18 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../global_widget/date_time_formator.dart';
 import '../../global_widget/global_button.dart';
 import '../../global_widget/global_dropdown_fromfield.dart';
 import '../../global_widget/global_textform_field.dart';
 import '../../global_widget/input_decoration.dart';
+import '../../global_widget/show_date_time_picker.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 import '../../global_widget/colors.dart';
 import '../../global_widget/global_container.dart';
 import '../../global_widget/global_text.dart';
-import '../admin_profit_screen/component/admin_profit_widget.dart';
-import 'component/admin_capital_widget.dart';
+import 'component/admin_capital_detailes_table_widget.dart';
+import 'component/admin_capital_summery_table_widget.dart';
 
 class AdminCapitalScreen extends StatefulWidget {
   const AdminCapitalScreen({super.key});
@@ -22,15 +23,82 @@ class AdminCapitalScreen extends StatefulWidget {
 
 class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
   List<Map<String, String>> capitalData = [
-    {"firstColumn": "01", "secondColumn": "Mr. Atiq", "thirdColumn": "60000"},
-    {"firstColumn": "02", "secondColumn": "Mr. Shamim", "thirdColumn": "80000"},
-    {"firstColumn": "03", "secondColumn": "Mr. Sohel", "thirdColumn": "80000"},
-    {"firstColumn": "04", "secondColumn": "Shakhawat", "thirdColumn": "80000"},
-    {"firstColumn": "05", "secondColumn": "Mr. Taimur", "thirdColumn": "80000"},
-    {"firstColumn": "06", "secondColumn": "Mr. Kafi", "thirdColumn": "80000"},
-    {"firstColumn": "07", "secondColumn": "Mr. Ismail", "thirdColumn": "80000"},
-    {"firstColumn": "08", "secondColumn": "Shamsul", "thirdColumn": "80000"},
-    // Add more data items here
+    {
+      "firstColumn": "01",
+      "secondColumn": "Atiqur Rahman",
+      "thirdColumn": "60000"
+    },
+    {
+      "firstColumn": "02",
+      "secondColumn": "Shamim Hosen",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "03",
+      "secondColumn": "Md. Taimur Rahman",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "04",
+      "secondColumn": "Md. Shohel Rana",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "05",
+      "secondColumn": "Md.Shakhawat Hossen",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "06",
+      "secondColumn": "Abdullah Al Kafi",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "07",
+      "secondColumn": "Mst. Taslima Akter Rupa",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "08",
+      "secondColumn": "Minhazul Islam Saeid",
+      "thirdColumn": "80000"
+    },
+    {"firstColumn": "09", "secondColumn": "Md. Asif", "thirdColumn": "80000"},
+    {
+      "firstColumn": "10",
+      "secondColumn": "Dipok Kumar",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "11",
+      "secondColumn": "Md. Amirul Islam",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "12",
+      "secondColumn": "Shoriful Islam",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "13",
+      "secondColumn": "Konkor Chandra Modok",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "14",
+      "secondColumn": "Belayet Hossain",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "15",
+      "secondColumn": "Md. Samsul Alom",
+      "thirdColumn": "80000"
+    },
+    {
+      "firstColumn": "16",
+      "secondColumn": "Ismail Hossain",
+      "thirdColumn": "80000"
+    },
   ];
 
   // This function calculates the total amount from the capital data
@@ -42,9 +110,17 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
   @override
   Widget build(BuildContext context) {
     double totalAmount = getTotalAmount(); // Calculating total amount
-    final TextEditingController depositDateCon = TextEditingController();
+    final TextEditingController selectDepositDateCon = TextEditingController();
     final TextEditingController depositAmountCon = TextEditingController();
     String selectDepositorName = '0';
+    String selectDepositPorpose = '0';
+
+    // @override
+    // void initState() {
+    //   super.initState();
+    //   String formattedToday =
+    //       DateTimeFormatter.showDateOnlyYear.format(DateTime.now());
+    // }
 
     return Scaffold(
       appBar: AppBar(
@@ -90,10 +166,30 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GlobalTextFormField(
-                          controller: depositDateCon,
-                          titleText: 'Date',
-                          hintText: 'Deposit Date',
-                          decoration: borderDecoration,
+                          controller: selectDepositDateCon,
+                          titleText: 'Select Date',
+                          hintText: "Select Date".tr,
+                          titleStyle: const TextStyle(
+                              color: ColorRes.textColor,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'Roboto'),
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          filled: true,
+                          sufixIcon: GestureDetector(
+                              onTap: () async {
+                                var pickedDate =
+                                    await showDateOnlyPicker(context);
+                                setState(() {
+                                  String formatedDate = DateTimeFormatter
+                                      .showDateOnlyYear
+                                      .format(pickedDate);
+                                  selectDepositDateCon.text = formatedDate;
+                                });
+                              },
+                              child: const Icon(Icons.calendar_month,
+                                  color: ColorRes.textColor, size: 20)),
                         ),
                         const SizedBox(height: 10),
                         CustomDropDownFormField(
@@ -103,9 +199,22 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                           isDense: true,
                           filled: true,
                           items: const [
-                            "Atiq",
-                            "Saeid",
-                            "Shohel",
+                            "Atiqur Rahman",
+                            "Shamim Hosen",
+                            "Md. Taimur Rahman",
+                            "Md. Shohel Rana",
+                            "Md.Shakhawat Hossen",
+                            "Abdullah Al Kafi",
+                            "Mst. Taslima Akter Rupa",
+                            "Minhazul Islam Saeid",
+                            "Md. Asif",
+                            "Dipok Kumar",
+                            "Md. Amirul Islam",
+                            "Shoriful Islam",
+                            "Konkor Chandra Modok",
+                            "Belayet Hossain",
+                            "Md. Samsul Alom",
+                            "Ismail Hossain",
                           ],
                           sufixIcon:
                               const Icon(Icons.keyboard_arrow_down_sharp),
@@ -113,6 +222,28 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                             setState(
                               () {
                                 selectDepositorName = val!;
+                                log("Value: $val");
+                              },
+                            );
+                          },
+                        ),
+                        const SizedBox(height: 10),
+                        CustomDropDownFormField(
+                          value: selectDepositPorpose,
+                          titleText: "Deposit Porpose",
+                          hintText: "Select Deposit Porpose",
+                          isDense: true,
+                          filled: true,
+                          items: const [
+                            "Monthly",
+                            "Yearly",
+                          ],
+                          sufixIcon:
+                              const Icon(Icons.keyboard_arrow_down_sharp),
+                          onChanged: (val) {
+                            setState(
+                              () {
+                                selectDepositPorpose = val!;
                                 log("Value: $val");
                               },
                             );
@@ -149,7 +280,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                     GlobalContainer(
                       backgroundColor: ColorRes.white,
                       width: Get.width,
-                      child: const CapitalTableWidget(
+                      child: const CapitalSummeryTableWidget(
                         firstRow: 'SL',
                         secondRow: 'Name',
                         thirdRow: 'Deposit',
@@ -163,7 +294,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                         itemCount: capitalData.length,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) {
-                          return CapitalTableValueWidget(
+                          return CapitalSummeryTableValueWidget(
                             firstColumn: capitalData[index]['firstColumn']!,
                             secondColumn: capitalData[index]['secondColumn']!,
                             thirdColumn: capitalData[index]['thirdColumn']!,
@@ -200,11 +331,12 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                     GlobalContainer(
                       backgroundColor: ColorRes.backgroundColor,
                       width: Get.width,
-                      child: const ProfitTableWidget(
+                      child: const CapitalDetailsTableWidget(
                         firstRow: 'SL',
                         secondRow: 'Date',
                         thirdRow: 'Name',
-                        fourRow: 'Amount',
+                        fourRow: 'Porpose',
+                        fiveRow: 'Amount',
                       ),
                     ),
                     GlobalContainer(
@@ -215,11 +347,12 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                         itemCount: 10,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) {
-                          return const ProfitTableValueWidget(
+                          return const CapitalDetailsTableValueWidget(
                             firstColumn: '001',
                             secondColumn: '10/09/2024',
-                            thirdColumn: "Mr. Atiq",
-                            fourColumn: '2,500',
+                            thirdColumn: "Konkor Chandra Modok",
+                            fourColumn: 'Monthly',
+                            fiveColumn: '2,500',
                           );
                         },
                       ),

@@ -211,7 +211,7 @@ class HomeMemberTableValueWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 38,
+      height: 30,
       width: Get.width,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(

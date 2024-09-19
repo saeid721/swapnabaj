@@ -209,44 +209,41 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Column(
-                    children: [
-                      GlobalContainer(
-                        backgroundColor: ColorRes.white,
-                        width: Get.width,
-                        child: const HomeMemberTableWidget(
-                          firstRow: 'SL',
-                          secondRow: 'Name',
-                          thirdRow: '%',
-                          fourRow: 'Diposit',
-                          fiveRow: 'Profit',
-                          sixRow: 'Blance',
-                        ),
+                const SizedBox(height: 5),
+                Column(
+                  children: [
+                    GlobalContainer(
+                      backgroundColor: ColorRes.white,
+                      width: Get.width,
+                      child: const HomeMemberTableWidget(
+                        firstRow: 'SL',
+                        secondRow: 'Name',
+                        thirdRow: '%',
+                        fourRow: 'Diposit',
+                        fiveRow: 'Profit',
+                        sixRow: 'Blance',
                       ),
-                      GlobalContainer(
-                        backgroundColor: ColorRes.white,
-                        width: Get.width,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: 10,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (ctx, index) {
-                            return const HomeMemberTableValueWidget(
-                              firstColumn: '01',
-                              secondColumn: 'Mr. Atiq',
-                              thirdColumn: '1',
-                              fourColumn: '60,000',
-                              fiveColumn: '5,000',
-                              sixColumn: '65,000',
-                            );
-                          },
-                        ),
+                    ),
+                    GlobalContainer(
+                      backgroundColor: ColorRes.white,
+                      width: Get.width,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 16,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) {
+                          return const HomeMemberTableValueWidget(
+                            firstColumn: '01',
+                            secondColumn: 'Mr. Atiq',
+                            thirdColumn: '1',
+                            fourColumn: '60,000',
+                            fiveColumn: '5,000',
+                            sixColumn: '65,000',
+                          );
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ],
             ),

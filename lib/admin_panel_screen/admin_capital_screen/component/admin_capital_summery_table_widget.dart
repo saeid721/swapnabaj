@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_text.dart';
 
-class CapitalTableWidget extends StatelessWidget {
+class CapitalSummeryTableWidget extends StatelessWidget {
   final String firstRow;
   final String secondRow;
   final String thirdRow;
 
-  const CapitalTableWidget({
+  const CapitalSummeryTableWidget({
     super.key,
     required this.firstRow,
     required this.secondRow,
@@ -112,12 +112,12 @@ class CapitalTableWidget extends StatelessWidget {
   }
 }
 
-class CapitalTableValueWidget extends StatelessWidget {
+class CapitalSummeryTableValueWidget extends StatelessWidget {
   final String firstColumn;
   final String secondColumn;
   final String thirdColumn;
 
-  const CapitalTableValueWidget({
+  const CapitalSummeryTableValueWidget({
     super.key,
     required this.firstColumn,
     required this.secondColumn,
@@ -127,7 +127,7 @@ class CapitalTableValueWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 38,
+      height: 30,
       width: Get.width,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(

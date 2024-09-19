@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_text.dart';
 
-class ProfitTableWidget extends StatelessWidget {
+class CapitalDetailsTableWidget extends StatelessWidget {
   final String firstRow;
   final String secondRow;
   final String thirdRow;
   final String fourRow;
+  final String fiveRow;
 
-  const ProfitTableWidget({
+  const CapitalDetailsTableWidget({
     super.key,
     required this.firstRow,
     required this.secondRow,
     required this.thirdRow,
     required this.fourRow,
+    required this.fiveRow,
   });
 
   @override
@@ -51,7 +52,7 @@ class ProfitTableWidget extends StatelessWidget {
               child: GlobalText(
                 str: firstRow,
                 color: ColorRes.white,
-                fontSize: 13,
+                fontSize: 11,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Roboto',
                 overflow: TextOverflow.ellipsis,
@@ -60,7 +61,7 @@ class ProfitTableWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: 90,
+            width: 75,
             decoration: const BoxDecoration(
               border: Border(
                 right: BorderSide(color: ColorRes.borderColor, width: 1),
@@ -75,7 +76,7 @@ class ProfitTableWidget extends StatelessWidget {
                 child: GlobalText(
                   str: secondRow,
                   color: ColorRes.white,
-                  fontSize: 13,
+                  fontSize: 11,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'Roboto',
                   overflow: TextOverflow.ellipsis,
@@ -99,13 +100,36 @@ class ProfitTableWidget extends StatelessWidget {
                 child: GlobalText(
                   str: thirdRow,
                   color: ColorRes.white,
-                  fontSize: 13,
+                  fontSize: 11,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'Roboto',
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
+              ),
+            ),
+          ),
+          Container(
+            width: 60,
+            decoration: const BoxDecoration(
+              border: Border(
+                right: BorderSide(color: ColorRes.borderColor, width: 1),
+                top: BorderSide(color: ColorRes.borderColor, width: 1),
+                bottom: BorderSide(color: ColorRes.borderColor, width: 1),
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Center(
+              child: GlobalText(
+                str: fourRow,
+                color: ColorRes.white,
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               ),
             ),
           ),
@@ -124,9 +148,9 @@ class ProfitTableWidget extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Center(
               child: GlobalText(
-                str: fourRow,
+                str: fiveRow,
                 color: ColorRes.white,
-                fontSize: 13,
+                fontSize: 11,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,
@@ -141,24 +165,26 @@ class ProfitTableWidget extends StatelessWidget {
   }
 }
 
-class ProfitTableValueWidget extends StatelessWidget {
+class CapitalDetailsTableValueWidget extends StatelessWidget {
   final String firstColumn;
   final String secondColumn;
   final String thirdColumn;
   final String fourColumn;
+  final String fiveColumn;
 
-  const ProfitTableValueWidget({
+  const CapitalDetailsTableValueWidget({
     super.key,
     required this.firstColumn,
     required this.secondColumn,
     required this.thirdColumn,
     required this.fourColumn,
+    required this.fiveColumn,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 30,
       width: Get.width,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -182,7 +208,7 @@ class ProfitTableValueWidget extends StatelessWidget {
               child: GlobalText(
                 str: firstColumn,
                 color: ColorRes.textColor,
-                fontSize: 11,
+                fontSize: 10,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,
@@ -191,7 +217,7 @@ class ProfitTableValueWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: 90,
+            width: 76,
             decoration: const BoxDecoration(
                 border: Border(
                     bottom: BorderSide(color: ColorRes.borderColor, width: 1),
@@ -202,7 +228,7 @@ class ProfitTableValueWidget extends StatelessWidget {
               child: GlobalText(
                 str: secondColumn,
                 color: ColorRes.textColor,
-                fontSize: 12,
+                fontSize: 10,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Roboto',
                 overflow: TextOverflow.ellipsis,
@@ -223,13 +249,32 @@ class ProfitTableValueWidget extends StatelessWidget {
                   child: GlobalText(
                     str: thirdColumn,
                     color: ColorRes.textColor,
-                    fontSize: 11,
+                    fontSize: 10,
                     fontWeight: FontWeight.w400,
                     fontFamily: 'Roboto',
                     textAlign: TextAlign.left,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
+              ),
+            ),
+          ),
+          Container(
+            width: 60,
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            decoration: const BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
+                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
+            child: Center(
+              child: GlobalText(
+                str: fourColumn,
+                color: ColorRes.textColor,
+                fontSize: 10,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Roboto',
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
@@ -242,7 +287,7 @@ class ProfitTableValueWidget extends StatelessWidget {
                     right: BorderSide(color: ColorRes.borderColor, width: 1))),
             child: Center(
               child: GlobalText(
-                str: fourColumn,
+                str: fiveColumn,
                 color: ColorRes.textColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
