@@ -5,6 +5,7 @@ import '../../global_widget/global_button.dart';
 import '../../global_widget/global_container.dart';
 import '../../global_widget/global_textform_field.dart';
 import '../../global_widget/input_decoration.dart';
+import '../admin_home_screen/admin_home_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -73,7 +74,9 @@ class SignInScreen extends StatelessWidget {
                       GlobalButtonWidget(
                         str: 'SIGN IN',
                         height: 45,
-                        onTap: () {},
+                        onTap: () {
+                          Get.to((const AdminHomeScreen()));
+                        },
                       ),
                     ],
                   ),
