@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../front_end_screen/home_screen/home_screen.dart';
 import '../../global_widget/colors.dart';
 import '../../global_widget/global_button.dart';
 import '../../global_widget/global_container.dart';
@@ -75,7 +76,7 @@ class SignInScreen extends StatelessWidget {
                         str: 'SIGN IN',
                         height: 45,
                         onTap: () {
-                          Get.to((const AdminHomeScreen()));
+                          Get.to((const HomeScreen()));
                         },
                       ),
                     ],

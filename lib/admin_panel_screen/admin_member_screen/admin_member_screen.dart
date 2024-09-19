@@ -7,8 +7,8 @@ import '../../global_widget/global_text.dart';
 import 'component/admin_member_card_widget.dart';
 import 'component/admin_member_data.dart';
 
-class MemberScreen extends StatelessWidget {
-  const MemberScreen({super.key});
+class AdminMemberScreen extends StatelessWidget {
+  const AdminMemberScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

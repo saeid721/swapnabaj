@@ -10,14 +10,14 @@ import 'admin_menu_screen/admin_bangla_001.dart';
 import 'admin_profit_screen/admin_profit_screen.dart';
 import '../../global_widget/colors.dart';
 
-class SideMenuScreen extends StatefulWidget {
-  const SideMenuScreen({super.key});
+class AdminSideMenuScreen extends StatefulWidget {
+  const AdminSideMenuScreen({super.key});
 
   @override
-  State<SideMenuScreen> createState() => _SideMenuScreenState();
+  State<AdminSideMenuScreen> createState() => _AdminSideMenuScreenState();
 }
 
-class _SideMenuScreenState extends State<SideMenuScreen> {
+class _AdminSideMenuScreenState extends State<AdminSideMenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
