@@ -105,6 +105,7 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                           controller: profitAmountCon,
                           titleText: 'Amount',
                           hintText: 'Enter Profit Amount',
+                          keyboardType: TextInputType.number,
                           decoration: borderDecoration,
                         ),
                         const SizedBox(height: 20),

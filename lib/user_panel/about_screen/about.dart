@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../global_widget/colors.dart';
 
 class AboutScreen extends StatefulWidget {

@@ -252,6 +252,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                           controller: depositAmountCon,
                           titleText: 'Amount',
                           hintText: 'Enter Deposit Amount',
+                          keyboardType: TextInputType.number,
                           decoration: borderDecoration,
                         ),
                         const SizedBox(height: 20),

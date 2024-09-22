@@ -105,6 +105,7 @@ class _AdminExpenseScreenState extends State<AdminExpenseScreen> {
                           controller: expenseAmountCon,
                           titleText: 'Amount',
                           hintText: 'Enter Expense Amount',
+                          keyboardType: TextInputType.number,
                           decoration: borderDecoration,
                         ),
                         const SizedBox(height: 20),
