@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../front_end_screen/home_screen/home_screen.dart';
 import '../global_widget/chapter_item_widget.dart';
 import 'admin_capital_screen/admin_capital_screen.dart';
 import 'admin_expense_screen/admin_expense_screen.dart';
@@ -9,6 +10,123 @@ import 'admin_login_screen/admin_login_screen.dart';
 import 'admin_menu_screen/admin_bangla_001.dart';
 import 'admin_profit_screen/admin_profit_screen.dart';
 import '../../global_widget/colors.dart';
+
+class SideberMenuWidget extends StatelessWidget {
+  const SideberMenuWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          SizedBox(
+            height: 170,
+            child: DrawerHeader(
+              decoration: const BoxDecoration(
+                color: ColorRes.primaryColor,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/logo2.png',
+                    width: 220,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "Capital",
+            onTap: () {
+              Get.to(() => const AdminCapitalScreen());
+            },
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "Profit",
+            onTap: () {
+              Get.to(() => const AdminProfitScreen());
+            },
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "Invest",
+            onTap: () {
+              Get.to(() => const AdminInvestScreen());
+            },
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "Expense",
+            onTap: () {
+              Get.to(() => const AdminExpenseScreen());
+            },
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "Charity",
+            onTap: () {
+              Get.to(() => const BanglaSongOneScreen());
+            },
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "Galary",
+            onTap: () {
+              Get.to(() => const BanglaSongOneScreen());
+            },
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "News",
+            onTap: () {
+              Get.to(() => const BanglaSongOneScreen());
+            },
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "Event",
+            onTap: () {
+              Get.to(() => const BanglaSongOneScreen());
+            },
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "Notice",
+            onTap: () {
+              Get.to(() => const BanglaSongOneScreen());
+            },
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "About Us",
+            onTap: () {
+              Get.to(() => const BanglaSongOneScreen());
+            },
+          ),
+          ChapterItem(
+            leadingIcon: Icons.home,
+            title: "Contact Us",
+            onTap: () {
+              Get.to(() => const BanglaSongOneScreen());
+            },
+          ),
+          ListTile(
+            title: const Text('Home'),
+            onTap: () {
+              Get.to(() => const HomeScreen());
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class AdminSideMenuScreen extends StatefulWidget {
   const AdminSideMenuScreen({super.key});

@@ -12,6 +12,7 @@ import '../admin_login_screen/admin_login_screen.dart';
 import '../admin_profit_screen/admin_profit_screen.dart';
 import '../../global_widget/colors.dart';
 import '../../global_widget/global_container.dart';
+import '../admin_side_menu_screen.dart';
 import 'component/admin_home_member_widget.dart';
 import 'component/catagory_card.dart';
 import 'component/home_summery_chapter_item_widget.dart';
@@ -75,7 +76,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.capitalColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
           'Swapnobaj',
           style: TextStyle(
@@ -93,7 +94,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
           ),
         ],
       ),
-      //drawer: const SideberMenuWidget(),
+      drawer: const SideberMenuWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,

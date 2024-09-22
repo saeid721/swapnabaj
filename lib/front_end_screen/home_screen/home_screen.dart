@@ -8,6 +8,7 @@ import '../invest_screen/invest_screen.dart';
 import '../../global_widget/colors.dart';
 import '../../global_widget/global_container.dart';
 import '../profit_screen/profit_screen.dart';
+import '../side_menu_screen.dart';
 import 'component/home_member_widget.dart';
 import 'component/home_summery_chapter_item_widget.dart';
 
@@ -88,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      //drawer: const SideberMenuWidget(),
+      //drawer: const SideMenuScreen(),
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,

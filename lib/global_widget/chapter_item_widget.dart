@@ -5,12 +5,14 @@ class ChapterItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final IconData icon;
+  final IconData? leadingIcon; // New optional leading icon parameter
   final Color backgroundColor;
 
   const ChapterItem({
     required this.title,
     required this.onTap,
-    this.icon = Icons.arrow_forward_ios, // Default icon
+    this.icon = Icons.arrow_forward_ios, // Default trailing icon
+    this.leadingIcon, // Accept leadingIcon as an optional parameter
     this.backgroundColor = ColorRes.backgroundColor, // Default background color
     super.key,
   });
@@ -22,8 +24,7 @@ class ChapterItem extends StatelessWidget {
       child: Material(
         color: Colors.transparent, // Use transparent color in Material
         elevation: 2.0, // Add elevation to create a shadow effect
-        shadowColor: Colors.black
-            .withOpacity(0.25), // Optional: Adjust shadow color and opacity
+        shadowColor: Colors.black.withOpacity(0.25), // Optional: Adjust shadow color and opacity
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(15.0),
           bottomLeft: Radius.circular(15.0),
@@ -46,12 +47,21 @@ class ChapterItem extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
+              if (leadingIcon != null) // Conditionally render the leading icon
+                Icon(
+                  leadingIcon,
                   color: ColorRes.textColor,
+                  size: 16,
+                ),
+              const SizedBox(width: 5), // Add some spacing between the icon and the title
+              Expanded( // Wrap title with Expanded to avoid overflow
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w600,
+                    color: ColorRes.textColor,
+                  ),
                 ),
               ),
               Icon(
