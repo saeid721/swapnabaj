@@ -8,43 +8,43 @@ class NewsScreen extends StatelessWidget {
 
   final List<Map<String, dynamic>> newsItems = [
     {
-      'title': 'Restaurant owners demand forming task force',
+      'title': 'Swapnobaj',
       'image': 'assets/images/Logo.png',
       'date': '22/03/2024',
     },
     {
       'title':
-          'Restaurateurs seek to import meat amid soaring commodity prices',
+          'Swapnobaj',
       'image': 'assets/images/Logo.png',
       'date': '23/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
+      'title': 'Swapnobaj',
       'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
+      'title': 'Swapnobaj',
       'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
+      'title': 'Swapnobaj',
       'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
+      'title': 'Swapnobaj',
       'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
+      'title': 'Swapnobaj',
       'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
+      'title': 'Swapnobaj',
       'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },

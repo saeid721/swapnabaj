@@ -45,7 +45,7 @@ class AdminContactUsScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(
-                'Al-Razi Complex(Royal Group), 166-167 Shahid Syed Nazrul Islam Sharani, Dhaka 1000',
+                'Bogura, Dhaka, Bangladesh',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 24),
@@ -54,7 +54,7 @@ class AdminContactUsScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(
-                '+88 01844 22 19 51',
+                '+88 01703 030 721',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 24),
@@ -63,7 +63,7 @@ class AdminContactUsScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(
-                'info@broa.com.bd',
+                'info@swapnobaj.com',
                 style: TextStyle(fontSize: 16),
               ),
               SizedBox(height: 24),
@@ -72,7 +72,7 @@ class AdminContactUsScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Text(
-                'www.broa.com.bd',
+                'www.swapnobaj.com',
                 style: TextStyle(fontSize: 16),
               ),
             ],

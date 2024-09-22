@@ -44,28 +44,28 @@ class NewsDetailsScreen extends StatelessWidget {
                 textAlign: TextAlign.justify,
                 newsTitle,
                 style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 10),
               Image.asset(
-                'assets/images/bangladesh_restaurant_owners_association.jpg',
+                'assets/images/Logo.png',
               ),
               const SizedBox(height: 10),
               const Text(
                 textAlign: TextAlign.justify,
-                "The Bangladesh Restaurant Owners Association officials hold a press conference at the association's headquarters in Bijoynagar, Dhaka, on Tuesday to discuss the recent crisis in the restaurant industry followed by the Bailey Road fire and peaceful business operations during the holy month of Ramadan. Photo: TBS",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                 style: TextStyle(fontSize: 14),
               ),
               const SizedBox(height: 10),
               const Text(
                 textAlign: TextAlign.justify,
-                "The Bangladesh Restaurant Owners Association has demanded the formation of a task force to end random harassment and arrests in the name of raids aimed at ensuring standard practices.",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 10),
               const Text(
                 textAlign: TextAlign.justify,
-                "The demand was made today (5 March) morning during a press conference held at the association's headquarters in Bijoynagar, Dhaka, organised to discuss the recent crisis in the restaurant industry followed by the Bailey Road fire and peaceful business operations during the holy month of Ramadan.",
+                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                 style: TextStyle(fontSize: 14),
               ),
             ],

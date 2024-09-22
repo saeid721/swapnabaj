@@ -70,7 +70,7 @@ class AdminEventScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return Card(
               margin:
-                  const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
+              const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
               child: ListTile(
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

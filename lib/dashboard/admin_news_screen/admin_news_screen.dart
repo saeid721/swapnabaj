@@ -9,44 +9,44 @@ class AdminNewsScreen extends StatelessWidget {
 
   final List<Map<String, dynamic>> newsItems = [
     {
-      'title': 'Restaurant owners demand forming task force',
-      'image': 'assets/images/Secretary_General.jpg',
+      'title': 'Swapnobaj',
+      'image': 'assets/images/Logo.png',
       'date': '22/03/2024',
     },
     {
       'title':
-          'Restaurateurs seek to import meat amid soaring commodity prices',
-      'image': 'assets/images/Secretary_General.jpg',
+      'Swapnobaj',
+      'image': 'assets/images/Logo.png',
       'date': '23/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
-      'image': 'assets/images/Secretary_General.jpg',
+      'title': 'Swapnobaj',
+      'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
-      'image': 'assets/images/Secretary_General.jpg',
+      'title': 'Swapnobaj',
+      'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
-      'image': 'assets/images/Secretary_General.jpg',
+      'title': 'Swapnobaj',
+      'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
-      'image': 'assets/images/Secretary_General.jpg',
+      'title': 'Swapnobaj',
+      'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
-      'image': 'assets/images/Secretary_General.jpg',
+      'title': 'Swapnobaj',
+      'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
     {
-      'title': 'Let us open, at least at half the capacity: Restaurants',
-      'image': 'assets/images/Secretary_General.jpg',
+      'title': 'Swapnobaj',
+      'image': 'assets/images/Logo.png',
       'date': '24/03/2024',
     },
   ];
@@ -93,7 +93,7 @@ class AdminNewsScreen extends StatelessWidget {
                   child: Card(
                     margin: const EdgeInsets.only(top: 10),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
+                      padding: const EdgeInsets.only(left: 10, bottom: 30),
                       child: Row(
                         children: [
                           Expanded(
@@ -105,8 +105,9 @@ class AdminNewsScreen extends StatelessWidget {
                                   child: Text(
                                     newsItems[index]['title'],
                                     style: const TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w700,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700,
+                                        color: ColorRes.primaryColor
                                     ),
                                   ),
                                 ),
@@ -131,7 +132,7 @@ class AdminNewsScreen extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(3),
                     decoration: BoxDecoration(
-                      color: ColorRes.primaryColor.withOpacity(0.2),
+                      color: ColorRes.primaryColor.withOpacity(0.1),
                       borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
@@ -141,7 +142,7 @@ class AdminNewsScreen extends StatelessWidget {
                       newsItems[index]['date'],
                       style: const TextStyle(
                         color: Colors.black,
-                        fontSize: 12,
+                        fontSize: 10,
                       ),
                     ),
                   ),

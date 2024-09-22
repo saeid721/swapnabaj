@@ -42,18 +42,13 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
         child: Center(
           child: Column(
             children: [
-              const Text(
-                'Certificate on Incorporation',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
               Image.asset(
-                'assets/images/incorporation.jpeg',
-                height: 300,
+                'assets/images/logo2.png',
+                width: 250,
               ),
               const SizedBox(height: 20),
               const Text(
-                'Constitution সংবিধান বা ',
+                'About Us',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -63,31 +58,13 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                   Text.rich(
                     textAlign: TextAlign.justify,
                     TextSpan(
-                      children: [
+                      children: [TextSpan(
+                        text: "What is Lorem Ipsum? ",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                         TextSpan(
                             text:
-                                "The constitution of the Bangladesh Restaurant Owners Association is a set of rules and regulations governing the organization's structure, functions, and operations. While the specific details of the constitution may vary, it typically outlines the following key aspects:\n \n"),
-                        TextSpan(
-                          text: "Name and Objectives: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                            text:
-                                "The constitution specifies the name of the association (Bangladesh Restaurant Owners Association) and outlines its objectives, which may include promoting the interests of restaurant owners, advocating for favorable policies and regulations, fostering unity and collaboration within the industry, and supporting the growth and development of the restaurant sector in Bangladesh."),
-                      ],
-                    ),
-                  ),
-                  Text.rich(
-                    textAlign: TextAlign.justify,
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Membership: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                            text:
-                                "The constitution defines the criteria for membership in the association, including eligibility requirements, membership categories, rights, and responsibilities. It may outline the process for admission, suspension, and termination of membership, as well as procedures for membership dues and fees."),
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
                       ],
                     ),
                   ),
@@ -101,59 +78,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                         ),
                         TextSpan(
                             text:
-                                "The constitution establishes the organizational structure of the association, including the roles and responsibilities of office bearers such as the president, vice president, general secretary, treasurer, and executive committee members. It may also outline the procedures for elections, terms of office, and decision-making processes within the association."),
-                      ],
-                    ),
-                  ),
-                  Text.rich(
-                    textAlign: TextAlign.justify,
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Meetings and Governance: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                            text:
-                                "The constitution governs the conduct of meetings, including general assembly meetings, executive committee meetings, and other gatherings of the association's members. It specifies procedures for convening meetings, setting agendas, voting, and recording minutes. It may also outline mechanisms for resolving disputes and grievances within the association."),
-                      ],
-                    ),
-                  ),
-                  Text.rich(
-                    textAlign: TextAlign.justify,
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Financial Management: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                            text:
-                                "The constitution outlines principles and procedures for financial management, including budgeting, accounting, auditing, and reporting. It may establish guidelines for the collection, disbursement, and management of funds, as well as mechanisms for ensuring transparency and accountability in financial matters."),
-                      ],
-                    ),
-                  ),
-                  Text.rich(
-                    textAlign: TextAlign.justify,
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Amendments and Bylaws:",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                            text:
-                                "The constitution may include provisions for amending its provisions and adopting bylaws to address specific operational or procedural matters not covered in the main document. It may specify the process for amending the constitution, including requirements for notice, voting, and approval by members."),
-                      ],
-                    ),
-                  ),
-                  Text.rich(
-                    textAlign: TextAlign.justify,
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                            text:
-                                "Overall, the constitution of the Bangladesh Restaurant Owners Association serves as a foundational document that guides the organization's activities, ensures compliance with legal requirements, and upholds the principles of democracy, transparency, and accountability in its governance and operations."),
+                            """Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32."""),
                       ],
                     ),
                   ),
