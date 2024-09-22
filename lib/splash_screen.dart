@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'front_end_screen/bottom_navigation/bottom_navigation_screen.dart';
+import 'user_panel/bottom_navigation/bottom_navigation.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -8,7 +8,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const BottomNavigationScreen()),
+        MaterialPageRoute(builder: (context) => const BottomNavigation()),
       );
     });
 
