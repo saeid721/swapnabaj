@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../global_widget/colors.dart';
-import '../../bottom_navigation/component/bottom_navigation_widget.dart';
+import '../../../global_widget/global_text.dart';
 
 
 class CapitalTableWidget extends StatelessWidget {

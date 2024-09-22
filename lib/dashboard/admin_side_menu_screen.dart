@@ -44,77 +44,77 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             ),
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
+            leadingImage: 'assets/images/capital.png',
             title: "Capital",
             onTap: () {
               Get.to(() => const AdminCapitalScreen());
             },
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
+            leadingImage: 'assets/images/profit.png',
             title: "Profit",
             onTap: () {
               Get.to(() => const AdminProfitScreen());
             },
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
+            leadingImage: 'assets/images/invest.png',
             title: "Invest",
             onTap: () {
               Get.to(() => const AdminInvestScreen());
             },
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
+            leadingImage: 'assets/images/expense.png',
             title: "Expense",
             onTap: () {
               Get.to(() => const AdminExpenseScreen());
             },
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
+            leadingImage: 'assets/images/charity.png',
             title: "Charity",
             onTap: () {
               Get.to(() => const AdminHomeScreen());
             },
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
-            title: "Galary",
+            leadingImage: 'assets/images/gallery.png',
+            title: "Gallery",
             onTap: () {
               Get.to(() => const AdminGalleryScreen());
             },
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
+            leadingImage: 'assets/images/news.png',
             title: "News",
             onTap: () {
               Get.to(() => AdminNewsScreen());
             },
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
+            leadingImage: 'assets/images/event.png',
             title: "Event",
             onTap: () {
               Get.to(() => AdminEventScreen());
             },
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
+            leadingImage: 'assets/images/notice.png',
             title: "Notice",
             onTap: () {
               Get.to(() => AdminNoticesScreen());
             },
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
+            leadingImage: 'assets/images/about.png',
             title: "About Us",
             onTap: () {
               Get.to(() => const AdminAboutScreen());
             },
           ),
           ChapterItem(
-            leadingIcon: Icons.home,
+            leadingImage: 'assets/images/contact.png',
             title: "Contact Us",
             onTap: () {
               Get.to(() => const AdminContactUsScreen());

@@ -5,14 +5,16 @@ class ChapterItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
   final IconData icon;
-  final IconData? leadingIcon; // New optional leading icon parameter
+  final String? leadingImage; // New optional leading image parameter
+  final Color? leadingImageColor; // New optional color for leading image
   final Color backgroundColor;
 
   const ChapterItem({
     required this.title,
     required this.onTap,
     this.icon = Icons.arrow_forward_ios, // Default trailing icon
-    this.leadingIcon, // Accept leadingIcon as an optional parameter
+    this.leadingImage, // Accept leadingImage as an optional parameter
+    this.leadingImageColor, // Accept leadingImageColor as an optional parameter
     this.backgroundColor = ColorRes.backgroundColor, // Default background color
     super.key,
   });
@@ -47,11 +49,17 @@ class ChapterItem extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              if (leadingIcon != null) // Conditionally render the leading icon
-                Icon(
-                  leadingIcon,
-                  color: ColorRes.textColor,
-                  size: 16,
+              if (leadingImage != null) // Conditionally render the leading image
+                ColorFiltered(
+                  colorFilter: ColorFilter.mode(
+                    leadingImageColor ?? ColorRes.primaryColor, // Use the provided color or transparent
+                    BlendMode.srcATop,
+                  ),
+                  child: Image.asset(
+                    leadingImage!,
+                    width: 24, // Adjust width as needed
+                    height: 24, // Adjust height as needed
+                  ),
                 ),
               const SizedBox(width: 5), // Add some spacing between the icon and the title
               Expanded( // Wrap title with Expanded to avoid overflow
