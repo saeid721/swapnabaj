@@ -150,8 +150,6 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
               ),
               const SizedBox(height: 20),
               GlobalContainer(
-                elevation: 1,
-                borderRadius: 8,
                 child: SizedBox(
                   height: 300, // Set a height for the list view
                   child: ListView.builder(
