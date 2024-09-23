@@ -38,11 +38,11 @@ class AdminContactUsScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
         child: Center(
           child: Column(
             children: [
-              const SizedBox(height: 10),
               GlobalContainer(
                 backgroundColor: ColorRes.white,
                 elevation: 1,

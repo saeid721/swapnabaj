@@ -77,7 +77,6 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
         child: Center(
           child: Column(
             children: [
-              const SizedBox(height: 10),
               GlobalContainer(
                 backgroundColor: ColorRes.white,
                 elevation: 1,
@@ -145,50 +144,53 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: events.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        color: Colors.white,
-                        child: ListTile(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  events[index]['title'],
-                                  style: const TextStyle(
-                                      fontSize: 16.0, fontWeight: FontWeight.w700),
+              GlobalContainer(
+                backgroundColor: ColorRes.backgroundColor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: events.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          color: Colors.white,
+                          child: ListTile(
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    events[index]['title'],
+                                    style: const TextStyle(
+                                        fontSize: 16.0, fontWeight: FontWeight.w700),
+                                  ),
                                 ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  events[index]['date'],
-                                  style: const TextStyle(fontSize: 12.0),
-                                  textAlign: TextAlign.end,
+                                Expanded(
+                                  child: Text(
+                                    events[index]['date'],
+                                    style: const TextStyle(fontSize: 12.0),
+                                    textAlign: TextAlign.end,
+                                  ),
                                 ),
+                              ],
+                            ),
+                            subtitle: Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(
+                                events[index]['description'],
+                                style: const TextStyle(fontSize: 14.0),
+                                textAlign: TextAlign.justify,
                               ),
-                            ],
-                          ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 5),
-                            child: Text(
-                              events[index]['description'],
-                              style: const TextStyle(fontSize: 14.0),
-                              textAlign: TextAlign.justify,
                             ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 20),
             ],

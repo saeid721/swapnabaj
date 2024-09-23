@@ -77,11 +77,11 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
         ],
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
         child: Center(
           child: Column(
             children: [
-              const SizedBox(height: 10),
               GlobalContainer(
                 backgroundColor: ColorRes.white,
                 elevation: 1,
@@ -150,58 +150,61 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
               ),
               const SizedBox(height: 20),
               GlobalContainer(
-                child: SizedBox(
-                  height: 300, // Set a height for the list view
-                  child: ListView.builder(
-                    itemCount: events.length,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return Card(
-                        margin: const EdgeInsets.only(top: 3, bottom: 3),
-                        child: ListTile(
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  events[index]['title'],
+                backgroundColor: ColorRes.backgroundColor,
+                child: Column(
+                  children: [
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: events.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          color: Colors.white,
+                          child: ListTile(
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    events[index]['title'],
+                                    style: const TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    events[index]['date'],
+                                    style: const TextStyle(fontSize: 12.0),
+                                    textAlign: TextAlign.end,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  events[index]['location'],
                                   style: const TextStyle(
-                                      fontSize: 16.0,
+                                      fontSize: 12.0,
                                       fontWeight: FontWeight.w700),
                                 ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  events[index]['date'],
-                                  style: const TextStyle(fontSize: 12.0),
-                                  textAlign: TextAlign.end,
+                                const SizedBox(height: 10),
+                                Text(
+                                  events[index]['description'],
+                                  style: const TextStyle(fontSize: 14),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
+                            onTap: () {
+                              _showEventDetails(context, events[index]);
+                            },
                           ),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                events[index]['location'],
-                                style: const TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                events[index]['description'],
-                                style: const TextStyle(fontSize: 14),
-                              ),
-                            ],
-                          ),
-                          onTap: () {
-                            _showEventDetails(context, events[index]);
-                          },
-                        ),
-                      );
-                    },
-                  ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             ],

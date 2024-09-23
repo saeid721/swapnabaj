@@ -147,240 +147,237 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              children: [
-                const SizedBox(height: 10),
-                GlobalContainer(
-                  backgroundColor: ColorRes.white,
-                  elevation: 1,
-                  width: Get.width,
-                  borderRadius: 8, // Adjust the width if needed
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GlobalTextFormField(
-                          controller: selectDepositDateCon,
-                          titleText: 'Select Date',
-                          hintText: "Select Date".tr,
-                          titleStyle: const TextStyle(
-                              color: ColorRes.textColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Roboto'),
-                          isDense: true,
-                          decoration: inputDropDecoration,
-                          filled: true,
-                          sufixIcon: GestureDetector(
-                              onTap: () async {
-                                var pickedDate =
-                                    await showDateOnlyPicker(context);
-                                setState(() {
-                                  String formatedDate = DateTimeFormatter
-                                      .showDateOnlyYear
-                                      .format(pickedDate);
-                                  selectDepositDateCon.text = formatedDate;
-                                });
-                              },
-                              child: const Icon(Icons.calendar_month,
-                                  color: ColorRes.textColor, size: 20)),
-                        ),
-                        const SizedBox(height: 10),
-                        CustomDropDownFormField(
-                          value: selectDepositorName,
-                          titleText: "Select Depositor Name",
-                          hintText: "Select Depositor Name",
-                          isDense: true,
-                          filled: true,
-                          items: const [
-                            "Atiqur Rahman",
-                            "Shamim Hosen",
-                            "Md. Taimur Rahman",
-                            "Md. Shohel Rana",
-                            "Md.Shakhawat Hossen",
-                            "Abdullah Al Kafi",
-                            "Mst. Taslima Akter Rupa",
-                            "Minhazul Islam Saeid",
-                            "Md. Asif",
-                            "Dipok Kumar",
-                            "Md. Amirul Islam",
-                            "Shoriful Islam",
-                            "Konkor Chandra Modok",
-                            "Belayet Hossain",
-                            "Md. Samsul Alom",
-                            "Ismail Hossain",
-                          ],
-                          sufixIcon:
-                              const Icon(Icons.keyboard_arrow_down_sharp),
-                          onChanged: (val) {
-                            setState(
-                              () {
-                                selectDepositorName = val!;
-                                log("Value: $val");
-                              },
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 10),
-                        CustomDropDownFormField(
-                          value: selectDepositPorpose,
-                          titleText: "Deposit Porpose",
-                          hintText: "Select Deposit Porpose",
-                          isDense: true,
-                          filled: true,
-                          items: const [
-                            "Monthly",
-                            "Yearly",
-                          ],
-                          sufixIcon:
-                              const Icon(Icons.keyboard_arrow_down_sharp),
-                          onChanged: (val) {
-                            setState(
-                              () {
-                                selectDepositPorpose = val!;
-                                log("Value: $val");
-                              },
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 10),
-                        GlobalTextFormField(
-                          controller: depositAmountCon,
-                          titleText: 'Amount',
-                          hintText: 'Enter Deposit Amount',
-                          keyboardType: TextInputType.number,
-                          decoration: borderDecoration,
-                        ),
-                        const SizedBox(height: 20),
-                        GlobalButtonWidget(
-                          str: 'Submit',
-                          height: 45,
-                          onTap: () {},
-                        ),
-                      ],
-                    ),
+          padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
+          child: Column(
+            children: [
+              GlobalContainer(
+                backgroundColor: ColorRes.white,
+                elevation: 1,
+                width: Get.width,
+                borderRadius: 8, // Adjust the width if needed
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GlobalTextFormField(
+                        controller: selectDepositDateCon,
+                        titleText: 'Select Date',
+                        hintText: "Select Date".tr,
+                        titleStyle: const TextStyle(
+                            color: ColorRes.textColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        filled: true,
+                        sufixIcon: GestureDetector(
+                            onTap: () async {
+                              var pickedDate =
+                                  await showDateOnlyPicker(context);
+                              setState(() {
+                                String formatedDate = DateTimeFormatter
+                                    .showDateOnlyYear
+                                    .format(pickedDate);
+                                selectDepositDateCon.text = formatedDate;
+                              });
+                            },
+                            child: const Icon(Icons.calendar_month,
+                                color: ColorRes.textColor, size: 20)),
+                      ),
+                      const SizedBox(height: 10),
+                      CustomDropDownFormField(
+                        value: selectDepositorName,
+                        titleText: "Select Depositor Name",
+                        hintText: "Select Depositor Name",
+                        isDense: true,
+                        filled: true,
+                        items: const [
+                          "Atiqur Rahman",
+                          "Shamim Hosen",
+                          "Md. Taimur Rahman",
+                          "Md. Shohel Rana",
+                          "Md.Shakhawat Hossen",
+                          "Abdullah Al Kafi",
+                          "Mst. Taslima Akter Rupa",
+                          "Minhazul Islam Saeid",
+                          "Md. Asif",
+                          "Dipok Kumar",
+                          "Md. Amirul Islam",
+                          "Shoriful Islam",
+                          "Konkor Chandra Modok",
+                          "Belayet Hossain",
+                          "Md. Samsul Alom",
+                          "Ismail Hossain",
+                        ],
+                        sufixIcon:
+                            const Icon(Icons.keyboard_arrow_down_sharp),
+                        onChanged: (val) {
+                          setState(
+                            () {
+                              selectDepositorName = val!;
+                              log("Value: $val");
+                            },
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      CustomDropDownFormField(
+                        value: selectDepositPorpose,
+                        titleText: "Deposit Porpose",
+                        hintText: "Select Deposit Porpose",
+                        isDense: true,
+                        filled: true,
+                        items: const [
+                          "Monthly",
+                          "Yearly",
+                        ],
+                        sufixIcon:
+                            const Icon(Icons.keyboard_arrow_down_sharp),
+                        onChanged: (val) {
+                          setState(
+                            () {
+                              selectDepositPorpose = val!;
+                              log("Value: $val");
+                            },
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: depositAmountCon,
+                        titleText: 'Amount',
+                        hintText: 'Enter Deposit Amount',
+                        keyboardType: TextInputType.number,
+                        decoration: borderDecoration,
+                      ),
+                      const SizedBox(height: 20),
+                      GlobalButtonWidget(
+                        str: 'Submit',
+                        height: 45,
+                        onTap: () {},
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 10),
-                Column(
-                  children: [
-                    const GlobalText(
-                      str: "Summery",
-                      fontSize: 16,
-                      textAlign: TextAlign.center,
-                      fontWeight: FontWeight.w500,
-                      color: ColorRes.primaryColor,
+              ),
+              const SizedBox(height: 10),
+              Column(
+                children: [
+                  const GlobalText(
+                    str: "Summery",
+                    fontSize: 16,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w500,
+                    color: ColorRes.primaryColor,
+                  ),
+                  const SizedBox(height: 10),
+                  GlobalContainer(
+                    backgroundColor: ColorRes.backgroundColor,
+                    width: Get.width,
+                    child: const CapitalSummeryTableWidget(
+                      firstRow: 'SL',
+                      secondRow: 'Name',
+                      thirdRow: 'Deposit',
                     ),
-                    const SizedBox(height: 10),
-                    GlobalContainer(
-                      backgroundColor: ColorRes.backgroundColor,
-                      width: Get.width,
-                      child: const CapitalSummeryTableWidget(
-                        firstRow: 'SL',
-                        secondRow: 'Name',
-                        thirdRow: 'Deposit',
+                  ),
+                  GlobalContainer(
+                    backgroundColor: ColorRes.white,
+                    width: Get.width,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: capitalData.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (ctx, index) {
+                        return CapitalSummeryTableValueWidget(
+                          firstColumn: capitalData[index]['firstColumn']!,
+                          secondColumn: capitalData[index]['secondColumn']!,
+                          thirdColumn: capitalData[index]['thirdColumn']!,
+                        );
+                      },
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const GlobalText(
+                        str: "Total Deposit (BDT) =",
+                        fontSize: 14,
+                        textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w600,
+                        color: ColorRes.textColor,
                       ),
-                    ),
-                    GlobalContainer(
-                      backgroundColor: ColorRes.white,
-                      width: Get.width,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: capitalData.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (ctx, index) {
-                          return CapitalSummeryTableValueWidget(
-                            firstColumn: capitalData[index]['firstColumn']!,
-                            secondColumn: capitalData[index]['secondColumn']!,
-                            thirdColumn: capitalData[index]['thirdColumn']!,
-                          );
-                        },
+                      GlobalText(
+                        // Displaying the total amount with two decimal places
+                        str: totalAmount.toStringAsFixed(2),
+                        fontSize: 14,
+                        textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w600,
+                        color: ColorRes.textColor,
                       ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Column(
+                children: [
+                  GlobalContainer(
+                    backgroundColor: ColorRes.backgroundColor,
+                    width: Get.width,
+                    child: const CapitalDetailsTableWidget(
+                      firstRow: 'SL',
+                      secondRow: 'Date',
+                      thirdRow: 'Name',
+                      fourRow: 'Porpose',
+                      fiveRow: 'Amount',
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const GlobalText(
-                          str: "Total Deposit (BDT) =",
-                          fontSize: 14,
-                          textAlign: TextAlign.center,
-                          fontWeight: FontWeight.w600,
-                          color: ColorRes.textColor,
-                        ),
-                        GlobalText(
-                          // Displaying the total amount with two decimal places
-                          str: totalAmount.toStringAsFixed(2),
-                          fontSize: 14,
-                          textAlign: TextAlign.center,
-                          fontWeight: FontWeight.w600,
-                          color: ColorRes.textColor,
-                        ),
-                      ],
+                  ),
+                  GlobalContainer(
+                    backgroundColor: ColorRes.white,
+                    width: Get.width,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 10,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (ctx, index) {
+                        return const CapitalDetailsTableValueWidget(
+                          firstColumn: '001',
+                          secondColumn: '10/09/2024',
+                          thirdColumn: "Konkor Chandra Modok",
+                          fourColumn: 'Monthly',
+                          fiveColumn: '2,500',
+                        );
+                      },
                     ),
-                    const SizedBox(height: 10),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Column(
-                  children: [
-                    GlobalContainer(
-                      backgroundColor: ColorRes.backgroundColor,
-                      width: Get.width,
-                      child: const CapitalDetailsTableWidget(
-                        firstRow: 'SL',
-                        secondRow: 'Date',
-                        thirdRow: 'Name',
-                        fourRow: 'Porpose',
-                        fiveRow: 'Amount',
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const GlobalText(
+                        str: "Total Deposit (BDT) =",
+                        fontSize: 14,
+                        textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w600,
+                        color: ColorRes.textColor,
                       ),
-                    ),
-                    GlobalContainer(
-                      backgroundColor: ColorRes.white,
-                      width: Get.width,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 10,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (ctx, index) {
-                          return const CapitalDetailsTableValueWidget(
-                            firstColumn: '001',
-                            secondColumn: '10/09/2024',
-                            thirdColumn: "Konkor Chandra Modok",
-                            fourColumn: 'Monthly',
-                            fiveColumn: '2,500',
-                          );
-                        },
+                      GlobalText(
+                        // Displaying the total amount with two decimal places
+                        str: totalAmount.toStringAsFixed(2),
+                        fontSize: 14,
+                        textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w600,
+                        color: ColorRes.textColor,
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const GlobalText(
-                          str: "Total Deposit (BDT) =",
-                          fontSize: 14,
-                          textAlign: TextAlign.center,
-                          fontWeight: FontWeight.w600,
-                          color: ColorRes.textColor,
-                        ),
-                        GlobalText(
-                          // Displaying the total amount with two decimal places
-                          str: totalAmount.toStringAsFixed(2),
-                          fontSize: 14,
-                          textAlign: TextAlign.center,
-                          fontWeight: FontWeight.w600,
-                          color: ColorRes.textColor,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                  ],
-                ),
-              ],
-            ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              ),
+            ],
           ),
         ),
       ),

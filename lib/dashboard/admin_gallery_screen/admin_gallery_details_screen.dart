@@ -8,12 +8,15 @@ class DetailsPage extends StatelessWidget {
   final String title;
   final String details;
   final int index;
-  const DetailsPage(
-      {super.key,
-      required this.imagePath,
-      required this.title,
-      required this.details,
-      required this.index});
+
+  const DetailsPage({
+    super.key,
+    required this.imagePath,
+    required this.title,
+    required this.details,
+    required this.index,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +27,7 @@ class DetailsPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: false,
         title: const Text(
-          'Swapnobaj',
+          'Image Details',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -40,16 +43,20 @@ class DetailsPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Hero(
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
+        child: Column(
+          children: <Widget>[
+            Hero(
               tag: 'logo$index',
               child: Container(
+                height: 270, // Set a fixed height for the image container
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20)),
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
                   image: DecorationImage(
                     image: AssetImage(imagePath),
                     fit: BoxFit.cover,
@@ -57,39 +64,32 @@ class DetailsPage extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-            child: SizedBox(
-              height: 500,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        color: ColorRes.primaryColor,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
-                      ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      color: ColorRes.primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600,
                     ),
-                    const SizedBox(
-                      height: 10,
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    details,
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      fontSize: 14,
                     ),
-                    Text(
-                      details,
-                      textAlign: TextAlign.justify,
-                      style: const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

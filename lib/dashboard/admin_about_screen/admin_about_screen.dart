@@ -45,7 +45,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: false,
         title: const Text(
-          'Swapnobaj',
+          'About Us',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -66,7 +66,6 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
         child: Center(
           child: Column(
             children: [
-              const SizedBox(height: 10),
               GlobalContainer(
                 backgroundColor: ColorRes.white,
                 elevation: 1,
@@ -78,6 +77,14 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      GlobalTextFormField(
+                        titleText: 'Title',
+                        hintText: 'Enter Title',
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        filled: true,
+                      ),
+                      const SizedBox(height: 10),
                       const Text(
                         'Attachment',
                         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
@@ -103,14 +110,6 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                             style: const TextStyle(fontSize: 16),
                           ),
                         ),
-                      const SizedBox(height: 10),
-                      GlobalTextFormField(
-                        titleText: 'Title',
-                        hintText: 'Enter Title',
-                        isDense: true,
-                        decoration: inputDropDecoration,
-                        filled: true,
-                      ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
                         titleText: 'Description',
