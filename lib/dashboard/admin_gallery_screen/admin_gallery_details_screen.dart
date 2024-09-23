@@ -27,7 +27,7 @@ class DetailsPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: false,
         title: const Text(
-          'Image Details',
+          'Image - Details',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -73,7 +73,7 @@ class DetailsPage extends StatelessWidget {
                     title,
                     style: const TextStyle(
                       color: ColorRes.primaryColor,
-                      fontSize: 22,
+                      fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),

@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../global_widget/colors.dart';
+import '../../global_widget/global_container.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 
 class NewsDetailsScreen extends StatelessWidget {
+  final String date;
   final String newsTitle;
+  final String imagePath;
+  final String details;
+  final int index;
 
-  const NewsDetailsScreen({super.key, required this.newsTitle});
+  const NewsDetailsScreen({
+    super.key,
+    required this.newsTitle,
+    required this.date,
+    required this.imagePath,
+    required this.details,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +30,7 @@ class NewsDetailsScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: false,
         title: const Text(
-          'Swapnobaj',
+          'News - Details',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -35,38 +47,60 @@ class NewsDetailsScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              GlobalContainer(
+                backgroundColor: ColorRes.backgroundColor,
+                child: Hero(
+                  tag: 'logo$index',
+                  child: Container(
+                    height: 250, // Set a fixed height for the image container
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
+                      ),
+                      image: DecorationImage(
+                        image: AssetImage(imagePath),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              GlobalContainer(
+                backgroundColor: ColorRes.white,
+                child: Row(
+                  children: [
+                    const Spacer(), // Pushes the date to the right
+                    Text(
+                      date,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400, fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 10),
               Text(
-                textAlign: TextAlign.justify,
                 newsTitle,
-                style:
-                const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 10),
-              Image.asset(
-                'assets/images/Logo.png',
-              ),
-              const SizedBox(height: 10),
-              const Text(
+              Text(
+                details,
                 textAlign: TextAlign.justify,
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                style: TextStyle(fontSize: 14),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                textAlign: TextAlign.justify,
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                textAlign: TextAlign.justify,
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                style: TextStyle(fontSize: 14),
+                style: const TextStyle(fontSize: 14),
               ),
             ],
           ),
