@@ -6,10 +6,10 @@ import '../global_widget/colors.dart';
 import '../user_panel/home_screen/home_screen.dart';
 import 'admin_about_screen/admin_about_screen.dart';
 import 'admin_capital_screen/admin_capital_screen.dart';
+import 'admin_charity_screen/admin_charity_screen.dart';
 import 'admin_contact_screen/admin_contact_screen.dart';
 import 'admin_event_screen/admin_event_screen.dart';
 import 'admin_expense_screen/admin_expense_screen.dart';
-import 'admin_home_screen/admin_home_screen.dart';
 import 'admin_invest_screen/admin_invest_screen.dart';
 import 'admin_news_screen/admin_news_screen.dart';
 import 'admin_notices_screen/admin_notices_screen.dart';
@@ -44,77 +44,77 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             ),
           ),
           ChapterItem(
-            leadingImage: 'assets/images/capital.png',
+            leadingImage: 'assets/icons/capital.png',
             title: "Capital",
             onTap: () {
               Get.to(() => const AdminCapitalScreen());
             },
           ),
           ChapterItem(
-            leadingImage: 'assets/images/profit.png',
+            leadingImage: 'assets/icons/profit.png',
             title: "Profit",
             onTap: () {
               Get.to(() => const AdminProfitScreen());
             },
           ),
           ChapterItem(
-            leadingImage: 'assets/images/invest.png',
+            leadingImage: 'assets/icons/invest.png',
             title: "Invest",
             onTap: () {
               Get.to(() => const AdminInvestScreen());
             },
           ),
           ChapterItem(
-            leadingImage: 'assets/images/expense.png',
+            leadingImage: 'assets/icons/expense.png',
             title: "Expense",
             onTap: () {
               Get.to(() => const AdminExpenseScreen());
             },
           ),
           ChapterItem(
-            leadingImage: 'assets/images/charity.png',
+            leadingImage: 'assets/icons/charity.png',
             title: "Charity",
             onTap: () {
-              Get.to(() => const AdminHomeScreen());
+              Get.to(() => const AdminCharityScreen());
             },
           ),
           ChapterItem(
-            leadingImage: 'assets/images/gallery.png',
+            leadingImage: 'assets/icons/gallery.png',
             title: "Gallery",
             onTap: () {
               Get.to(() => const AdminGalleryScreen());
             },
           ),
           ChapterItem(
-            leadingImage: 'assets/images/news.png',
+            leadingImage: 'assets/icons/news.png',
             title: "News",
             onTap: () {
               Get.to(() => AdminNewsScreen());
             },
           ),
           ChapterItem(
-            leadingImage: 'assets/images/event.png',
+            leadingImage: 'assets/icons/event.png',
             title: "Event",
             onTap: () {
-              Get.to(() => AdminEventScreen());
+              Get.to(() => const AdminEventScreen());
             },
           ),
           ChapterItem(
-            leadingImage: 'assets/images/notice.png',
+            leadingImage: 'assets/icons/notice.png',
             title: "Notice",
             onTap: () {
-              Get.to(() => AdminNoticesScreen());
+              Get.to(() => const AdminNoticesScreen());
             },
           ),
           ChapterItem(
-            leadingImage: 'assets/images/about.png',
+            leadingImage: 'assets/icons/about.png',
             title: "About Us",
             onTap: () {
               Get.to(() => const AdminAboutScreen());
             },
           ),
           ChapterItem(
-            leadingImage: 'assets/images/contact.png',
+            leadingImage: 'assets/icons/contact.png',
             title: "Contact Us",
             onTap: () {
               Get.to(() => const AdminContactUsScreen());

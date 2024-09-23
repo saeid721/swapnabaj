@@ -225,7 +225,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         children: [
                           Expanded(
                             child: CatagoryCard(
-                              imagePath: 'assets/images/capital.png',
+                              imagePath: 'assets/icons/capital.png',
                               title: 'Deposit',
                               titleColor: ColorRes.capitalColor,
                               onTap: () =>
@@ -234,7 +234,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                           ),
                           Expanded(
                             child: CatagoryCard(
-                              imagePath: 'assets/images/profit.png',
+                              imagePath: 'assets/icons/profit.png',
                               title: 'Profit',
                               titleColor: ColorRes.profitColor,
                               onTap: () =>
@@ -247,7 +247,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                         children: [
                           Expanded(
                             child: CatagoryCard(
-                              imagePath: 'assets/images/invest.png',
+                              imagePath: 'assets/icons/invest.png',
                               title: 'Invest',
                               titleColor: ColorRes.investColor,
                               onTap: () =>
@@ -256,7 +256,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                           ),
                           Expanded(
                             child: CatagoryCard(
-                              imagePath: 'assets/images/expense.png',
+                              imagePath: 'assets/icons/expense.png',
                               title: 'Expense',
                               titleColor: ColorRes.expenseColor,
                               onTap: () =>

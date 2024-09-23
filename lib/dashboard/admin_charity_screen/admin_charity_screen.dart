@@ -9,51 +9,63 @@ import '../../global_widget/global_textform_field.dart';
 import '../../global_widget/input_decoration.dart';
 import '../../global_widget/show_date_time_picker.dart';
 import '../admin_login_screen/admin_login_screen.dart';
-import 'admin_news_details.dart';
+import 'admin_charity_details.dart';
 import '../../global_widget/colors.dart';
 
-class AdminNewsScreen extends StatefulWidget {
-  AdminNewsScreen({super.key});
+class AdminCharityScreen extends StatefulWidget {
+  const AdminCharityScreen({super.key});
 
   @override
-  State<AdminNewsScreen> createState() => _AdminNewsScreenState();
+  State<AdminCharityScreen> createState() => _AdminCharityScreenState();
 }
 
-class _AdminNewsScreenState extends State<AdminNewsScreen> {
+class _AdminCharityScreenState extends State<AdminCharityScreen> {
   final List<Map<String, dynamic>> newsItems = [
     {
-      'title': 'Swapnobaj',
-      'image': 'assets/images/saeid.jpg',
+      'title': 'Families received emergency relief',
+      'image': 'assets/icons/sack.png',
       'date': '22/03/2024',
       'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     {
-      'title': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-      'image': 'assets/images/saeid.jpg',
+      'title': 'Families received Tube wells',
+      'image': 'assets/icons/tubeWells.png',
       'date': '23/03/2024',
       'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     {
-      'title': 'Lorem Ipsum is simply dummy text',
-      'image': 'assets/images/saeid.jpg',
+      'title': 'Families received 500 liters mineral water',
+      'image': 'assets/icons/water.png',
       'date': '23/03/2024',
       'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     {
-      'title': 'Lorem Ipsum is simply dummy text',
-      'image': 'assets/images/saeid.jpg',
+      'title': 'Rickshaws have been given to 15 people',
+      'image': 'assets/icons/rickshaw.png',
       'date': '23/03/2024',
       'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     {
-      'title': 'Swapnobaj',
-      'image': 'assets/images/saeid.jpg',
+      'title': 'Cloths have been given to 150 people',
+      'image': 'assets/icons/clothes.png',
       'date': '23/03/2024',
       'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     {
-      'title': 'Swapnobaj',
-      'image': 'assets/images/saeid.jpg',
+      'title': 'Medicine have been given to 150 people',
+      'image': 'assets/icons/medicine.png',
+      'date': '23/03/2024',
+      'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
+    },
+    {
+      'title': 'Money have been given to 250 people',
+      'image': 'assets/icons/donation.png',
+      'date': '23/03/2024',
+      'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
+    },
+    {
+      'title': 'Charity Fund have been given to 150 people',
+      'image': 'assets/icons/charityFund.png',
       'date': '23/03/2024',
       'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
@@ -91,7 +103,7 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'News',
+          'Charity',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -108,6 +120,7 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
         ],
       ),
       body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
         child: Column(
           children: [
@@ -206,82 +219,74 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
             const SizedBox(height: 20),
             GlobalContainer(
               backgroundColor: ColorRes.backgroundColor,
-              child: SizedBox(
-                height: Get.height,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: newsItems.length,
-                  itemBuilder: (context, index) {
-                    return Stack(children: [
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => AdminNewsDetailsScreen(
-                            newsTitle: newsItems[index]['title'] ?? 'No Title', // Added null check
-                            imagePath: newsItems[index]['image'] ?? 'assets/images/placeholder.png', // Added null check
-                            date: newsItems[index]['date'] ?? 'No Date', // Added null check
-                            details: newsItems[index]['description'] ?? 'No Description', // Added null check
-                            index: index,
-                          ));
-                        },
-                        child: Card(
-                          margin: const EdgeInsets.only(top: 10),
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: newsItems.length,
+                itemBuilder: (context, index) {
+                  return Stack(children: [
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => AdminCharityDetailsScreen(
+                          imagePath: newsItems[index]['image'] ?? 'assets/images/placeholder.png', // Added null check
+                          newsTitle: newsItems[index]['title'] ?? 'No Title', // Added null check
+                          date: newsItems[index]['date'] ?? 'No Date', // Added null check
+                          details: newsItems[index]['description'] ?? 'No Description', // Added null check
+                          index: index,
+                        ));
+                      },
+                      child: Card(
+                        margin: const EdgeInsets.only(top: 10),
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
 
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  flex: 4,
-                                  child: Text(
-                                    newsItems[index]['title'] ?? 'No Title', // Added null check
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: ColorRes.textColor),
-                                  ),
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              GlobalContainer(
+                                height: 200,
+                                width: Get.width,
+                                child: Image.asset(
+                                  newsItems[index]['image'] ?? 'assets/images/placeholder.png', // Added null check
+                                  fit: BoxFit.cover,
                                 ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 5),
-                                    child: Image.asset(
-                                      newsItems[index]['image'] ?? 'assets/images/placeholder.png', // Added null check
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                              Text(
+                                newsItems[index]['title'] ?? 'No Title', // Added null check
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w700,
+                                    color: ColorRes.textColor),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        child: Container(
-                          padding: const EdgeInsets.all(3),
-                          decoration: BoxDecoration(
-                            color: ColorRes.primaryColor.withOpacity(0.05),
-                            borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
-                            ),
-                          ),
-                          child: Text(
-                            newsItems[index]['date'] ?? 'No Date', // Added null check
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ]);
-                  },
-                ),
+                    ),
+                    // Positioned(
+                    //   bottom: 0,
+                    //   left: 0,
+                    //   child: Container(
+                    //     padding: const EdgeInsets.all(3),
+                    //     decoration: BoxDecoration(
+                    //       color: ColorRes.primaryColor.withOpacity(0.05),
+                    //       borderRadius: const BorderRadius.only(
+                    //         bottomLeft: Radius.circular(10),
+                    //         topRight: Radius.circular(10),
+                    //       ),
+                    //     ),
+                    //     child: Text(
+                    //       newsItems[index]['date'] ?? 'No Date', // Added null check
+                    //       style: const TextStyle(
+                    //         color: Colors.black,
+                    //         fontSize: 10,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                  ]);
+                },
               ),
             ),
           ],

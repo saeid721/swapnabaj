@@ -4,14 +4,14 @@ import '../../global_widget/colors.dart';
 import '../../global_widget/global_container.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 
-class AdminNewsDetailsScreen extends StatelessWidget {
+class AdminCharityDetailsScreen extends StatelessWidget {
   final String date;
   final String newsTitle;
   final String imagePath;
   final String details;
   final int index;
 
-  const AdminNewsDetailsScreen({
+  const AdminCharityDetailsScreen({
     super.key,
     required this.newsTitle,
     required this.date,
@@ -30,7 +30,7 @@ class AdminNewsDetailsScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'News - Details',
+          'Charity - Details',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -73,22 +73,22 @@ class AdminNewsDetailsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              GlobalContainer(
-                backgroundColor: ColorRes.white,
-                child: Row(
-                  children: [
-                    const Spacer(), // Pushes the date to the right
-                    Text(
-                      date,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400, fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
+              // GlobalContainer(
+              //   backgroundColor: ColorRes.white,
+              //   child: Row(
+              //     children: [
+              //       const Spacer(), // Pushes the date to the right
+              //       Text(
+              //         date,
+              //         style: const TextStyle(
+              //           fontSize: 14,
+              //           fontWeight: FontWeight.w400, fontStyle: FontStyle.italic,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // const SizedBox(height: 10),
               Text(
                 newsTitle,
                 style: const TextStyle(
