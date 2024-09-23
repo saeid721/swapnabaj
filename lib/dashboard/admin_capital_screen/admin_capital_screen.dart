@@ -126,7 +126,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.capitalColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
           'Swapnobaj',
           style: TextStyle(

@@ -53,7 +53,7 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
           'Gallery',
           style: TextStyle(

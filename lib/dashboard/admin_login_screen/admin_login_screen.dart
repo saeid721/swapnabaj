@@ -33,7 +33,7 @@ class _SignInScreenState extends State<SignInScreen> {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.capitalColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
           'Sign In',
           style: TextStyle(

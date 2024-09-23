@@ -43,7 +43,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
           'About Us',
           style: TextStyle(

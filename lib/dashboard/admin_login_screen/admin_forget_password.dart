@@ -30,7 +30,7 @@ class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.capitalColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
           'Forget Password',
           style: TextStyle(
