@@ -45,6 +45,8 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
   ];
 
   final TextEditingController selectNoticesDateCon = TextEditingController();
+  final TextEditingController selectTitleCon = TextEditingController();
+  final TextEditingController selectDescriptionCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,7 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Notices',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -118,6 +120,7 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
+                        controller: selectTitleCon,
                         titleText: 'Title',
                         hintText: 'Enter Title',
                         isDense: true,
@@ -126,6 +129,7 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
+                        controller: selectDescriptionCon,
                         titleText: 'Description',
                         hintText: 'Enter Description',
                         isDense: true,

@@ -32,7 +32,7 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Profit',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,

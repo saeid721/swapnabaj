@@ -32,7 +32,7 @@ class _AdminExpenseScreenState extends State<AdminExpenseScreen> {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Expense',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,

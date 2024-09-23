@@ -32,7 +32,7 @@ class _AdminInvestScreenState extends State<AdminInvestScreen> {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Invest',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,

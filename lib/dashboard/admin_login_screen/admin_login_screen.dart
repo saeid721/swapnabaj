@@ -23,8 +23,8 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
 
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
+    final TextEditingController selectEmailCon = TextEditingController();
+    final TextEditingController selectPasswordCon = TextEditingController();
     String selectUserRole = '0';
 
     return Scaffold(
@@ -97,14 +97,14 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
-                        controller: emailController,
+                        controller: selectEmailCon,
                         titleText: 'Email',
                         hintText: 'Enter Your Email',
                         decoration: borderDecoration,
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
-                        controller: passwordController,
+                        controller: selectPasswordCon,
                         titleText: 'Password',
                         hintText: 'Enter Your Password',
                         decoration: borderDecoration,

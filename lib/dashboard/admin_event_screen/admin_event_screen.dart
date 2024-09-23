@@ -49,6 +49,10 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
   ];
 
   final TextEditingController selectEventDateCon = TextEditingController();
+  final TextEditingController selectNewsDateCon = TextEditingController();
+  final TextEditingController selectTitleCon = TextEditingController();
+  final TextEditingController selectDescriptionCon = TextEditingController();
+  final TextEditingController selectLocationCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +64,7 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Event',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -122,6 +126,7 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
+                        controller: selectTitleCon,
                         titleText: 'Title',
                         hintText: 'Enter Title',
                         isDense: true,
@@ -130,6 +135,16 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
+                        controller: selectLocationCon,
+                        titleText: 'Location',
+                        hintText: 'Enter Location',
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        filled: true,
+                      ),
+                      const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: selectDescriptionCon,
                         titleText: 'Description',
                         hintText: 'Enter Description',
                         isDense: true,

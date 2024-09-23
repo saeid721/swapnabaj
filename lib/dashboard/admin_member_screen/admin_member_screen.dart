@@ -20,7 +20,7 @@ class AdminMemberScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Members',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,

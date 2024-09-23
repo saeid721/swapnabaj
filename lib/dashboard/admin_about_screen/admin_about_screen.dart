@@ -35,6 +35,9 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
     }
   }
 
+  final TextEditingController selectTitleCon = TextEditingController();
+  final TextEditingController selectDescriptionCon = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,6 +81,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GlobalTextFormField(
+                        controller: selectTitleCon,
                         titleText: 'Title',
                         hintText: 'Enter Title',
                         isDense: true,
@@ -112,6 +116,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                         ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
+                        controller: selectDescriptionCon,
                         titleText: 'Description',
                         hintText: 'Enter Description',
                         isDense: true,

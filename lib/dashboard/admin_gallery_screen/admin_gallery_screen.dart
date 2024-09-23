@@ -17,6 +17,24 @@ List<ImageDetails> _images = [
     details:
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   ),
+  ImageDetails(
+    imagePath: 'assets/images/saeid.jpg',
+    title: 'Swapnobaj',
+    details:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+  ),
+  ImageDetails(
+    imagePath: 'assets/images/saeid.jpg',
+    title: 'Swapnobaj',
+    details:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+  ),
+  ImageDetails(
+    imagePath: 'assets/images/saeid.jpg',
+    title: 'Swapnobaj',
+    details:
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+  ),
   // Add more `ImageDetails` objects as needed.
 ];
 
@@ -44,6 +62,10 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
       });
     }
   }
+
+  final TextEditingController selectNoticesDateCon = TextEditingController();
+  final TextEditingController selectTitleCon = TextEditingController();
+  final TextEditingController selectDescriptionCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +110,7 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GlobalTextFormField(
+                        controller: selectTitleCon,
                         titleText: 'Title',
                         hintText: 'Enter Title',
                         isDense: true,
@@ -122,6 +145,7 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
                         ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
+                        controller: selectDescriptionCon,
                         titleText: 'Description',
                         hintText: 'Enter Description',
                         isDense: true,

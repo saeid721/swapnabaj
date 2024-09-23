@@ -113,7 +113,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
     final TextEditingController selectDepositDateCon = TextEditingController();
     final TextEditingController depositAmountCon = TextEditingController();
     String selectDepositorName = '0';
-    String selectDepositPorpose = '0';
+    String selectDepositPurpose = '0';
 
     // @override
     // void initState() {
@@ -128,7 +128,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
         iconTheme: const IconThemeData(color: ColorRes.capitalColor),
         centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Capital',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -225,7 +225,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                       ),
                       const SizedBox(height: 10),
                       CustomDropDownFormField(
-                        value: selectDepositPorpose,
+                        value: selectDepositPurpose,
                         titleText: "Deposit Porpose",
                         hintText: "Select Deposit Porpose",
                         isDense: true,
@@ -239,7 +239,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                         onChanged: (val) {
                           setState(
                             () {
-                              selectDepositPorpose = val!;
+                              selectDepositPurpose = val!;
                               log("Value: $val");
                             },
                           );

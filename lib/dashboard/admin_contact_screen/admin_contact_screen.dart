@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../global_widget/colors.dart';
 import '../../global_widget/global_button.dart';
 import '../../global_widget/global_container.dart';
@@ -8,11 +7,24 @@ import '../../global_widget/global_textform_field.dart';
 import '../../global_widget/input_decoration.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 
-class AdminContactUsScreen extends StatelessWidget {
+class AdminContactUsScreen extends StatefulWidget {
   const AdminContactUsScreen({super.key});
 
   @override
+  State<AdminContactUsScreen> createState() => _AdminContactUsScreenState();
+}
+
+class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
+
+  final TextEditingController selectPhoneCon = TextEditingController();
+  final TextEditingController selectEmailCon = TextEditingController();
+  final TextEditingController selectWebsiteCon = TextEditingController();
+  final TextEditingController selectAddressCon = TextEditingController();
+
+  @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -21,7 +33,7 @@ class AdminContactUsScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Contact Us',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -56,6 +68,7 @@ class AdminContactUsScreen extends StatelessWidget {
                     children: [
                       const SizedBox(height: 10),
                       GlobalTextFormField(
+                        controller: selectPhoneCon,
                         titleText: 'Phone',
                         hintText: 'Enter Phone',
                         isDense: true,
@@ -65,6 +78,7 @@ class AdminContactUsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
+                        controller: selectEmailCon,
                         titleText: 'Email',
                         hintText: 'Enter Email',
                         isDense: true,
@@ -73,6 +87,7 @@ class AdminContactUsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
+                        controller: selectWebsiteCon,
                         titleText: 'Website',
                         hintText: 'Enter Website',
                         isDense: true,
@@ -81,6 +96,7 @@ class AdminContactUsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
+                        controller: selectAddressCon,
                         titleText: 'Address',
                         hintText: 'Enter Address',
                         isDense: true,

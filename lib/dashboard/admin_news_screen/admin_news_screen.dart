@@ -61,6 +61,9 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
   ];
 
   final TextEditingController selectNewsDateCon = TextEditingController();
+  final TextEditingController selectTitleCon = TextEditingController();
+  final TextEditingController selectDescriptionCon = TextEditingController();
+
   String? _fileName;
 
   @override
@@ -147,6 +150,7 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                     ),
                     const SizedBox(height: 10),
                     GlobalTextFormField(
+                      controller: selectTitleCon,
                       titleText: 'Title',
                       hintText: 'Enter Title',
                       isDense: true,
@@ -181,6 +185,7 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                       ),
                     const SizedBox(height: 10),
                     GlobalTextFormField(
+                      controller: selectDescriptionCon,
                       titleText: 'Description',
                       hintText: 'Enter Description',
                       isDense: true,
