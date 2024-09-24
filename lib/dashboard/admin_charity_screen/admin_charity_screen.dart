@@ -238,7 +238,7 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
                         Get.to(() => AdminCharityDetailsScreen(
                           imagePath: newsItems[index]['image'] ?? 'assets/images/placeholder.svg',
                           number: newsItems[index]['number'] ?? 'Number',
-                          newsTitle: newsItems[index]['title'] ?? 'No Title',
+                          charityTitle: newsItems[index]['title'] ?? 'No Title',
                           date: newsItems[index]['date'] ?? 'No Date',
                           details: newsItems[index]['description'] ?? 'No Description',
                           index: index,
