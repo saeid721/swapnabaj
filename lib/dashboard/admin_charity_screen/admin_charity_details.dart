@@ -58,17 +58,31 @@ class AdminCharityDetailsScreen extends StatelessWidget {
                 backgroundColor: ColorRes.white,
                 borderRadius: 10,
                 elevation: 2,
-                child: Hero(
-                  tag: 'logo$index',
-                  child: Container(
-                    height: 250, // Set a fixed height for the image container
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(imagePath),
-                        fit: BoxFit.cover,
+                child: Column(
+                  children: [
+                    Hero(
+                      tag: 'logo$index',
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 130,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage(imagePath),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+
+                    Text(number,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w700,
+                        color: ColorRes.secondaryColor,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 10),
