@@ -5,22 +5,28 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.1 <4.0.0'
+  sdk: '>=3.4.3 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  get: ^4.6.6
-  intl: ^0.19.0
-  fl_chart: ^0.69.0
-  image_picker: ^1.1.2
-  flutter_image_compress: ^2.1.0
-  file_picker: ^8.0.6
+  get: ^4.6.6 # State Management!
+  shared_preferences: ^2.2.2 # Local Storage!
+  cloud_firestore: ^5.4.2 # server Storage!
   firebase_core: ^3.5.0
-  cloud_firestore: ^5.4.2
   firebase_auth: ^5.3.0
+
+  # UI Helpers!
+  fl_chart: ^0.69.0
+  shimmer: ^3.0.0
+
+  # Localization!
+  intl: ^0.19.0
+  image_picker: ^1.1.2
+  file_picker: ^8.0.6
+  flutter_image_compress: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -32,34 +38,14 @@ flutter:
 
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
     - assets/icons/
     - assets/images/saeid.jpg
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   # fonts:
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
