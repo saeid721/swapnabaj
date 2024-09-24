@@ -77,7 +77,7 @@ class AdminCharityDetailsScreen extends StatelessWidget {
 
                     Text(number,
                       style: const TextStyle(
-                        fontSize: 22,
+                        fontSize: 28,
                         fontWeight: FontWeight.w700,
                         color: ColorRes.secondaryColor,
                       ),
