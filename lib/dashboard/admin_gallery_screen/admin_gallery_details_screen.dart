@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../global_widget/colors.dart';
+import '../../global_widget/global_container.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -46,49 +47,55 @@ class DetailsPage extends StatelessWidget {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-        child: Column(
-          children: <Widget>[
-            Hero(
-              tag: 'logo$index',
-              child: Container(
-                height: 270, // Set a fixed height for the image container
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                  ),
-                  image: DecorationImage(
-                    image: AssetImage(imagePath),
-                    fit: BoxFit.cover,
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              GlobalContainer(
+                backgroundColor: ColorRes.backgroundColor,
+                child: Hero(
+                  tag: 'logo$index',
+                  child: Container(
+                    height: 270, // Set a fixed height for the image container
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20),
+                      ),
+                      image: DecorationImage(
+                        image: AssetImage(imagePath),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      color: ColorRes.primaryColor,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
+              GlobalContainer(
+                backgroundColor: ColorRes.backgroundColor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        color: ColorRes.primaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    details,
-                    textAlign: TextAlign.justify,
-                    style: const TextStyle(
-                      fontSize: 14,
+                    const SizedBox(height: 10),
+                    Text(
+                      details,
+                      textAlign: TextAlign.justify,
+                      style: const TextStyle(
+                        fontSize: 14,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );

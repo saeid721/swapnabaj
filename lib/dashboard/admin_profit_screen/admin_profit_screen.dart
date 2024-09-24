@@ -71,34 +71,19 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                           controller: selectDepositDateCon,
                           titleText: 'Select Date',
                           hintText: "Select Date".tr,
-                          titleStyle: const TextStyle(
-                              color: ColorRes.textColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Roboto'),
+                          titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                           isDense: true,
                           decoration: inputDropDecoration,
                           filled: true,
                           sufixIcon: GestureDetector(
                               onTap: () async {
-                                var pickedDate =
-                                    await showDateOnlyPicker(context);
+                                var pickedDate = await showDateOnlyPicker(context);
                                 setState(() {
-                                  String formattedDate = DateTimeFormatter
-                                      .showDateOnlyYear
-                                      .format(pickedDate);
+                                  String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
                                   selectDepositDateCon.text = formattedDate;
                                 });
                               },
-                              child: const Icon(Icons.calendar_month,
-                                  color: ColorRes.textColor, size: 20)),
-                        ),
-                        const SizedBox(height: 10),
-                        GlobalTextFormField(
-                          controller: profitCommentsCon,
-                          titleText: 'Comments',
-                          hintText: 'Enter Profit Comments',
-                          decoration: borderDecoration,
+                              child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
@@ -107,6 +92,14 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                           hintText: 'Enter Profit Amount',
                           keyboardType: TextInputType.number,
                           decoration: borderDecoration,
+                        ),
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: profitCommentsCon,
+                          titleText: 'Comments',
+                          hintText: 'Enter Profit Comments',
+                          decoration: inputDropDecoration,
+                          maxLine: 2,
                         ),
                         const SizedBox(height: 20),
                         GlobalButtonWidget(
@@ -152,5 +145,13 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    selectDepositDateCon.dispose();
+    profitCommentsCon.dispose();
+    profitAmountCon.dispose();
+    super.dispose();
   }
 }

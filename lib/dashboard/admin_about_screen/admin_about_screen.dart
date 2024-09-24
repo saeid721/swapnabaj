@@ -20,10 +20,8 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
 
   String? _fileName;
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  final TextEditingController selectTitleCon = TextEditingController();
+  final TextEditingController selectDescriptionCon = TextEditingController();
 
   Future<void> _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -34,9 +32,6 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
       });
     }
   }
-
-  final TextEditingController selectTitleCon = TextEditingController();
-  final TextEditingController selectDescriptionCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +68,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                 backgroundColor: ColorRes.white,
                 elevation: 1,
                 width: Get.width,
-                borderRadius: 8, // Adjust the width if needed
+                borderRadius: 8,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -91,7 +86,11 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                       const SizedBox(height: 10),
                       const Text(
                         'Attachment',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: ColorRes.textColor,
+                            fontFamily: 'Rubik'),
                         textAlign: TextAlign.left,
                       ),
                       sizedBoxH(5),
@@ -135,70 +134,76 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
               GlobalContainer(
                 backgroundColor: ColorRes.white,
                 elevation: 1,
                 width: Get.width,
-                borderRadius: 8, // Adjust the width if needed
+                borderRadius: 8,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                    Image.asset(
-                    'assets/images/logo2.png',
-                    width: 250,
-                  ),
-                  const SizedBox(height: 20),
-                  const Text(
-                    'About Us',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 10),
-                  const Column(
-                    children: [
-                      Text.rich(
-                        textAlign: TextAlign.justify,
-                        TextSpan(
-                          children: [TextSpan(
-                            text: "What is Lorem Ipsum? ",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                            TextSpan(
-                                text:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
-                          ],
-                        ),
+                      Image.asset(
+                        'assets/images/logo2.png',
+                        width: 250,
                       ),
-                      Text.rich(
-                        textAlign: TextAlign.justify,
-                        TextSpan(
-                          children: [
+                      const SizedBox(height: 20),
+                      const Text(
+                        'About Us',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 10),
+                      const Column(
+                        children: [
+                          Text.rich(
+                            textAlign: TextAlign.justify,
                             TextSpan(
-                              text: "Organizational Structure: ",
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              children: [
+                                TextSpan(
+                                  text: "What is Lorem Ipsum? ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                TextSpan(
+                                    text:
+                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+                              ],
                             ),
+                          ),
+                          Text.rich(
+                            textAlign: TextAlign.justify,
                             TextSpan(
-                                text:
-                                """Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32."""),
-                          ],
-                        ),
+                              children: [
+                                TextSpan(
+                                  text: "Organizational Structure: ",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                TextSpan(
+                                    text:
+                                    """Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32."""),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-
-                ],
+                ),
               ),
-                ),
-                ),
               const SizedBox(height: 20),
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    selectTitleCon.dispose();
+    selectDescriptionCon.dispose();
+    super.dispose();
   }
 }

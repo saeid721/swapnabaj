@@ -19,14 +19,12 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  final TextEditingController selectEmailCon = TextEditingController();
+  final TextEditingController selectPasswordCon = TextEditingController();
+  String selectUserRole = '0';
 
   @override
   Widget build(BuildContext context) {
-
-    final TextEditingController selectEmailCon = TextEditingController();
-    final TextEditingController selectPasswordCon = TextEditingController();
-    String selectUserRole = '0';
-
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -52,27 +50,13 @@ class _SignInScreenState extends State<SignInScreen> {
                 backgroundColor: ColorRes.white,
                 elevation: 1,
                 width: Get.width,
-                borderRadius: 8, // Adjust the width if needed
+                borderRadius: 8,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // const Center(
-                      //   child: GlobalImageLoader(
-                      //     imagePath: Images.appLogo,
-                      //     width: 250,
-                      //     fit: BoxFit.fitWidth,
-                      //   ),
-                      // ),
-                      // const SizedBox(height: 20),
-
-                      // const Text(
-                      //   'Swopnobaj',
-                      //   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700, color: ColorRes.secondaryColor),
-                      // ),
-                      // sizedBoxH(5),
                       CustomDropDownFormField(
                         value: selectUserRole,
                         titleText: "Select User Role",
@@ -84,15 +68,12 @@ class _SignInScreenState extends State<SignInScreen> {
                           "Admin",
                           "Super Admin",
                         ],
-                        sufixIcon:
-                        const Icon(Icons.keyboard_arrow_down_sharp),
+                        sufixIcon: const Icon(Icons.keyboard_arrow_down_sharp),
                         onChanged: (val) {
-                          setState(
-                                () {
-                                  selectUserRole = val!;
-                              log("Value: $val");
-                            },
-                          );
+                          setState(() {
+                            selectUserRole = val!;
+                            log("Value: $val");
+                          });
                         },
                       ),
                       const SizedBox(height: 10),
@@ -116,7 +97,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         str: 'SIGN IN',
                         height: 45,
                         onTap: () {
-                          Get.to((const AdminHomeScreen()));
+                          Get.to(const AdminHomeScreen());
                         },
                       ),
                       const SizedBox(height: 5),
@@ -126,20 +107,28 @@ class _SignInScreenState extends State<SignInScreen> {
                           InkWell(
                             child: const Text(
                               'Sign Up',
-                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.primaryColor, fontFamily: 'Rubik'),
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: ColorRes.primaryColor,
+                                  fontFamily: 'Rubik'),
                               textAlign: TextAlign.left,
                             ),
-                            onTap: (){
+                            onTap: () {
                               Get.to(() => const SignUpScreen());
                             },
                           ),
                           InkWell(
                             child: const Text(
                               'Forget Password',
-                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.red, fontFamily: 'Rubik'),
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: ColorRes.red,
+                                  fontFamily: 'Rubik'),
                               textAlign: TextAlign.right,
                             ),
-                            onTap: (){
+                            onTap: () {
                               Get.to(() => const AdminForgetPasswordScreen());
                             },
                           ),
@@ -155,4 +144,12 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    selectEmailCon.dispose();
+    selectPasswordCon.dispose();
+    super.dispose();
+  }
+
 }

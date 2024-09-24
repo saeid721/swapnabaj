@@ -6,6 +6,7 @@ import '../admin_login_screen/admin_login_screen.dart';
 
 class AdminCharityDetailsScreen extends StatelessWidget {
   final String date;
+  final String number;
   final String newsTitle;
   final String imagePath;
   final String details;
@@ -13,8 +14,9 @@ class AdminCharityDetailsScreen extends StatelessWidget {
 
   const AdminCharityDetailsScreen({
     super.key,
-    required this.newsTitle,
     required this.date,
+    required this.number,
+    required this.newsTitle,
     required this.imagePath,
     required this.details,
     required this.index,
@@ -47,23 +49,20 @@ class AdminCharityDetailsScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
         padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GlobalContainer(
-                backgroundColor: ColorRes.backgroundColor,
+                backgroundColor: ColorRes.white,
+                borderRadius: 10,
+                elevation: 2,
                 child: Hero(
                   tag: 'logo$index',
                   child: Container(
                     height: 250, // Set a fixed height for the image container
                     decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20),
-                      ),
                       image: DecorationImage(
                         image: AssetImage(imagePath),
                         fit: BoxFit.cover,
@@ -73,35 +72,42 @@ class AdminCharityDetailsScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              // GlobalContainer(
-              //   backgroundColor: ColorRes.white,
-              //   child: Row(
-              //     children: [
-              //       const Spacer(), // Pushes the date to the right
-              //       Text(
-              //         date,
-              //         style: const TextStyle(
-              //           fontSize: 14,
-              //           fontWeight: FontWeight.w400, fontStyle: FontStyle.italic,
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // const SizedBox(height: 10),
-              Text(
-                newsTitle,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              GlobalContainer(
+                backgroundColor: ColorRes.backgroundColor,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text("Last Update: $date"
+                          ,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      newsTitle,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      details,
+                      textAlign: TextAlign.justify,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 10),
-              Text(
-                details,
-                textAlign: TextAlign.justify,
-                style: const TextStyle(fontSize: 14),
-              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),

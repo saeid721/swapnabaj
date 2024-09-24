@@ -25,37 +25,43 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
       'title': 'Swapnobaj',
       'image': 'assets/images/saeid.jpg',
       'date': '22/03/2024',
-      'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
+      'description':
+          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     {
       'title': 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
       'image': 'assets/images/saeid.jpg',
       'date': '23/03/2024',
-      'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
+      'description':
+          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     {
       'title': 'Lorem Ipsum is simply dummy text',
       'image': 'assets/images/saeid.jpg',
       'date': '23/03/2024',
-      'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
+      'description':
+          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     {
       'title': 'Lorem Ipsum is simply dummy text',
       'image': 'assets/images/saeid.jpg',
       'date': '23/03/2024',
-      'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
+      'description':
+          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     {
       'title': 'Swapnobaj',
       'image': 'assets/images/saeid.jpg',
       'date': '23/03/2024',
-      'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
+      'description':
+          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     {
       'title': 'Swapnobaj',
       'image': 'assets/images/saeid.jpg',
       'date': '23/03/2024',
-      'description': """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
+      'description':
+          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.""",
     },
     // Add more items as needed
   ];
@@ -125,11 +131,7 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                       controller: selectNewsDateCon,
                       titleText: 'Select Date',
                       hintText: "Select Date".tr,
-                      titleStyle: const TextStyle(
-                          color: ColorRes.textColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Roboto'),
+                      titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                       isDense: true,
                       decoration: inputDropDecoration,
                       filled: true,
@@ -137,16 +139,13 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                           onTap: () async {
                             var pickedDate = await showDateOnlyPicker(context);
                             if (pickedDate != null) {
-                              String formattedDate = DateTimeFormatter
-                                  .showDateOnlyYear
-                                  .format(pickedDate);
+                              String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
                               setState(() {
                                 selectNewsDateCon.text = formattedDate;
                               });
                             }
                           },
-                          child: const Icon(Icons.calendar_month,
-                              color: ColorRes.textColor, size: 20)),
+                          child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
                     ),
                     const SizedBox(height: 10),
                     GlobalTextFormField(
@@ -217,12 +216,12 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                       InkWell(
                         onTap: () {
                           Get.to(() => AdminNewsDetailsScreen(
-                            newsTitle: newsItems[index]['title'] ?? 'No Title', // Added null check
-                            imagePath: newsItems[index]['image'] ?? 'assets/images/placeholder.png', // Added null check
-                            date: newsItems[index]['date'] ?? 'No Date', // Added null check
-                            details: newsItems[index]['description'] ?? 'No Description', // Added null check
-                            index: index,
-                          ));
+                                newsTitle: newsItems[index]['title'] ?? 'No Title', // Added null check
+                                imagePath: newsItems[index]['image'] ?? 'assets/images/placeholder.png', // Added null check
+                                date: newsItems[index]['date'] ?? 'No Date', // Added null check
+                                details: newsItems[index]['description'] ?? 'No Description', // Added null check
+                                index: index,
+                              ));
                         },
                         child: Card(
                           margin: const EdgeInsets.only(top: 10),
@@ -230,17 +229,13 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(10),
                             child: Row(
-
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Expanded(
                                   flex: 4,
                                   child: Text(
                                     newsItems[index]['title'] ?? 'No Title', // Added null check
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: ColorRes.textColor),
+                                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: ColorRes.textColor),
                                   ),
                                 ),
                                 Expanded(
@@ -288,5 +283,13 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    selectNewsDateCon.dispose();
+    selectTitleCon.dispose();
+    selectDescriptionCon.dispose();
+    super.dispose();
   }
 }

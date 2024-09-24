@@ -22,11 +22,11 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
 
   String? _fileName;
+  String selectUserRole = '0';
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  final TextEditingController selectUserNameController = TextEditingController();
+  final TextEditingController selectEmailCon = TextEditingController();
+  final TextEditingController selectPasswordCon = TextEditingController();
 
   Future<void> _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
@@ -40,12 +40,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-    final TextEditingController selectUserNameController = TextEditingController();
-    final TextEditingController selectEmailCon = TextEditingController();
-    final TextEditingController selectPasswordCon = TextEditingController();
-    String selectUserRole = '0';
-
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -71,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 backgroundColor: ColorRes.white,
                 elevation: 1,
                 width: Get.width,
-                borderRadius: 8, // Adjust the width if needed
+                borderRadius: 8,
                 child: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
@@ -89,15 +83,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           "Admin",
                           "Super Admin",
                         ],
-                        sufixIcon:
-                        const Icon(Icons.keyboard_arrow_down_sharp),
+                        sufixIcon: const Icon(Icons.keyboard_arrow_down_sharp),
                         onChanged: (val) {
-                          setState(
-                                () {
-                              selectUserRole = val!;
-                              log("Value: $val");
-                            },
-                          );
+                          setState(() {
+                            selectUserRole = val!;
+                            log("Value: $val");
+                          });
                         },
                       ),
                       const SizedBox(height: 10),
@@ -126,7 +117,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       const SizedBox(height: 10),
                       const Text(
                         'Profile Picture',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: ColorRes.textColor,
+                            fontFamily: 'Rubik'),
                         textAlign: TextAlign.left,
                       ),
                       sizedBoxH(5),
@@ -164,21 +159,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           InkWell(
                             child: const Text(
                               'Sign In',
-                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.secondaryColor, fontFamily: 'Rubik'),
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                  color: ColorRes.secondaryColor,
+                                  fontFamily: 'Rubik'),
                               textAlign: TextAlign.left,
                             ),
-                            onTap: (){
+                            onTap: () {
                               Get.to(() => const SignInScreen());
                             },
                           ),
-                          // InkWell(
-                          //   child: const Text(
-                          //     'Forget Password',
-                          //     style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.red, fontFamily: 'Rubik'),
-                          //     textAlign: TextAlign.right,
-                          //   ),
-                          //   onTap: (){},
-                          // ),
                         ],
                       ),
                     ],
@@ -190,5 +181,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    selectUserNameController.dispose();
+    selectEmailCon.dispose();
+    selectPasswordCon.dispose();
+    super.dispose();
   }
 }

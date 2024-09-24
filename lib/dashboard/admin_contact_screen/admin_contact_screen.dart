@@ -15,7 +15,6 @@ class AdminContactUsScreen extends StatefulWidget {
 }
 
 class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
-
   final TextEditingController selectPhoneCon = TextEditingController();
   final TextEditingController selectEmailCon = TextEditingController();
   final TextEditingController selectWebsiteCon = TextEditingController();
@@ -23,8 +22,6 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -115,7 +112,6 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-
               GlobalContainer(
                 backgroundColor: ColorRes.white,
                 elevation: 1,
@@ -126,10 +122,11 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Text(
-                      'Address:',
-                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
+                    children: [
+                      Text(
+                        'Address:',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
                       Text(
                         'Bogura, Dhaka, Bangladesh',
                         style: TextStyle(fontSize: 16),
@@ -161,17 +158,25 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
                         'www.swapnobaj.com',
                         style: TextStyle(fontSize: 16),
                       ),
-
-                    ],
-                            ),
-                          ),
-                      ),
-
-              const SizedBox(height: 20),
                     ],
                   ),
                 ),
               ),
+              const SizedBox(height: 20),
+            ],
+          ),
+        ),
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    // Dispose of controllers to free up resources
+    selectPhoneCon.dispose();
+    selectEmailCon.dispose();
+    selectWebsiteCon.dispose();
+    selectAddressCon.dispose();
+    super.dispose();
   }
 }

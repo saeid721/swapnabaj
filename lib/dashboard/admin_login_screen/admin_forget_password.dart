@@ -18,11 +18,10 @@ class AdminForgetPasswordScreen extends StatefulWidget {
 
 class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
 
+  final TextEditingController selectEmailCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
-    final TextEditingController selectEmailCon = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -105,5 +104,11 @@ class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    selectEmailCon.dispose();
+    super.dispose();
   }
 }

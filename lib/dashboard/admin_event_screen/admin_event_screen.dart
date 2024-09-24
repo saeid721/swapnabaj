@@ -23,28 +23,28 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
       'date': 'April 24, 2024',
       'location': 'Location 1',
       'description':
-      """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
+          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
     },
     {
       'title': 'Event 2',
       'date': 'April 15, 2024',
       'location': 'Location 2',
       'description':
-      """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
+          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
     },
     {
       'title': 'Event 3',
       'date': 'April 10, 2024',
       'location': 'Location 3',
       'description':
-      """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
+          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
     },
     {
       'title': 'Event 4',
       'date': 'April 02, 2024',
       'location': 'Location 4',
       'description':
-      """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
+          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
     },
   ];
 
@@ -101,11 +101,7 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
                         controller: selectEventDateCon,
                         titleText: 'Select Date',
                         hintText: "Select Date".tr,
-                        titleStyle: const TextStyle(
-                            color: ColorRes.textColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Roboto'),
+                        titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                         isDense: true,
                         decoration: inputDropDecoration,
                         filled: true,
@@ -113,16 +109,13 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
                             onTap: () async {
                               var pickedDate = await showDateOnlyPicker(context);
                               if (pickedDate != null) {
-                                String formattedDate = DateTimeFormatter
-                                    .showDateOnlyYear
-                                    .format(pickedDate);
+                                String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
                                 setState(() {
                                   selectEventDateCon.text = formattedDate;
                                 });
                               }
                             },
-                            child: const Icon(Icons.calendar_month,
-                                color: ColorRes.textColor, size: 20)),
+                            child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
@@ -181,9 +174,7 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
                                 Expanded(
                                   child: Text(
                                     events[index]['title'],
-                                    style: const TextStyle(
-                                        fontSize: 16.0,
-                                        fontWeight: FontWeight.w700),
+                                    style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
                                   ),
                                 ),
                                 Expanded(
@@ -200,9 +191,7 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
                               children: <Widget>[
                                 Text(
                                   events[index]['location'],
-                                  style: const TextStyle(
-                                      fontSize: 12.0,
-                                      fontWeight: FontWeight.w700),
+                                  style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700),
                                 ),
                                 const SizedBox(height: 10),
                                 Text(
@@ -221,6 +210,7 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
                   ],
                 ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -255,5 +245,15 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    selectEventDateCon.dispose();
+    selectNewsDateCon.dispose();
+    selectTitleCon.dispose();
+    selectDescriptionCon.dispose();
+    selectLocationCon.dispose();
+    super.dispose();
   }
 }

@@ -22,25 +22,24 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
       'title': 'Notices 1',
       'date': 'April 10, 2024',
       'description':
-      "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
+          "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
     },
     {
       'title': 'Notices 2',
       'date': 'April 15, 2024',
-      'description':
-      "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.",
+      'description': "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.",
     },
     {
       'title': 'Notices 3',
       'date': 'April 20, 2024',
       'description':
-      "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
+          "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
     },
     {
       'title': 'Notices 4',
       'date': 'April 20, 2024',
       'description':
-      "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
+          "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
     },
   ];
 
@@ -95,11 +94,7 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                         controller: selectNoticesDateCon,
                         titleText: 'Select Date',
                         hintText: "Select Date".tr,
-                        titleStyle: const TextStyle(
-                            color: ColorRes.textColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Roboto'),
+                        titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                         isDense: true,
                         decoration: inputDropDecoration,
                         filled: true,
@@ -107,16 +102,13 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                             onTap: () async {
                               var pickedDate = await showDateOnlyPicker(context);
                               if (pickedDate != null) {
-                                String formattedDate = DateTimeFormatter
-                                    .showDateOnlyYear
-                                    .format(pickedDate);
+                                String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
                                 setState(() {
                                   selectNoticesDateCon.text = formattedDate;
                                 });
                               }
                             },
-                            child: const Icon(Icons.calendar_month,
-                                color: ColorRes.textColor, size: 20)),
+                            child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
@@ -168,8 +160,7 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                                 Expanded(
                                   child: Text(
                                     events[index]['title'],
-                                    style: const TextStyle(
-                                        fontSize: 16.0, fontWeight: FontWeight.w700),
+                                    style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
                                   ),
                                 ),
                                 Expanded(
@@ -202,5 +193,13 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    selectNoticesDateCon.dispose();
+    selectTitleCon.dispose();
+    selectDescriptionCon.dispose();
+    super.dispose();
   }
 }

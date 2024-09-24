@@ -18,12 +18,12 @@ class AdminExpenseScreen extends StatefulWidget {
 }
 
 class _AdminExpenseScreenState extends State<AdminExpenseScreen> {
+  final TextEditingController selectDepositDateCon = TextEditingController();
+  final TextEditingController expenseCommentsCon = TextEditingController();
+  final TextEditingController expenseAmountCon = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    final TextEditingController selectDepositDateCon = TextEditingController();
-    final TextEditingController expenseCommentsCon = TextEditingController();
-    final TextEditingController expenseAmountCon = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -69,34 +69,19 @@ class _AdminExpenseScreenState extends State<AdminExpenseScreen> {
                         controller: selectDepositDateCon,
                         titleText: 'Select Date',
                         hintText: "Select Date".tr,
-                        titleStyle: const TextStyle(
-                            color: ColorRes.textColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Roboto'),
+                        titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                         isDense: true,
                         decoration: inputDropDecoration,
                         filled: true,
                         sufixIcon: GestureDetector(
                             onTap: () async {
-                              var pickedDate =
-                                  await showDateOnlyPicker(context);
+                              var pickedDate = await showDateOnlyPicker(context);
                               setState(() {
-                                String formattedDate = DateTimeFormatter
-                                    .showDateOnlyYear
-                                    .format(pickedDate);
+                                String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
                                 selectDepositDateCon.text = formattedDate;
                               });
                             },
-                            child: const Icon(Icons.calendar_month,
-                                color: ColorRes.textColor, size: 20)),
-                      ),
-                      const SizedBox(height: 10),
-                      GlobalTextFormField(
-                        controller: expenseCommentsCon,
-                        titleText: 'Comments',
-                        hintText: 'Enter Expense Comments',
-                        decoration: borderDecoration,
+                            child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
                       ),
                       const SizedBox(height: 10),
                       GlobalTextFormField(
@@ -105,6 +90,14 @@ class _AdminExpenseScreenState extends State<AdminExpenseScreen> {
                         hintText: 'Enter Expense Amount',
                         keyboardType: TextInputType.number,
                         decoration: borderDecoration,
+                      ),
+                      const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: expenseCommentsCon,
+                        titleText: 'Comments',
+                        hintText: 'Enter Expense Comments',
+                        decoration: inputDropDecoration,
+                        maxLine: 2,
                       ),
                       const SizedBox(height: 20),
                       GlobalButtonWidget(
@@ -144,10 +137,19 @@ class _AdminExpenseScreenState extends State<AdminExpenseScreen> {
                   },
                 ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    selectDepositDateCon.dispose();
+    expenseCommentsCon.dispose();
+    expenseAmountCon.dispose();
+    super.dispose();
   }
 }
