@@ -62,7 +62,7 @@ class _CapitalScreenState extends State<CapitalScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() => const SignInScreen());
+              Get.to(() =>  AdminSignInScreen());
             },
             icon: const Icon(Icons.login),
           ),

@@ -80,7 +80,7 @@ class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
                               textAlign: TextAlign.left,
                             ),
                             onTap: (){
-                              Get.to(() => const SignUpScreen());
+                              Get.to(() => SignUpScreen());
                             },
                           ),
                           InkWell(
@@ -90,7 +90,7 @@ class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
                               textAlign: TextAlign.left,
                             ),
                             onTap: (){
-                              Get.to(() => const SignInScreen());
+                              Get.to(() =>  AdminSignInScreen());
                             },
                           ),
                         ],

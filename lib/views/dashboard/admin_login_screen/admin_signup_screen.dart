@@ -1,42 +1,25 @@
-import 'dart:developer';
-import 'package:file_picker/file_picker.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_button.dart';
 import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_dropdown_fromfield.dart';
-import '../../../global_widget/global_sizedbox.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
-import '../admin_home_screen/admin_home_screen.dart';
+import '../../../models/sign_in/sign_up_view_model.dart';
 import 'admin_login_screen.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  SignUpScreen({Key? key}) : super(key: key);
 
-  @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
-}
-
-class _SignUpScreenState extends State<SignUpScreen> {
-
-  String? _fileName;
-  String selectUserRole = '0';
-
+  final SignUpViewModel _viewModel = Get.put(SignUpViewModel());
   final TextEditingController selectUserNameController = TextEditingController();
   final TextEditingController selectEmailCon = TextEditingController();
   final TextEditingController selectPasswordCon = TextEditingController();
 
-  Future<void> _pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-    if (result != null) {
-      setState(() {
-        _fileName = result.files.single.name;
-      });
-    }
-  }
+  String selectUserRole = '0';
 
   @override
   Widget build(BuildContext context) {
@@ -85,10 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ],
                         sufixIcon: const Icon(Icons.keyboard_arrow_down_sharp),
                         onChanged: (val) {
-                          setState(() {
-                            selectUserRole = val!;
-                            log("Value: $val");
-                          });
+                          selectUserRole = val!;
                         },
                       ),
                       const SizedBox(height: 10),
@@ -114,44 +94,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         isDense: true,
                         isPasswordField: true,
                       ),
-                      const SizedBox(height: 10),
-                      const Text(
-                        'Profile Picture',
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: ColorRes.textColor,
-                            fontFamily: 'Rubik'),
-                        textAlign: TextAlign.left,
-                      ),
-                      sizedBoxH(5),
-                      GlobalButtonWidget(
-                        str: 'Choose File',
-                        height: 50,
-                        width: Get.width,
-                        textSize: 14,
-                        textColor: ColorRes.textColor,
-                        radius: 5,
-                        borderColor: ColorRes.borderColor,
-                        buttomColor: Colors.transparent,
-                        onTap: _pickFile,
-                      ),
-                      if (_fileName != null)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          child: Text(
-                            'Selected file: $_fileName',
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ),
                       const SizedBox(height: 20),
-                      GlobalButtonWidget(
-                        str: 'SIGN IN',
-                        height: 45,
-                        onTap: () {
-                          Get.to((const AdminHomeScreen()));
-                        },
-                      ),
+                      Obx(() {
+                        if (_viewModel.isLoading.value) {
+                          return const Center(child: CircularProgressIndicator());
+                        } else {
+                          return GlobalButtonWidget(
+                            str: 'SIGN UP',
+                            height: 45,
+                            onTap: () {
+                              _viewModel.signUp(
+                                selectEmailCon.text.trim(),
+                                selectPasswordCon.text.trim(),
+                                selectUserNameController.text.trim(),
+                                selectUserRole,
+                              );
+                            },
+                          );
+                        }
+                      }),
                       const SizedBox(height: 5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -167,7 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               textAlign: TextAlign.left,
                             ),
                             onTap: () {
-                              Get.to(() => const SignInScreen());
+                              Get.to(() => AdminSignInScreen());
                             },
                           ),
                         ],
@@ -181,13 +142,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    selectUserNameController.dispose();
-    selectEmailCon.dispose();
-    selectPasswordCon.dispose();
-    super.dispose();
   }
 }
