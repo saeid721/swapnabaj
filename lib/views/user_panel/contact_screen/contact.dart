@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../global_widget/colors.dart';
-import '../bottom_navigation/component/bottom_navigation_widget.dart'; // Import the path correctly
+import '../bottom_navigation_bar/component/bottom_navigation_widget.dart'; // Import the path correctly
 
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({super.key});

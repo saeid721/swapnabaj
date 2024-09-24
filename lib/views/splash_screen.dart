@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'user_panel/bottom_navigation/bottom_navigation.dart';
+import 'user_panel/bottom_navigation_bar/bottom_navigation.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
