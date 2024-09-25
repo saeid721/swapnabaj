@@ -12,14 +12,14 @@ import '../../user_panel/bottom_navigation_bar/bottom_navigation.dart';
 import '../admin_home_screen/admin_home_screen.dart';
 import 'admin_forget_password.dart';
 
-class AdminSignInScreen extends StatefulWidget {
-  AdminSignInScreen({Key? key}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  SignInScreen({Key? key}) : super(key: key);
 
   @override
-  State<AdminSignInScreen> createState() => _AdminSignInScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _AdminSignInScreenState extends State<AdminSignInScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final SignInViewModel _viewModel = SignInViewModel();
 
   final TextEditingController selectEmailCon = TextEditingController();
@@ -38,8 +38,8 @@ class _AdminSignInScreenState extends State<AdminSignInScreen> {
             height: Get.height,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
+                begin: Alignment.bottomLeft,
+                end: Alignment.topRight,
                 colors: [Color(0xFF007142), Color(0xFF35C147)],
               ),
             ),
@@ -47,7 +47,6 @@ class _AdminSignInScreenState extends State<AdminSignInScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 Image.asset(
                   'assets/images/placeholder.png',
                   width: 250,
@@ -62,17 +61,14 @@ class _AdminSignInScreenState extends State<AdminSignInScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(children: [
+                        const SizedBox(height: 10),
                         CustomDropDownFormField(
                           value: selectUserRole,
                           dynamicPrefixIcon: const Icon(Icons.person, size: 18),
                           hintText: "Select User Role",
                           isDense: true,
                           filled: true,
-                          items: const [
-                            "Member",
-                            "Admin",
-                            "Super Admin"
-                          ],
+                          items: const ["Member", "Admin", "Super Admin"],
                           sufixIcon: const Icon(Icons.keyboard_arrow_down_sharp),
                           onChanged: (val) {
                             setState(() {
@@ -145,13 +141,11 @@ class _AdminSignInScreenState extends State<AdminSignInScreen> {
                             ),
                             TextButton(
                               onPressed: () {
-                                Get.to(() => AdminForgetPasswordScreen());
+                                Get.to(() => ForgetPasswordScreen());
                               },
                               child: const Text(
                                 "Forget Password?",
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400, color: ColorRes.red),
+                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: ColorRes.red),
                               ),
                             ),
                           ],

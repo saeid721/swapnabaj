@@ -107,7 +107,7 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() => AdminSignInScreen());
+              Get.to(() => SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),

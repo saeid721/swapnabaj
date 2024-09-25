@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dashboard/admin_login_screen/admin_login_screen.dart';
 import 'dashboard/admin_login_screen/admin_signup_screen.dart';
 import 'user_panel/bottom_navigation_bar/bottom_navigation.dart';
 
@@ -9,7 +10,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => SignUpScreen()),
+        MaterialPageRoute(builder: (context) => SignInScreen()),
       );
     });
 

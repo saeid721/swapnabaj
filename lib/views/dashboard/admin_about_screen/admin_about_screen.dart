@@ -54,7 +54,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() =>  AdminSignInScreen());
+              Get.to(() =>  SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),

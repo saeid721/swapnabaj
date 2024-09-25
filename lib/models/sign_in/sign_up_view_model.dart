@@ -19,7 +19,7 @@ class SignUpViewModel extends GetxController {
       if (user != null) {
         Get.snackbar('Success', 'Account created successfully');
         // Navigate to home screen or desired screen
-        Get.to(() => AdminSignInScreen());
+        Get.to(() => SignInScreen());
       }
     } catch (e) {
       errorMessage.value = e.toString();
@@ -37,7 +37,7 @@ class SignUpViewModel extends GetxController {
       if (user != null) {
         Get.snackbar('Success', 'Account created successfully');
         // Navigate to home screen or desired screen
-        Get.to(() => AdminSignInScreen());
+        Get.to(() => SignInScreen());
       }
     } catch (e) {
       errorMessage.value = e.toString();

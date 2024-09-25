@@ -42,7 +42,7 @@ class _AdminExpenseScreenState extends State<AdminExpenseScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() =>  AdminSignInScreen());
+              Get.to(() =>  SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),

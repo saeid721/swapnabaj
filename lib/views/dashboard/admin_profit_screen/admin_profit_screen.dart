@@ -42,7 +42,7 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() => AdminSignInScreen());
+              Get.to(() => SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),

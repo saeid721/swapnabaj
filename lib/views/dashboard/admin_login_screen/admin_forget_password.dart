@@ -5,18 +5,17 @@ import '../../../global_widget/global_button.dart';
 import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
-import '../admin_home_screen/admin_home_screen.dart';
 import 'admin_login_screen.dart';
 import 'admin_signup_screen.dart';
 
-class AdminForgetPasswordScreen extends StatefulWidget {
-  const AdminForgetPasswordScreen({super.key});
+class ForgetPasswordScreen extends StatefulWidget {
+  const ForgetPasswordScreen({super.key});
 
   @override
-  State<AdminForgetPasswordScreen> createState() => _AdminForgetPasswordScreenState();
+  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
 }
 
-class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
+class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   final TextEditingController selectEmailCon = TextEditingController();
 
   @override
@@ -29,6 +28,8 @@ class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
               height: Get.height,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
                   colors: [Color(0xFF007142), Color(0xFF35C147)],
                 ),
               ),
@@ -62,10 +63,10 @@ class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
                             ),
                             const SizedBox(height: 20),
                             GlobalButtonWidget(
-                              str: 'SIGN IN',
+                              str: 'Reset assword',
                               height: 45,
                               onTap: () {
-                                Get.to((const AdminHomeScreen()));
+                                Get.to(() => SignInScreen());
                               },
                             ),
                             const SizedBox(height: 5),
@@ -94,7 +95,7 @@ class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
                                         textAlign: TextAlign.left,
                                       ),
                                       onTap: () {
-                                        Get.to(() => AdminSignInScreen());
+                                        Get.to(() => SignUpScreen());
                                       },
                                     ),
                                   ],

@@ -40,7 +40,7 @@ class AdminNewsDetailsScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() => AdminSignInScreen());
+              Get.to(() => SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),

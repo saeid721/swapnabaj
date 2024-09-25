@@ -74,7 +74,7 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() =>  AdminSignInScreen());
+              Get.to(() =>  SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),

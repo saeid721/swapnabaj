@@ -35,6 +35,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               height: Get.height,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
                   colors: [Color(0xFF007142), Color(0xFF35C147)],
                 ),
               ),
@@ -60,6 +62,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            const SizedBox(height: 10),
                             CustomDropDownFormField(
                               value: selectUserRole,
                               dynamicPrefixIcon: const Icon(Icons.person, size: 18),
@@ -88,7 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             const SizedBox(height: 10),
                             GlobalTextFormField(
                               controller: selectEmailCon,
-                              prefixIcon: Icon(Icons.email, size: 18),
+                              prefixIcon: const Icon(Icons.email, size: 18),
                               hintText: 'Enter Your Email',
                               decoration: borderDecoration,
                             ),
@@ -146,7 +149,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         textAlign: TextAlign.left,
                                       ),
                                       onTap: () {
-                                        Get.to(() => AdminSignInScreen());
+                                        Get.to(() => SignInScreen());
                                       },
                                     ),
                                   ],
