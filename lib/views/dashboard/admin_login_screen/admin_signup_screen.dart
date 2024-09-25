@@ -32,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Center(
           child: SingleChildScrollView(
             child: Container(
-              height: MediaQuery.of(context).size.height,
+              height: Get.height,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFF007142), Color(0xFF35C147)],
@@ -42,8 +42,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+
+                  Image.asset(
+                    'assets/images/placeholder.png',
+                    width: 250,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 30),
                     child: GlobalContainer(
                       backgroundColor: ColorRes.white,
                       elevation: 1,
@@ -114,7 +119,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   },
                                 );
                               }
-                            }),
+                            },),
                             const SizedBox(height: 5),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -122,7 +127,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 Row(
                                   children: [
                                     const Text(
-                                      'Already have an account! ',
+                                      'Already have an account? ',
                                       style: TextStyle(
                                           fontSize: 12,
                                           fontWeight: FontWeight.w400,

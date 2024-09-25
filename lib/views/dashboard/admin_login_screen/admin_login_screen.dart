@@ -35,9 +35,11 @@ class _AdminSignInScreenState extends State<AdminSignInScreen> {
       body: Center(
         child: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height,
+            height: Get.height,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
                 colors: [Color(0xFF007142), Color(0xFF35C147)],
               ),
             ),
@@ -45,8 +47,13 @@ class _AdminSignInScreenState extends State<AdminSignInScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+
+                Image.asset(
+                  'assets/images/placeholder.png',
+                  width: 250,
+                ),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 30),
                   child: GlobalContainer(
                     backgroundColor: ColorRes.white,
                     elevation: 1,
@@ -142,7 +149,9 @@ class _AdminSignInScreenState extends State<AdminSignInScreen> {
                               },
                               child: const Text(
                                 "Forget Password?",
-                                style: TextStyle(color: ColorRes.red),
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400, color: ColorRes.red),
                               ),
                             ),
                           ],

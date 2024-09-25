@@ -17,18 +17,16 @@ class AdminForgetPasswordScreen extends StatefulWidget {
 }
 
 class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
-
   final TextEditingController selectEmailCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
             child: Container(
-              height: MediaQuery.of(context).size.height, // Set height to full screen
+              height: Get.height,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFF007142), Color(0xFF35C147)],
@@ -38,8 +36,12 @@ class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Image.asset(
+                    'assets/images/placeholder.png',
+                    width: 250,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 30),
                     child: GlobalContainer(
                       backgroundColor: ColorRes.white,
                       elevation: 1,
@@ -51,6 +53,7 @@ class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            const SizedBox(height: 10),
                             GlobalTextFormField(
                               controller: selectEmailCon,
                               prefixIcon: const Icon(Icons.email, size: 18),
@@ -67,27 +70,34 @@ class _AdminForgetPasswordScreenState extends State<AdminForgetPasswordScreen> {
                             ),
                             const SizedBox(height: 5),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                InkWell(
-                                  child: const Text(
-                                    'Sign Up',
-                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: ColorRes.primaryColor, fontFamily: 'Rubik'),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                  onTap: (){
-                                    Get.to(() => SignUpScreen());
-                                  },
-                                ),
-                                InkWell(
-                                  child: const Text(
-                                    'Sign In',
-                                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: ColorRes.secondaryColor, fontFamily: 'Rubik'),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                  onTap: (){
-                                    Get.to(() =>  AdminSignInScreen());
-                                  },
+                                Row(
+                                  children: [
+                                    const Text(
+                                      'New Member? ',
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.grey,
+                                          fontFamily: 'Rubik'),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    InkWell(
+                                      child: const Text(
+                                        'Sign Up',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w400,
+                                            color: ColorRes.secondaryColor,
+                                            fontFamily: 'Rubik'),
+                                        textAlign: TextAlign.left,
+                                      ),
+                                      onTap: () {
+                                        Get.to(() => AdminSignInScreen());
+                                      },
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
