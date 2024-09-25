@@ -32,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Center(
           child: SingleChildScrollView(
             child: Container(
-              height: MediaQuery.of(context).size.height, // Set height to full screen
+              height: MediaQuery.of(context).size.height,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Color(0xFF007142), Color(0xFF35C147)],
@@ -65,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 "Member",
                                 "Admin",
                                 "Super Admin"
-                              ], // This should match the type of `selectUserRole`
+                              ],
                               sufixIcon: const Icon(Icons.keyboard_arrow_down_sharp),
                               onChanged: (val) {
                                 setState(() {
