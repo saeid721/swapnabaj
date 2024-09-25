@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_button.dart';
 import '../../../global_widget/global_container.dart';
+import '../../../global_widget/global_dropdown_fromfield.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
 import '../../../models/sign_in/sign_in_view_model.dart';
@@ -11,13 +12,22 @@ import '../../user_panel/bottom_navigation_bar/bottom_navigation.dart';
 import '../admin_home_screen/admin_home_screen.dart';
 import 'admin_forget_password.dart';
 
-class AdminSignInScreen extends StatelessWidget {
+class AdminSignInScreen extends StatefulWidget {
   AdminSignInScreen({Key? key}) : super(key: key);
 
+  @override
+  State<AdminSignInScreen> createState() => _AdminSignInScreenState();
+}
+
+class _AdminSignInScreenState extends State<AdminSignInScreen> {
   final SignInViewModel _viewModel = SignInViewModel();
+
   final TextEditingController selectEmailCon = TextEditingController();
+
   final TextEditingController selectPasswordCon = TextEditingController();
-  bool rememberPassword = false; // Ch
+
+  bool rememberPassword = false;
+ // Ch
   String selectUserRole = '0';
 
   @override
@@ -46,6 +56,25 @@ class AdminSignInScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(children: [
+                        CustomDropDownFormField(
+                          value: selectUserRole,
+                          dynamicPrefixIcon: const Icon(Icons.person, size: 18),
+                          hintText: "Select User Role",
+                          isDense: true,
+                          filled: true,
+                          items: const [
+                            "Member",
+                            "Admin",
+                            "Super Admin"
+                          ], // This should match the type of `selectUserRole`
+                          sufixIcon: const Icon(Icons.keyboard_arrow_down_sharp),
+                          onChanged: (val) {
+                            setState(() {
+                              selectUserRole = val!;
+                            });
+                          },
+                        ),
+                        const SizedBox(height: 10),
                         GlobalTextFormField(
                           controller: selectEmailCon,
                           prefixIcon: const Icon(Icons.email, size: 18),
@@ -66,7 +95,7 @@ class AdminSignInScreen extends StatelessWidget {
                           str: 'SIGN IN',
                           height: 45,
                           onTap: () {
-                            if (selectUserRole == null || selectUserRole!.isEmpty) {
+                            if (selectUserRole.isEmpty) {
                               Get.snackbar(
                                 "Error",
                                 "Please select a user role",
