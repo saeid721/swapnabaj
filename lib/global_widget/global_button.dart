@@ -57,7 +57,7 @@ class _GlobalButtonWidgetState extends State<GlobalButtonWidget> {
           shadowColor: Colors.transparent,
           backgroundColor: widget.buttomColor ?? ColorRes.secondaryColor,
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(widget.radius ?? 5),
+              borderRadius: BorderRadius.circular(widget.radius ?? 8),
               side: BorderSide(
                   width: 1, color: widget.borderColor ?? Colors.transparent)),
           maximumSize: Size(widget.width ?? size(context).width, widget.height),

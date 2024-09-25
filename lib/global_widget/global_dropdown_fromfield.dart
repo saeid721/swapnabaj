@@ -10,8 +10,6 @@ class CustomDropDownFormField extends StatefulWidget {
   final TextStyle? hintTextStyle;
   final TextStyle? labelTextStyle;
   final String value;
-
-  /// I can change this line
   final bool? filled;
   final Color? fillColor;
   final double? height;
@@ -19,6 +17,7 @@ class CustomDropDownFormField extends StatefulWidget {
   final bool? isDense;
   final List<String> items;
   final Widget? prefixIcon;
+  final Widget? dynamicPrefixIcon; // New dynamicPrefixIcon property
   final Widget? sufixIcon;
   final EdgeInsetsGeometry? contentPadding;
   final InputDecoration? decoration;
@@ -42,6 +41,7 @@ class CustomDropDownFormField extends StatefulWidget {
     required this.items,
     required this.onChanged,
     this.prefixIcon,
+    this.dynamicPrefixIcon, // Add this line
     this.sufixIcon,
     this.validator,
     this.contentPadding,
@@ -49,12 +49,12 @@ class CustomDropDownFormField extends StatefulWidget {
   });
 
   @override
-  State<CustomDropDownFormField> createState() =>
-      _CustomDropDownFormFieldState();
+  State<CustomDropDownFormField> createState() => _CustomDropDownFormFieldState();
 }
 
 class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
   String? selectValue;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -64,98 +64,90 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
         widget.titleText == null
             ? const SizedBox.shrink()
             : Text(
-                widget.titleText ?? "",
-                style: widget.titleStyle ??
-                    const TextStyle(
-                        color: ColorRes.textColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Roboto'),
-                textAlign: TextAlign.center,
-              ),
-        widget.titleText != null
-            ? const SizedBox(height: 5)
-            : const SizedBox.shrink(),
+          widget.titleText ?? "",
+          style: widget.titleStyle ?? const TextStyle(
+            color: ColorRes.textColor,
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Roboto',
+          ),
+          textAlign: TextAlign.center,
+        ),
+        widget.titleText != null ? const SizedBox(height: 5) : const SizedBox.shrink(),
         DropdownButtonFormField<String>(
-          items: widget.items
-              .map(
-                (itemValue) => DropdownMenuItem<String>(
-                  value: itemValue,
-                  child: Text(
-                    itemValue,
-                    maxLines: 1,
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        color: ColorRes.textColor,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12,
-                        fontFamily: 'Rubik'),
-                  ),
+          items: widget.items.map((itemValue) {
+            return DropdownMenuItem<String>(
+              value: itemValue,
+              child: Text(
+                itemValue,
+                maxLines: 1,
+                softWrap: true,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  color: ColorRes.textColor,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 12,
+                  fontFamily: 'Rubik',
                 ),
-              )
-              .toList(),
+              ),
+            );
+          }).toList(),
           menuMaxHeight: widget.menuMaxHeight ?? 500,
-          // value: widget.value, /// I can change this line
           value: selectValue,
           isExpanded: true,
-          decoration: widget.decoration != null
-              ? widget.decoration?.copyWith(
-                  contentPadding: widget.contentPadding,
-                  isDense: widget.isDense,
-                  hintText: widget.hintText,
-                  hintStyle: widget.hintTextStyle ??
-                      const TextStyle(
-                          fontSize: 12,
-                          color: ColorRes.textColor,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Rubik'),
-                  labelText: widget.labelText,
-                  labelStyle: widget.labelTextStyle,
-                  prefixIcon: widget.prefixIcon,
-                  filled: widget.filled,
-                  fillColor: widget.fillColor,
-                  // filled: true,
-                  // fillColor: ColorRes.grey.withOpacity(0.2),
-                )
-              : inputDropDecoration.copyWith(
-                  contentPadding: widget.contentPadding ??
-                      const EdgeInsets.symmetric(
-                          horizontal: 10.0, vertical: 15.0),
-                  isDense: widget.isDense,
-                  hintText: widget.hintText,
-                  hintStyle: widget.hintTextStyle ??
-                      const TextStyle(
-                          fontSize: 12,
-                          color: ColorRes.textColor,
-                          fontWeight: FontWeight.w300,
-                          fontFamily: 'Roboto'),
-                  labelText: widget.labelText,
-                  labelStyle: widget.labelTextStyle,
-                  prefixIcon: widget.prefixIcon,
-                  // filled: true,
-                  // fillColor: ColorRes.grey.withOpacity(0.2),
-                  filled: widget.filled,
-                  fillColor: widget.fillColor,
+          decoration: widget.decoration?.copyWith(
+            contentPadding: widget.contentPadding,
+            isDense: widget.isDense,
+            hintText: widget.hintText,
+            hintStyle: widget.hintTextStyle ?? const TextStyle(
+              fontSize: 12,
+              color: ColorRes.textColor,
+              fontWeight: FontWeight.w400,
+              fontFamily: 'Rubik',
+            ),
+            labelText: widget.labelText,
+            labelStyle: widget.labelTextStyle,
+            prefixIcon: widget.dynamicPrefixIcon ?? widget.prefixIcon, // Use dynamicPrefixIcon
+            filled: widget.filled,
+            fillColor: widget.fillColor,
+          ) ??
+              inputDropDecoration.copyWith(
+                contentPadding: widget.contentPadding ?? const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+                isDense: widget.isDense,
+                hintText: widget.hintText,
+                hintStyle: widget.hintTextStyle ?? const TextStyle(
+                  fontSize: 12,
+                  color: ColorRes.textColor,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Rubik',
                 ),
-          icon: widget.sufixIcon ??
-              const Icon(
-                Icons.keyboard_arrow_down_sharp,
-                color: ColorRes.textColor,
+                labelText: widget.labelText,
+                labelStyle: widget.labelTextStyle,
+                prefixIcon: widget.dynamicPrefixIcon ?? widget.prefixIcon, // Use dynamicPrefixIcon
+                filled: widget.filled,
+                fillColor: widget.fillColor,
               ),
-          onChanged: widget.onChanged,
-          validator: widget.validator ??
-              (val) {
-                if (val!.isEmpty) {
-                  if (widget.labelText != null) {
-                    return "${widget.labelText} is required!";
-                  }
-                  return "This filed is required!";
-                }
-                return null;
-              },
+          icon: widget.sufixIcon ?? const Icon(
+            Icons.keyboard_arrow_down_sharp,
+            color: ColorRes.textColor,
+          ),
+          onChanged: (value) {
+            setState(() {
+              selectValue = value;
+            });
+            widget.onChanged(value);
+          },
+          validator: widget.validator ?? (val) {
+            if (val!.isEmpty) {
+              return widget.labelText != null ? "${widget.labelText} is required!" : "This field is required!";
+            }
+            return null;
+          },
           style: const TextStyle(
             color: ColorRes.textColor,
+            fontWeight: FontWeight.w400,
+            fontSize: 13,
+            fontFamily: 'Rubik',
           ),
         ),
       ],

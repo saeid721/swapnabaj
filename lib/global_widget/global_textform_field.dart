@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
-import 'global_image_loader.dart';
-import 'global_sizedbox.dart';
-import 'images.dart';
-import 'input_decoration.dart';
+import '../../../../global_widget/colors.dart';
+import '../../../../global_widget/global_sizedbox.dart';
+import '../../../../global_widget/input_decoration.dart';
 
 class GlobalTextFormField extends StatefulWidget {
   final bool? enabled;
@@ -18,7 +16,8 @@ class GlobalTextFormField extends StatefulWidget {
   final TextStyle? hintTextStyle;
   final TextStyle? labelTextStyle;
   final InputDecoration? decoration;
-  final Widget? prefixIcon;
+  final Widget? prefixIcon; // Existing prefixIcon
+  final Widget? dynamicPrefixIcon; // New dynamicPrefixIcon property
   final Color? prefixIconColor;
   final Color? suffixIconColor;
   final EdgeInsetsGeometry? contentPadding;
@@ -36,6 +35,7 @@ class GlobalTextFormField extends StatefulWidget {
   final Function? onChanged;
   final FloatingLabelBehavior? floatingLabelBehavior;
   final String? Function(String?)? validator;
+
   const GlobalTextFormField({
     super.key,
     this.enabled,
@@ -51,10 +51,11 @@ class GlobalTextFormField extends StatefulWidget {
     this.hintTextStyle,
     this.decoration,
     this.prefixIcon,
+    this.dynamicPrefixIcon, // Add this line
     this.prefixIconColor,
-    this.sufixIcon,
     this.suffixIconColor,
     this.contentPadding,
+    this.sufixIcon,
     this.fillColor,
     this.filled = false,
     this.obscureText,
@@ -90,144 +91,104 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
       children: [
         widget.isRequired == false
             ? widget.titleText == null
-                ? const SizedBox.shrink()
-                : Text(
-                    widget.titleText ?? "",
-                    style: widget.titleStyle ??
-                        const TextStyle(
-                            color: ColorRes.textColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            fontFamily: 'Rubik'),
-                  )
+            ? const SizedBox.shrink()
+            : Text(
+          widget.titleText ?? "",
+          style: widget.titleStyle ?? const TextStyle(
+            color: ColorRes.textColor,
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            fontFamily: 'Rubik',
+          ),
+        )
             : SizedBox(
-                child: Row(
-                  children: [
-                    widget.titleText == null
-                        ? const SizedBox.shrink()
-                        : Text(
-                            widget.titleText ?? "",
-                            style: widget.titleStyle ??
-                                const TextStyle(
-                                    color: ColorRes.textColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    fontFamily: 'Rubik'),
-                          ),
-                    sizedBoxW(2),
-                    const Text(
-                      "*",
-                      style: TextStyle(
-                          color: ColorRes.red,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Rubik'),
-                    ),
-                  ],
+          child: Row(
+            children: [
+              widget.titleText == null
+                  ? const SizedBox.shrink()
+                  : Text(
+                widget.titleText ?? "",
+                style: widget.titleStyle ?? const TextStyle(
+                  color: ColorRes.textColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Rubik',
                 ),
               ),
-        widget.titleText != null
-            ? const SizedBox(height: 5)
-            : const SizedBox.shrink(),
+              sizedBoxW(2),
+              const Text(
+                "*",
+                style: TextStyle(
+                  color: ColorRes.red,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Rubik',
+                ),
+              ),
+            ],
+          ),
+        ),
+        widget.titleText != null ? const SizedBox(height: 5) : const SizedBox.shrink(),
         TextFormField(
           autofocus: widget.autofocus,
-          enabled: widget.enabled,
           autocorrect: widget.autocurrent,
+          enabled: widget.enabled,
           readOnly: widget.readOnly ?? false,
-          enableIMEPersonalizedLearning: false,
-          initialValue: widget.initialValue,
           controller: widget.controller,
-          obscureText: widget.obscureText ?? isVisible,
-          obscuringCharacter: widget.obscuringCharacter ?? "*",
           keyboardType: widget.keyboardType,
           maxLines: widget.maxLine ?? 1,
-          onChanged: (text) => widget.onChanged != null
-              ? widget.onChanged!(text)
-              : widget.onChanged,
-          decoration: widget.decoration?.copyWith(
-                isDense: widget.isDense,
-                hintText: widget.hintText,
-                hintStyle: widget.hintTextStyle ??
-                    const TextStyle(
-                        fontSize: 12,
-                        color: ColorRes.textColor,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: 'Rubik'),
-                contentPadding: widget.contentPadding,
-                labelText: widget.labelText,
-                labelStyle: widget.labelTextStyle,
-                prefixIcon: widget.prefixIcon,
-                filled: widget.filled,
-                fillColor: widget.fillColor,
-                floatingLabelBehavior: widget.floatingLabelBehavior,
-
-                /// When the visibility icon is neededIf isPasswordField is set-
-                /// -to true in suffixIcon, auto visibility icon will appear
-                suffixIcon: widget.isPasswordField
-                    ? GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isVisible = !isVisible;
-                          });
-                        },
-                        child: Icon(
-                          isVisible ? Icons.visibility_off : Icons.visibility,
-                          size: 18,
-                          color: ColorRes.textColor,
-                        ),
-                      )
-                    : widget.sufixIcon,
-              ) ??
-              inputDecoration.copyWith(
-                isDense: widget.isDense,
-                hintText: widget.hintText,
-                hintStyle: widget.hintTextStyle ??
-                    const TextStyle(
-                        fontSize: 12,
-                        color: ColorRes.textColor,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Rubik'),
-                labelText: widget.labelText,
-                labelStyle: widget.labelTextStyle,
-                prefixIcon: widget.prefixIcon,
-                // filled: true,
-                // fillColor: ColorRes.grey.withOpacity(0.2),
-                filled: widget.filled,
-                fillColor: widget.fillColor,
-                floatingLabelBehavior: widget.floatingLabelBehavior,
-
-                /// When the visibility icon is neededIf isPasswordField is set-
-                /// -to true in suffixIcon, auto visibility icon will appear
-                suffixIcon: widget.isPasswordField
-                    ? GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isVisible = !isVisible;
-                          });
-                        },
-                        child: GlobalImageLoader(
-                          imagePath: isVisible ? Images.eye1 : Images.eye1,
-                          color: ColorRes.textColor,
-                        ),
-                      )
-                    : widget.sufixIcon,
-              ),
-          cursorColor: ColorRes.textColor,
-          validator: widget.validator ??
-              (val) {
-                if (val!.isEmpty) {
-                  if (widget.labelText != null) {
-                    return "${widget.labelText} is required!";
-                  }
-                  return "This filed is required!";
-                }
-                return null;
-              },
+          initialValue: widget.initialValue,
+          obscureText: widget.isPasswordField && isVisible,
+          obscuringCharacter: widget.obscuringCharacter ?? '*',
           style: const TextStyle(
+            color: ColorRes.textColor,
+            fontWeight: FontWeight.w400,
+            fontSize: 13,
+            fontFamily: 'Rubik',
+          ),
+          decoration: widget.decoration?.copyWith(
+            contentPadding: widget.contentPadding,
+            isDense: widget.isDense,
+            hintText: widget.hintText,
+            hintStyle: widget.hintTextStyle ?? const TextStyle(
+              fontSize: 12,
               color: ColorRes.textColor,
               fontWeight: FontWeight.w400,
-              fontSize: 13,
-              fontFamily: 'Rubik'),
+              fontFamily: 'Rubik',
+            ),
+            labelText: widget.labelText,
+            labelStyle: widget.labelTextStyle,
+            prefixIcon: widget.dynamicPrefixIcon ?? widget.prefixIcon, // Use dynamicPrefixIcon
+            filled: widget.filled,
+            fillColor: widget.fillColor,
+          ) ??
+              inputDecoration.copyWith(
+                contentPadding: widget.contentPadding ?? const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+                isDense: widget.isDense,
+                hintText: widget.hintText,
+                hintStyle: widget.hintTextStyle ?? const TextStyle(
+                  fontSize: 12,
+                  color: ColorRes.textColor,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Rubik',
+                ),
+                labelText: widget.labelText,
+                labelStyle: widget.labelTextStyle,
+                prefixIcon: widget.dynamicPrefixIcon ?? widget.prefixIcon, // Use dynamicPrefixIcon
+                filled: widget.filled,
+                fillColor: widget.fillColor,
+              ),
+          onChanged: (value) {
+            if (widget.onChanged != null) {
+              widget.onChanged!(value);
+            }
+          },
+          validator: widget.validator ?? (val) {
+            if (val!.isEmpty) {
+              return widget.labelText != null ? "${widget.labelText} is required!" : "This field is required!";
+            }
+            return null;
+          },
         ),
       ],
     );
