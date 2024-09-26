@@ -64,7 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '71966178159',
     projectId: 'swopnobaj-f1e1e',
     storageBucket: 'swopnobaj-f1e1e.appspot.com',
-    iosBundleId: 'com.example.swapnabaj',
+    iosBundleId: 'com.swapnabaj',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -73,7 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '71966178159',
     projectId: 'swopnobaj-f1e1e',
     storageBucket: 'swopnobaj-f1e1e.appspot.com',
-    iosBundleId: 'com.example.swapnabaj',
+    iosBundleId: 'com.swapnabaj',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(

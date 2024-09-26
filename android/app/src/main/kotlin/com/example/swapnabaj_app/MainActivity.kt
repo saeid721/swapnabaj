@@ -1,4 +1,4 @@
-package com.example.swapnabaj_app
+package com.swapnabaj_app
 
 import io.flutter.embedding.android.FlutterActivity
 
