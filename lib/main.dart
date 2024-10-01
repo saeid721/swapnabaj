@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'global_widget/colors.dart';
 import 'domain/server/firebase_options.dart';
+import 'test_screen.dart';
 import 'views/splash_screen.dart';
 
 void main() async {
@@ -28,3 +29,20 @@ class SwapnobajApp extends StatelessWidget {
     );
   }
 }
+
+
+// class SwapnobajApp extends StatelessWidget {
+//   const SwapnobajApp({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return GetMaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       title: 'Swapnobaj',
+//       theme: ThemeData(
+//         scaffoldBackgroundColor: ColorRes.backgroundColor,
+//       ),
+//       home: const TestScreen(),
+//     );
+//   }
+// }

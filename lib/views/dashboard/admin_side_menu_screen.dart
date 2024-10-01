@@ -47,7 +47,7 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             leadingImage: 'assets/icons/capital.png',
             title: "Capital",
             onTap: () {
-              Get.to(() => const AdminCapitalScreen());
+              Get.to(() => AdminCapitalScreen());
             },
           ),
           ChapterItem(

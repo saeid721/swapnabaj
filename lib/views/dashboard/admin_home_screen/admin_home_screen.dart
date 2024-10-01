@@ -229,7 +229,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                               title: 'Deposit',
                               titleColor: ColorRes.capitalColor,
                               onTap: () =>
-                                  Get.to(() => const AdminCapitalScreen()),
+                                  Get.to(() => AdminCapitalScreen()),
                             ),
                           ),
                           Expanded(

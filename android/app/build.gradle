@@ -18,7 +18,7 @@ def flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "
 def flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
 
 android {
-    namespace = "com.swapnabaj"
+    namespace = "com.example.swapnabaj"
     compileSdk = 34 // Update to match your project
 
     compileOptions {
@@ -27,7 +27,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.swapnabaj"
+        applicationId = "com.example.swapnabaj"
         minSdkVersion 23
         targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
@@ -48,4 +48,5 @@ flutter {
 dependencies {
     implementation platform('com.google.firebase:firebase-bom:33.3.0')
     // implementation 'com.google.firebase:firebase-analytics'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.20"
 }
