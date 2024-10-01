@@ -15,7 +15,7 @@ import 'component/admin_capital_detailes_table_widget.dart';
 import 'component/admin_capital_summery_table_widget.dart';
 
 class AdminCapitalScreen extends StatefulWidget {
-  AdminCapitalScreen({super.key});
+  const AdminCapitalScreen({super.key});
 
   @override
   _AdminCapitalScreenState createState() => _AdminCapitalScreenState();
@@ -196,10 +196,10 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                       ),
                     ),
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const GlobalText(
+                      GlobalText(
                         str: "Total Deposit (BDT) =",
                         fontSize: 14,
                         textAlign: TextAlign.center,
@@ -230,7 +230,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                       firstRow: 'SL',
                       secondRow: 'Date',
                       thirdRow: 'Name',
-                      fourRow: 'Porpose',
+                      fourRow: 'Purpose',
                       fiveRow: 'Amount',
                     ),
                   ),
@@ -254,10 +254,10 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                       },
                     ),
                   ),),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const GlobalText(
+                      GlobalText(
                         str: "Total Deposit (BDT) =",
                         fontSize: 14,
                         textAlign: TextAlign.center,
