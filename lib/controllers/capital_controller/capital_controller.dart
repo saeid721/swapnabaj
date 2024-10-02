@@ -7,7 +7,6 @@ class CapitalController extends GetxController {
   final List<Map<String, dynamic>> capitalData = [];
   final TextEditingController selectDepositDateCon = TextEditingController();
   final TextEditingController depositAmountCon = TextEditingController();
-
   String selectDepositorName = '0';
   String selectDepositPurpose = '0';
 
@@ -61,8 +60,9 @@ class CapitalController extends GetxController {
 
       update();
       clearInputs();
+      Get.snackbar('Success', 'Deposit data saved successfully');
     } catch (e) {
-      Get.snackbar('Error', 'Failed to save data: $e', snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar('Error', 'Failed to save data: $e',);
     }
   }
 

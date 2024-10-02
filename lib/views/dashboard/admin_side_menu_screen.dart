@@ -61,7 +61,7 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             leadingImage: 'assets/icons/invest.png',
             title: "Invest",
             onTap: () {
-              Get.to(() => const AdminInvestScreen());
+              Get.to(() => AdminInvestScreen());
             },
           ),
           ChapterItem(

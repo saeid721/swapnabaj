@@ -9,19 +9,19 @@ import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
 import '../../../global_widget/show_date_time_picker.dart';
 import '../admin_login_screen/admin_login_screen.dart';
-import 'component/admin_profit_widget.dart';
+import 'component/admin_invest_widget.dart';
 
-class AdminProfitScreen extends StatefulWidget {
-  const AdminProfitScreen({super.key});
+class AdminInvestScreen extends StatefulWidget {
+  const AdminInvestScreen({super.key});
 
   @override
-  _AdminProfitScreenState createState() => _AdminProfitScreenState();
+  _AdminInvestScreenState createState() => _AdminInvestScreenState();
 }
 
-class _AdminProfitScreenState extends State<AdminProfitScreen> {
-  final TextEditingController selectDepositDateCon = TextEditingController();
-  final TextEditingController profitCommentsCon = TextEditingController();
-  final TextEditingController profitAmountCon = TextEditingController();
+class _AdminInvestScreenState extends State<AdminInvestScreen> {
+  final TextEditingController selectInvestDateCon = TextEditingController();
+  final TextEditingController investCommentsCon = TextEditingController();
+  final TextEditingController investAmountCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'Profit',
+          'Invest',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -69,7 +69,7 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GlobalTextFormField(
-                          controller: selectDepositDateCon,
+                          controller: selectInvestDateCon,
                           titleText: 'Select Date',
                           hintText: "Select Date".tr,
                           titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
@@ -81,26 +81,26 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                                 var pickedDate = await showDateOnlyPicker(context);
                                 setState(() {
                                   String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
-                                  selectDepositDateCon.text = formattedDate;
+                                  selectInvestDateCon.text = formattedDate;
                                 });
                               },
                               child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: profitAmountCon,
-                          titleText: 'Amount',
-                          hintText: 'Enter Profit Amount',
-                          keyboardType: TextInputType.number,
-                          decoration: borderDecoration,
+                          controller: investCommentsCon,
+                          titleText: 'Comments',
+                          hintText: 'Enter Invest Comments',
+                          decoration: inputDropDecoration,
+                          maxLine: 2,
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: profitCommentsCon,
-                          titleText: 'Comments',
-                          hintText: 'Enter Profit Comments',
-                          decoration: inputDropDecoration,
-                          maxLine: 2,
+                          controller: investAmountCon,
+                          titleText: 'Amount',
+                          hintText: 'Enter Invest Amount',
+                          keyboardType: TextInputType.number,
+                          decoration: borderDecoration,
                         ),
                         const SizedBox(height: 20),
                         GlobalButtonWidget(
@@ -117,16 +117,14 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GlobalText(
-                      str: "Total Profit (BDT) =",
+                      str: "Total Invest (BDT) =",
                       fontSize: 14,
                       textAlign: TextAlign.center,
                       fontWeight: FontWeight.w600,
                       color: ColorRes.textColor,
                     ),
                     GlobalText(
-                      // Displaying the total amount with two decimal places
-                      //str: totalAmount.toStringAsFixed(2),
-                      str: '5000.00',
+                      str: 'Displaying the total Invest amount with two decimal places',
                       fontSize: 14,
                       textAlign: TextAlign.center,
                       fontWeight: FontWeight.w600,
@@ -138,7 +136,7 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                 GlobalContainer(
                   backgroundColor: ColorRes.backgroundColor,
                   width: Get.width,
-                  child: const ProfitTableWidget(
+                  child: const InvestTableWidget(
                     firstRow: 'SL',
                     secondRow: 'Date',
                     thirdRow: 'Comments',
@@ -153,11 +151,11 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                     itemCount: 10,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (ctx, index) {
-                      return const ProfitTableValueWidget(
+                      return const InvestTableValueWidget(
                         firstColumn: '001',
                         secondColumn: '10/09/2024',
                         thirdColumn: "আতিক এর জমি ভাড়া বাবদ ২০২৪ সালের জন্য।",
-                        fourColumn: '10,000',
+                        fourColumn: '1,00,000',
                       );
                     },
                   ),
@@ -168,13 +166,5 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    selectDepositDateCon.dispose();
-    profitCommentsCon.dispose();
-    profitAmountCon.dispose();
-    super.dispose();
   }
 }

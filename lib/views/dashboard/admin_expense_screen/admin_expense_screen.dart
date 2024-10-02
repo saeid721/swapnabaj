@@ -4,6 +4,7 @@ import '../../../global_widget/colors.dart';
 import '../../../global_widget/date_time_formator.dart';
 import '../../../global_widget/global_button.dart';
 import '../../../global_widget/global_container.dart';
+import '../../../global_widget/global_text.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
 import '../../../global_widget/show_date_time_picker.dart';
@@ -42,7 +43,7 @@ class _AdminExpenseScreenState extends State<AdminExpenseScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() =>  SignInScreen());
+              Get.to(() => SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),
@@ -110,6 +111,28 @@ class _AdminExpenseScreenState extends State<AdminExpenseScreen> {
                 ),
               ),
               const SizedBox(height: 20),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GlobalText(
+                    str: "Total Expense (BDT) =",
+                    fontSize: 14,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w600,
+                    color: ColorRes.textColor,
+                  ),
+                  GlobalText(
+                    // Displaying the total amount with two decimal places
+                    //str: totalAmount.toStringAsFixed(2),
+                    str: '5000.00',
+                    fontSize: 14,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w600,
+                    color: ColorRes.textColor,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
               GlobalContainer(
                 backgroundColor: ColorRes.backgroundColor,
                 width: Get.width,
