@@ -70,11 +70,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                           controller: capitalController.selectDepositDateCon,
                           titleText: 'Select Date',
                           hintText: "Select Date".tr,
-                          titleStyle: const TextStyle(
-                              color: ColorRes.textColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: 'Roboto'),
+                          titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                           isDense: true,
                           decoration: inputDropDecoration,
                           filled: true,
@@ -157,11 +153,12 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                     ),
                   ),
                 ),
-              ),const SizedBox(height: 10),
+              ),
+              const SizedBox(height: 10),
               Column(
                 children: [
                   const GlobalText(
-                    str: "Summary",
+                    str: "Capital",
                     fontSize: 16,
                     textAlign: TextAlign.center,
                     fontWeight: FontWeight.w500,
@@ -174,7 +171,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                     child: const CapitalSummeryTableWidget(
                       firstRow: 'SL',
                       secondRow: 'Name',
-                      thirdRow: 'Deposit',
+                      thirdRow: 'Capital',
                     ),
                   ),
                   GlobalContainer(
@@ -200,7 +197,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GlobalText(
-                        str: "Total Deposit (BDT) =",
+                        str: "Total Capital (BDT) =",
                         fontSize: 14,
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w600,
@@ -223,6 +220,14 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
               const SizedBox(height: 10),
               Column(
                 children: [
+                  const GlobalText(
+                    str: "Deposit",
+                    fontSize: 16,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w500,
+                    color: ColorRes.primaryColor,
+                  ),
+                  const SizedBox(height: 10),
                   GlobalContainer(
                     backgroundColor: ColorRes.backgroundColor,
                     width: Get.width,
@@ -244,16 +249,17 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) {
                           var detailsData = controller.capitalData[index];
-                        return CapitalDetailsTableValueWidget(
-                          firstColumn: detailsData['id'] ?? '',
-                          secondColumn: detailsData['date'] ?? '',
-                          thirdColumn: detailsData['depositorName'] ?? '',
-                          fourColumn: detailsData['purpose'] ?? '',
-                          fiveColumn: detailsData['amount'] ?? '',
-                        );
-                      },
+                          return CapitalDetailsTableValueWidget(
+                            firstColumn: detailsData['id'] ?? '',
+                            secondColumn: detailsData['date'] ?? '',
+                            thirdColumn: detailsData['depositorName'] ?? '',
+                            fourColumn: detailsData['purpose'] ?? '',
+                            fiveColumn: detailsData['amount'] ?? '',
+                          );
+                        },
+                      ),
                     ),
-                  ),),
+                  ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -266,7 +272,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                       ),
                       GlobalText(
                         // Displaying the total amount with two decimal places
-                       // str: totalAmount.toStringAsFixed(2),
+                        // str: totalAmount.toStringAsFixed(2),
                         str: '60,000.00',
                         fontSize: 14,
                         textAlign: TextAlign.center,
@@ -278,9 +284,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                   const SizedBox(height: 20),
                 ],
               ),
-
               const SizedBox(height: 20),
-
             ],
           ),
         ),

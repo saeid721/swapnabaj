@@ -48,7 +48,7 @@ class _SignInScreenState extends State<SignInScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/placeholder.png',
+                  'assets/images/logo2.png',
                   width: 250,
                 ),
                 Padding(
