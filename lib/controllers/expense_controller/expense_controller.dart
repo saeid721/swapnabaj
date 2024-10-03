@@ -19,11 +19,7 @@ class ExpenseController extends GetxController {
 
   // Fetch expenses from Firebase and sort them by date
   void fetchExpenses() {
-    firestore
-        .collection('expenseData')
-        .orderBy('date', descending: true)
-        .snapshots()
-        .listen((snapshot) {
+    firestore.collection('expenseData').orderBy('date', descending: true).snapshots().listen((snapshot) {
       expenseData.clear(); // Clear the list before adding new data
       for (var doc in snapshot.docs) {
         expenseData.add(ExpenseModel.fromMap(doc.id, doc.data()));

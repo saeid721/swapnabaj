@@ -27,7 +27,7 @@ class CapitalController extends GetxController {
 
   Future<void> addOrUpdateCapitalData() async {
     if (selectDepositorName == '0' || selectDepositPurpose == '0' || depositAmountCon.text.isEmpty || selectDepositDateCon.text.isEmpty) {
-      Get.snackbar('Error', 'All fields must be completed', snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar('Error', 'All fields must be completed');
       return;
     }
 
@@ -66,7 +66,7 @@ class CapitalController extends GetxController {
       clearInputs();
       Get.snackbar('Success', 'Deposit data saved successfully');
     } catch (e) {
-      Get.snackbar('Error', 'Failed to save data: $e', snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar('Error', 'Failed to save data: $e');
     }
   }
 

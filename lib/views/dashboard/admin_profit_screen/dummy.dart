@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../controllers/profit_controller/profit_controller.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/date_time_formator.dart';
 import '../../../global_widget/global_button.dart';
@@ -20,7 +19,9 @@ class AdminProfitScreen extends StatefulWidget {
 }
 
 class _AdminProfitScreenState extends State<AdminProfitScreen> {
-  final ProfitController profitController = Get.put(ProfitController());
+  final TextEditingController selectProfitDateCon = TextEditingController();
+  final TextEditingController profitCommentsCon = TextEditingController();
+  final TextEditingController profitAmountCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
               children: [
                 const SizedBox(height: 10),
@@ -60,7 +61,7 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                   backgroundColor: ColorRes.white,
                   elevation: 1,
                   width: Get.width,
-                  borderRadius: 8,
+                  borderRadius: 8, // Adjust the width if needed
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -68,10 +69,9 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GlobalTextFormField(
-                          controller: profitController.selectProfitDateCon,
+                          controller: selectProfitDateCon,
                           titleText: 'Select Date',
                           hintText: "Select Date".tr,
-                          keyboardType: TextInputType.datetime,
                           titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                           isDense: true,
                           decoration: inputDropDecoration,
@@ -79,64 +79,60 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                           sufixIcon: GestureDetector(
                               onTap: () async {
                                 var pickedDate = await showDateOnlyPicker(context);
-                                if (pickedDate != null) {
+                                setState(() {
                                   String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
-                                  profitController.selectProfitDateCon.text = formattedDate;
-                                }
+                                  selectProfitDateCon.text = formattedDate;
+                                });
                               },
                               child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: profitController.profitCommentsCon,
-                          titleText: 'Comments',
-                          hintText: 'Enter Profit Comments',
-                          decoration: inputDropDecoration,
-                          maxLine: 2,
-                        ),
-                        const SizedBox(height: 10),
-                        GlobalTextFormField(
-                          controller: profitController.profitAmountCon,
+                          controller: profitAmountCon,
                           titleText: 'Amount',
                           hintText: 'Enter Profit Amount',
                           keyboardType: TextInputType.number,
                           decoration: borderDecoration,
                         ),
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: profitCommentsCon,
+                          titleText: 'Comments',
+                          hintText: 'Enter Profit Comments',
+                          decoration: inputDropDecoration,
+                          maxLine: 2,
+                        ),
                         const SizedBox(height: 20),
                         GlobalButtonWidget(
                           str: 'Submit',
                           height: 45,
-                          onTap: () {
-                            profitController.addOrUpdateProfitData();
-                          },
+                          onTap: () {},
                         ),
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: 20),
-                GetBuilder<ProfitController>(
-                  builder: (controller) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const GlobalText(
-                          str: "Total Profit (BDT) =",
-                          fontSize: 14,
-                          textAlign: TextAlign.center,
-                          fontWeight: FontWeight.w600,
-                          color: ColorRes.textColor,
-                        ),
-                        GlobalText(
-                          str: controller.totalProfitAmount.toStringAsFixed(2), // Corrected this line
-                          fontSize: 14,
-                          textAlign: TextAlign.center,
-                          fontWeight: FontWeight.w600,
-                          color: ColorRes.textColor,
-                        ),
-                      ],
-                    );
-                  },
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GlobalText(
+                      str: "Total Profit (BDT) =",
+                      fontSize: 14,
+                      textAlign: TextAlign.center,
+                      fontWeight: FontWeight.w600,
+                      color: ColorRes.textColor,
+                    ),
+                    GlobalText(
+                      // Displaying the total amount with two decimal places
+                      //str: totalAmount.toStringAsFixed(2),
+                      str: '5000.00',
+                      fontSize: 14,
+                      textAlign: TextAlign.center,
+                      fontWeight: FontWeight.w600,
+                      color: ColorRes.textColor,
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 10),
                 GlobalContainer(
@@ -152,21 +148,18 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                 GlobalContainer(
                   backgroundColor: ColorRes.white,
                   width: Get.width,
-                  child: GetBuilder<ProfitController>(
-                    builder: (controller) => ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.profitData.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (ctx, index) {
-                        var detailsData = controller.profitData[index];
-                        return ProfitTableValueWidget(
-                          firstColumn: detailsData['id'] ?? '',
-                          secondColumn: detailsData['date'] ?? '',
-                          thirdColumn: detailsData['comments'] ?? '',
-                          fourColumn: detailsData['amount'] ?? '',
-                        );
-                      },
-                    ),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: 10,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (ctx, index) {
+                      return const ProfitTableValueWidget(
+                        firstColumn: '001',
+                        secondColumn: '10/09/2024',
+                        thirdColumn: "আতিক এর জমি ভাড়া বাবদ ২০২৪ সালের জন্য।",
+                        fourColumn: '10,000',
+                      );
+                    },
                   ),
                 ),
               ],
@@ -175,5 +168,13 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    selectProfitDateCon.dispose();
+    profitCommentsCon.dispose();
+    profitAmountCon.dispose();
+    super.dispose();
   }
 }

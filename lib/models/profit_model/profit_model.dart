@@ -1,17 +1,17 @@
-
-class InvestModel {
-  String date;
-  String comments;
+class ProfitModel {
+  final String date;
+  final String comments;
   double amount;
 
-  InvestModel({
+  ProfitModel({
     required this.date,
     required this.comments,
     required this.amount,
   });
 
-  // Convert InvestModel to JSON for Firestore
-  Map<String, dynamic> toJson() {
+  double get amounts => amount;
+
+  Map<String, dynamic> toMap() {
     return {
       'date': date,
       'comments': comments,
@@ -19,9 +19,8 @@ class InvestModel {
     };
   }
 
-  // Factory method to create an InvestModel from Firestore document
-  static InvestModel fromMap(Map<String, dynamic> map) {
-    return InvestModel(
+  static ProfitModel fromMap(Map<String, dynamic> map) {
+    return ProfitModel(
       date: map['date'],
       comments: map['comments'],
       amount: map['amount'].toDouble(),

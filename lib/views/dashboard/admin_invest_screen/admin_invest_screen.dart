@@ -63,21 +63,30 @@ class _AdminInvestScreenState extends State<AdminInvestScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
+                      // Date Field
                       GlobalTextFormField(
                         controller: controller.selectInvestDateCon,
                         titleText: 'Select Date',
                         hintText: "Select Date".tr,
-                        titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
+                        keyboardType: TextInputType.datetime,
+                        titleStyle: const TextStyle(
+                          color: ColorRes.textColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Roboto',
+                        ),
                         isDense: true,
                         decoration: inputDropDecoration,
                         filled: true,
                         sufixIcon: GestureDetector(
                           onTap: () async {
                             var pickedDate = await showDateOnlyPicker(context);
-                            setState(() {
-                              String formattedDate = DateTimeFormatter.showDateOnly.format(pickedDate);
-                              controller.selectInvestDateCon.text = formattedDate;
-                            });
+                            if (pickedDate != null) {
+                              setState(() {
+                                String formattedDate = DateTimeFormatter.showDateOnly.format(pickedDate);
+                                controller.selectInvestDateCon.text = formattedDate;
+                              });
+                            }
                           },
                           child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20),
                         ),
@@ -164,16 +173,22 @@ class _AdminInvestScreenState extends State<AdminInvestScreen> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (ctx, index) {
                       final investment = controller.investData[index];
+                      double amount = 0.0;
+                      if (investment['amount'] != null) {
+                        amount = double.tryParse(investment['amount'].toString()) ?? 0.0;
+                      }
+
                       return InvestTableValueWidget(
                         firstColumn: (index + 1).toString(),
-                        secondColumn: investment.date,
-                        thirdColumn: investment.comments,
-                        fourColumn: investment.amount.toStringAsFixed(2),
+                        secondColumn: investment['date'] ?? '',
+                        thirdColumn: investment['comments'] ?? '',
+                        fourColumn: amount.toStringAsFixed(2),
                       );
                     },
                   ),
                 );
-              }),
+              })
+
             ],
           ),
         ),
