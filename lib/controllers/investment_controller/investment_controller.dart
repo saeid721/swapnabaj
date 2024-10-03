@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../global_widget/colors.dart';
 import '../../models/investment_model/investment_model.dart';
 
 class InvestmentController extends GetxController {
@@ -29,7 +30,7 @@ class InvestmentController extends GetxController {
   // Add a new investment to Firestore
   Future<void> addInvestment() async {
     if (selectInvestDateCon.text.isEmpty || investCommentsCon.text.isEmpty || investAmountCon.text.isEmpty) {
-      Get.snackbar('Error', 'All fields must be completed');
+      Get.snackbar('Error', 'All fields must be completed', colorText: ColorRes.red);
       return;
     }
 
@@ -47,7 +48,7 @@ class InvestmentController extends GetxController {
       Get.snackbar('Success', 'Invest data saved successfully');
       update();
     } catch (e) {
-      Get.snackbar('Error', 'Failed to save data: $e', snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar('Error', 'Failed to save data: $e', colorText: ColorRes.red);
     }
   }
 

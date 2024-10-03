@@ -98,7 +98,7 @@ class AdminExpenseScreen extends StatelessWidget {
                         str: 'Submit',
                         height: 45,
                         onTap: () {
-                          controller.addExpense();
+                          controller.addExpanse();
                         },
                       ),
                     ],
@@ -142,7 +142,7 @@ class AdminExpenseScreen extends StatelessWidget {
                 if (controller.expenseData.isEmpty) {
                   return const Center(
                     child: Text(
-                      'No Investments Found',
+                      'No Expense Found',
                       style: TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                   );
@@ -156,11 +156,16 @@ class AdminExpenseScreen extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (ctx, index) {
                       final expense = controller.expenseData[index];
+                      double amount = 0.0;
+                      if (expense['amount'] != null) {
+                        amount = double.tryParse(expense['amount'].toString()) ?? 0.0;
+                      }
+
                       return ExpenseTableValueWidget(
                         firstColumn: (index + 1).toString(),
-                        secondColumn: expense.date,
-                        thirdColumn: expense.comments,
-                        fourColumn: expense.amount.toStringAsFixed(2),
+                        secondColumn: expense['date'] ?? '',
+                        thirdColumn: expense['comments'] ?? '',
+                        fourColumn: amount.toStringAsFixed(2),
                       );
                     },
                   ),
