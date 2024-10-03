@@ -107,7 +107,7 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                           str: 'Submit',
                           height: 45,
                           onTap: () {
-                            profitController.addOrUpdateProfitData();
+                            profitController.addProfit();
                           },
                         ),
                       ],
@@ -149,26 +149,39 @@ class _AdminProfitScreenState extends State<AdminProfitScreen> {
                     fourRow: 'Amount',
                   ),
                 ),
-                GlobalContainer(
-                  backgroundColor: ColorRes.white,
-                  width: Get.width,
-                  child: GetBuilder<ProfitController>(
-                    builder: (controller) => ListView.builder(
+                GetBuilder<ProfitController>(builder: (controller) {
+                  if (controller.profitData.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No Expense Found',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    );
+                  }
+                  return GlobalContainer(
+                    backgroundColor: ColorRes.white,
+                    width: Get.width,
+                    child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: controller.profitData.length,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (ctx, index) {
-                        var detailsData = controller.profitData[index];
+                        final profit = controller.profitData[index];
+                        double amount = 0.0;
+                        if (profit['amount'] != null) {
+                          amount = double.tryParse(profit['amount'].toString()) ?? 0.0;
+                        }
+
                         return ProfitTableValueWidget(
-                          firstColumn: detailsData['id'] ?? '',
-                          secondColumn: detailsData['date'] ?? '',
-                          thirdColumn: detailsData['comments'] ?? '',
-                          fourColumn: detailsData['amount'] ?? '',
+                          firstColumn: (index + 1).toString(),
+                          secondColumn: profit['date'] ?? '',
+                          thirdColumn: profit['comments'] ?? '',
+                          fourColumn: amount.toStringAsFixed(2),
                         );
                       },
                     ),
-                  ),
-                ),
+                  );
+                }),
               ],
             ),
           ),

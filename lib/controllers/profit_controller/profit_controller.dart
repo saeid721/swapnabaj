@@ -1,83 +1,63 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../global_widget/colors.dart';
+import '../../models/profit_model/profit_model.dart';
 
 class ProfitController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final List<Map<String, dynamic>> profitData = [];
 
-  final TextEditingController selectProfitDateCon = TextEditingController();
-  final TextEditingController profitCommentsCon = TextEditingController();
-  final TextEditingController profitAmountCon = TextEditingController();
-
-  String selectDepositorName = '0';
-  String selectDepositPurpose = '0';
+  TextEditingController selectProfitDateCon = TextEditingController();
+  TextEditingController profitCommentsCon = TextEditingController();
+  TextEditingController profitAmountCon = TextEditingController();
 
   @override
   void onInit() {
     super.onInit();
-    fetchCapitalData();
+    fetchProfitData(); // Fetch data when controller initializes
   }
 
-  void fetchCapitalData() {
-    _firestore.collection('profitData').snapshots().listen((snapshot) {
+  // Fetch Profit from Firestore and sort by date descending
+  void fetchProfitData() {
+    _firestore.collection('profitData').orderBy('date', descending: true).snapshots().listen((snapshot) {
       profitData.clear();
       profitData.addAll(snapshot.docs.map((doc) => doc.data()));
-      update();
+      update(); // Notify UI to update
     });
   }
 
-  Future<void> addOrUpdateProfitData() async {
-    // Change the condition to check for empty fields correctly
-    if (profitCommentsCon.text.isEmpty || profitAmountCon.text.isEmpty || selectProfitDateCon.text.isEmpty) {
-      Get.snackbar('Error', 'All fields must be completed');
+  // Add a new Expanse to Firestore
+  Future<void> addProfit() async {
+    if (selectProfitDateCon.text.isEmpty || profitCommentsCon.text.isEmpty || profitAmountCon.text.isEmpty) {
+      Get.snackbar('Error', 'All fields must be completed', colorText: ColorRes.red);
       return;
     }
 
     try {
-      String date = selectProfitDateCon.text;
-      String comments = profitCommentsCon.text;
-      String amount = profitAmountCon.text;
+      var newProfit = ProfitModel(
+        date: selectProfitDateCon.text,
+        comments: profitCommentsCon.text,
+        amount: double.parse(profitAmountCon.text),
+      );
 
-      var existingEntryIndex = profitData.indexWhere((element) => element['depositorName'] == selectDepositorName);
+      await _firestore.collection('profitData').add(newProfit.toJson());
 
-      if (existingEntryIndex != -1) {
-        // Update existing entry
-        double existingAmount = double.parse(profitData[existingEntryIndex]['amount']);
-        double newAmount = existingAmount + double.parse(amount);
-        profitData[existingEntryIndex]['amount'] = newAmount.toString();
-        profitData[existingEntryIndex]['date'] = date;
-
-        await _firestore.collection('profitData').doc(selectDepositorName).update({
-          'amount': newAmount.toString(),
-          'date': date,
-        });
-      } else {
-        // Add new entry
-        Map<String, dynamic> newEntry = {
-          'id': (profitData.length + 1).toString(),
-          'date': date,
-          'comments': comments,
-          'amount': amount,
-        };
-        profitData.add(newEntry);
-
-        await _firestore.collection('profitData').doc(selectDepositorName).set(newEntry);
-      }
-
-      update();
+      // Clear input fields and notify success
       clearInputs();
       Get.snackbar('Success', 'Profit data saved successfully');
+      update();
     } catch (e) {
-      Get.snackbar('Error', 'Failed to save data: $e', snackPosition: SnackPosition.BOTTOM);
+      Get.snackbar('Error', 'Failed to save data: $e', colorText: ColorRes.red);
     }
   }
 
-  // Calculate the total profit amount
+  // Calculate the total Profit amount
   double get totalProfitAmount {
-    return profitData.fold(0.0, (sum, item) => sum + double.parse(item['amount']));
+    return profitData.fold(0.0, (sum, item) => sum + (item['amount'] ?? 0.0));
   }
 
+  // Clear text field inputs
   void clearInputs() {
     selectProfitDateCon.clear();
     profitCommentsCon.clear();

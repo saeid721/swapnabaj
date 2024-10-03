@@ -10,7 +10,7 @@ class ExpenseModel {
     required this.amount,
   });
 
-  // Convert InvestModel to JSON for Firestore
+  // Convert Expense Model to JSON for Firestore
   Map<String, dynamic> toJson() {
     return {
       'date': date,

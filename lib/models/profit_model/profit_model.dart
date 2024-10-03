@@ -1,6 +1,7 @@
+
 class ProfitModel {
-  final String date;
-  final String comments;
+  String date;
+  String comments;
   double amount;
 
   ProfitModel({
@@ -9,9 +10,8 @@ class ProfitModel {
     required this.amount,
   });
 
-  double get amounts => amount;
-
-  Map<String, dynamic> toMap() {
+  // Convert Profit Model to JSON for Firestore
+  Map<String, dynamic> toJson() {
     return {
       'date': date,
       'comments': comments,
@@ -19,6 +19,7 @@ class ProfitModel {
     };
   }
 
+  // Factory method to create an Profit Model from Firestore document
   static ProfitModel fromMap(Map<String, dynamic> map) {
     return ProfitModel(
       date: map['date'],
