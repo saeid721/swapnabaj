@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../global_widget/chapter_item_widget.dart';
 import '../../global_widget/colors.dart';
-import '../user_panel/home_screen/home_screen.dart';
 import 'admin_about_screen/admin_about_screen.dart';
 import 'admin_capital_screen/admin_capital_screen.dart';
 import 'admin_charity_screen/admin_charity_screen.dart';
@@ -54,7 +53,7 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             leadingImage: 'assets/icons/profit.png',
             title: "Profit",
             onTap: () {
-              Get.to(() => const AdminProfitScreen());
+              Get.to(() =>  AdminProfitScreen());
             },
           ),
           ChapterItem(
@@ -68,21 +67,21 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             leadingImage: 'assets/icons/expense.png',
             title: "Expense",
             onTap: () {
-              Get.to(() => const AdminExpenseScreen());
+              Get.to(() => AdminExpenseScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/charity.png',
             title: "Charity",
             onTap: () {
-              Get.to(() => const AdminCharityScreen());
+              Get.to(() => AdminCharityScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/gallery.png',
             title: "Gallery",
             onTap: () {
-              Get.to(() => const AdminGalleryScreen());
+              Get.to(() => AdminGalleryScreen());
             },
           ),
           ChapterItem(
@@ -96,34 +95,28 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             leadingImage: 'assets/icons/event.png',
             title: "Event",
             onTap: () {
-              Get.to(() => const AdminEventScreen());
+              Get.to(() => AdminEventScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/notice.png',
             title: "Notice",
             onTap: () {
-              Get.to(() => const AdminNoticesScreen());
+              Get.to(() => AdminNoticesScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/about.png',
             title: "About Us",
             onTap: () {
-              Get.to(() => const AdminAboutScreen());
+              Get.to(() => AdminAboutScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/contact.png',
             title: "Contact Us",
             onTap: () {
-              Get.to(() => const AdminContactUsScreen());
-            },
-          ),
-          ListTile(
-            title: const Text('Home'),
-            onTap: () {
-              Get.to(() => const HomeScreen());
+              Get.to(() => AdminContactUsScreen());
             },
           ),
         ],

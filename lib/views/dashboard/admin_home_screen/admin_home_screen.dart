@@ -260,7 +260,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                               title: 'Expense',
                               titleColor: ColorRes.expenseColor,
                               onTap: () =>
-                                  Get.to(() => const AdminExpenseScreen()),
+                                  Get.to(() => AdminExpenseScreen()),
                             ),
                           ),
                         ],

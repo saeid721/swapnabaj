@@ -151,7 +151,7 @@ class _AdminInvestScreenState extends State<AdminInvestScreen> {
                   return const Center(
                     child: Text(
                       'No Investments Found',
-                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                   );
                 }

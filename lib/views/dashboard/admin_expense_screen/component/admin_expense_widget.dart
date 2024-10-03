@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../global_widget/colors.dart';
 import '../../../../global_widget/global_text.dart';
 
-class InvestTableWidget extends StatelessWidget {
+class ExpenseTableWidget extends StatelessWidget {
   final String firstRow;
   final String secondRow;
   final String thirdRow;
   final String fourRow;
 
-  const InvestTableWidget({
+  const ExpenseTableWidget({
     super.key,
     required this.firstRow,
     required this.secondRow,
@@ -141,13 +140,13 @@ class InvestTableWidget extends StatelessWidget {
   }
 }
 
-class InvestTableValueWidget extends StatelessWidget {
+class ExpenseTableValueWidget extends StatelessWidget {
   final String firstColumn;
   final String secondColumn;
   final String thirdColumn;
   final String fourColumn;
 
-  const InvestTableValueWidget({
+  const ExpenseTableValueWidget({
     super.key,
     required this.firstColumn,
     required this.secondColumn,

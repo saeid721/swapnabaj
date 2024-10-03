@@ -193,26 +193,29 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                       ),
                     ),
                   ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GlobalText(
-                        str: "Total Capital (BDT) =",
-                        fontSize: 14,
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w600,
-                        color: ColorRes.textColor,
-                      ),
-                      GlobalText(
-                        // Displaying the total amount with two decimal places
-                        //str: totalAmount.toStringAsFixed(2),
-                        str: '5000.00',
-                        fontSize: 14,
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w600,
-                        color: ColorRes.textColor,
-                      ),
-                    ],
+                  const SizedBox(height: 5),
+                  GetBuilder<CapitalController>(
+                    builder: (controller) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const GlobalText(
+                            str: "Total Capital (BDT) =",
+                            fontSize: 14,
+                            textAlign: TextAlign.center,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.textColor,
+                          ),
+                          GlobalText(
+                            str: controller.totalDepositAmount.toStringAsFixed(2),
+                            fontSize: 14,
+                            textAlign: TextAlign.center,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.textColor,
+                          ),
+                        ],
+                      );
+                    },
                   ),
                   const SizedBox(height: 10),
                 ],
@@ -260,28 +263,30 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                       ),
                     ),
                   ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GlobalText(
-                        str: "Total Deposit (BDT) =",
-                        fontSize: 14,
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w600,
-                        color: ColorRes.textColor,
-                      ),
-                      GlobalText(
-                        // Displaying the total amount with two decimal places
-                        // str: totalAmount.toStringAsFixed(2),
-                        str: '60,000.00',
-                        fontSize: 14,
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w600,
-                        color: ColorRes.textColor,
-                      ),
-                    ],
+                  const SizedBox(height: 5),
+                  GetBuilder<CapitalController>(
+                    builder: (controller) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const GlobalText(
+                            str: "Total Deposit (BDT) =",
+                            fontSize: 14,
+                            textAlign: TextAlign.center,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.textColor,
+                          ),
+                          GlobalText(
+                            str: controller.totalDepositAmount.toStringAsFixed(2),
+                            fontSize: 14,
+                            textAlign: TextAlign.center,
+                            fontWeight: FontWeight.w600,
+                            color: ColorRes.textColor,
+                          ),
+                        ],
+                      );
+                    },
                   ),
-                  const SizedBox(height: 20),
                 ],
               ),
               const SizedBox(height: 20),

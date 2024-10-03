@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class CapitalController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final List<Map<String, dynamic>> capitalData = [];
+
   final TextEditingController selectDepositDateCon = TextEditingController();
   final TextEditingController depositAmountCon = TextEditingController();
   String selectDepositorName = '0';
@@ -37,15 +38,18 @@ class CapitalController extends GetxController {
       var existingEntryIndex = capitalData.indexWhere((element) => element['depositorName'] == selectDepositorName);
 
       if (existingEntryIndex != -1) {
-        capitalData[existingEntryIndex]['amount'] =
-            (double.parse(capitalData[existingEntryIndex]['amount']) + double.parse(amount)).toString();
+        // Update existing entry
+        double existingAmount = double.parse(capitalData[existingEntryIndex]['amount']);
+        double newAmount = existingAmount + double.parse(amount);
+        capitalData[existingEntryIndex]['amount'] = newAmount.toString();
         capitalData[existingEntryIndex]['date'] = date;
 
         await _firestore.collection('capitalData').doc(selectDepositorName).update({
-          'amount': capitalData[existingEntryIndex]['amount'],
+          'amount': newAmount.toString(),
           'date': date,
         });
       } else {
+        // Add new entry
         Map<String, dynamic> newEntry = {
           'id': (capitalData.length + 1).toString(),
           'date': date,
@@ -62,8 +66,13 @@ class CapitalController extends GetxController {
       clearInputs();
       Get.snackbar('Success', 'Deposit data saved successfully');
     } catch (e) {
-      Get.snackbar('Error', 'Failed to save data: $e',);
+      Get.snackbar('Error', 'Failed to save data: $e', snackPosition: SnackPosition.BOTTOM);
     }
+  }
+
+  // Calculate the total deposit amount
+  double get totalDepositAmount {
+    return capitalData.fold(0.0, (sum, item) => sum + double.parse(item['amount']));
   }
 
   void clearInputs() {

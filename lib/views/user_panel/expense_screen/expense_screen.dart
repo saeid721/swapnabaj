@@ -54,7 +54,7 @@ class ExpenseScreen extends StatelessWidget {
                 GlobalContainer(
                   backgroundColor: ColorRes.backgroundColor,
                   width: Get.width,
-                  child: const InvestTableWidget(
+                  child: const ExpenseTableWidget(
                     firstRow: 'SL',
                     secondRow: 'Date',
                     thirdRow: 'Comments',
@@ -69,7 +69,7 @@ class ExpenseScreen extends StatelessWidget {
                     itemCount: 10,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (ctx, index) {
-                      return const InvestTableValueWidget(
+                      return const ExpenseTableValueWidget(
                         firstColumn: '001',
                         secondColumn: '10/09/2024',
                         thirdColumn: "ব্যাংক একাউন্ট খোলা বাবত খরচ",
