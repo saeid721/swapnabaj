@@ -253,7 +253,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                         itemBuilder: (ctx, index) {
                           var detailsData = controller.capitalData[index];
                           return DepositDetailsTableValueWidget(
-                            firstColumn: detailsData['id'] ?? '',
+                            firstColumn: (index + 1).toString(),
                             secondColumn: detailsData['date'] ?? '',
                             thirdColumn: detailsData['depositorName'] ?? '',
                             fourColumn: detailsData['purpose'] ?? '',
