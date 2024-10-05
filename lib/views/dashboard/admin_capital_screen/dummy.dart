@@ -215,7 +215,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                       itemCount: 10,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (ctx, index) {
-                        return const CapitalDetailsTableValueWidget(
+                        return const DepositDetailsTableValueWidget(
                           firstColumn: '001',
                           secondColumn: '10/09/2024',
                           thirdColumn: "Konkor Chandra Modok",

@@ -52,11 +52,13 @@ class ProfitController extends GetxController {
     }
   }
 
-  // Calculate the total Profit amount
+  // Calculate the total deposit amount
   double get totalProfitAmount {
-    return profitData.fold(0.0, (sum, item) => sum + (item['amount'] ?? 0.0));
+    return profitData.fold(0.0, (sum, item) {
+      double amount = double.tryParse(item['amount'].toString()) ?? 0.0;
+      return sum + amount;
+    });
   }
-
   // Clear text field inputs
   void clearInputs() {
     selectProfitDateCon.clear();

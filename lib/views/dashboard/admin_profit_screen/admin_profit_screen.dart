@@ -12,14 +12,9 @@ import '../../../global_widget/show_date_time_picker.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 import 'component/admin_profit_widget.dart';
 
-class AdminProfitScreen extends StatefulWidget {
-  const AdminProfitScreen({super.key});
+class AdminProfitScreen extends StatelessWidget {
+  AdminProfitScreen({super.key});
 
-  @override
-  _AdminProfitScreenState createState() => _AdminProfitScreenState();
-}
-
-class _AdminProfitScreenState extends State<AdminProfitScreen> {
   final ProfitController profitController = Get.put(ProfitController());
 
   @override

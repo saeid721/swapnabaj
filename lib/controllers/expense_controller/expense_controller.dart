@@ -54,7 +54,10 @@ class ExpenseController extends GetxController {
 
   // Calculate the total deposit amount
   double get totalExpenseAmount {
-    return expenseData.fold(0.0, (sum, item) => sum + (item['amount'] ?? 0.0));
+    return expenseData.fold(0.0, (sum, item) {
+      double amount = double.tryParse(item['amount'].toString()) ?? 0.0;
+      return sum + amount;
+    });
   }
 
   // Clear text field inputs

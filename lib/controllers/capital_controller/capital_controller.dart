@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../global_widget/colors.dart';
 
 class CapitalController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -27,7 +28,7 @@ class CapitalController extends GetxController {
 
   Future<void> addOrUpdateCapitalData() async {
     if (selectDepositorName == '0' || selectDepositPurpose == '0' || depositAmountCon.text.isEmpty || selectDepositDateCon.text.isEmpty) {
-      Get.snackbar('Error', 'All fields must be completed');
+      Get.snackbar('Error', 'All fields must be completed', colorText: ColorRes.red);
       return;
     }
 
@@ -66,15 +67,17 @@ class CapitalController extends GetxController {
       clearInputs();
       Get.snackbar('Success', 'Deposit data saved successfully');
     } catch (e) {
-      Get.snackbar('Error', 'Failed to save data: $e');
+      Get.snackbar('Error', 'Failed to save data: $e', colorText: ColorRes.red);
     }
   }
 
   // Calculate the total deposit amount
-  double get totalDepositAmount {
-    return capitalData.fold(0.0, (sum, item) => sum + double.parse(item['amount']));
+  double get totalCapitalAmount {
+    return capitalData.fold(0.0, (sum, item) {
+      double amount = double.tryParse(item['amount'].toString()) ?? 0.0;
+      return sum + amount;
+    });
   }
-
   void clearInputs() {
     selectDepositDateCon.clear();
     depositAmountCon.clear();

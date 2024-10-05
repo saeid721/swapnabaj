@@ -207,7 +207,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                             color: ColorRes.textColor,
                           ),
                           GlobalText(
-                            str: controller.totalDepositAmount.toStringAsFixed(2),
+                            str: controller.totalCapitalAmount.toStringAsFixed(2),
                             fontSize: 14,
                             textAlign: TextAlign.center,
                             fontWeight: FontWeight.w600,
@@ -252,7 +252,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) {
                           var detailsData = controller.capitalData[index];
-                          return CapitalDetailsTableValueWidget(
+                          return DepositDetailsTableValueWidget(
                             firstColumn: detailsData['id'] ?? '',
                             secondColumn: detailsData['date'] ?? '',
                             thirdColumn: detailsData['depositorName'] ?? '',
@@ -277,7 +277,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                             color: ColorRes.textColor,
                           ),
                           GlobalText(
-                            str: controller.totalDepositAmount.toStringAsFixed(2),
+                            str: controller.totalCapitalAmount.toStringAsFixed(2),
                             fontSize: 14,
                             textAlign: TextAlign.center,
                             fontWeight: FontWeight.w600,

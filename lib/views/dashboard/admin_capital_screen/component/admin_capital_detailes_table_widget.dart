@@ -166,14 +166,14 @@ class CapitalDetailsTableWidget extends StatelessWidget {
   }
 }
 
-class CapitalDetailsTableValueWidget extends StatelessWidget {
+class DepositDetailsTableValueWidget extends StatelessWidget {
   final String firstColumn;
   final String secondColumn;
   final String thirdColumn;
   final String fourColumn;
   final String fiveColumn;
 
-  const CapitalDetailsTableValueWidget({
+  const DepositDetailsTableValueWidget({
     super.key,
     required this.firstColumn,
     required this.secondColumn,
