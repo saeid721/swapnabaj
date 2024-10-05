@@ -199,7 +199,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                   GlobalContainer(
                     backgroundColor: ColorRes.backgroundColor,
                     width: Get.width,
-                    child: const CapitalDetailsTableWidget(
+                    child: const DepositTableWidget(
                       firstRow: 'SL',
                       secondRow: 'Date',
                       thirdRow: 'Name',
@@ -215,7 +215,7 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                       itemCount: 10,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (ctx, index) {
-                        return const DepositDetailsTableValueWidget(
+                        return const DepositTableValueWidget(
                           firstColumn: '001',
                           secondColumn: '10/09/2024',
                           thirdColumn: "Konkor Chandra Modok",

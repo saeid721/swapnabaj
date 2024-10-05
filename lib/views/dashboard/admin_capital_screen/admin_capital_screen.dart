@@ -142,7 +142,7 @@ class AdminCapitalScreen extends StatelessWidget {
                           str: 'Submit Capital',
                           height: 45,
                           onTap: () {
-                            capitalController.addOrUpdateCapitalData();
+                            capitalController.updateCapitalData();
                           },
                         ),
                       ],
@@ -164,7 +164,7 @@ class AdminCapitalScreen extends StatelessWidget {
                   GlobalContainer(
                     backgroundColor: ColorRes.backgroundColor,
                     width: Get.width,
-                    child: const CapitalSummeryTableWidget(
+                    child: const CapitalTableWidget(
                       firstRow: 'SL',
                       secondRow: 'Name',
                       thirdRow: 'Capital',
@@ -180,10 +180,10 @@ class AdminCapitalScreen extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) {
                           var data = controller.capitalData[index];
-                          return CapitalSummeryTableValueWidget(
-                            firstColumn: data['id'] ?? '',
-                            secondColumn: data['depositorName'] ?? '',
-                            thirdColumn: data['amount'] ?? '',
+                          return CapitalTableValueWidget(
+                            firstColumn: (index + 1).toString(),
+                            secondColumn: data.depositorName ?? '',
+                            thirdColumn: data.totalAmount.toStringAsFixed(2) ?? '',
                           );
                         },
                       ),
@@ -230,7 +230,7 @@ class AdminCapitalScreen extends StatelessWidget {
                   GlobalContainer(
                     backgroundColor: ColorRes.backgroundColor,
                     width: Get.width,
-                    child: const CapitalDetailsTableWidget(
+                    child: const DepositTableWidget(
                       firstRow: 'SL',
                       secondRow: 'Date',
                       thirdRow: 'Name',
@@ -248,40 +248,16 @@ class AdminCapitalScreen extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) {
                           var detailsData = controller.capitalData[index];
-                          return DepositDetailsTableValueWidget(
+                          return DepositTableValueWidget(
                             firstColumn: (index + 1).toString(),
-                            secondColumn: detailsData['date'] ?? '',
-                            thirdColumn: detailsData['depositorName'] ?? '',
-                            fourColumn: detailsData['purpose'] ?? '',
-                            fiveColumn: detailsData['amount'] ?? '',
+                            secondColumn: detailsData.date ?? '',
+                            thirdColumn: detailsData.depositorName ?? '',
+                            fourColumn: detailsData.purpose ?? '',
+                            fiveColumn: detailsData.amount.toStringAsFixed(2) ?? '',
                           );
                         },
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 5),
-                  GetBuilder<CapitalController>(
-                    builder: (controller) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const GlobalText(
-                            str: "Total Deposit (BDT) =",
-                            fontSize: 14,
-                            textAlign: TextAlign.center,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.textColor,
-                          ),
-                          GlobalText(
-                            str: controller.totalCapitalAmount.toStringAsFixed(2),
-                            fontSize: 14,
-                            textAlign: TextAlign.center,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.textColor,
-                          ),
-                        ],
-                      );
-                    },
                   ),
                 ],
               ),

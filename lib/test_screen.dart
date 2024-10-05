@@ -117,7 +117,7 @@ class _TestScreenState extends State<TestScreen> {
               GlobalContainer(
                 backgroundColor: ColorRes.backgroundColor,
                 width: Get.width,
-                child: const CapitalSummeryTableWidget(
+                child: const CapitalTableWidget(
                   firstRow: 'SL',
                   secondRow: 'Name',
                   thirdRow: 'Deposit',
@@ -136,7 +136,7 @@ class _TestScreenState extends State<TestScreen> {
                       itemCount: snapshots.data!.docs.length,
                       itemBuilder: (context, index) {
                         var capital = snapshots.data!.docs[index];
-                        return CapitalSummeryTableValueWidget(
+                        return CapitalTableValueWidget(
                           firstColumn: capital['id'] ?? '',
                           secondColumn: capital['depositorName'] ?? '',
                           thirdColumn: capital['amount'] ?? '',

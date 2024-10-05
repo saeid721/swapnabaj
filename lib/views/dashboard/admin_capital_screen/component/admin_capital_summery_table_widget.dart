@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 import '../../../../global_widget/colors.dart';
 import '../../../../global_widget/global_text.dart';
 
-class CapitalSummeryTableWidget extends StatelessWidget {
+class CapitalTableWidget extends StatelessWidget {
   final String firstRow;
   final String secondRow;
   final String thirdRow;
 
-  const CapitalSummeryTableWidget({
+  const CapitalTableWidget({
     super.key,
     required this.firstRow,
     required this.secondRow,
@@ -113,12 +113,12 @@ class CapitalSummeryTableWidget extends StatelessWidget {
   }
 }
 
-class CapitalSummeryTableValueWidget extends StatelessWidget {
+class CapitalTableValueWidget extends StatelessWidget {
   final String firstColumn;
   final String secondColumn;
   final String thirdColumn;
 
-  const CapitalSummeryTableValueWidget({
+  const CapitalTableValueWidget({
     super.key,
     required this.firstColumn,
     required this.secondColumn,

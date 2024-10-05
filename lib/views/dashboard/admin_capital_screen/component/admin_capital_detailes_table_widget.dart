@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 import '../../../../global_widget/colors.dart';
 import '../../../../global_widget/global_text.dart';
 
-class CapitalDetailsTableWidget extends StatelessWidget {
+class DepositTableWidget extends StatelessWidget {
   final String firstRow;
   final String secondRow;
   final String thirdRow;
   final String fourRow;
   final String fiveRow;
 
-  const CapitalDetailsTableWidget({
+  const DepositTableWidget({
     super.key,
     required this.firstRow,
     required this.secondRow,
@@ -166,14 +166,14 @@ class CapitalDetailsTableWidget extends StatelessWidget {
   }
 }
 
-class DepositDetailsTableValueWidget extends StatelessWidget {
+class DepositTableValueWidget extends StatelessWidget {
   final String firstColumn;
   final String secondColumn;
   final String thirdColumn;
   final String fourColumn;
   final String fiveColumn;
 
-  const DepositDetailsTableValueWidget({
+  const DepositTableValueWidget({
     super.key,
     required this.firstColumn,
     required this.secondColumn,
