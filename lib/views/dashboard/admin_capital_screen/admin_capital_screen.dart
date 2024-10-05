@@ -269,3 +269,6 @@ class AdminCapitalScreen extends StatelessWidget {
     );
   }
 }
+
+
+

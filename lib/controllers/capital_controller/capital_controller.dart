@@ -86,6 +86,7 @@ class CapitalController extends GetxController {
     return capitalData.fold(0.0, (sum, item) => sum + item.totalAmount);
   }
 
+  // Clear text field inputs
   void clearInputs() {
     selectDepositDateCon.clear();
     depositAmountCon.clear();
@@ -101,3 +102,4 @@ class CapitalController extends GetxController {
     super.dispose();
   }
 }
+
