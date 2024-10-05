@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../../../controllers/capital_controller/capital_controller.dart';
 import '../../../global_widget/colors.dart';
-import '../../../global_widget/date_time_formator.dart';
 import '../../../global_widget/global_button.dart';
 import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_dropdown_fromfield.dart';
@@ -18,7 +18,6 @@ class AdminCapitalScreen extends StatelessWidget {
   AdminCapitalScreen({super.key});
 
   final CapitalController capitalController = Get.put(CapitalController());
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,20 +65,18 @@ class AdminCapitalScreen extends StatelessWidget {
                           controller: capitalController.selectDepositDateCon,
                           titleText: 'Select Date',
                           hintText: "Select Date".tr,
-                          keyboardType: TextInputType.datetime,
-                          titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                           isDense: true,
                           decoration: inputDropDecoration,
                           filled: true,
                           sufixIcon: GestureDetector(
-                              onTap: () async {
-                                var pickedDate = await showDateOnlyPicker(context);
-                                if (pickedDate != null) {
-                                  String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
-                                  capitalController.selectDepositDateCon.text = formattedDate;
-                                }
-                              },
-                              child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
+                            onTap: () async {
+                              var pickedDate = await showDateOnlyPicker(context);
+                              if (pickedDate != null) {
+                                capitalController.selectDepositDateCon.text = DateFormat('dd/MM/yyyy').format(pickedDate);
+                              }
+                            },
+                            child: const Icon(Icons.calendar_today, color: ColorRes.textColor),
+                          ),
                         ),
                         const SizedBox(height: 10),
                         CustomDropDownFormField(
@@ -181,9 +178,9 @@ class AdminCapitalScreen extends StatelessWidget {
                         itemBuilder: (ctx, index) {
                           var data = controller.capitalData[index];
                           return CapitalTableValueWidget(
-                            firstColumn: (index + 1).toString(),
-                            secondColumn: data.depositorName ?? '',
-                            thirdColumn: data.totalAmount.toStringAsFixed(2) ?? '',
+                            firstColumn: data['id'] ?? '',
+                            secondColumn: data['depositorName'] ?? '',
+                            thirdColumn: data['amount'] ?? '',
                           );
                         },
                       ),
@@ -250,10 +247,10 @@ class AdminCapitalScreen extends StatelessWidget {
                           var detailsData = controller.capitalData[index];
                           return DepositTableValueWidget(
                             firstColumn: (index + 1).toString(),
-                            secondColumn: detailsData.date ?? '',
-                            thirdColumn: detailsData.depositorName ?? '',
-                            fourColumn: detailsData.purpose ?? '',
-                            fiveColumn: detailsData.amount.toStringAsFixed(2) ?? '',
+                            secondColumn: detailsData['date'] ?? '',
+                            thirdColumn: detailsData['depositorName'] ?? '',
+                            fourColumn: detailsData['purpose'] ?? '',
+                            fiveColumn: detailsData['amount'] ?? '',
                           );
                         },
                       ),
@@ -269,6 +266,3 @@ class AdminCapitalScreen extends StatelessWidget {
     );
   }
 }
-
-
-

@@ -1,4 +1,3 @@
-//
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import '../../../controllers/capital_controller/capital_controller.dart';
@@ -15,15 +14,11 @@
 // import 'component/admin_capital_detailes_table_widget.dart';
 // import 'component/admin_capital_summery_table_widget.dart';
 //
-// class AdminCapitalScreen extends StatefulWidget {
-//   const AdminCapitalScreen({super.key});
+// class AdminCapitalScreen extends StatelessWidget {
+//   AdminCapitalScreen({super.key});
 //
-//   @override
-//   _AdminCapitalScreenState createState() => _AdminCapitalScreenState();
-// }
-//
-// class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
 //   final CapitalController capitalController = Get.put(CapitalController());
+//
 //
 //   @override
 //   Widget build(BuildContext context) {
@@ -71,20 +66,20 @@
 //                           controller: capitalController.selectDepositDateCon,
 //                           titleText: 'Select Date',
 //                           hintText: "Select Date".tr,
+//                           keyboardType: TextInputType.datetime,
 //                           titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
 //                           isDense: true,
 //                           decoration: inputDropDecoration,
 //                           filled: true,
 //                           sufixIcon: GestureDetector(
-//                             onTap: () async {
-//                               var pickedDate = await showDateOnlyPicker(context);
-//                               setState(() {
-//                                 String formattedDate = DateTimeFormatter.showDateOnly.format(pickedDate);
-//                                 capitalController.selectDepositDateCon.text = formattedDate;
-//                               });
-//                             },
-//                             child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20),
-//                           ),
+//                               onTap: () async {
+//                                 var pickedDate = await showDateOnlyPicker(context);
+//                                 if (pickedDate != null) {
+//                                   String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
+//                                   capitalController.selectDepositDateCon.text = formattedDate;
+//                                 }
+//                               },
+//                               child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
 //                         ),
 //                         const SizedBox(height: 10),
 //                         CustomDropDownFormField(
@@ -186,9 +181,9 @@
 //                         itemBuilder: (ctx, index) {
 //                           var data = controller.capitalData[index];
 //                           return CapitalTableValueWidget(
-//                             firstColumn: data['id'] ?? '',
-//                             secondColumn: data['depositorName'] ?? '',
-//                             thirdColumn: data['amount'] ?? '',
+//                             firstColumn: (index + 1).toString(),
+//                             secondColumn: data.depositorName ?? '',
+//                             thirdColumn: data.totalAmount.toStringAsFixed(2) ?? '',
 //                           );
 //                         },
 //                       ),
@@ -255,10 +250,10 @@
 //                           var detailsData = controller.capitalData[index];
 //                           return DepositTableValueWidget(
 //                             firstColumn: (index + 1).toString(),
-//                             secondColumn: detailsData['date'] ?? '',
-//                             thirdColumn: detailsData['depositorName'] ?? '',
-//                             fourColumn: detailsData['purpose'] ?? '',
-//                             fiveColumn: detailsData['amount'] ?? '',
+//                             secondColumn: detailsData.date ?? '',
+//                             thirdColumn: detailsData.depositorName ?? '',
+//                             fourColumn: detailsData.purpose ?? '',
+//                             fiveColumn: detailsData.amount.toStringAsFixed(2) ?? '',
 //                           );
 //                         },
 //                       ),
@@ -274,3 +269,6 @@
 //     );
 //   }
 // }
+//
+//
+//
