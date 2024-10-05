@@ -7,6 +7,7 @@ import '../../models/capital_model/capital_model.dart';
 class CapitalController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final List<CapitalModel> capitalData = []; // List of CapitalModel
+
   final TextEditingController selectDepositDateCon = TextEditingController();
   final TextEditingController depositAmountCon = TextEditingController();
   String selectDepositorName = '0';

@@ -3,7 +3,7 @@ class CapitalModel {
   final String depositorName;
   final String purpose;
   final double amount;
-  double _totalAmount; // Keep as private
+  double _totalAmount;
 
   CapitalModel({
     required this.date,
@@ -31,11 +31,11 @@ class CapitalModel {
 
   static CapitalModel fromMap(Map<String, dynamic> map) {
     return CapitalModel(
-      date: map['date'] ?? '', // Default to empty string if null
-      depositorName: map['depositorName'] ?? '', // Default to empty string if null
-      purpose: map['purpose'] ?? '', // Default to empty string if null
-      amount: map['amount']?.toDouble() ?? 0.0, // Default to 0.0 if null
-      totalAmount: map['totalAmount']?.toDouble() ?? 0.0, // Default to 0.0 if null
+      date: map['date'] ?? '',
+      depositorName: map['depositorName'] ?? '',
+      purpose: map['purpose'] ?? '',
+      amount: map['amount']?.toDouble() ?? 0.0,
+      totalAmount: map['totalAmount']?.toDouble() ?? 0.0,
     );
   }
 }
