@@ -14,15 +14,11 @@ import '../admin_login_screen/admin_login_screen.dart';
 import 'component/admin_capital_detailes_table_widget.dart';
 import 'component/admin_capital_summery_table_widget.dart';
 
-class AdminCapitalScreen extends StatefulWidget {
-  const AdminCapitalScreen({super.key});
+class AdminCapitalScreen extends StatelessWidget {
+  AdminCapitalScreen({super.key});
 
-  @override
-  _AdminCapitalScreenState createState() => _AdminCapitalScreenState();
-}
-
-class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
   final CapitalController capitalController = Get.put(CapitalController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -70,20 +66,20 @@ class _AdminCapitalScreenState extends State<AdminCapitalScreen> {
                           controller: capitalController.selectDepositDateCon,
                           titleText: 'Select Date',
                           hintText: "Select Date".tr,
+                          keyboardType: TextInputType.datetime,
                           titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                           isDense: true,
                           decoration: inputDropDecoration,
                           filled: true,
                           sufixIcon: GestureDetector(
-                            onTap: () async {
-                              var pickedDate = await showDateOnlyPicker(context);
-                              setState(() {
-                                String formattedDate = DateTimeFormatter.showDateOnly.format(pickedDate);
-                                capitalController.selectDepositDateCon.text = formattedDate;
-                              });
-                            },
-                            child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20),
-                          ),
+                              onTap: () async {
+                                var pickedDate = await showDateOnlyPicker(context);
+                                if (pickedDate != null) {
+                                  String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
+                                  capitalController.selectDepositDateCon.text = formattedDate;
+                                }
+                              },
+                              child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
                         ),
                         const SizedBox(height: 10),
                         CustomDropDownFormField(
