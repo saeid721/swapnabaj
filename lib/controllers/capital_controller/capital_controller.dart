@@ -27,7 +27,10 @@ class CapitalController extends GetxController {
   }
 
   Future<void> updateCapitalData() async {
-    if (selectDepositDateCon.text.isEmpty || selectDepositorName == '0' || selectDepositPurpose == '0' || depositAmountCon.text.isEmpty) {
+    if (selectDepositDateCon.text.isEmpty ||
+        selectDepositorName == '0' ||
+        selectDepositPurpose == '0' ||
+        depositAmountCon.text.isEmpty) {
       Get.snackbar('Error', 'All fields must be completed', colorText: ColorRes.red);
       return;
     }
@@ -72,7 +75,7 @@ class CapitalController extends GetxController {
 
   // Calculate the total Capital amount
   double get totalCapitalAmount {
-    return capitalData.fold(0.0, (sum, item) {
+    return capitalData.fold(0.0, (double sum, item) {
       double amount = double.tryParse(item['amount'].toString()) ?? 0.0;
       return sum + amount;
     });

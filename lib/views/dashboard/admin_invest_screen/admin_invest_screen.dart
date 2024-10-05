@@ -13,7 +13,7 @@ import '../admin_login_screen/admin_login_screen.dart';
 import 'component/admin_invest_widget.dart';
 
 class AdminInvestScreen extends StatefulWidget {
-  const AdminInvestScreen({Key? key}) : super(key: key);
+  const AdminInvestScreen({super.key});
 
   @override
   State<AdminInvestScreen> createState() => _AdminInvestScreenState();
@@ -188,7 +188,6 @@ class _AdminInvestScreenState extends State<AdminInvestScreen> {
                   ),
                 );
               })
-
             ],
           ),
         ),

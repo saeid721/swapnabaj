@@ -196,9 +196,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 5),
                         HomeSummeryChapterItem(
-                          titleColor: ColorRes.balck,
-                          blanceColor: ColorRes.balck,
-                          borderColor: ColorRes.balck,
+                          titleColor: ColorRes.black,
+                          blanceColor: ColorRes.black,
+                          borderColor: ColorRes.black,
                           title: "Net Balance",
                           blance: "৳ 10,65,706.00",
                           onTap: () {

@@ -2,8 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controllers/capital_controller/capital_controller.dart';
-import '../../../controllers/expense_controller/expense_controller.dart';
-import '../../../controllers/investment_controller/investment_controller.dart';
 import '../../../controllers/profit_controller/profit_controller.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
@@ -20,7 +18,6 @@ import '../admin_side_menu_screen.dart';
 import 'component/admin_home_member_widget.dart';
 import 'component/catagory_card.dart';
 import 'component/home_summery_chapter_item_widget.dart';
-import 'pie_chart_section.dart';
 
 class AdminHomeScreen extends StatefulWidget {
   const AdminHomeScreen({super.key});
@@ -30,6 +27,48 @@ class AdminHomeScreen extends StatefulWidget {
 }
 
 class _AdminHomeScreenState extends State<AdminHomeScreen> {
+  final double capital = 882000.00;
+  final double profit = 194780.00;
+  final double invest = 920000.00;
+  final double expense = 11074.00;
+  final double balance = 145706.00;
+
+  List<PieChartSectionData> _buildPieChartSections() {
+    double total = capital + profit + invest + expense + balance;
+
+    return [
+      PieChartSectionData(
+        color: ColorRes.capitalColor,
+        value: capital / total * 100,
+        title: '',
+        radius: 50,
+      ),
+      PieChartSectionData(
+        color: ColorRes.profitColor,
+        value: profit / total * 100,
+        title: '',
+        radius: 50,
+      ),
+      PieChartSectionData(
+        color: ColorRes.investColor,
+        value: invest / total * 100,
+        title: '',
+        radius: 50,
+      ),
+      PieChartSectionData(
+        color: ColorRes.expenseColor,
+        value: expense / total * 100,
+        title: '',
+        radius: 50,
+      ),
+      PieChartSectionData(
+        color: ColorRes.green,
+        value: balance / total * 100,
+        title: '',
+        radius: 50,
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +90,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() => SignInScreen());
+              Get.to(() =>  SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),
@@ -77,14 +116,15 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(5),
                         child: SizedBox(
-                          width: 100,
-                          height: 100,
+                          width: 100, // Set width for the PieChart container
+                          height: 100, // Set height for the PieChart container
                           child: PieChart(
                             PieChartData(
-                              sections: buildPieChartSections(),
+                              sections: _buildPieChartSections(),
                               borderData: FlBorderData(show: false),
-                              sectionsSpace: 2,
-                              centerSpaceRadius: 16,
+                              sectionsSpace: 2, // Space between sections
+                              centerSpaceRadius:
+                              16, // Reduce space in the center of the pie
                             ),
                           ),
                         ),
@@ -98,54 +138,54 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                           padding: const EdgeInsets.all(5.0),
                           child: Column(
                             children: [
-                              GetBuilder<CapitalController>(builder: (capitalController) {
-                                return HomeSummeryChapterItem(
-                                  titleColor: ColorRes.capitalColor,
-                                  blanceColor: ColorRes.capitalColor,
-                                  borderColor: ColorRes.capitalColor,
-                                  title: "Capital",
-                                  blance: capitalController.totalCapitalAmount.toStringAsFixed(2),
-                                  onTap: () {
-                                    Get.to(() => const CapitalScreen());
-                                  },
-                                );
-                              }),
-                              GetBuilder<ProfitController>(builder: (profitController) {
-                                return HomeSummeryChapterItem(
-                                  titleColor: ColorRes.profitColor,
-                                  blanceColor: ColorRes.profitColor,
-                                  borderColor: ColorRes.profitColor,
-                                  title: 'Profit',
-                                  blance: profitController.totalProfitAmount.toStringAsFixed(2),
-                                  onTap: () {
-                                    Get.to(() => const ProfitScreen());
-                                  },
-                                );
-                              }),
-                              GetBuilder<InvestmentController>(builder: (investmentController) {
-                                return HomeSummeryChapterItem(
-                                  titleColor: ColorRes.investColor,
-                                  blanceColor: ColorRes.investColor,
-                                  borderColor: ColorRes.investColor,
-                                  title: 'Invest',
-                                  blance: investmentController.totalInvestAmount.toStringAsFixed(2),
-                                  onTap: () {
-                                    Get.to(() => const InvestScreen());
-                                  },
-                                );
-                              }),
-                              GetBuilder<ExpenseController>(builder: (expenseController) {
-                                return HomeSummeryChapterItem(
-                                  titleColor: ColorRes.expenseColor,
-                                  blanceColor: ColorRes.expenseColor,
-                                  borderColor: ColorRes.expenseColor,
-                                  title: 'Expense',
-                                  blance: expenseController.totalExpenseAmount.toStringAsFixed(2),
-                                  onTap: () {
-                                    Get.to(() => const ExpenseScreen());
-                                  },
-                                );
-                              }),
+                              GetBuilder<CapitalController>(
+                                  builder: (controller) {
+                                    return HomeSummeryChapterItem(
+                                      titleColor: ColorRes.capitalColor,
+                                      blanceColor: ColorRes.capitalColor,
+                                      borderColor: ColorRes.capitalColor,
+                                      title: "Capital",
+                                      blance:controller.totalCapitalAmount.toStringAsFixed(2),
+                                      onTap: () {
+                                        Get.to(() => const CapitalScreen());
+                                      },
+                                    );
+                                  }
+                              ),
+                              GetBuilder<ProfitController>(
+                                  builder: (controller) {
+                                    return HomeSummeryChapterItem(
+                                      titleColor: ColorRes.profitColor,
+                                      blanceColor: ColorRes.profitColor,
+                                      borderColor: ColorRes.profitColor,
+                                      title: 'Profit',
+                                      blance: controller.totalProfitAmount.toStringAsFixed(2),
+                                      onTap: () {
+                                        Get.to(() => const ProfitScreen());
+                                      },
+                                    );
+                                  }
+                              ),
+                              HomeSummeryChapterItem(
+                                titleColor: ColorRes.investColor,
+                                blanceColor: ColorRes.investColor,
+                                borderColor: ColorRes.investColor,
+                                title: 'Invest',
+                                blance: "৳ 9,20,000.00",
+                                onTap: () {
+                                  Get.to(() => const InvestScreen());
+                                },
+                              ),
+                              HomeSummeryChapterItem(
+                                titleColor: ColorRes.expenseColor,
+                                blanceColor: ColorRes.expenseColor,
+                                borderColor: ColorRes.expenseColor,
+                                title: 'Expense',
+                                blance: "৳ 11,074.00",
+                                onTap: () {
+                                  Get.to(() => const ExpenseScreen());
+                                },
+                              ),
                             ],
                           ),
                         ),
@@ -160,41 +200,25 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                     padding: const EdgeInsets.all(5.0),
                     child: Column(
                       children: [
-                        GetBuilder<CapitalController>(
-                          builder: (capitalController) {
-                            return GetBuilder<ProfitController>(
-                              builder: (profitController) {
-                                return HomeSummeryChapterItem(
-                                  titleColor: ColorRes.green,
-                                  blanceColor: ColorRes.green,
-                                  borderColor: ColorRes.green,
-                                  title: 'Current Balance',
-                                  blance: "৳ ${(capitalController.totalCapitalAmount + profitController.totalProfitAmount - (Get.find<InvestmentController>().totalInvestAmount + Get.find<ExpenseController>().totalExpenseAmount)).toStringAsFixed(2)}",
-                                  onTap: () {
-                                    // Navigate to the respective screen if needed
-                                  },
-                                );
-                              },
-                            );
+                        HomeSummeryChapterItem(
+                          titleColor: ColorRes.green,
+                          blanceColor: ColorRes.green,
+                          borderColor: ColorRes.green,
+                          title: 'Current Balance',
+                          blance: "৳ 1,45,706.00",
+                          onTap: () {
+                            Get.to(() => const ());
                           },
                         ),
                         const SizedBox(height: 5),
-                        GetBuilder<CapitalController>(
-                          builder: (capitalController) {
-                            return GetBuilder<ExpenseController>(
-                              builder: (expenseController) {
-                                return HomeSummeryChapterItem(
-                                  titleColor: ColorRes.black,
-                                  blanceColor: ColorRes.black,
-                                  borderColor: ColorRes.black,
-                                  title: "Net Balance",
-                                  blance: "৳ ${(capitalController.totalCapitalAmount + Get.find<ProfitController>().totalProfitAmount - expenseController.totalExpenseAmount).toStringAsFixed(2)}",
-                                  onTap: () {
-                                    // Navigate to the respective screen if needed
-                                  },
-                                );
-                              },
-                            );
+                        HomeSummeryChapterItem(
+                          titleColor: ColorRes.black,
+                          blanceColor: ColorRes.black,
+                          borderColor: ColorRes.black,
+                          title: "Net Balance",
+                          blance: "৳ 10,65,706.00",
+                          onTap: () {
+                            Get.to(() => const ());
                           },
                         ),
                       ],
@@ -214,7 +238,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                               imagePath: 'assets/icons/capital.png',
                               title: 'Deposit',
                               titleColor: ColorRes.capitalColor,
-                              onTap: () => Get.to(() => AdminCapitalScreen()),
+                              onTap: () =>
+                                  Get.to(() => AdminCapitalScreen()),
                             ),
                           ),
                           Expanded(
@@ -222,7 +247,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                               imagePath: 'assets/icons/profit.png',
                               title: 'Profit',
                               titleColor: ColorRes.profitColor,
-                              onTap: () => Get.to(() => AdminProfitScreen()),
+                              onTap: () =>
+                                  Get.to(() => AdminProfitScreen()),
                             ),
                           ),
                         ],
@@ -234,7 +260,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                               imagePath: 'assets/icons/invest.png',
                               title: 'Invest',
                               titleColor: ColorRes.investColor,
-                              onTap: () => Get.to(() => AdminInvestScreen()),
+                              onTap: () =>
+                                  Get.to(() => AdminInvestScreen()),
                             ),
                           ),
                           Expanded(
@@ -242,7 +269,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                               imagePath: 'assets/icons/expense.png',
                               title: 'Expense',
                               titleColor: ColorRes.expenseColor,
-                              onTap: () => Get.to(() => AdminExpenseScreen()),
+                              onTap: () =>
+                                  Get.to(() => AdminExpenseScreen()),
                             ),
                           ),
                         ],
@@ -260,9 +288,9 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                       child: const HomeMemberTableWidget(
                         firstRow: 'SL',
                         secondRow: 'Name',
-                        thirdRow: 'Deposit',
+                        thirdRow: 'Diposit',
                         fourRow: 'Profit',
-                        fiveRow: 'Balance',
+                        fiveRow: 'Blance',
                       ),
                     ),
                     GlobalContainer(
@@ -277,8 +305,8 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                             firstColumn: '01',
                             secondColumn: 'Atiqur Rahman',
                             thirdColumn: '6,00,000',
-                            fourColumn: '1,00,000',
-                            fiveColumn: '7,00,000',
+                            fourColumn: '50,000',
+                            fiveColumn: '10,65,000',
                           );
                         },
                       ),

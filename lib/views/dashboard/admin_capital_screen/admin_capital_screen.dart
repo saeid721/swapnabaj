@@ -150,43 +150,43 @@ class AdminCapitalScreen extends StatelessWidget {
               const SizedBox(height: 10),
               Column(
                 children: [
-                  const GlobalText(
-                    str: "Capital",
-                    fontSize: 16,
-                    textAlign: TextAlign.center,
-                    fontWeight: FontWeight.w500,
-                    color: ColorRes.primaryColor,
-                  ),
-                  const SizedBox(height: 10),
-                  GlobalContainer(
-                    backgroundColor: ColorRes.backgroundColor,
-                    width: Get.width,
-                    child: const CapitalTableWidget(
-                      firstRow: 'SL',
-                      secondRow: 'Name',
-                      thirdRow: 'Capital',
-                    ),
-                  ),
-                  GlobalContainer(
-                    backgroundColor: ColorRes.white,
-                    width: Get.width,
-                    child: GetBuilder<CapitalController>(
-                      builder: (controller) => ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: controller.capitalData.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (ctx, index) {
-                          var data = controller.capitalData[index];
-                          return CapitalTableValueWidget(
-                            firstColumn: (index + 1).toString(),
-                            secondColumn: data['depositorName'] ?? '',
-                            thirdColumn: data['amount'].toStringAsFixed(2),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 5),
+                  // const GlobalText(
+                  //   str: "Capital",
+                  //   fontSize: 16,
+                  //   textAlign: TextAlign.center,
+                  //   fontWeight: FontWeight.w500,
+                  //   color: ColorRes.primaryColor,
+                  // ),
+                  // const SizedBox(height: 10),
+                  // GlobalContainer(
+                  //   backgroundColor: ColorRes.backgroundColor,
+                  //   width: Get.width,
+                  //   child: const CapitalTableWidget(
+                  //     firstRow: 'SL',
+                  //     secondRow: 'Name',
+                  //     thirdRow: 'Capital',
+                  //   ),
+                  // ),
+                  // GlobalContainer(
+                  //   backgroundColor: ColorRes.white,
+                  //   width: Get.width,
+                  //   child: GetBuilder<CapitalController>(
+                  //     builder: (controller) => ListView.builder(
+                  //       shrinkWrap: true,
+                  //       itemCount: controller.capitalData.length,
+                  //       physics: const NeverScrollableScrollPhysics(),
+                  //       itemBuilder: (ctx, index) {
+                  //         var data = controller.capitalData[index];
+                  //         return CapitalTableValueWidget(
+                  //           firstColumn: (index + 1).toString(),
+                  //           secondColumn: data.depositorName ?? '',
+                  //           thirdColumn: data.totalAmount.toStringAsFixed(2) ?? '',
+                  //         );
+                  //       },
+                  //     ),
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 5),
                   GetBuilder<CapitalController>(
                     builder: (controller) {
                       return Row(
@@ -200,7 +200,7 @@ class AdminCapitalScreen extends StatelessWidget {
                             color: ColorRes.textColor,
                           ),
                           GlobalText(
-                            str: controller.totalCapitalAmount.toStringAsFixed(2),
+                            str: capitalController.totalCapitalAmount.toStringAsFixed(0),
                             fontSize: 14,
                             textAlign: TextAlign.center,
                             fontWeight: FontWeight.w600,
@@ -249,8 +249,8 @@ class AdminCapitalScreen extends StatelessWidget {
                             firstColumn: (index + 1).toString(),
                             secondColumn: detailsData['date'] ?? '',
                             thirdColumn: detailsData['depositorName'] ?? '',
-                            fourColumn: detailsData['purpose'] ?? '',
-                            fiveColumn: detailsData['amount'].toStringAsFixed(0),
+                            fourColumn: detailsData['depositPurpose'] ?? '',
+                            fiveColumn: double.tryParse(detailsData['amount'].toString())?.toStringAsFixed(0) ?? '0',
                           );
                         },
                       ),

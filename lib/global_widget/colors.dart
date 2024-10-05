@@ -4,7 +4,7 @@ class ColorRes {
   BuildContext context;
   ColorRes(this.context);
 
-  static const Color balck = Color(0xff000000);
+  static const Color black = Color(0xff000000);
 
   static const Color textColor = Color(0xff454545);
   //static const Color background =  Color.fromARGB(255, 235, 255, 225);

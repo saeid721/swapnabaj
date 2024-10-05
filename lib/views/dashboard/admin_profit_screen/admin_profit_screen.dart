@@ -123,7 +123,7 @@ class AdminProfitScreen extends StatelessWidget {
                           color: ColorRes.textColor,
                         ),
                         GlobalText(
-                          str: controller.totalProfitAmount.toStringAsFixed(2), // Corrected this line
+                          str: controller.totalProfitAmount.toStringAsFixed(2),
                           fontSize: 14,
                           textAlign: TextAlign.center,
                           fontWeight: FontWeight.w600,
