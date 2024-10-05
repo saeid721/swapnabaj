@@ -72,7 +72,8 @@ class AdminCapitalScreen extends StatelessWidget {
                             onTap: () async {
                               var pickedDate = await showDateOnlyPicker(context);
                               if (pickedDate != null) {
-                                capitalController.selectDepositDateCon.text = DateFormat('dd/MM/yyyy').format(pickedDate);
+                                capitalController.selectDepositDateCon.text =
+                                    DateFormat('dd/MM/yyyy').format(pickedDate);
                               }
                             },
                             child: const Icon(Icons.calendar_today, color: ColorRes.textColor),
@@ -90,7 +91,7 @@ class AdminCapitalScreen extends StatelessWidget {
                             "Shamim Hosen",
                             "Md. Taimur Rahman",
                             "Md. Shohel Rana",
-                            "Md.Shakhawat Hossen",
+                            "Md. Shakhawat Hossen",
                             "Abdullah Al Kafi",
                             "Mst. Taslima Akter Rupa",
                             "Minhazul Islam Saeid",
@@ -150,43 +151,43 @@ class AdminCapitalScreen extends StatelessWidget {
               const SizedBox(height: 10),
               Column(
                 children: [
-                  // const GlobalText(
-                  //   str: "Capital",
-                  //   fontSize: 16,
-                  //   textAlign: TextAlign.center,
-                  //   fontWeight: FontWeight.w500,
-                  //   color: ColorRes.primaryColor,
-                  // ),
-                  // const SizedBox(height: 10),
-                  // GlobalContainer(
-                  //   backgroundColor: ColorRes.backgroundColor,
-                  //   width: Get.width,
-                  //   child: const CapitalTableWidget(
-                  //     firstRow: 'SL',
-                  //     secondRow: 'Name',
-                  //     thirdRow: 'Capital',
-                  //   ),
-                  // ),
-                  // GlobalContainer(
-                  //   backgroundColor: ColorRes.white,
-                  //   width: Get.width,
-                  //   child: GetBuilder<CapitalController>(
-                  //     builder: (controller) => ListView.builder(
-                  //       shrinkWrap: true,
-                  //       itemCount: controller.capitalData.length,
-                  //       physics: const NeverScrollableScrollPhysics(),
-                  //       itemBuilder: (ctx, index) {
-                  //         var data = controller.capitalData[index];
-                  //         return CapitalTableValueWidget(
-                  //           firstColumn: (index + 1).toString(),
-                  //           secondColumn: data.depositorName ?? '',
-                  //           thirdColumn: data.totalAmount.toStringAsFixed(2) ?? '',
-                  //         );
-                  //       },
-                  //     ),
-                  //   ),
-                  // ),
-                  // const SizedBox(height: 5),
+                  const GlobalText(
+                    str: "Capital",
+                    fontSize: 16,
+                    textAlign: TextAlign.center,
+                    fontWeight: FontWeight.w500,
+                    color: ColorRes.primaryColor,
+                  ),
+                  const SizedBox(height: 10),
+                  GlobalContainer(
+                    backgroundColor: ColorRes.backgroundColor,
+                    width: Get.width,
+                    child: const CapitalTableWidget(
+                      firstRow: 'SL',
+                      secondRow: 'Name',
+                      thirdRow: 'Capital',
+                    ),
+                  ),
+                  GlobalContainer(
+                    backgroundColor: ColorRes.white,
+                    width: Get.width,
+                    child: GetBuilder<CapitalController>(
+                      builder: (controller) => ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: controller.capitalData.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (ctx, index) {
+                          var data = controller.capitalData[index];
+                          return CapitalTableValueWidget(
+                            firstColumn: (index + 1).toString(),
+                            secondColumn: data['depositorName'] ?? '',
+                            thirdColumn: double.tryParse(data['amount'].toString())?.toStringAsFixed(2) ?? '0.00',
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
                   GetBuilder<CapitalController>(
                     builder: (controller) {
                       return Row(
