@@ -1,5 +1,3 @@
-
-
 class CapitalModel {
   final String date;
   final String depositorName;

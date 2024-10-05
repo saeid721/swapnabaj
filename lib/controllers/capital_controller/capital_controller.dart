@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,7 +27,7 @@ class CapitalController extends GetxController {
   }
 
   Future<void> updateCapitalData() async {
-    if (selectDepositorName == '0' || selectDepositPurpose == '0' || depositAmountCon.text.isEmpty || selectDepositDateCon.text.isEmpty) {
+    if (selectDepositDateCon.text.isEmpty || selectDepositorName == '0' || selectDepositPurpose == '0' || depositAmountCon.text.isEmpty) {
       Get.snackbar('Error', 'All fields must be completed', colorText: ColorRes.red);
       return;
     }
@@ -94,4 +93,3 @@ class CapitalController extends GetxController {
     super.dispose();
   }
 }
-

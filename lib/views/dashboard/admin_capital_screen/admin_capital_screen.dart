@@ -178,9 +178,9 @@ class AdminCapitalScreen extends StatelessWidget {
                         itemBuilder: (ctx, index) {
                           var data = controller.capitalData[index];
                           return CapitalTableValueWidget(
-                            firstColumn: data['id'] ?? '',
+                            firstColumn: (index + 1).toString(),
                             secondColumn: data['depositorName'] ?? '',
-                            thirdColumn: data['amount'] ?? '',
+                            thirdColumn: data['amount'].toStringAsFixed(2),
                           );
                         },
                       ),
@@ -250,7 +250,7 @@ class AdminCapitalScreen extends StatelessWidget {
                             secondColumn: detailsData['date'] ?? '',
                             thirdColumn: detailsData['depositorName'] ?? '',
                             fourColumn: detailsData['purpose'] ?? '',
-                            fiveColumn: detailsData['amount'] ?? '',
+                            fiveColumn: detailsData['amount'].toStringAsFixed(0),
                           );
                         },
                       ),
