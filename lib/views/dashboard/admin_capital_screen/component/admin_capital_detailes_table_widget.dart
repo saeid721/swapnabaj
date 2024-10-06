@@ -53,7 +53,7 @@ class DepositTableWidget extends StatelessWidget {
               child: GlobalText(
                 str: firstRow,
                 color: ColorRes.white,
-                fontSize: 11,
+                fontSize: 12,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Roboto',
                 overflow: TextOverflow.ellipsis,
@@ -77,7 +77,7 @@ class DepositTableWidget extends StatelessWidget {
                 child: GlobalText(
                   str: secondRow,
                   color: ColorRes.white,
-                  fontSize: 11,
+                  fontSize: 12,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'Roboto',
                   overflow: TextOverflow.ellipsis,
@@ -101,7 +101,7 @@ class DepositTableWidget extends StatelessWidget {
                 child: GlobalText(
                   str: thirdRow,
                   color: ColorRes.white,
-                  fontSize: 11,
+                  fontSize: 12,
                   fontWeight: FontWeight.w700,
                   fontFamily: 'Roboto',
                   textAlign: TextAlign.center,
@@ -112,7 +112,7 @@ class DepositTableWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: 60,
+            width: 65,
             decoration: const BoxDecoration(
               border: Border(
                 right: BorderSide(color: ColorRes.borderColor, width: 1),
@@ -125,7 +125,7 @@ class DepositTableWidget extends StatelessWidget {
               child: GlobalText(
                 str: fourRow,
                 color: ColorRes.white,
-                fontSize: 11,
+                fontSize: 12,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,
@@ -135,7 +135,7 @@ class DepositTableWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: 75,
+            width: 70,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(8),
@@ -151,7 +151,7 @@ class DepositTableWidget extends StatelessWidget {
               child: GlobalText(
                 str: fiveRow,
                 color: ColorRes.white,
-                fontSize: 11,
+                fontSize: 12,
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,
@@ -261,7 +261,7 @@ class DepositTableValueWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: 60,
+            width: 65,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             decoration: const BoxDecoration(
                 border: Border(
@@ -280,7 +280,7 @@ class DepositTableValueWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: 75,
+            width: 70,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             decoration: const BoxDecoration(
                 border: Border(

@@ -118,7 +118,7 @@ class AdminCapitalScreen extends StatelessWidget {
                           str: 'Submit Capital',
                           height: 45,
                           onTap: () {
-                            capitalController.updateCapitalData();
+                            capitalController.addCapitalData();
                           },
                         ),
                       ],
@@ -143,7 +143,7 @@ class AdminCapitalScreen extends StatelessWidget {
     return Column(
       children: [
         const GlobalText(
-          str: "Capital",
+          str: "Capital Summary",
           fontSize: 16,
           textAlign: TextAlign.center,
           fontWeight: FontWeight.w500,
@@ -156,7 +156,7 @@ class AdminCapitalScreen extends StatelessWidget {
           child: const CapitalTableWidget(
             firstRow: 'SL',
             secondRow: 'Name',
-            thirdRow: 'Total Capital',
+            thirdRow: 'Total Deposit',
           ),
         ),
         GlobalContainer(
@@ -168,12 +168,13 @@ class AdminCapitalScreen extends StatelessWidget {
               return ListView.builder(
                 shrinkWrap: true,
                 itemCount: controller.capitalData.length,
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (ctx, index) {
                   var data = controller.capitalData[index];
                   return CapitalTableValueWidget(
                     firstColumn: data.memberId ?? '', // Check if data is displayed
                     secondColumn: data.depositorName ?? '',
-                    thirdColumn: data.totalDepositAmount.toString() ?? '0',
+                    thirdColumn: data.totalDepositAmount.toStringAsFixed(2) ?? '',
                   );
                 },
               );
@@ -190,7 +191,7 @@ class AdminCapitalScreen extends StatelessWidget {
     return Column(
       children: [
         const GlobalText(
-          str: "Deposit Summary",
+          str: "Deposit List",
           fontSize: 16,
           textAlign: TextAlign.center,
           fontWeight: FontWeight.w500,
@@ -202,10 +203,10 @@ class AdminCapitalScreen extends StatelessWidget {
           width: Get.width,
           child: const DepositTableWidget(
             firstRow: 'SL',
-            secondRow: 'Name',
-            thirdRow: 'Deposit',
-            fourRow: 'Deposit',
-            fiveRow: 'Deposit',
+            secondRow: 'Date',
+            thirdRow: 'Name',
+            fourRow: 'Purpose',
+            fiveRow: 'Amount',
           ),
         ),
         GlobalContainer(
@@ -223,7 +224,7 @@ class AdminCapitalScreen extends StatelessWidget {
                   secondColumn: singleData.date ?? '',
                   thirdColumn: singleData.depositorName ?? '',
                   fourColumn: singleData.depositPurpose ?? '0',
-                  fiveColumn: singleData.amount.toString() ?? '0',
+                  fiveColumn: singleData.amount.toStringAsFixed(1) ?? '',
                 );
               },
             ),

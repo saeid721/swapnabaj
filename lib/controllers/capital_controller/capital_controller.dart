@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import '../../global_widget/colors.dart';
 import '../../models/capital_model/capital_model.dart';
 
 class CapitalController extends GetxController {
@@ -21,8 +22,8 @@ class CapitalController extends GetxController {
     "Abdullah Al Kafi": "6",
     "Mst. Taslima Akter Rupa": "7",
     "Minhazul Islam Saeid": "8",
-    "Md. Asif": "9",
-    "Dipok Kumar": "10",
+    "Dipok Kumar": "9",
+    "Md. Asif": "10",
     "Md. Amirul Islam": "11",
     "Shoriful Islam": "12",
     "Konkor Chandra Modok": "13",
@@ -38,16 +39,13 @@ class CapitalController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchCapitalData();
-    fetchDepositEntries();
+    fetchCapitalData(); // Fetch capital data
+    fetchDepositEntries(); // Fetch deposit entries
   }
 
   // Fetch capital data from Firebase
   Future<void> fetchCapitalData() async {
-    FirebaseFirestore.instance
-        .collection('capitalData')
-        .snapshots()
-        .listen((event) {
+    FirebaseFirestore.instance.collection('capitalData').orderBy('memberId', descending: false).snapshots().listen((event) {
       capitalData.clear();
       totalCapitalAmount = 0.0;
 
@@ -56,18 +54,13 @@ class CapitalController extends GetxController {
         capitalData.add(capitalModel);
         totalCapitalAmount += capitalModel.totalDepositAmount;
       }
-
       update(); // Trigger UI update
     });
   }
 
   // Fetch individual deposit entries from Firebase
   Future<void> fetchDepositEntries() async {
-    FirebaseFirestore.instance
-        .collection('depositEntries')
-        .orderBy('date', descending: true)
-        .snapshots()
-        .listen((event) {
+    FirebaseFirestore.instance.collection('depositEntries').orderBy('date', descending: true).snapshots().listen((event) {
       depositEntries.clear();
       for (var doc in event.docs) {
         var depositModel = CapitalModel.fromMap(doc.data());
@@ -77,54 +70,78 @@ class CapitalController extends GetxController {
     });
   }
 
-  Future<void> updateCapitalData() async {
-    // Ensure memberId is assigned based on the depositor name
-    String memberId = selectedMemberId ?? '';
-    double amount = double.tryParse(depositAmountCon.text) ?? 0.0;
+  // Add a new Deposit to Firestore
+  Future<void> addCapitalData() async {
+    try {
+      if (selectDepositDateCon.text.isEmpty || selectDepositorName == null || selectDepositPurpose == null || depositAmountCon.text.isEmpty) {
+        Get.snackbar('Error', 'All fields must be completed', colorText: ColorRes.red);
+        return;
+      }
 
-    if (memberId.isEmpty || amount <= 0) {
-      Get.snackbar('Error', 'Please select a depositor and enter a valid amount.');
-      return;
-    }
+      // Ensure memberId is assigned based on the depositor name
+      String memberId = depositorToMemberId[selectDepositorName] ?? '';
+      double amount = double.tryParse(depositAmountCon.text) ?? 0.0;
 
-    var capitalCollection = FirebaseFirestore.instance.collection('capitalData');
-    var docSnapshot = await capitalCollection.doc(memberId).get();
+      if (memberId.isEmpty || amount <= 0) {
+        Get.snackbar('Error', 'Please select a depositor and enter a valid amount.', colorText: ColorRes.red);
+        return;
+      }
 
-    if (docSnapshot.exists) {
-      // Update the total deposit amount for the existing record
-      double existingTotalDepositAmount = docSnapshot.data()?['totalDepositAmount'] ?? 0.0;
-      await capitalCollection.doc(memberId).update({
-        'totalDepositAmount': existingTotalDepositAmount + amount,
-        'date': DateFormat('dd/MM/yyyy').format(DateTime.now()),
-        'depositorName': selectDepositorName ?? '',
-        'depositPurpose': selectDepositPurpose ?? '',
-      });
-    } else {
-      // Create a new document if no record exists
-      await capitalCollection.doc(memberId).set({
+      var capitalCollection = FirebaseFirestore.instance.collection('capitalData');
+      var docSnapshot = await capitalCollection.doc(memberId).get();
+
+      if (docSnapshot.exists) {
+        // Update the total deposit amount for the existing record
+        double existingTotalDepositAmount = docSnapshot.data()?['totalDepositAmount'] ?? 0.0;
+        await capitalCollection.doc(memberId).update({
+          'totalDepositAmount': existingTotalDepositAmount + amount,
+          'date': selectDepositDateCon.text,
+          'depositorName': selectDepositorName ?? '',
+          'depositPurpose': selectDepositPurpose ?? '',
+        });
+      } else {
+        // Create a new document if no record exists
+        await capitalCollection.doc(memberId).set({
+          'memberId': memberId,
+          'totalDepositAmount': amount,
+          'date': selectDepositDateCon.text,
+          'depositorName': selectDepositorName ?? '',
+          'depositPurpose': selectDepositPurpose ?? '',
+        });
+      }
+
+      // Add to depositEntries collection
+      await FirebaseFirestore.instance.collection('depositEntries').add({
         'memberId': memberId,
-        'totalDepositAmount': amount,
-        'date': DateFormat('dd/MM/yyyy').format(DateTime.now()),
+        'amount': amount,
+        'date': selectDepositDateCon.text,
         'depositorName': selectDepositorName ?? '',
         'depositPurpose': selectDepositPurpose ?? '',
       });
+
+      // Clear input fields and notify success
+      clearInputs();
+      Get.snackbar('Success', 'Deposit data saved successfully');
+      update();
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to save data: $e', colorText: ColorRes.red);
     }
+  }
 
-    // Add to depositEntries collection
-    await FirebaseFirestore.instance.collection('depositEntries').add({
-      'memberId': memberId,
-      'amount': amount,
-      'date': DateFormat('dd/MM/yyyy').format(DateTime.now()),
-      'depositorName': selectDepositorName ?? '',
-      'depositPurpose': selectDepositPurpose ?? '',
-    });
-
-    // Clear the form after submission
+  // Clear the form after submission
+  void clearInputs() {
     selectDepositDateCon.clear();
     depositAmountCon.clear();
     selectDepositorName = null;
     selectDepositPurpose = null;
     selectedMemberId = null; // Clear the memberId after submission
     update();
+  }
+
+  @override
+  void dispose() {
+    selectDepositDateCon.dispose();
+    depositAmountCon.dispose();
+    super.dispose();
   }
 }

@@ -85,7 +85,7 @@ class CapitalTableWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: 90,
+            width: 120,
             decoration: const BoxDecoration(
               border: Border(
                 right: BorderSide(color: ColorRes.borderColor, width: 1),
@@ -185,7 +185,7 @@ class CapitalTableValueWidget extends StatelessWidget {
             ),
           ),
           Container(
-            width: 90,
+            width: 120,
             padding: const EdgeInsets.symmetric(horizontal: 5),
             decoration: const BoxDecoration(
                 border: Border(
