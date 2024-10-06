@@ -127,6 +127,32 @@ class AdminCapitalScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
+              const SizedBox(height: 5),
+              GetBuilder<CapitalController>(
+                builder: (controller) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const GlobalText(
+                        str: "Total Capital (BDT) =",
+                        fontSize: 14,
+                        textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w600,
+                        color: ColorRes.textColor,
+                      ),
+                      GlobalText(
+                        str: controller.totalCapitalAmount.toStringAsFixed(2),
+                        fontSize: 14,
+                        textAlign: TextAlign.center,
+                        fontWeight: FontWeight.w600,
+                        color: ColorRes.textColor,
+                      ),
+                    ],
+                  );
+                },
+              ),
+
+              const SizedBox(height: 5),
               _buildCapitalTable(),
               const SizedBox(height: 10),
               _buildDepositTable(),
@@ -142,14 +168,6 @@ class AdminCapitalScreen extends StatelessWidget {
   Widget _buildCapitalTable() {
     return Column(
       children: [
-        const GlobalText(
-          str: "Capital Summary",
-          fontSize: 16,
-          textAlign: TextAlign.center,
-          fontWeight: FontWeight.w500,
-          color: ColorRes.primaryColor,
-        ),
-        const SizedBox(height: 10),
         GlobalContainer(
           backgroundColor: ColorRes.backgroundColor,
           width: Get.width,
@@ -192,7 +210,7 @@ class AdminCapitalScreen extends StatelessWidget {
       children: [
         const GlobalText(
           str: "Deposit List",
-          fontSize: 16,
+          fontSize: 18,
           textAlign: TextAlign.center,
           fontWeight: FontWeight.w500,
           color: ColorRes.primaryColor,

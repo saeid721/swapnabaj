@@ -128,6 +128,7 @@ class CapitalController extends GetxController {
     }
   }
 
+
   // Clear the form after submission
   void clearInputs() {
     selectDepositDateCon.clear();
