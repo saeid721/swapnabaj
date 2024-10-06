@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -65,8 +64,7 @@ class AdminCapitalScreen extends StatelessWidget {
                             onTap: () async {
                               var pickedDate = await showDateOnlyPicker(context);
                               if (pickedDate != null) {
-                                capitalController.selectDepositDateCon.text =
-                                    DateFormat('dd/MM/yyyy').format(pickedDate);
+                                capitalController.selectDepositDateCon.text = DateFormat('dd/MM/yyyy').format(pickedDate);
                               }
                             },
                             child: const Icon(Icons.calendar_today, color: ColorRes.textColor),
@@ -87,10 +85,9 @@ class AdminCapitalScreen extends StatelessWidget {
                             controller.update();
                           },
                         ),
-
                         const SizedBox(height: 10),
                         CustomDropDownFormField(
-                          value: controller.selectDepositPurpose ?? '' ,
+                          value: controller.selectDepositPurpose ?? '',
                           titleText: "Select Deposit Purpose",
                           hintText: "Select Deposit Purpose",
                           isDense: true,
@@ -151,7 +148,6 @@ class AdminCapitalScreen extends StatelessWidget {
                   );
                 },
               ),
-
               const SizedBox(height: 10),
               _buildCapitalTable(),
               const SizedBox(height: 10),
@@ -177,29 +173,33 @@ class AdminCapitalScreen extends StatelessWidget {
             thirdRow: 'Total Deposit',
           ),
         ),
-        GlobalContainer(
-          backgroundColor: ColorRes.white,
-          width: Get.width,
-          child: GetBuilder<CapitalController>(
-            builder: (controller) {
-              // Verify if controller.capitalData has the correct values
-              return ListView.builder(
-                shrinkWrap: true,
-                itemCount: controller.capitalData.length,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (ctx, index) {
-                  var data = controller.capitalData[index];
-                  return CapitalTableValueWidget(
-                    firstColumn: data.memberId, // Check if data is displayed
-                    secondColumn: data.depositorName,
-                    thirdColumn: data.totalDepositAmount.toStringAsFixed(2),
-                  );
-                },
-              );
-            },
-          ),
-
-        ),
+        GetBuilder<CapitalController>(builder: (controller) {
+          if (controller.capitalData.isEmpty) {
+            return const Center(
+              child: Text(
+                'No Deposit Found',
+                style: TextStyle(fontSize: 14, color: Colors.grey),
+              ),
+            );
+          }
+          return GlobalContainer(
+            backgroundColor: ColorRes.white,
+            width: Get.width,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: controller.capitalData.length,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (ctx, index) {
+                var data = controller.capitalData[index];
+                return CapitalTableValueWidget(
+                  firstColumn: data.memberId, // Check if data is displayed
+                  secondColumn: data.depositorName,
+                  thirdColumn: data.totalDepositAmount.toStringAsFixed(2),
+                );
+              },
+            ),
+          );
+        }),
       ],
     );
   }
@@ -227,11 +227,19 @@ class AdminCapitalScreen extends StatelessWidget {
             fiveRow: 'Amount',
           ),
         ),
-        GlobalContainer(
-          backgroundColor: ColorRes.white,
-          width: Get.width,
-          child: GetBuilder<CapitalController>(
-            builder: (controller) => ListView.builder(
+        GetBuilder<CapitalController>(builder: (controller) {
+          if (controller.depositEntries.isEmpty) {
+            return const Center(
+              child: Text(
+                'No Deposit Found',
+                style: TextStyle(fontSize: 14, color: Colors.grey),
+              ),
+            );
+          }
+          return GlobalContainer(
+            backgroundColor: ColorRes.white,
+            width: Get.width,
+            child: ListView.builder(
               shrinkWrap: true,
               itemCount: controller.depositEntries.length,
               physics: const NeverScrollableScrollPhysics(),
@@ -246,8 +254,8 @@ class AdminCapitalScreen extends StatelessWidget {
                 );
               },
             ),
-          ),
-        ),
+          );
+        }),
       ],
     );
   }

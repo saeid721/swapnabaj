@@ -153,7 +153,6 @@ class _AdminInvestScreenState extends State<AdminInvestScreen> {
                 thirdRow: 'Comments',
                 fourRow: 'Amount',
               ),
-              // Investment List
               GetBuilder<InvestmentController>(builder: (controller) {
                 if (controller.investData.isEmpty) {
                   return const Center(
@@ -186,7 +185,7 @@ class _AdminInvestScreenState extends State<AdminInvestScreen> {
                     },
                   ),
                 );
-              })
+              }),
             ],
           ),
         ),
