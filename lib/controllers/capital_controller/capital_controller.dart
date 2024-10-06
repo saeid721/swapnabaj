@@ -9,6 +9,27 @@ class CapitalController extends GetxController {
   final depositAmountCon = TextEditingController();
   String? selectDepositorName;
   String? selectDepositPurpose;
+  String? selectedMemberId;
+
+  // Map for static memberId values
+  final Map<String, String> depositorToMemberId = {
+    "Atiqur Rahman": "1",
+    "Shamim Hosen": "2",
+    "Md. Taimur Rahman": "3",
+    "Md. Shohel Rana": "4",
+    "Md.Shakhawat Hossen": "5",
+    "Abdullah Al Kafi": "6",
+    "Mst. Taslima Akter Rupa": "7",
+    "Minhazul Islam Saeid": "8",
+    "Md. Asif": "9",
+    "Dipok Kumar": "10",
+    "Md. Amirul Islam": "11",
+    "Shoriful Islam": "12",
+    "Konkor Chandra Modok": "13",
+    "Belayet Hossain": "14",
+    "Md. Samsul Alom": "15",
+    "Ismail Hossain": "16",
+  };
 
   List<CapitalModel> capitalData = [];
   List<CapitalModel> depositEntries = [];
@@ -31,13 +52,8 @@ class CapitalController extends GetxController {
       totalCapitalAmount = 0.0;
 
       for (var doc in event.docs) {
-        // Fetch each document and store in the model
         var capitalModel = CapitalModel.fromMap(doc.data());
-
-        // Add the capital data to the list
         capitalData.add(capitalModel);
-
-        // Ensure that totalDepositAmount is properly added up
         totalCapitalAmount += capitalModel.totalDepositAmount;
       }
 
@@ -62,7 +78,8 @@ class CapitalController extends GetxController {
   }
 
   Future<void> updateCapitalData() async {
-    String memberId = selectDepositorName ?? '';
+    // Ensure memberId is assigned based on the depositor name
+    String memberId = selectedMemberId ?? '';
     double amount = double.tryParse(depositAmountCon.text) ?? 0.0;
 
     if (memberId.isEmpty || amount <= 0) {
@@ -74,7 +91,7 @@ class CapitalController extends GetxController {
     var docSnapshot = await capitalCollection.doc(memberId).get();
 
     if (docSnapshot.exists) {
-      // Get the existing record and update totalDepositAmount
+      // Update the total deposit amount for the existing record
       double existingTotalDepositAmount = docSnapshot.data()?['totalDepositAmount'] ?? 0.0;
       await capitalCollection.doc(memberId).update({
         'totalDepositAmount': existingTotalDepositAmount + amount,
@@ -107,6 +124,7 @@ class CapitalController extends GetxController {
     depositAmountCon.clear();
     selectDepositorName = null;
     selectDepositPurpose = null;
+    selectedMemberId = null; // Clear the memberId after submission
     update();
   }
 }

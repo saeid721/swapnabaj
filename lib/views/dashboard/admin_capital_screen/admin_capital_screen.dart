@@ -57,6 +57,7 @@ class AdminCapitalScreen extends StatelessWidget {
                           controller: capitalController.selectDepositDateCon,
                           titleText: 'Select Date',
                           hintText: "Select Date".tr,
+                          keyboardType: TextInputType.datetime,
                           isDense: true,
                           decoration: inputDropDecoration,
                           filled: true,
@@ -78,30 +79,15 @@ class AdminCapitalScreen extends StatelessWidget {
                           hintText: "Select Depositor Name",
                           isDense: true,
                           filled: true,
-                          items: const [
-                            "Atiqur Rahman",
-                            "Shamim Hosen",
-                            "Md. Taimur Rahman",
-                            "Md. Shohel Rana",
-                            "Md.Shakhawat Hossen",
-                            "Abdullah Al Kafi",
-                            "Mst. Taslima Akter Rupa",
-                            "Minhazul Islam Saeid",
-                            "Md. Asif",
-                            "Dipok Kumar",
-                            "Md. Amirul Islam",
-                            "Shoriful Islam",
-                            "Konkor Chandra Modok",
-                            "Belayet Hossain",
-                            "Md. Samsul Alom",
-                            "Ismail Hossain",
-                          ],
+                          items: controller.depositorToMemberId.keys.toList(), // Use the map keys (names)
                           sufixIcon: const Icon(Icons.keyboard_arrow_down_sharp),
                           onChanged: (val) {
                             controller.selectDepositorName = val!;
+                            controller.selectedMemberId = controller.depositorToMemberId[val]; // Assign memberId based on the name
                             controller.update();
                           },
                         ),
+
                         const SizedBox(height: 10),
                         CustomDropDownFormField(
                           value: controller.selectDepositPurpose ?? '' ,
