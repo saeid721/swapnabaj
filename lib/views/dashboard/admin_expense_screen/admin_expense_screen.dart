@@ -111,14 +111,14 @@ class AdminExpenseScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const GlobalText(
-                      str: "Total Expense (BDT) =",
+                      str: "Total Expense =",
                       fontSize: 14,
                       textAlign: TextAlign.center,
                       fontWeight: FontWeight.w600,
                       color: ColorRes.textColor,
                     ),
                     GlobalText(
-                      str: controller.totalExpenseAmount.toStringAsFixed(2),
+                      str: '৳ ${controller.totalExpenseAmount.toStringAsFixed(2)}',
                       fontSize: 14,
                       textAlign: TextAlign.center,
                       fontWeight: FontWeight.w600,

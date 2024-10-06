@@ -11,8 +11,8 @@
 // import '../../../global_widget/input_decoration.dart';
 // import '../../../global_widget/show_date_time_picker.dart';
 // import '../admin_login_screen/admin_login_screen.dart';
-// import 'component/admin_capital_detailes_table_widget.dart';
-// import 'component/admin_capital_summery_table_widget.dart';
+// import 'component/admin_Deposit_table_widget.dart';
+// import 'component/admin_capital_table_widget.dart';
 //
 // class AdminCapitalScreen extends StatelessWidget {
 //   AdminCapitalScreen({super.key});

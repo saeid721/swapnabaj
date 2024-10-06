@@ -129,14 +129,14 @@ class _AdminInvestScreenState extends State<AdminInvestScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const GlobalText(
-                      str: "Total Invest (BDT) =",
+                      str: "Total Invest =",
                       fontSize: 14,
                       textAlign: TextAlign.center,
                       fontWeight: FontWeight.w600,
                       color: ColorRes.textColor,
                     ),
                     GlobalText(
-                      str: controller.totalInvestAmount.toStringAsFixed(2),
+                      str: '৳ ${controller.totalInvestAmount.toStringAsFixed(2)}',
                       fontSize: 14,
                       textAlign: TextAlign.center,
                       fontWeight: FontWeight.w600,
@@ -153,7 +153,6 @@ class _AdminInvestScreenState extends State<AdminInvestScreen> {
                 thirdRow: 'Comments',
                 fourRow: 'Amount',
               ),
-              const SizedBox(height: 5),
               // Investment List
               GetBuilder<InvestmentController>(builder: (controller) {
                 if (controller.investData.isEmpty) {

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:swapnabaj/views/dashboard/admin_capital_screen/component/admin_capital_summery_table_widget.dart';
+import 'package:swapnabaj/views/dashboard/admin_capital_screen/component/admin_capital_table_widget.dart';
 import 'global_widget/colors.dart';
 import 'global_widget/date_time_formator.dart';
 import 'global_widget/global_button.dart';

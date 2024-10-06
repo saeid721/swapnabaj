@@ -11,8 +11,8 @@ import '../../../global_widget/global_text.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
 import '../../../global_widget/show_date_time_picker.dart';
-import 'component/admin_capital_detailes_table_widget.dart';
-import 'component/admin_capital_summery_table_widget.dart';
+import 'component/admin_Deposit_table_widget.dart';
+import 'component/admin_capital_table_widget.dart';
 
 class AdminCapitalScreen extends StatelessWidget {
   AdminCapitalScreen({super.key});
@@ -134,14 +134,14 @@ class AdminCapitalScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const GlobalText(
-                        str: "Total Capital (BDT) =",
+                        str: "Total Capital =",
                         fontSize: 14,
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w600,
                         color: ColorRes.textColor,
                       ),
                       GlobalText(
-                        str: controller.totalCapitalAmount.toStringAsFixed(2),
+                        str: '৳ ${controller.totalCapitalAmount.toStringAsFixed(2)}',
                         fontSize: 14,
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w600,

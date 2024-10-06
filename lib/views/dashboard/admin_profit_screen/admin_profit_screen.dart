@@ -116,14 +116,14 @@ class AdminProfitScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const GlobalText(
-                          str: "Total Profit (BDT) =",
+                          str: "Total Profit =",
                           fontSize: 14,
                           textAlign: TextAlign.center,
                           fontWeight: FontWeight.w600,
                           color: ColorRes.textColor,
                         ),
                         GlobalText(
-                          str: controller.totalProfitAmount.toStringAsFixed(2),
+                          str: '৳ ${controller.totalProfitAmount.toStringAsFixed(2)}',
                           fontSize: 14,
                           textAlign: TextAlign.center,
                           fontWeight: FontWeight.w600,

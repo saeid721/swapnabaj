@@ -171,11 +171,7 @@ class InvestTableValueWidget extends StatelessWidget {
         children: [
           Container(
             width: 40,
-            decoration: const BoxDecoration(
-                border: Border(
-                    left: BorderSide(color: ColorRes.borderColor, width: 1),
-                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
-                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
+            decoration: const BoxDecoration(border: Border(left: BorderSide(color: ColorRes.borderColor, width: 1), bottom: BorderSide(color: ColorRes.borderColor, width: 1), right: BorderSide(color: ColorRes.borderColor, width: 1))),
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Align(
               alignment: Alignment.center,
@@ -192,10 +188,7 @@ class InvestTableValueWidget extends StatelessWidget {
           ),
           Container(
             width: 90,
-            decoration: const BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
-                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
+            decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: ColorRes.borderColor, width: 1), right: BorderSide(color: ColorRes.borderColor, width: 1))),
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Align(
               alignment: Alignment.center,
@@ -212,11 +205,7 @@ class InvestTableValueWidget extends StatelessWidget {
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 5),
-              decoration: const BoxDecoration(
-                  border: Border(
-                      bottom: BorderSide(color: ColorRes.borderColor, width: 1),
-                      right:
-                          BorderSide(color: ColorRes.borderColor, width: 1))),
+              decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: ColorRes.borderColor, width: 1), right: BorderSide(color: ColorRes.borderColor, width: 1))),
               child: Center(
                 child: Align(
                   alignment: Alignment.center,
@@ -236,10 +225,7 @@ class InvestTableValueWidget extends StatelessWidget {
           Container(
             width: 75,
             padding: const EdgeInsets.symmetric(horizontal: 5),
-            decoration: const BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
-                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
+            decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: ColorRes.borderColor, width: 1), right: BorderSide(color: ColorRes.borderColor, width: 1))),
             child: Center(
               child: GlobalText(
                 str: fourColumn,

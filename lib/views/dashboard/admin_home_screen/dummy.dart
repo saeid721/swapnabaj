@@ -321,3 +321,105 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
     );
   }
 }
+
+
+//
+// GlobalContainer(
+// backgroundColor: ColorRes.backgroundColor,
+// width: Get.width,
+// child: Padding(
+// padding: const EdgeInsets.all(5.0),
+// child: Column(
+// children: [
+// GetBuilder<CapitalController>(
+// builder: (capitalController) {
+// return GetBuilder<ProfitController>(
+// builder: (profitController) {
+// return HomeSummeryChapterItem(
+// titleColor: ColorRes.green,
+// blanceColor: ColorRes.green,
+// borderColor: ColorRes.green,
+// title: 'Current Balance',
+// blance: "৳ ${(capitalController.totalCapitalAmount + profitController.totalProfitAmount - (Get.find<InvestmentController>().totalInvestAmount + Get.find<ExpenseController>().totalExpenseAmount)).toStringAsFixed(2)}",
+// onTap: () {
+// // Navigate to the respective screen if needed
+// },
+// );
+// },
+// );
+// },
+// ),
+// const SizedBox(height: 5),
+// GetBuilder<CapitalController>(
+// builder: (capitalController) {
+// return GetBuilder<ExpenseController>(
+// builder: (expenseController) {
+// return HomeSummeryChapterItem(
+// titleColor: ColorRes.black,
+// blanceColor: ColorRes.black,
+// borderColor: ColorRes.black,
+// title: "Net Balance",
+// blance: "৳ ${(capitalController.totalCapitalAmount + Get.find<ProfitController>().totalProfitAmount - expenseController.totalExpenseAmount).toStringAsFixed(2)}",
+// onTap: () {
+// // Navigate to the respective screen if needed
+// },
+// );
+// },
+// );
+// },
+// ),
+// ],
+// ),
+// ),
+// ),
+// const SizedBox(height: 10),
+// GlobalContainer(
+// backgroundColor: ColorRes.backgroundColor,
+// width: Get.width,
+// child: Column(
+// children: [
+// Row(
+// children: [
+// Expanded(
+// child: CatagoryCard(
+// imagePath: 'assets/icons/capital.png',
+// title: 'Deposit',
+// titleColor: ColorRes.capitalColor,
+// onTap: () => Get.to(() => AdminCapitalScreen()),
+// ),
+// ),
+// Expanded(
+// child: CatagoryCard(
+// imagePath: 'assets/icons/profit.png',
+// title: 'Profit',
+// titleColor: ColorRes.profitColor,
+// onTap: () => Get.to(() => AdminProfitScreen()),
+// ),
+// ),
+// ],
+// ),
+// Row(
+// children: [
+// Expanded(
+// child: CatagoryCard(
+// imagePath: 'assets/icons/invest.png',
+// title: 'Invest',
+// titleColor: ColorRes.investColor,
+// onTap: () => Get.to(() => AdminInvestScreen()),
+// ),
+// ),
+// Expanded(
+// child: CatagoryCard(
+// imagePath: 'assets/icons/expense.png',
+// title: 'Expense',
+// titleColor: ColorRes.expenseColor,
+// onTap: () => Get.to(() => AdminExpenseScreen()),
+// ),
+// ),
+// ],
+// ),
+// const SizedBox(height: 5),
+// ],
+// ),
+// ),
+// const SizedBox(height: 10),

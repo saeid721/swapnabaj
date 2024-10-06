@@ -158,7 +158,7 @@ class ProfitTableValueWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40,
+      height: 50,
       width: Get.width,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -171,18 +171,14 @@ class ProfitTableValueWidget extends StatelessWidget {
         children: [
           Container(
             width: 40,
-            decoration: const BoxDecoration(
-                border: Border(
-                    left: BorderSide(color: ColorRes.borderColor, width: 1),
-                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
-                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
+            decoration: const BoxDecoration(border: Border(left: BorderSide(color: ColorRes.borderColor, width: 1), bottom: BorderSide(color: ColorRes.borderColor, width: 1), right: BorderSide(color: ColorRes.borderColor, width: 1))),
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Align(
               alignment: Alignment.center,
               child: GlobalText(
                 str: firstColumn,
                 color: ColorRes.textColor,
-                fontSize: 11,
+                fontSize: 12,
                 fontWeight: FontWeight.w400,
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,
@@ -192,10 +188,7 @@ class ProfitTableValueWidget extends StatelessWidget {
           ),
           Container(
             width: 90,
-            decoration: const BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
-                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
+            decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: ColorRes.borderColor, width: 1), right: BorderSide(color: ColorRes.borderColor, width: 1))),
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Align(
               alignment: Alignment.center,
@@ -212,18 +205,14 @@ class ProfitTableValueWidget extends StatelessWidget {
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 5),
-              decoration: const BoxDecoration(
-                  border: Border(
-                      bottom: BorderSide(color: ColorRes.borderColor, width: 1),
-                      right:
-                          BorderSide(color: ColorRes.borderColor, width: 1))),
+              decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: ColorRes.borderColor, width: 1), right: BorderSide(color: ColorRes.borderColor, width: 1))),
               child: Center(
                 child: Align(
                   alignment: Alignment.center,
                   child: GlobalText(
                     str: thirdColumn,
                     color: ColorRes.textColor,
-                    fontSize: 11,
+                    fontSize: 12,
                     fontWeight: FontWeight.w400,
                     fontFamily: 'Roboto',
                     textAlign: TextAlign.left,
@@ -236,10 +225,7 @@ class ProfitTableValueWidget extends StatelessWidget {
           Container(
             width: 75,
             padding: const EdgeInsets.symmetric(horizontal: 5),
-            decoration: const BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(color: ColorRes.borderColor, width: 1),
-                    right: BorderSide(color: ColorRes.borderColor, width: 1))),
+            decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: ColorRes.borderColor, width: 1), right: BorderSide(color: ColorRes.borderColor, width: 1))),
             child: Center(
               child: GlobalText(
                 str: fourColumn,

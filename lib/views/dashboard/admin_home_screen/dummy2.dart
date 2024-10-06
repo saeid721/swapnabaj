@@ -104,7 +104,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                   blanceColor: ColorRes.capitalColor,
                                   borderColor: ColorRes.capitalColor,
                                   title: "Capital",
-                                  blance: '৳ ${capitalController.totalCapitalAmount.toStringAsFixed(2)}',
+                                  blance: capitalController.totalCapitalAmount.toStringAsFixed(2),
                                   onTap: () {
                                     Get.to(() => const CapitalScreen());
                                   },
@@ -116,7 +116,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                   blanceColor: ColorRes.profitColor,
                                   borderColor: ColorRes.profitColor,
                                   title: 'Profit',
-                                  blance: '৳ ${profitController.totalProfitAmount.toStringAsFixed(2)}',
+                                  blance: profitController.totalProfitAmount.toStringAsFixed(2),
                                   onTap: () {
                                     Get.to(() => const ProfitScreen());
                                   },
@@ -128,7 +128,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                   blanceColor: ColorRes.investColor,
                                   borderColor: ColorRes.investColor,
                                   title: 'Invest',
-                                  blance: '৳ ${investmentController.totalInvestAmount.toStringAsFixed(2)}',
+                                  blance: investmentController.totalInvestAmount.toStringAsFixed(2),
                                   onTap: () {
                                     Get.to(() => const InvestScreen());
                                   },
@@ -140,7 +140,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                                   blanceColor: ColorRes.expenseColor,
                                   borderColor: ColorRes.expenseColor,
                                   title: 'Expense',
-                                  blance: '৳ ${expenseController.totalExpenseAmount.toStringAsFixed(2)}',
+                                  blance: expenseController.totalExpenseAmount.toStringAsFixed(2),
                                   onTap: () {
                                     Get.to(() => const ExpenseScreen());
                                   },
@@ -279,13 +279,13 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
                               var data = controller.capitalData[index];
                               final depositAmount = data.totalDepositAmount; // Assuming data has totalDepositAmount
                               final profitAmount = Get.find<ProfitController>().totalProfitAmount / 16; // Corrected here
-                              final balance = (depositAmount + (profitAmount)).toStringAsFixed(1); // Calculate balance
+                              final balance = (depositAmount + (profitAmount / 16)).toStringAsFixed(2); // Calculate balance
 
                               return HomeMemberTableValueWidget(
                                 firstColumn: data.memberId, // Ensure this displays correctly
                                 secondColumn: data.depositorName,
-                                thirdColumn: depositAmount.toStringAsFixed(0),
-                                fourColumn: profitAmount.toStringAsFixed(1),
+                                thirdColumn: depositAmount.toStringAsFixed(2),
+                                fourColumn: profitAmount.toStringAsFixed(2),
                                 fiveColumn: balance,
                               );
                             },
