@@ -190,9 +190,9 @@ class AdminCapitalScreen extends StatelessWidget {
                 itemBuilder: (ctx, index) {
                   var data = controller.capitalData[index];
                   return CapitalTableValueWidget(
-                    firstColumn: data.memberId ?? '', // Check if data is displayed
-                    secondColumn: data.depositorName ?? '',
-                    thirdColumn: data.totalDepositAmount.toStringAsFixed(2) ?? '',
+                    firstColumn: data.memberId, // Check if data is displayed
+                    secondColumn: data.depositorName,
+                    thirdColumn: data.totalDepositAmount.toStringAsFixed(2),
                   );
                 },
               );
@@ -239,10 +239,10 @@ class AdminCapitalScreen extends StatelessWidget {
                 var singleData = controller.depositEntries[index];
                 return DepositTableValueWidget(
                   firstColumn: (index + 1).toString(),
-                  secondColumn: singleData.date ?? '',
-                  thirdColumn: singleData.depositorName ?? '',
-                  fourColumn: singleData.depositPurpose ?? '0',
-                  fiveColumn: singleData.amount.toStringAsFixed(1) ?? '',
+                  secondColumn: singleData.date,
+                  thirdColumn: singleData.depositorName,
+                  fourColumn: singleData.depositPurpose,
+                  fiveColumn: singleData.amount.toStringAsFixed(1),
                 );
               },
             ),
