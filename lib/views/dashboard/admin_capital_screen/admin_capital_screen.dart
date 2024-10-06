@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -10,7 +11,6 @@ import '../../../global_widget/global_text.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
 import '../../../global_widget/show_date_time_picker.dart';
-import '../admin_login_screen/admin_login_screen.dart';
 import 'component/admin_capital_detailes_table_widget.dart';
 import 'component/admin_capital_summery_table_widget.dart';
 
@@ -36,14 +36,6 @@ class AdminCapitalScreen extends StatelessWidget {
             color: ColorRes.capitalColor,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.to(() => SignInScreen());
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -81,7 +73,7 @@ class AdminCapitalScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         CustomDropDownFormField(
-                          value: controller.selectDepositorName,
+                          value: controller.selectDepositorName ?? '',
                           titleText: "Select Depositor Name",
                           hintText: "Select Depositor Name",
                           isDense: true,
@@ -91,7 +83,7 @@ class AdminCapitalScreen extends StatelessWidget {
                             "Shamim Hosen",
                             "Md. Taimur Rahman",
                             "Md. Shohel Rana",
-                            "Md. Shakhawat Hossen",
+                            "Md.Shakhawat Hossen",
                             "Abdullah Al Kafi",
                             "Mst. Taslima Akter Rupa",
                             "Minhazul Islam Saeid",
@@ -112,7 +104,7 @@ class AdminCapitalScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         CustomDropDownFormField(
-                          value: controller.selectDepositPurpose,
+                          value: controller.selectDepositPurpose ?? '' ,
                           titleText: "Select Deposit Purpose",
                           hintText: "Select Deposit Purpose",
                           isDense: true,
@@ -149,121 +141,109 @@ class AdminCapitalScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              Column(
-                children: [
-                  const GlobalText(
-                    str: "Capital",
-                    fontSize: 16,
-                    textAlign: TextAlign.center,
-                    fontWeight: FontWeight.w500,
-                    color: ColorRes.primaryColor,
-                  ),
-                  const SizedBox(height: 10),
-                  GlobalContainer(
-                    backgroundColor: ColorRes.backgroundColor,
-                    width: Get.width,
-                    child: const CapitalTableWidget(
-                      firstRow: 'SL',
-                      secondRow: 'Name',
-                      thirdRow: 'Capital',
-                    ),
-                  ),
-                  GlobalContainer(
-                    backgroundColor: ColorRes.white,
-                    width: Get.width,
-                    child: GetBuilder<CapitalController>(
-                      builder: (controller) => ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: controller.capitalData.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (ctx, index) {
-                          var data = controller.capitalData[index];
-                          return CapitalTableValueWidget(
-                            firstColumn: (index + 1).toString(),
-                            secondColumn: data['depositorName'] ?? '',
-                            thirdColumn: double.tryParse(data['amount'].toString())?.toStringAsFixed(2) ?? '0.00',
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  GetBuilder<CapitalController>(
-                    builder: (controller) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const GlobalText(
-                            str: "Total Capital (BDT) =",
-                            fontSize: 14,
-                            textAlign: TextAlign.center,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.textColor,
-                          ),
-                          GlobalText(
-                            str: capitalController.totalCapitalAmount.toStringAsFixed(0),
-                            fontSize: 14,
-                            textAlign: TextAlign.center,
-                            fontWeight: FontWeight.w600,
-                            color: ColorRes.textColor,
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 10),
-                ],
-              ),
+              _buildCapitalTable(),
               const SizedBox(height: 10),
-              Column(
-                children: [
-                  const GlobalText(
-                    str: "Deposit",
-                    fontSize: 16,
-                    textAlign: TextAlign.center,
-                    fontWeight: FontWeight.w500,
-                    color: ColorRes.primaryColor,
-                  ),
-                  const SizedBox(height: 10),
-                  GlobalContainer(
-                    backgroundColor: ColorRes.backgroundColor,
-                    width: Get.width,
-                    child: const DepositTableWidget(
-                      firstRow: 'SL',
-                      secondRow: 'Date',
-                      thirdRow: 'Name',
-                      fourRow: 'Purpose',
-                      fiveRow: 'Amount',
-                    ),
-                  ),
-                  GlobalContainer(
-                    backgroundColor: ColorRes.white,
-                    width: Get.width,
-                    child: GetBuilder<CapitalController>(
-                      builder: (controller) => ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: controller.capitalData.length,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (ctx, index) {
-                          var detailsData = controller.capitalData[index];
-                          return DepositTableValueWidget(
-                            firstColumn: (index + 1).toString(),
-                            secondColumn: detailsData['date'] ?? '',
-                            thirdColumn: detailsData['depositorName'] ?? '',
-                            fourColumn: detailsData['depositPurpose'] ?? '',
-                            fiveColumn: double.tryParse(detailsData['amount'].toString())?.toStringAsFixed(0) ?? '0',
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              _buildDepositTable(),
               const SizedBox(height: 20),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  // Capital Table: Display totalDepositAmount
+  Widget _buildCapitalTable() {
+    return Column(
+      children: [
+        const GlobalText(
+          str: "Capital",
+          fontSize: 16,
+          textAlign: TextAlign.center,
+          fontWeight: FontWeight.w500,
+          color: ColorRes.primaryColor,
+        ),
+        const SizedBox(height: 10),
+        GlobalContainer(
+          backgroundColor: ColorRes.backgroundColor,
+          width: Get.width,
+          child: const CapitalTableWidget(
+            firstRow: 'SL',
+            secondRow: 'Name',
+            thirdRow: 'Total Capital',
+          ),
+        ),
+        GlobalContainer(
+          backgroundColor: ColorRes.white,
+          width: Get.width,
+          child: GetBuilder<CapitalController>(
+            builder: (controller) {
+              // Verify if controller.capitalData has the correct values
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: controller.capitalData.length,
+                itemBuilder: (ctx, index) {
+                  var data = controller.capitalData[index];
+                  return CapitalTableValueWidget(
+                    firstColumn: data.memberId ?? '', // Check if data is displayed
+                    secondColumn: data.depositorName ?? '',
+                    thirdColumn: data.totalDepositAmount.toString() ?? '0',
+                  );
+                },
+              );
+            },
+          ),
+
+        ),
+      ],
+    );
+  }
+
+  // Deposit Entries Table: Display individual deposit amounts
+  Widget _buildDepositTable() {
+    return Column(
+      children: [
+        const GlobalText(
+          str: "Deposit Summary",
+          fontSize: 16,
+          textAlign: TextAlign.center,
+          fontWeight: FontWeight.w500,
+          color: ColorRes.primaryColor,
+        ),
+        const SizedBox(height: 10),
+        GlobalContainer(
+          backgroundColor: ColorRes.backgroundColor,
+          width: Get.width,
+          child: const DepositTableWidget(
+            firstRow: 'SL',
+            secondRow: 'Name',
+            thirdRow: 'Deposit',
+            fourRow: 'Deposit',
+            fiveRow: 'Deposit',
+          ),
+        ),
+        GlobalContainer(
+          backgroundColor: ColorRes.white,
+          width: Get.width,
+          child: GetBuilder<CapitalController>(
+            builder: (controller) => ListView.builder(
+              shrinkWrap: true,
+              itemCount: controller.depositEntries.length,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (ctx, index) {
+                var singleData = controller.depositEntries[index];
+                return DepositTableValueWidget(
+                  firstColumn: (index + 1).toString(),
+                  secondColumn: singleData.date ?? '',
+                  thirdColumn: singleData.depositorName ?? '',
+                  fourColumn: singleData.depositPurpose ?? '0',
+                  fiveColumn: singleData.amount.toString() ?? '0',
+                );
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
