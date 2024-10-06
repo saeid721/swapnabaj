@@ -152,7 +152,7 @@ class AdminCapitalScreen extends StatelessWidget {
                 },
               ),
 
-              const SizedBox(height: 5),
+              const SizedBox(height: 10),
               _buildCapitalTable(),
               const SizedBox(height: 10),
               _buildDepositTable(),
