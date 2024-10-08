@@ -52,7 +52,7 @@ class ChapterItem extends StatelessWidget {
               if (leadingImage != null) // Conditionally render the leading image
                 ColorFiltered(
                   colorFilter: ColorFilter.mode(
-                    leadingImageColor ?? ColorRes.primaryColor, // Use the provided color or transparent
+                    leadingImageColor ?? ColorRes.secondaryColor, // Use the provided color or transparent
                     BlendMode.srcATop,
                   ),
                   child: Image.asset(

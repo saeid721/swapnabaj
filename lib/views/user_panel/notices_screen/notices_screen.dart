@@ -40,9 +40,9 @@ class NoticesScreen extends StatelessWidget {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Notice',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -56,46 +56,48 @@ class NoticesScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-        child: SizedBox(
-          height: Get.height,
-          child: ListView.builder(
-            itemCount: events.length,
-            itemBuilder: (context, index) {
-              return Card(
-                color: Colors.white,
-                child: ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          events[index]['title'],
-                          style: const TextStyle(
-                              fontSize: 16.0, fontWeight: FontWeight.w700),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: SizedBox(
+            height: Get.height,
+            child: ListView.builder(
+              itemCount: events.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  color: Colors.white,
+                  child: ListTile(
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            events[index]['title'],
+                            style: const TextStyle(
+                                fontSize: 16.0, fontWeight: FontWeight.w700),
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: Text(
-                          events[index]['date'],
-                          style: const TextStyle(fontSize: 12.0),
-                          textAlign: TextAlign.end,
+                        Expanded(
+                          child: Text(
+                            events[index]['date'],
+                            style: const TextStyle(fontSize: 12.0),
+                            textAlign: TextAlign.end,
+                          ),
                         ),
+                      ],
+                    ),
+                    subtitle: Padding(
+                      padding: const EdgeInsets.only(top: 5),
+                      child: Text(
+                        events[index]['description'],
+                        style: const TextStyle(fontSize: 14.0),
+                        textAlign: TextAlign.justify,
                       ),
-                    ],
-                  ),
-                  subtitle: Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: Text(
-                      events[index]['description'],
-                      style: const TextStyle(fontSize: 14.0),
-                      textAlign: TextAlign.justify,
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ),
       ),

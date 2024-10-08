@@ -31,12 +31,12 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
 
   List<GlobalMenuModel> dashboardItem = [
     GlobalMenuModel(imagePath: Images.home, text: 'Home'),
-    //GlobalMenuModel(imagePath: Images.groupUsers, text: 'Members'),
     GlobalMenuModel(imagePath: Images.capital, text: 'Deposit'),
     GlobalMenuModel(imagePath: Images.invest, text: 'Invest'),
     GlobalMenuModel(imagePath: Images.profit, text: 'Profit'),
     GlobalMenuModel(imagePath: Images.expense, text: 'Expense'),
-    GlobalMenuModel(imagePath: Images.menu, text: 'Menu'),
+    GlobalMenuModel(imagePath: Images.groupUsers, text: 'Members'),
+    //GlobalMenuModel(imagePath: Images.menu, text: 'Menu'),
   ];
 
   @override

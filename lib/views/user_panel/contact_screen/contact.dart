@@ -13,9 +13,9 @@ class ContactUsScreen extends StatelessWidget {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Contact Us',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,

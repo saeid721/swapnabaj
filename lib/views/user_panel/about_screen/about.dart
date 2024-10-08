@@ -17,9 +17,9 @@ class _AboutScreenState extends State<AboutScreen> {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'About Us',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,

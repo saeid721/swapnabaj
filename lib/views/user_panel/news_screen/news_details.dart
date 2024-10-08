@@ -3,8 +3,12 @@ import '../../../global_widget/colors.dart';
 
 class NewsDetailsScreen extends StatelessWidget {
   final String newsTitle;
+  final String newsDetails;
 
-  const NewsDetailsScreen({super.key, required this.newsTitle});
+  const NewsDetailsScreen({
+    super.key,
+    required this.newsTitle,
+    required this.newsDetails,});
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +18,9 @@ class NewsDetailsScreen extends StatelessWidget {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'News',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -30,41 +34,34 @@ class NewsDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                textAlign: TextAlign.justify,
-                newsTitle,
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              Image.asset(
-                'assets/images/Logo.png',
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                textAlign: TextAlign.justify,
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                style: TextStyle(fontSize: 14),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                textAlign: TextAlign.justify,
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                textAlign: TextAlign.justify,
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                style: TextStyle(fontSize: 14),
-              ),
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/Logo.png',
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  textAlign: TextAlign.justify,
+                  newsTitle,
+                  style:
+                  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  textAlign: TextAlign.justify,
+                  newsDetails,
+                  style:
+                  const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                ),
+
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),

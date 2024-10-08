@@ -5,6 +5,7 @@ import '../../dashboard/admin_login_screen/admin_login_screen.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_text.dart';
+import '../side_menu_screen.dart';
 import 'component/capital_widget.dart';
 import 'component/deposit_widget.dart';
 
@@ -21,7 +22,7 @@ class CapitalScreen extends StatelessWidget {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.capitalColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
           'Capital',
           style: TextStyle(
@@ -39,6 +40,7 @@ class CapitalScreen extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const SideMenuScreen(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

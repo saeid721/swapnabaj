@@ -5,6 +5,7 @@ import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_text.dart';
 import '../../dashboard/admin_login_screen/admin_login_screen.dart';
+import '../side_menu_screen.dart';
 import 'component/profit_widget.dart';
 
 class ProfitScreen extends StatelessWidget {
@@ -20,7 +21,7 @@ class ProfitScreen extends StatelessWidget {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
           'Profit',
           style: TextStyle(
@@ -38,6 +39,7 @@ class ProfitScreen extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const SideMenuScreen(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../global_widget/colors.dart';
 
 class EventScreen extends StatelessWidget {
@@ -43,9 +44,9 @@ class EventScreen extends StatelessWidget {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Event',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -59,55 +60,59 @@ class EventScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: ListView.builder(
-          itemCount: events.length,
-          itemBuilder: (context, index) {
-            return Card(
-              margin:
-                  const EdgeInsets.only(top: 3, bottom: 3, left: 10, right: 10),
-              child: ListTile(
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        events[index]['title'],
-                        style: const TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.w700),
-                      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: SizedBox(
+            height: Get.height,
+            child: ListView.builder(
+              itemCount: events.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  color: Colors.white,
+                  child: ListTile(
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            events[index]['title'],
+                            style: const TextStyle(
+                                fontSize: 16.0, fontWeight: FontWeight.w700),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            events[index]['date'],
+                            style: const TextStyle(fontSize: 12.0),
+                            textAlign: TextAlign.end,
+                          ),
+                        ),
+                      ],
                     ),
-                    Expanded(
-                      child: Text(
-                        events[index]['date'],
-                        style: const TextStyle(fontSize: 12.0),
-                        textAlign: TextAlign.end,
-                      ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          events[index]['location'],
+                          style: const TextStyle(
+                              fontSize: 12.0, fontWeight: FontWeight.w700),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          events[index]['description'],
+                          style: const TextStyle(fontSize: 14),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      events[index]['location'],
-                      style: const TextStyle(
-                          fontSize: 12.0, fontWeight: FontWeight.w700),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      events[index]['description'],
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                  ],
-                ),
-                onTap: () {
-                  _showEventDetails(context, events[index]);
-                },
-              ),
-            );
-          },
+                    onTap: () {
+                      _showEventDetails(context, events[index]);
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
         ),
       ),
     );

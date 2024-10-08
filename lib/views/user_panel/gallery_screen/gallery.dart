@@ -77,9 +77,9 @@ class GalleryScreen extends StatelessWidget {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Gallery',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -93,61 +93,53 @@ class GalleryScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 10,
-                ),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                ),
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemBuilder: (context, index) {
-                    return RawMaterialButton(
-                      onPressed: () {
-                        Get.to(
-                          () => DetailsPage(
-                            imagePath: _images[index].imagePath,
-                            title: _images[index].title,
-                            details: _images[index].details,
-                            index: index,
-                          ),
-                        );
-                      },
-                      child: Hero(
-                        tag: 'logo$index',
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            image: DecorationImage(
-                              image: AssetImage(_images[index].imagePath),
-                              fit: BoxFit.cover,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: SizedBox(
+            height: Get.height,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(
+                  child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemBuilder: (context, index) {
+                      return RawMaterialButton(
+                        onPressed: () {
+                          Get.to(
+                            () => DetailsPage(
+                              imagePath: _images[index].imagePath,
+                              title: _images[index].title,
+                              details: _images[index].details,
+                              index: index,
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'logo$index',
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                image: AssetImage(_images[index].imagePath),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                  itemCount: _images.length,
-                ),
-              ),
-            )
-          ],
+                      );
+                    },
+                    itemCount: _images.length,
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );

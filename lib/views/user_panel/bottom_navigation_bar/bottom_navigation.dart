@@ -26,13 +26,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
   }
 
   static final List<Widget> _deshBoardBottomScreen = <Widget>[
-    HomeScreen(),
-    //const MemberScreen(),
+    const HomeScreen(),
     CapitalScreen(),
-    InvestScreen(),
+    const InvestScreen(),
     ProfitScreen(),
     ExpenseScreen(),
-    SideMenuScreen(),
+    const MemberScreen(),
+    //SideMenuScreen(),
   ];
 
   @override
