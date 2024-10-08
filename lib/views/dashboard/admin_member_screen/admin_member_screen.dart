@@ -1,43 +1,38 @@
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:file_picker/file_picker.dart';
+import '../../../controllers/member_controller/member_controller.dart';
 import '../../../global_widget/global_button.dart';
+import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_sizedbox.dart';
 import '../../../global_widget/global_text.dart';
 import '../../../global_widget/global_textform_field.dart';
-import '../../../global_widget/input_decoration.dart';
-import '../admin_login_screen/admin_login_screen.dart';
 import '../../../global_widget/colors.dart';
-import '../../../global_widget/global_container.dart';
+import '../../../global_widget/input_decoration.dart';
 import 'component/admin_member_card_widget.dart';
-import 'component/admin_member_data.dart';
 
 class AdminMemberScreen extends StatefulWidget {
-  const AdminMemberScreen({super.key});
-
   @override
   State<AdminMemberScreen> createState() => _AdminMemberScreenState();
 }
 
 class _AdminMemberScreenState extends State<AdminMemberScreen> {
-
-  final TextEditingController memberNameCon = TextEditingController();
-  final TextEditingController memberFatherNameCon = TextEditingController();
-  final TextEditingController memberMotherNameCon = TextEditingController();
-  final TextEditingController memberPhoneCon = TextEditingController();
-  final TextEditingController memberEmailCon = TextEditingController();
-  final TextEditingController memberAddressCon = TextEditingController();
-
+  final AdminMemberController controller = Get.put(AdminMemberController());
   String? _fileName;
 
   Future<void> _pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
-
     if (result != null) {
       setState(() {
         _fileName = result.files.single.name;
       });
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    controller.fetchMembers(); // Fetch members on screen load
   }
 
   @override
@@ -57,14 +52,6 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
             color: ColorRes.primaryColor,
           ),
         ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.to(() => SignInScreen());
-            },
-            icon: const Icon(Icons.logout),
-          ),
-        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -84,59 +71,59 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GlobalTextFormField(
-                        controller: memberNameCon,
+                        controller: controller.memberNameCon,
                         titleText: 'Name',
                         hintText: 'Enter Name',
-                        isDense: true,
                         decoration: inputDropDecoration,
+                        isDense: true,
                         filled: true,
                       ),
-                      const SizedBox(height: 10),
+                      sizedBoxH(10),
                       GlobalTextFormField(
-                        controller: memberFatherNameCon,
+                        controller: controller.memberFatherNameCon,
                         titleText: 'Father Name',
                         hintText: 'Enter Father Name',
-                        isDense: true,
                         decoration: inputDropDecoration,
+                        isDense: true,
                         filled: true,
                       ),
-                      const SizedBox(height: 10),
+                      sizedBoxH(10),
                       GlobalTextFormField(
-                        controller: memberMotherNameCon,
+                        controller: controller.memberMotherNameCon,
                         titleText: 'Mother Name',
                         hintText: 'Enter Mother Name',
-                        isDense: true,
                         decoration: inputDropDecoration,
+                        isDense: true,
                         filled: true,
                       ),
-                      const SizedBox(height: 10),
+                      sizedBoxH(10),
                       GlobalTextFormField(
-                        controller: memberPhoneCon,
+                        controller: controller.memberPhoneCon,
                         titleText: 'Phone',
                         hintText: 'Enter Phone',
-                        isDense: true,
                         decoration: inputDropDecoration,
+                        isDense: true,
                         filled: true,
                       ),
-                      const SizedBox(height: 10),
+                      sizedBoxH(10),
                       GlobalTextFormField(
-                        controller: memberEmailCon,
+                        controller: controller.memberEmailCon,
                         titleText: 'Email',
                         hintText: 'Enter Email',
-                        isDense: true,
                         decoration: inputDropDecoration,
+                        isDense: true,
                         filled: true,
                       ),
-                      const SizedBox(height: 10),
+                      sizedBoxH(10),
                       GlobalTextFormField(
-                        controller: memberAddressCon,
+                        controller: controller.memberAddressCon,
                         titleText: 'Address',
                         hintText: 'Enter Address',
-                        isDense: true,
                         decoration: inputDropDecoration,
+                        isDense: true,
                         filled: true,
                       ),
-                      const SizedBox(height: 10),
+                      sizedBoxH(10),
                       const Text(
                         'Attachment',
                         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
@@ -162,11 +149,13 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                             style: const TextStyle(fontSize: 16),
                           ),
                         ),
-                      const SizedBox(height: 20),
+                      sizedBoxH(20),
                       GlobalButtonWidget(
                         str: 'Submit',
                         height: 45,
-                        onTap: () {},
+                        onTap: () async {
+                          await controller.submitData(); // Call submit data in the controller
+                        },
                       ),
                     ],
                   ),
@@ -186,29 +175,29 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                       color: ColorRes.primaryColor,
                     ),
                     GlobalContainer(
-                      child: Column(
-                        children: [
-                          buildTableHeaders(),
-                          ListView.builder(
-                            itemCount: name.length,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (BuildContext context, int index) {
-                              return MemberCardTableValueWidget(
-                                memberId: sl[index],
-                                name: name[index],
-                                fatherName: fatherName[index],
-                                motherName: motherName[index],
-                                contact: contact[index],
-                                nid: nid[index],
-                                email: email[index],
-                                address: address[index],
-                                imagePath: image[index],
-                              );
-                            },
-                          ),
-                        ],
-                      ),
+                      child: Obx(() {
+                        return controller.members.isEmpty
+                            ? const Center(child: Text('No members found.'))
+                            : ListView.builder(
+                          itemCount: controller.members.length,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            var member = controller.members[index];
+                            return MemberCardTableValueWidget(
+                              memberId: member.memberId,
+                              name: member.name,
+                              fatherName: member.fatherName,
+                              motherName: member.motherName,
+                              nid: member.nid,
+                              contact: member.phone,
+                              email: member.email,
+                              address: member.address,
+                              imagePath: member.fileName ?? 'assets/images/placeholder.png',
+                            );
+                          },
+                        );
+                      }),
                     ),
                   ],
                 ),
@@ -218,14 +207,6 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  Widget buildTableHeaders() {
-    return const Row(
-      children: [
-        MemberCardTableWidget(flex: 1, text: 'MemberWidget'),
-      ],
     );
   }
 }

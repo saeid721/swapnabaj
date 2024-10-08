@@ -110,7 +110,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                               style: const TextStyle(fontSize: 16),
                             ),
                           ),
-                        const SizedBox(height: 10),
+                        sizedBoxH(10),
                         GlobalTextFormField(
                           controller: aboutDescriptionCon,
                           titleText: 'Description',
@@ -120,7 +120,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                           maxLine: 5,
                           filled: true,
                         ),
-                        const SizedBox(height: 20),
+                        sizedBoxH(20),
                         GlobalButtonWidget(
                           str: 'Submit',
                           height: 45,
