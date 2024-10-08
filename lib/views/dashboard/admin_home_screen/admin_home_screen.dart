@@ -1,6 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../../controllers/capital_controller/capital_controller.dart';
 import '../../../controllers/expense_controller/expense_controller.dart';
 import '../../../controllers/investment_controller/investment_controller.dart';

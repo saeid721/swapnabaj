@@ -17,6 +17,7 @@ dependencies:
   intl: ^0.19.0
   shared_preferences: ^2.2.2 # Local Storage!
   cloud_firestore: ^5.4.2 # server Storage!
+  firebase_storage: ^12.3.2
   firebase_core: ^3.5.0
   firebase_auth: ^5.3.0
 

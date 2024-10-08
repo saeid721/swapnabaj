@@ -18,8 +18,8 @@ class AdminAboutScreen extends StatefulWidget {
 
 class _AdminAboutScreenState extends State<AdminAboutScreen> {
 
-  final TextEditingController aboutTitleCon = TextEditingController();
-  final TextEditingController aboutDescriptionCon = TextEditingController();
+  final TextEditingController selectTitleCon = TextEditingController();
+  final TextEditingController selectDescriptionCon = TextEditingController();
 
   String? _fileName;
 
@@ -77,7 +77,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GlobalTextFormField(
-                          controller: aboutTitleCon,
+                          controller: selectTitleCon,
                           titleText: 'Title',
                           hintText: 'Enter Title',
                           isDense: true,
@@ -112,7 +112,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                           ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: aboutDescriptionCon,
+                          controller: selectDescriptionCon,
                           titleText: 'Description',
                           hintText: 'Enter Description',
                           isDense: true,
@@ -173,8 +173,8 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
 
   @override
   void dispose() {
-    aboutTitleCon.dispose();
-    aboutDescriptionCon.dispose();
+    selectTitleCon.dispose();
+    selectDescriptionCon.dispose();
     super.dispose();
   }
 }

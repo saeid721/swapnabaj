@@ -45,7 +45,7 @@ class MemberCardTableWidget extends StatelessWidget {
 }
 
 class MemberCardTableValueWidget extends StatelessWidget {
-  final String serial;
+  final String memberId;
   final String name;
   final String fatherName;
   final String motherName;
@@ -57,7 +57,7 @@ class MemberCardTableValueWidget extends StatelessWidget {
 
   const MemberCardTableValueWidget({
     super.key,
-    required this.serial,
+    required this.memberId,
     required this.name,
     required this.fatherName,
     required this.motherName,
@@ -75,7 +75,7 @@ class MemberCardTableValueWidget extends StatelessWidget {
         Expanded(
           flex: 1,
           child: buildContainer(
-            Center(child: Text(serial, style: const TextStyle(fontSize: 12))),
+            Center(child: Text(memberId, style: const TextStyle(fontSize: 12))),
           ),
         ),
         Expanded(
@@ -84,51 +84,45 @@ class MemberCardTableValueWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(name,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
+                          color: ColorRes.textColor
+                      )),
                   Text(fatherName,
                       style: const TextStyle(
                         fontSize: 12,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
+                          color: ColorRes.textColor
+                      )),
                   Text(motherName,
                       style: const TextStyle(
                         fontSize: 12,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
+                          color: ColorRes.textColor
+                      )),
                   Text(contact,
                       style: const TextStyle(
                         fontSize: 12,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
+                          color: ColorRes.textColor
+                      )),
                   Text(nid,
                       style: const TextStyle(
                         fontSize: 12,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
+                          color: ColorRes.textColor
+                      )),
                   Text(email,
                       style: const TextStyle(
                         fontSize: 12,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
+                          color: ColorRes.textColor
+                      )),
                   Text(address,
                       style: const TextStyle(
                         fontSize: 10,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
+                        color: ColorRes.textColor
+                      )),
                 ],
               ),
             ),
@@ -149,7 +143,7 @@ class MemberCardTableValueWidget extends StatelessWidget {
 
   Widget buildContainer(Widget child) {
     return SizedBox(
-      height: 145,
+      height: 160,
       child: Container(
         decoration: const BoxDecoration(
           border: Border(

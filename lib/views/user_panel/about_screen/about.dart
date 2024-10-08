@@ -40,7 +40,7 @@ class _AboutScreenState extends State<AboutScreen> {
             children: [
               Image.asset(
                 'assets/images/logo2.png',
-                width: 250,
+                width: 220,
               ),
               const SizedBox(height: 20),
               const Text(
