@@ -53,7 +53,6 @@ class CapitalTableWidget extends StatelessWidget {
                 fontWeight: FontWeight.w700,
                 fontFamily: 'Roboto',
                 overflow: TextOverflow.ellipsis,
-                maxLines: 1,
               ),
             ),
           ),
@@ -78,7 +77,6 @@ class CapitalTableWidget extends StatelessWidget {
                     fontFamily: 'Roboto',
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.center,
-                    maxLines: 1,
                   ),
                 ),
               ),
@@ -128,7 +126,7 @@ class CapitalTableValueWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 38,
+      height: 30,
       width: Get.width,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -157,7 +155,6 @@ class CapitalTableValueWidget extends StatelessWidget {
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 1,
               ),
             ),
           ),
@@ -170,7 +167,7 @@ class CapitalTableValueWidget extends StatelessWidget {
                           BorderSide(color: ColorRes.borderColor, width: 1))),
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Align(
-                alignment: Alignment.center,
+                alignment: Alignment.centerLeft,
                 child: GlobalText(
                   str: secondColumn,
                   color: ColorRes.textColor,
@@ -179,7 +176,6 @@ class CapitalTableValueWidget extends StatelessWidget {
                   fontFamily: 'Roboto',
                   textAlign: TextAlign.left,
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
                 ),
               ),
             ),
@@ -200,7 +196,6 @@ class CapitalTableValueWidget extends StatelessWidget {
                 fontFamily: 'Roboto',
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 1,
               ),
             ),
           ),

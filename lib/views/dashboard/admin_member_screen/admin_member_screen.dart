@@ -62,7 +62,8 @@ class AdminMemberScreen extends StatelessWidget {
                       return MemberCardTableValueWidget(
                         serial: sl[index],
                         name: name[index],
-                        faterName: fatherName[index],
+                        fatherName: fatherName[index],
+                        motherName: motherName[index],
                         contact: contact[index],
                         nid: nid[index],
                         email: email[index],

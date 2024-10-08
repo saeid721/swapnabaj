@@ -12,14 +12,9 @@ import '../../../global_widget/show_date_time_picker.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 import 'component/admin_invest_widget.dart';
 
-class AdminInvestScreen extends StatefulWidget {
-  const AdminInvestScreen({super.key});
+class AdminInvestScreen extends StatelessWidget {
+  AdminInvestScreen({super.key});
 
-  @override
-  State<AdminInvestScreen> createState() => _AdminInvestScreenState();
-}
-
-class _AdminInvestScreenState extends State<AdminInvestScreen> {
   final InvestmentController controller = Get.put(InvestmentController());
 
   @override
@@ -63,33 +58,25 @@ class _AdminInvestScreenState extends State<AdminInvestScreen> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      // Date Field
+
                       GlobalTextFormField(
                         controller: controller.selectInvestDateCon,
                         titleText: 'Select Date',
                         hintText: "Select Date".tr,
                         keyboardType: TextInputType.datetime,
-                        titleStyle: const TextStyle(
-                          color: ColorRes.textColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Roboto',
-                        ),
+                        titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                         isDense: true,
                         decoration: inputDropDecoration,
                         filled: true,
                         sufixIcon: GestureDetector(
-                          onTap: () async {
-                            var pickedDate = await showDateOnlyPicker(context);
-                            if (pickedDate != null) {
-                              setState(() {
-                                String formattedDate = DateTimeFormatter.showDateOnly.format(pickedDate);
+                            onTap: () async {
+                              var pickedDate = await showDateOnlyPicker(context);
+                              if (pickedDate != null) {
+                                String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
                                 controller.selectInvestDateCon.text = formattedDate;
-                              });
-                            }
-                          },
-                          child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20),
-                        ),
+                              }
+                            },
+                            child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
                       ),
                       const SizedBox(height: 10),
                       // Comments Field

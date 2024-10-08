@@ -10,6 +10,7 @@ import 'admin_event_screen/admin_event_screen.dart';
 import 'admin_expense_screen/admin_expense_screen.dart';
 import 'admin_gallery_screen/admin_gallery_screen.dart';
 import 'admin_invest_screen/admin_invest_screen.dart';
+import 'admin_member_screen/admin_member_screen.dart';
 import 'admin_news_screen/admin_news_screen.dart';
 import 'admin_notices_screen/admin_notices_screen.dart';
 import 'admin_profit_screen/admin_profit_screen.dart';
@@ -103,6 +104,13 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             title: "Notice",
             onTap: () {
               Get.to(() => AdminNoticesScreen());
+            },
+          ),
+          ChapterItem(
+            leadingImage: 'assets/icons/about.png',
+            title: "Members",
+            onTap: () {
+              Get.to(() => AdminMemberScreen());
             },
           ),
           ChapterItem(

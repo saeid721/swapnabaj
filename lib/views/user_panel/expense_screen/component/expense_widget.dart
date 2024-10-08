@@ -219,7 +219,7 @@ class ExpenseTableValueWidget extends StatelessWidget {
                           BorderSide(color: ColorRes.borderColor, width: 1))),
               child: Center(
                 child: Align(
-                  alignment: Alignment.center,
+                  alignment: Alignment.centerLeft,
                   child: GlobalText(
                     str: thirdColumn,
                     color: ColorRes.textColor,

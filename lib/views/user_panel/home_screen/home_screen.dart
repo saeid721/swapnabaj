@@ -1,6 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controllers/capital_controller/capital_controller.dart';
+import '../../../controllers/expense_controller/expense_controller.dart';
+import '../../../controllers/investment_controller/investment_controller.dart';
+import '../../../controllers/profit_controller/profit_controller.dart';
+import '../../dashboard/admin_home_screen/pie_chart_section.dart';
 import '../../dashboard/admin_login_screen/admin_login_screen.dart';
 import '../capital_screen/capital_screen.dart';
 import '../expense_screen/expense_screen.dart';
@@ -19,49 +24,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final double capital = 882000.00;
-  final double profit = 194780.00;
-  final double invest = 920000.00;
-  final double expense = 11074.00;
-  final double balance = 145706.00;
-
-  List<PieChartSectionData> _buildPieChartSections() {
-    double total = capital + profit + invest + expense + balance;
-
-    return [
-      PieChartSectionData(
-        color: ColorRes.capitalColor,
-        value: capital / total * 100,
-        title: '',
-        radius: 50,
-      ),
-      PieChartSectionData(
-        color: ColorRes.profitColor,
-        value: profit / total * 100,
-        title: '',
-        radius: 50,
-      ),
-      PieChartSectionData(
-        color: ColorRes.investColor,
-        value: invest / total * 100,
-        title: '',
-        radius: 50,
-      ),
-      PieChartSectionData(
-        color: ColorRes.expenseColor,
-        value: expense / total * 100,
-        title: '',
-        radius: 50,
-      ),
-      PieChartSectionData(
-        color: ColorRes.green,
-        value: balance / total * 100,
-        title: '',
-        radius: 50,
-      ),
-    ];
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,163 +53,197 @@ class _HomeScreenState extends State<HomeScreen> {
       //drawer: const SideMenuScreen(),
       body: SafeArea(
         child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              children: [
-                const SizedBox(height: 5),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GlobalContainer(
-                      width: 140,
-                      height: 140, // Reduce the container width
-                      backgroundColor: ColorRes.backgroundColor,
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: SizedBox(
-                          width: 100, // Set width for the PieChart container
-                          height: 100, // Set height for the PieChart container
-                          child: PieChart(
-                            PieChartData(
-                              sections: _buildPieChartSections(),
-                              borderData: FlBorderData(show: false),
-                              sectionsSpace: 2, // Space between sections
-                              centerSpaceRadius:
-                                  16, // Reduce space in the center of the pie
-                            ),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+          child: Column(
+            children: [
+              const SizedBox(height: 5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  GlobalContainer(
+                    width: 140,
+                    height: 140,
+                    backgroundColor: ColorRes.backgroundColor,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: PieChart(
+                          PieChartData(
+                            sections: buildPieChartSections(),
+                            borderData: FlBorderData(show: false),
+                            sectionsSpace: 2,
+                            centerSpaceRadius: 16,
                           ),
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: GlobalContainer(
-                        backgroundColor: ColorRes.backgroundColor,
-                        width: Get.width,
-                        child: Padding(
-                          padding: const EdgeInsets.all(5.0),
-                          child: Column(
-                            children: [
-                              HomeSummeryChapterItem(
+                  ),
+                  Expanded(
+                    child: GlobalContainer(
+                      backgroundColor: ColorRes.backgroundColor,
+                      width: Get.width,
+                      child: Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: Column(
+                          children: [
+                            GetBuilder<CapitalController>(builder: (capitalController) {
+                              return HomeSummeryChapterItem(
                                 titleColor: ColorRes.capitalColor,
                                 blanceColor: ColorRes.capitalColor,
                                 borderColor: ColorRes.capitalColor,
                                 title: "Capital",
-                                blance: "৳ 8,82,000.00",
+                                blance: '৳ ${capitalController.totalCapitalAmount.toStringAsFixed(2)}',
                                 onTap: () {
-                                  Get.to(() => const CapitalScreen());
+                                  Get.to(() => CapitalScreen());
                                 },
-                              ),
-                              HomeSummeryChapterItem(
+                              );
+                            }),
+                            GetBuilder<ProfitController>(builder: (profitController) {
+                              return HomeSummeryChapterItem(
                                 titleColor: ColorRes.profitColor,
                                 blanceColor: ColorRes.profitColor,
                                 borderColor: ColorRes.profitColor,
                                 title: 'Profit',
-                                blance: "৳ 1,94,780.00",
+                                blance: '৳ ${profitController.totalProfitAmount.toStringAsFixed(2)}',
                                 onTap: () {
-                                  Get.to(() => const ProfitScreen());
+                                  Get.to(() => ProfitScreen());
                                 },
-                              ),
-                              HomeSummeryChapterItem(
+                              );
+                            }),
+                            GetBuilder<InvestmentController>(builder: (investmentController) {
+                              return HomeSummeryChapterItem(
                                 titleColor: ColorRes.investColor,
                                 blanceColor: ColorRes.investColor,
                                 borderColor: ColorRes.investColor,
                                 title: 'Invest',
-                                blance: "৳ 9,20,000.00",
+                                blance: '৳ ${investmentController.totalInvestAmount.toStringAsFixed(2)}',
                                 onTap: () {
                                   Get.to(() => const InvestScreen());
                                 },
-                              ),
-                              HomeSummeryChapterItem(
+                              );
+                            }),
+                            GetBuilder<ExpenseController>(builder: (expenseController) {
+                              return HomeSummeryChapterItem(
                                 titleColor: ColorRes.expenseColor,
                                 blanceColor: ColorRes.expenseColor,
                                 borderColor: ColorRes.expenseColor,
                                 title: 'Expense',
-                                blance: "৳ 11,074.00",
+                                blance: '৳ ${expenseController.totalExpenseAmount.toStringAsFixed(2)}',
                                 onTap: () {
-                                  Get.to(() => const ExpenseScreen());
+                                  Get.to(() => ExpenseScreen());
                                 },
-                              ),
-                            ],
-                          ),
+                              );
+                            }),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                GlobalContainer(
-                  backgroundColor: ColorRes.backgroundColor,
-                  width: Get.width,
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      children: [
-                        HomeSummeryChapterItem(
-                          titleColor: ColorRes.green,
-                          blanceColor: ColorRes.green,
-                          borderColor: ColorRes.green,
-                          title: 'Current Balance',
-                          blance: "৳ 1,45,706.00",
-                          onTap: () {
-                            Get.to(() => const ());
-                          },
-                        ),
-                        const SizedBox(height: 5),
-                        HomeSummeryChapterItem(
-                          titleColor: ColorRes.black,
-                          blanceColor: ColorRes.black,
-                          borderColor: ColorRes.black,
-                          title: "Net Balance",
-                          blance: "৳ 10,65,706.00",
-                          onTap: () {
-                            Get.to(() => const ());
-                          },
-                        ),
-                      ],
                     ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                Column(
-                  children: [
-                    GlobalContainer(
-                      backgroundColor: ColorRes.backgroundColor,
-                      width: Get.width,
-                      child: const HomeMemberTableWidget(
-                        firstRow: 'SL',
-                        secondRow: 'Name',
-                        thirdRow: 'Diposit',
-                        fourRow: 'Profit',
-                        fiveRow: 'Blance',
-                      ),
-                    ),
-                    GlobalContainer(
-                      backgroundColor: ColorRes.white,
-                      width: Get.width,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 16,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (ctx, index) {
-                          return const HomeMemberTableValueWidget(
-                            firstColumn: '01',
-                            secondColumn: 'Atiqur Rahman',
-                            thirdColumn: '6,00,000',
-                            fourColumn: '50,000',
-                            fiveColumn: '10,65,000',
+                ],
+              ),
+              GlobalContainer(
+                backgroundColor: ColorRes.backgroundColor,
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: Column(
+                    children: [
+                      GetBuilder<CapitalController>(
+                        builder: (capitalController) {
+                          return GetBuilder<ProfitController>(
+                            builder: (profitController) {
+                              final totalInvest = Get.find<InvestmentController>().totalInvestAmount;
+                              final totalExpense = Get.find<ExpenseController>().totalExpenseAmount;
+                              final currentBalance = (capitalController.totalCapitalAmount + profitController.totalProfitAmount - (totalInvest + totalExpense)).toStringAsFixed(2);
+                              return HomeSummeryChapterItem(
+                                titleColor: ColorRes.green,
+                                blanceColor: ColorRes.green,
+                                borderColor: ColorRes.green,
+                                title: 'Current Balance',
+                                blance: "৳ $currentBalance",
+                                onTap: () {
+                                  // Navigate to the respective screen if needed
+                                },
+                              );
+                            },
                           );
                         },
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 5),
+                      GetBuilder<CapitalController>(
+                        builder: (capitalController) {
+                          return GetBuilder<ExpenseController>(
+                            builder: (expenseController) {
+                              final netBalance = (capitalController.totalCapitalAmount + Get.find<ProfitController>().totalProfitAmount - expenseController.totalExpenseAmount).toStringAsFixed(2);
+                              return HomeSummeryChapterItem(
+                                titleColor: ColorRes.black,
+                                blanceColor: ColorRes.black,
+                                borderColor: ColorRes.black,
+                                title: "Net Balance",
+                                blance: "৳ $netBalance",
+                                onTap: () {
+                                  // Navigate to the respective screen if needed
+                                },
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 10),
+              Column(
+                children: [
+                  GlobalContainer(
+                    backgroundColor: ColorRes.backgroundColor,
+                    width: Get.width,
+                    child: const HomeMemberTableWidget(
+                      firstRow: 'SL',
+                      secondRow: 'Name',
+                      thirdRow: 'Deposit',
+                      fourRow: 'Profit',
+                      fiveRow: 'Balance',
+                    ),
+                  ),
+                  GlobalContainer(
+                    backgroundColor: ColorRes.white,
+                    child: GetBuilder<CapitalController>(
+                      builder: (controller) {
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: controller.capitalData.length,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemBuilder: (ctx, index) {
+                            var data = controller.capitalData[index];
+                            final depositAmount = data.totalDepositAmount; // Assuming data has totalDepositAmount
+                            final profitAmount = Get.find<ProfitController>().totalProfitAmount / 16; // Corrected here
+                            final balance = (depositAmount + (profitAmount)).toStringAsFixed(1); // Calculate balance
+
+                            return HomeMemberTableValueWidget(
+                              firstColumn: data.memberId, // Ensure this displays correctly
+                              secondColumn: data.depositorName,
+                              thirdColumn: depositAmount.toStringAsFixed(0),
+                              fourColumn: profitAmount.toStringAsFixed(1),
+                              fiveColumn: balance,
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+            ],
           ),
         ),
       ),
     );
   }
 }
+

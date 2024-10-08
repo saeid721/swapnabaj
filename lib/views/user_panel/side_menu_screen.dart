@@ -61,25 +61,25 @@ class _SideMenuScreenState extends State<SideMenuScreen> {
                 ChapterItem(
                   title: "Capital",
                   onTap: () {
-                    Get.to(() => const CapitalScreen());
+                    Get.to(() => CapitalScreen());
                   },
                 ),
                 ChapterItem(
                   title: "Profit",
                   onTap: () {
-                    Get.to(() => const ProfitScreen());
+                    Get.to(() => ProfitScreen());
                   },
                 ),
                 ChapterItem(
                   title: "Invest",
                   onTap: () {
-                    Get.to(() => const InvestScreen());
+                    Get.to(() => InvestScreen());
                   },
                 ),
                 ChapterItem(
                   title: "Expense",
                   onTap: () {
-                    Get.to(() => const ExpenseScreen());
+                    Get.to(() => ExpenseScreen());
                   },
                 ),
                 const SizedBox(height: 5),

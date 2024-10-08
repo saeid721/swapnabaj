@@ -47,7 +47,8 @@ class MemberCardTableWidget extends StatelessWidget {
 class MemberCardTableValueWidget extends StatelessWidget {
   final String serial;
   final String name;
-  final String faterName;
+  final String fatherName;
+  final String motherName;
   final String contact;
   final String nid;
   final String email;
@@ -58,7 +59,8 @@ class MemberCardTableValueWidget extends StatelessWidget {
     super.key,
     required this.serial,
     required this.name,
-    required this.faterName,
+    required this.fatherName,
+    required this.motherName,
     required this.contact,
     required this.nid,
     required this.email,
@@ -91,7 +93,13 @@ class MemberCardTableValueWidget extends StatelessWidget {
                         color: ColorRes.textColor,
                       ),
                       textAlign: TextAlign.center),
-                  Text(faterName,
+                  Text(fatherName,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        color: ColorRes.textColor,
+                      ),
+                      textAlign: TextAlign.center),
+                  Text(motherName,
                       style: const TextStyle(
                         fontSize: 12,
                         color: ColorRes.textColor,

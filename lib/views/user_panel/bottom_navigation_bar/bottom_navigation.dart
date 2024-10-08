@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../capital_screen/capital_screen.dart';
+import '../expense_screen/expense_screen.dart';
 import '../home_screen/home_screen.dart';
 import '../profit_screen/profit_screen.dart';
 import '../invest_screen/invest_screen.dart';
@@ -24,11 +26,13 @@ class _BottomNavigationState extends State<BottomNavigation> {
   }
 
   static final List<Widget> _deshBoardBottomScreen = <Widget>[
-    const HomeScreen(),
-    const MemberScreen(),
-    const InvestScreen(),
-    const ProfitScreen(),
-    const SideMenuScreen(),
+    HomeScreen(),
+    //const MemberScreen(),
+    CapitalScreen(),
+    InvestScreen(),
+    ProfitScreen(),
+    ExpenseScreen(),
+    SideMenuScreen(),
   ];
 
   @override

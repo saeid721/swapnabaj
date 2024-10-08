@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import '../../global_widget/colors.dart';
 import '../../models/capital_model/capital_model.dart';
 
@@ -20,7 +19,7 @@ class CapitalController extends GetxController {
     "Md. Shohel Rana": "4",
     "Md.Shakhawat Hossen": "5",
     "Abdullah Al Kafi": "6",
-    "Mst. Taslima Akter Rupa": "7",
+    "Taslima Akter Rupa": "7",
     "Minhazul Islam Saeid": "8",
     "Dipok Kumar": "9",
     "Md. Asif": "10",
