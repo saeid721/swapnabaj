@@ -42,7 +42,7 @@ class AdminCharityDetailsScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() =>  SignInScreen());
+              Get.to(() => SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),
@@ -53,7 +53,7 @@ class AdminCharityDetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 GlobalContainer(
                   backgroundColor: ColorRes.white,
@@ -75,8 +75,8 @@ class AdminCharityDetailsScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-
-                      Text(number,
+                      Text(
+                        number,
                         style: const TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.w700,
@@ -86,17 +86,17 @@ class AdminCharityDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 GlobalContainer(
                   backgroundColor: ColorRes.backgroundColor,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Text("Last Update: $date"
-                            ,
+                          Text(
+                            "Last Update: $date",
                             style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w400,
@@ -108,16 +108,12 @@ class AdminCharityDetailsScreen extends StatelessWidget {
                       const SizedBox(height: 5),
                       Text(
                         charityTitle,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                            color: ColorRes.secondaryColor
-                        ),
+                        style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: ColorRes.secondaryColor),
                       ),
                       const SizedBox(height: 10),
                       Text(
                         details,
-                        textAlign: TextAlign.justify,
+                        textAlign: TextAlign.left,
                         style: const TextStyle(fontSize: 14),
                       ),
                     ],
