@@ -13,7 +13,7 @@ import '../admin_login_screen/admin_login_screen.dart';
 import 'admin_news_details.dart';
 
 class AdminNewsScreen extends StatefulWidget {
-  AdminNewsScreen({super.key});
+  const AdminNewsScreen({super.key});
 
   @override
   State<AdminNewsScreen> createState() => _AdminNewsScreenState();

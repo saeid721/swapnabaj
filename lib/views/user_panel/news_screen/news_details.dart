@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../global_widget/colors.dart';
+import '../../../global_widget/global_container.dart';
+import '../../dashboard/admin_login_screen/admin_login_screen.dart';
 
 class NewsDetailsScreen extends StatelessWidget {
+  final String date;
   final String newsTitle;
-  final String newsDetails;
+  final String imagePath;
+  final String details;
+  final int index;
 
   const NewsDetailsScreen({
     super.key,
     required this.newsTitle,
-    required this.newsDetails,});
+    required this.date,
+    required this.imagePath,
+    required this.details,
+    required this.index,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +39,10 @@ class NewsDetailsScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.login),
+            onPressed: () {
+              Get.to(() => SignInScreen());
+            },
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
@@ -39,27 +51,57 @@ class NewsDetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(
-                  'assets/images/Logo.png',
+                GlobalContainer(
+                  backgroundColor: ColorRes.backgroundColor,
+                  elevation: 2,
+                  child: Hero(
+                    tag: 'logo$index',
+                    child: Container(
+                      height: 200, // Set a fixed height for the image container
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                        image: DecorationImage(
+                          image: AssetImage(imagePath),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                GlobalContainer(
+                  backgroundColor: ColorRes.backgroundColor,
+                  child: Row(
+                    children: [
+                      const Spacer(), // Pushes the date to the right
+                      Text(
+                        date,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400, fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  textAlign: TextAlign.justify,
                   newsTitle,
-                  style:
-                  const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Text(
-                  textAlign: TextAlign.justify,
-                  newsDetails,
-                  style:
-                  const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                  details,
+                  textAlign: TextAlign.left,
+                  style: const TextStyle(fontSize: 14),
                 ),
-
-                const SizedBox(height: 20),
               ],
             ),
           ),

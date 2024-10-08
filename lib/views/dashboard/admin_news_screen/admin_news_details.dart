@@ -30,7 +30,7 @@ class AdminNewsDetailsScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'News - Details',
+          'News',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -51,14 +51,15 @@ class AdminNewsDetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 GlobalContainer(
                   backgroundColor: ColorRes.backgroundColor,
+                  elevation: 2,
                   child: Hero(
                     tag: 'logo$index',
                     child: Container(
-                      height: 250, // Set a fixed height for the image container
+                      height: 200, // Set a fixed height for the image container
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(20),
@@ -72,9 +73,8 @@ class AdminNewsDetailsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
                 GlobalContainer(
-                  backgroundColor: ColorRes.white,
+                  backgroundColor: ColorRes.backgroundColor,
                   child: Row(
                     children: [
                       const Spacer(), // Pushes the date to the right
@@ -96,10 +96,10 @@ class AdminNewsDetailsScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Text(
                   details,
-                  textAlign: TextAlign.justify,
+                  textAlign: TextAlign.left,
                   style: const TextStyle(fontSize: 14),
                 ),
               ],
