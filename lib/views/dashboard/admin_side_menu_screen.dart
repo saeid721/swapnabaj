@@ -30,7 +30,11 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             height: 170,
             child: DrawerHeader(
               decoration: const BoxDecoration(
-                color: ColorRes.secondaryColor,
+                gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  colors: [Color(0xFF007142), Color(0xFF35C147)],
+                ),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -45,8 +45,7 @@ class AdminExpenseScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
             children: [
               GlobalContainer(

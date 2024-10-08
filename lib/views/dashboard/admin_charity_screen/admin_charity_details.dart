@@ -48,82 +48,84 @@ class AdminCharityDetailsScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              GlobalContainer(
-                backgroundColor: ColorRes.white,
-                borderRadius: 10,
-                elevation: 2,
-                child: Column(
-                  children: [
-                    Hero(
-                      tag: 'logo$index',
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: 130,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(imagePath),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GlobalContainer(
+                  backgroundColor: ColorRes.white,
+                  borderRadius: 10,
+                  elevation: 2,
+                  child: Column(
+                    children: [
+                      Hero(
+                        tag: 'logo$index',
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 130,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage(imagePath),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
 
-                    Text(number,
-                      style: const TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w700,
-                        color: ColorRes.secondaryColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
-              GlobalContainer(
-                backgroundColor: ColorRes.backgroundColor,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text("Last Update: $date"
-                          ,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.italic,
-                          ),
+                      Text(number,
+                        style: const TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.w700,
+                          color: ColorRes.secondaryColor,
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      charityTitle,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                          color: ColorRes.secondaryColor
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      details,
-                      textAlign: TextAlign.justify,
-                      style: const TextStyle(fontSize: 14),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-            ],
+                const SizedBox(height: 10),
+                GlobalContainer(
+                  backgroundColor: ColorRes.backgroundColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text("Last Update: $date"
+                            ,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 5),
+                      Text(
+                        charityTitle,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                            color: ColorRes.secondaryColor
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        details,
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),

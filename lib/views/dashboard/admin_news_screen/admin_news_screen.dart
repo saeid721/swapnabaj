@@ -113,173 +113,175 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-        child: Column(
-          children: [
-            GlobalContainer(
-              backgroundColor: ColorRes.white,
-              elevation: 1,
-              width: Get.width,
-              borderRadius: 8,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GlobalTextFormField(
-                      controller: selectNewsDateCon,
-                      titleText: 'Select Date',
-                      hintText: "Select Date".tr,
-                      titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
-                      isDense: true,
-                      decoration: inputDropDecoration,
-                      filled: true,
-                      sufixIcon: GestureDetector(
-                          onTap: () async {
-                            var pickedDate = await showDateOnlyPicker(context);
-                            if (pickedDate != null) {
-                              String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
-                              setState(() {
-                                selectNewsDateCon.text = formattedDate;
-                              });
-                            }
-                          },
-                          child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
-                    ),
-                    const SizedBox(height: 10),
-                    GlobalTextFormField(
-                      controller: selectTitleCon,
-                      titleText: 'Title',
-                      hintText: 'Enter Title',
-                      isDense: true,
-                      decoration: inputDropDecoration,
-                      filled: true,
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Attachment',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
-                      textAlign: TextAlign.left,
-                    ),
-                    sizedBoxH(5),
-                    GlobalButtonWidget(
-                      str: 'Choose File',
-                      height: 50,
-                      width: Get.width,
-                      textSize: 14,
-                      textColor: ColorRes.textColor,
-                      radius: 5,
-                      borderColor: ColorRes.borderColor,
-                      buttomColor: Colors.transparent,
-                      onTap: _pickFile,
-                    ),
-                    if (_fileName != null)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10.0),
-                        child: Text(
-                          'Selected file: $_fileName',
-                          style: const TextStyle(fontSize: 16),
-                        ),
+      body:SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Column(
+            children: [
+              GlobalContainer(
+                backgroundColor: ColorRes.white,
+                elevation: 1,
+                width: Get.width,
+                borderRadius: 8,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GlobalTextFormField(
+                        controller: selectNewsDateCon,
+                        titleText: 'Select Date',
+                        hintText: "Select Date".tr,
+                        titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        filled: true,
+                        sufixIcon: GestureDetector(
+                            onTap: () async {
+                              var pickedDate = await showDateOnlyPicker(context);
+                              if (pickedDate != null) {
+                                String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
+                                setState(() {
+                                  selectNewsDateCon.text = formattedDate;
+                                });
+                              }
+                            },
+                            child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
                       ),
-                    const SizedBox(height: 10),
-                    GlobalTextFormField(
-                      controller: selectDescriptionCon,
-                      titleText: 'Description',
-                      hintText: 'Enter Description',
-                      isDense: true,
-                      decoration: inputDropDecoration,
-                      maxLine: 5,
-                      filled: true,
-                    ),
-                    const SizedBox(height: 20),
-                    GlobalButtonWidget(
-                      str: 'Submit',
-                      height: 45,
-                      onTap: () {},
-                    ),
-                  ],
+                      const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: selectTitleCon,
+                        titleText: 'Title',
+                        hintText: 'Enter Title',
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        filled: true,
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Attachment',
+                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
+                        textAlign: TextAlign.left,
+                      ),
+                      sizedBoxH(5),
+                      GlobalButtonWidget(
+                        str: 'Choose File',
+                        height: 50,
+                        width: Get.width,
+                        textSize: 14,
+                        textColor: ColorRes.textColor,
+                        radius: 5,
+                        borderColor: ColorRes.borderColor,
+                        buttomColor: Colors.transparent,
+                        onTap: _pickFile,
+                      ),
+                      if (_fileName != null)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: Text(
+                            'Selected file: $_fileName',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: selectDescriptionCon,
+                        titleText: 'Description',
+                        hintText: 'Enter Description',
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        maxLine: 5,
+                        filled: true,
+                      ),
+                      const SizedBox(height: 20),
+                      GlobalButtonWidget(
+                        str: 'Submit',
+                        height: 45,
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            GlobalContainer(
-              backgroundColor: ColorRes.backgroundColor,
-              child: SizedBox(
-                height: Get.height,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: newsItems.length,
-                  itemBuilder: (context, index) {
-                    return Stack(children: [
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => AdminNewsDetailsScreen(
-                                newsTitle: newsItems[index]['title'] ?? 'No Title', // Added null check
-                                imagePath: newsItems[index]['image'] ?? 'assets/images/placeholder.png', // Added null check
-                                date: newsItems[index]['date'] ?? 'No Date', // Added null check
-                                details: newsItems[index]['description'] ?? 'No Description', // Added null check
-                                index: index,
-                              ));
-                        },
-                        child: Card(
-                          margin: const EdgeInsets.only(top: 10),
-                          color: Colors.white,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  flex: 4,
-                                  child: Text(
-                                    newsItems[index]['title'] ?? 'No Title', // Added null check
-                                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: ColorRes.textColor),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 5),
-                                    child: Image.asset(
-                                      newsItems[index]['image'] ?? 'assets/images/placeholder.png', // Added null check
-                                      fit: BoxFit.cover,
+              const SizedBox(height: 20),
+              GlobalContainer(
+                backgroundColor: ColorRes.backgroundColor,
+                child: SizedBox(
+                  height: Get.height,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: newsItems.length,
+                    itemBuilder: (context, index) {
+                      return Stack(children: [
+                        InkWell(
+                          onTap: () {
+                            Get.to(() => AdminNewsDetailsScreen(
+                                  newsTitle: newsItems[index]['title'] ?? 'No Title', // Added null check
+                                  imagePath: newsItems[index]['image'] ?? 'assets/images/placeholder.png', // Added null check
+                                  date: newsItems[index]['date'] ?? 'No Date', // Added null check
+                                  details: newsItems[index]['description'] ?? 'No Description', // Added null check
+                                  index: index,
+                                ));
+                          },
+                          child: Card(
+                            margin: const EdgeInsets.only(top: 10),
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    flex: 4,
+                                    child: Text(
+                                      newsItems[index]['title'] ?? 'No Title', // Added null check
+                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: ColorRes.textColor),
                                     ),
                                   ),
-                                ),
-                              ],
+                                  Expanded(
+                                    flex: 1,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      child: Image.asset(
+                                        newsItems[index]['image'] ?? 'assets/images/placeholder.png', // Added null check
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        child: Container(
-                          padding: const EdgeInsets.all(3),
-                          decoration: BoxDecoration(
-                            color: ColorRes.primaryColor.withOpacity(0.05),
-                            borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          child: Container(
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                              color: ColorRes.primaryColor.withOpacity(0.05),
+                              borderRadius: const BorderRadius.only(
+                                bottomLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                              ),
                             ),
-                          ),
-                          child: Text(
-                            newsItems[index]['date'] ?? 'No Date', // Added null check
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 10,
+                            child: Text(
+                              newsItems[index]['date'] ?? 'No Date', // Added null check
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 10,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ]);
-                  },
+                      ]);
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

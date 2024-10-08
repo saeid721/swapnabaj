@@ -24,7 +24,7 @@ class CapitalScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: ColorRes.capitalColor),
         centerTitle: true,
         title: const Text(
-          'Capital',
+          'Deposit',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -59,7 +59,7 @@ class CapitalScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const GlobalText(
-                        str: "Total Capital =",
+                        str: "Total Deposit =",
                         fontSize: 16,
                         textAlign: TextAlign.center,
                         fontWeight: FontWeight.w600,
@@ -100,7 +100,7 @@ class CapitalScreen extends StatelessWidget {
           child: const CapitalTableWidget(
             firstRow: 'SL',
             secondRow: 'Name',
-            thirdRow: 'Total Deposit',
+            thirdRow: 'Amount',
           ),
         ),
         GetBuilder<CapitalController>(builder: (controller) {

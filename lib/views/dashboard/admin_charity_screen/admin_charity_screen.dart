@@ -127,164 +127,165 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-        child: Column(
-          children: [
-            GlobalContainer(
-              backgroundColor: ColorRes.white,
-              elevation: 1,
-              width: Get.width,
-              borderRadius: 8,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GlobalTextFormField(
-                      controller: selectNewsDateCon,
-                      titleText: 'Select Date',
-                      hintText: "Select Date".tr,
-                      titleStyle: const TextStyle(
-                          color: ColorRes.textColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: 'Roboto'),
-                      isDense: true,
-                      decoration: inputDropDecoration,
-                      filled: true,
-                      sufixIcon: GestureDetector(
-                          onTap: () async {
-                            var pickedDate = await showDateOnlyPicker(context);
-                            if (pickedDate != null) {
-                              String formattedDate = DateTimeFormatter
-                                  .showDateOnlyYear
-                                  .format(pickedDate);
-                              setState(() {
-                                selectNewsDateCon.text = formattedDate;
-                              });
-                            }
-                          },
-                          child: const Icon(Icons.calendar_month,
-                              color: ColorRes.textColor, size: 20)),
-                    ),
-                    const SizedBox(height: 10),
-                    GlobalTextFormField(
-                      controller: selectTitleCon,
-                      titleText: 'Title',
-                      hintText: 'Enter Title',
-                      isDense: true,
-                      decoration: inputDropDecoration,
-                      filled: true,
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Attachment',
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
-                      textAlign: TextAlign.left,
-                    ),
-                    sizedBoxH(5),
-                    GlobalButtonWidget(
-                      str: 'Choose File',
-                      height: 50,
-                      width: Get.width,
-                      textSize: 14,
-                      textColor: ColorRes.textColor,
-                      radius: 5,
-                      borderColor: ColorRes.borderColor,
-                      buttomColor: Colors.transparent,
-                      onTap: _pickFile,
-                    ),
-                    if (_fileName != null)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10.0),
-                        child: Text(
-                          'Selected file: $_fileName',
-                          style: const TextStyle(fontSize: 16),
-                        ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Column(
+            children: [
+              GlobalContainer(
+                backgroundColor: ColorRes.white,
+                elevation: 1,
+                width: Get.width,
+                borderRadius: 8,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GlobalTextFormField(
+                        controller: selectNewsDateCon,
+                        titleText: 'Select Date',
+                        hintText: "Select Date".tr,
+                        titleStyle: const TextStyle(
+                            color: ColorRes.textColor,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            fontFamily: 'Roboto'),
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        filled: true,
+                        sufixIcon: GestureDetector(
+                            onTap: () async {
+                              var pickedDate = await showDateOnlyPicker(context);
+                              if (pickedDate != null) {
+                                String formattedDate = DateTimeFormatter
+                                    .showDateOnlyYear
+                                    .format(pickedDate);
+                                setState(() {
+                                  selectNewsDateCon.text = formattedDate;
+                                });
+                              }
+                            },
+                            child: const Icon(Icons.calendar_month,
+                                color: ColorRes.textColor, size: 20)),
                       ),
-                    const SizedBox(height: 10),
-                    GlobalTextFormField(
-                      controller: selectDescriptionCon,
-                      titleText: 'Description',
-                      hintText: 'Enter Description',
-                      isDense: true,
-                      decoration: inputDropDecoration,
-                      maxLine: 5,
-                      filled: true,
-                    ),
-                    const SizedBox(height: 20),
-                    GlobalButtonWidget(
-                      str: 'Submit',
-                      height: 45,
-                      onTap: () {},
-                    ),
-                  ],
+                      const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: selectTitleCon,
+                        titleText: 'Title',
+                        hintText: 'Enter Title',
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        filled: true,
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Attachment',
+                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
+                        textAlign: TextAlign.left,
+                      ),
+                      sizedBoxH(5),
+                      GlobalButtonWidget(
+                        str: 'Choose File',
+                        height: 50,
+                        width: Get.width,
+                        textSize: 14,
+                        textColor: ColorRes.textColor,
+                        radius: 5,
+                        borderColor: ColorRes.borderColor,
+                        buttomColor: Colors.transparent,
+                        onTap: _pickFile,
+                      ),
+                      if (_fileName != null)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10.0),
+                          child: Text(
+                            'Selected file: $_fileName',
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ),
+                      const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: selectDescriptionCon,
+                        titleText: 'Description',
+                        hintText: 'Enter Description',
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        maxLine: 5,
+                        filled: true,
+                      ),
+                      const SizedBox(height: 20),
+                      GlobalButtonWidget(
+                        str: 'Submit',
+                        height: 45,
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            GlobalContainer(
-              backgroundColor: ColorRes.backgroundColor,
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: charityItems.length,
-                itemBuilder: (context, index) {
-                  return Stack(children: [
-                    InkWell(
-                      onTap: () {
-                        Get.to(() => AdminCharityDetailsScreen(
-                          imagePath: charityItems[index]['image'] ?? 'assets/images/placeholder.svg',
-                          number: charityItems[index]['number'] ?? 'Number',
-                          charityTitle: charityItems[index]['title'] ?? 'No Title',
-                          date: charityItems[index]['date'] ?? 'No Date',
-                          details: charityItems[index]['description'] ?? 'No Description',
-                          index: index,
-                        ));
-                      },
-                      child: Card(
-                        margin: const EdgeInsets.only(top: 10),
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              GlobalContainer(
-                                width: Get.width,
-                                child: Image.asset(
-                                  charityItems[index]['image'] ?? 'assets/images/placeholder.png',
-                                  height: 50,
-                                  width: 50,
+              const SizedBox(height: 20),
+              GlobalContainer(
+                backgroundColor: ColorRes.backgroundColor,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: charityItems.length,
+                  itemBuilder: (context, index) {
+                    return Stack(children: [
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => AdminCharityDetailsScreen(
+                            imagePath: charityItems[index]['image'] ?? 'assets/images/placeholder.svg',
+                            number: charityItems[index]['number'] ?? 'Number',
+                            charityTitle: charityItems[index]['title'] ?? 'No Title',
+                            date: charityItems[index]['date'] ?? 'No Date',
+                            details: charityItems[index]['description'] ?? 'No Description',
+                            index: index,
+                          ));
+                        },
+                        child: Card(
+                          margin: const EdgeInsets.only(top: 10),
+                          color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                GlobalContainer(
+                                  width: Get.width,
+                                  child: Image.asset(
+                                    charityItems[index]['image'] ?? 'assets/images/placeholder.png',
+                                    height: 50,
+                                    width: 50,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                charityItems[index]['number'] ?? 'Number',
-                                style: const TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.w700,
-                                    color: ColorRes.secondaryColor),
-                              ),
-                              Text(
-                                charityItems[index]['title'] ?? 'No Title',
-                                style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
-                                    color: ColorRes.textColor),
-                              ),
-                            ],
+                                Text(
+                                  charityItems[index]['number'] ?? 'Number',
+                                  style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.w700,
+                                      color: ColorRes.secondaryColor),
+                                ),
+                                Text(
+                                  charityItems[index]['title'] ?? 'No Title',
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                      color: ColorRes.textColor),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ]);
-                },
+                    ]);
+                  },
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-          ],
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );

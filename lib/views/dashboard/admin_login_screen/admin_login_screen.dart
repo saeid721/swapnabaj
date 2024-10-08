@@ -13,7 +13,7 @@ import '../admin_home_screen/admin_home_screen.dart';
 import 'admin_forget_password.dart';
 
 class SignInScreen extends StatefulWidget {
-  SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({super.key});
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -23,7 +23,6 @@ class _SignInScreenState extends State<SignInScreen> {
   final SignInViewModel _viewModel = SignInViewModel();
 
   final TextEditingController selectEmailCon = TextEditingController();
-
   final TextEditingController selectPasswordCon = TextEditingController();
 
   bool rememberPassword = false;

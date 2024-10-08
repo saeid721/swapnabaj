@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../global_widget/chapter_item_widget.dart';
-import '../../global_widget/colors.dart';
 import 'about_screen/about.dart';
-import 'capital_screen/capital_screen.dart';
 import 'charity_screen/charity_screen.dart';
 import 'contact_screen/contact.dart';
 import 'event_screen/event.dart';
-import 'expense_screen/expense_screen.dart';
 import 'gallery_screen/gallery.dart';
-import 'invest_screen/invest_screen.dart';
-import 'member_screen/member_screen.dart';
 import 'news_screen/news_screen.dart';
 import 'notices_screen/notices_screen.dart';
-import 'profit_screen/profit_screen.dart';
 
 class SideMenuScreen extends StatelessWidget {
   const SideMenuScreen({super.key});
@@ -28,7 +22,11 @@ class SideMenuScreen extends StatelessWidget {
             height: 170,
             child: DrawerHeader(
               decoration: const BoxDecoration(
-                color: ColorRes.secondaryColor,
+                gradient: LinearGradient(
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  colors: [Color(0xFF007142), Color(0xFF35C147)],
+                ),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -41,46 +39,18 @@ class SideMenuScreen extends StatelessWidget {
               ),
             ),
           ),
-          // ChapterItem(
-          //   leadingImage: 'assets/icons/capital.png',
-          //   title: "Capital",
-          //   onTap: () {
-          //     Get.to(() => CapitalScreen());
-          //   },
-          // ),
-          // ChapterItem(
-          //   leadingImage: 'assets/icons/profit.png',
-          //   title: "Profit",
-          //   onTap: () {
-          //     Get.to(() =>  ProfitScreen());
-          //   },
-          // ),
-          // ChapterItem(
-          //   leadingImage: 'assets/icons/invest.png',
-          //   title: "Invest",
-          //   onTap: () {
-          //     Get.to(() => InvestScreen());
-          //   },
-          // ),
-          // ChapterItem(
-          //   leadingImage: 'assets/icons/expense.png',
-          //   title: "Expense",
-          //   onTap: () {
-          //     Get.to(() => ExpenseScreen());
-          //   },
-          // ),
           ChapterItem(
             leadingImage: 'assets/icons/charity.png',
             title: "Charity",
             onTap: () {
-              Get.to(() => CharityScreen());
+              Get.to(() => const CharityScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/gallery.png',
             title: "Gallery",
             onTap: () {
-              Get.to(() => GalleryScreen());
+              Get.to(() => const GalleryScreen());
             },
           ),
           ChapterItem(
@@ -104,25 +74,18 @@ class SideMenuScreen extends StatelessWidget {
               Get.to(() => NoticesScreen());
             },
           ),
-          // ChapterItem(
-          //   leadingImage: 'assets/icons/about.png',
-          //   title: "Members",
-          //   onTap: () {
-          //     Get.to(() => MemberScreen());
-          //   },
-          // ),
           ChapterItem(
             leadingImage: 'assets/icons/about.png',
             title: "About Us",
             onTap: () {
-              Get.to(() => AboutScreen());
+              Get.to(() => const AboutScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/contact.png',
             title: "Contact Us",
             onTap: () {
-              Get.to(() => ContactUsScreen());
+              Get.to(() => const ContactUsScreen());
             },
           ),
         ],

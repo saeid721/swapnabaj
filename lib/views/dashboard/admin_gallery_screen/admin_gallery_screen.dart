@@ -93,121 +93,123 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-        child: Center(
-          child: Column(
-            children: [
-              GlobalContainer(
-                backgroundColor: ColorRes.white,
-                elevation: 1,
-                width: Get.width,
-                borderRadius: 8, // Adjust the width if needed
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GlobalTextFormField(
-                        controller: selectTitleCon,
-                        titleText: 'Title',
-                        hintText: 'Enter Title',
-                        isDense: true,
-                        decoration: inputDropDecoration,
-                        filled: true,
-                      ),
-                      const SizedBox(height: 10),
-                      const Text(
-                        'Attachment',
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
-                        textAlign: TextAlign.left,
-                      ),
-                      sizedBoxH(5),
-                      GlobalButtonWidget(
-                        str: 'Choose File',
-                        height: 50,
-                        width: Get.width,
-                        textSize: 14,
-                        textColor: ColorRes.textColor,
-                        radius: 5,
-                        borderColor: ColorRes.borderColor,
-                        buttomColor: Colors.transparent,
-                        onTap: _pickFile,
-                      ),
-                      if (_fileName != null)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10.0),
-                          child: Text(
-                            'Selected file: $_fileName',
-                            style: const TextStyle(fontSize: 16),
-                          ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Center(
+            child: Column(
+              children: [
+                GlobalContainer(
+                  backgroundColor: ColorRes.white,
+                  elevation: 1,
+                  width: Get.width,
+                  borderRadius: 8, // Adjust the width if needed
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GlobalTextFormField(
+                          controller: selectTitleCon,
+                          titleText: 'Title',
+                          hintText: 'Enter Title',
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          filled: true,
                         ),
-                      const SizedBox(height: 10),
-                      GlobalTextFormField(
-                        controller: selectDescriptionCon,
-                        titleText: 'Description',
-                        hintText: 'Enter Description',
-                        isDense: true,
-                        decoration: inputDropDecoration,
-                        maxLine: 5,
-                        filled: true,
-                      ),
-                      const SizedBox(height: 20),
-                      GlobalButtonWidget(
-                        str: 'Submit',
-                        height: 45,
-                        onTap: () {},
-                      ),
-                    ],
+                        const SizedBox(height: 10),
+                        const Text(
+                          'Attachment',
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
+                          textAlign: TextAlign.left,
+                        ),
+                        sizedBoxH(5),
+                        GlobalButtonWidget(
+                          str: 'Choose File',
+                          height: 50,
+                          width: Get.width,
+                          textSize: 14,
+                          textColor: ColorRes.textColor,
+                          radius: 5,
+                          borderColor: ColorRes.borderColor,
+                          buttomColor: Colors.transparent,
+                          onTap: _pickFile,
+                        ),
+                        if (_fileName != null)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10.0),
+                            child: Text(
+                              'Selected file: $_fileName',
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                          ),
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: selectDescriptionCon,
+                          titleText: 'Description',
+                          hintText: 'Enter Description',
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          maxLine: 5,
+                          filled: true,
+                        ),
+                        const SizedBox(height: 20),
+                        GlobalButtonWidget(
+                          str: 'Submit',
+                          height: 45,
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              GlobalContainer(
-                backgroundColor: ColorRes.backgroundColor,
-                child: SizedBox(
-                  height: 400, // Set a fixed height for the GridView
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(), // Prevent GridView from scrolling
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ),
-                    itemCount: _images.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          Get.to(
-                            () => DetailsPage(
-                              imagePath: _images[index].imagePath,
-                              title: _images[index].title,
-                              details: _images[index].details,
-                              index: index,
-                            ),
-                          );
-                        },
-                        child: Hero(
-                          tag: 'logo$index',
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              image: DecorationImage(
-                                image: AssetImage(_images[index].imagePath),
-                                fit: BoxFit.cover,
+                const SizedBox(height: 20),
+                GlobalContainer(
+                  backgroundColor: ColorRes.backgroundColor,
+                  child: SizedBox(
+                    height: 400, // Set a fixed height for the GridView
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(), // Prevent GridView from scrolling
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                      ),
+                      itemCount: _images.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Get.to(
+                              () => DetailsPage(
+                                imagePath: _images[index].imagePath,
+                                title: _images[index].title,
+                                details: _images[index].details,
+                                index: index,
+                              ),
+                            );
+                          },
+                          child: Hero(
+                            tag: 'logo$index',
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                  image: AssetImage(_images[index].imagePath),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-            ],
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),

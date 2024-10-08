@@ -46,124 +46,125 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-        child: Center(
-          child: Column(
-            children: [
-              GlobalContainer(
-                backgroundColor: ColorRes.white,
-                elevation: 1,
-                width: Get.width,
-                borderRadius: 8, // Adjust the width if needed
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 10),
-                      GlobalTextFormField(
-                        controller: selectPhoneCon,
-                        titleText: 'Phone',
-                        hintText: 'Enter Phone',
-                        isDense: true,
-                        keyboardType: TextInputType.number,
-                        decoration: inputDropDecoration,
-                        filled: true,
-                      ),
-                      const SizedBox(height: 10),
-                      GlobalTextFormField(
-                        controller: selectEmailCon,
-                        titleText: 'Email',
-                        hintText: 'Enter Email',
-                        isDense: true,
-                        decoration: inputDropDecoration,
-                        filled: true,
-                      ),
-                      const SizedBox(height: 10),
-                      GlobalTextFormField(
-                        controller: selectWebsiteCon,
-                        titleText: 'Website',
-                        hintText: 'Enter Website',
-                        isDense: true,
-                        decoration: inputDropDecoration,
-                        filled: true,
-                      ),
-                      const SizedBox(height: 10),
-                      GlobalTextFormField(
-                        controller: selectAddressCon,
-                        titleText: 'Address',
-                        hintText: 'Enter Address',
-                        isDense: true,
-                        decoration: inputDropDecoration,
-                        maxLine: 4,
-                        filled: true,
-                      ),
-                      const SizedBox(height: 20),
-                      GlobalButtonWidget(
-                        str: 'Submit',
-                        height: 45,
-                        onTap: () {},
-                      ),
-                    ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Center(
+            child: Column(
+              children: [
+                GlobalContainer(
+                  backgroundColor: ColorRes.white,
+                  elevation: 1,
+                  width: Get.width,
+                  borderRadius: 8, // Adjust the width if needed
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: selectPhoneCon,
+                          titleText: 'Phone',
+                          hintText: 'Enter Phone',
+                          isDense: true,
+                          keyboardType: TextInputType.number,
+                          decoration: inputDropDecoration,
+                          filled: true,
+                        ),
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: selectEmailCon,
+                          titleText: 'Email',
+                          hintText: 'Enter Email',
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          filled: true,
+                        ),
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: selectWebsiteCon,
+                          titleText: 'Website',
+                          hintText: 'Enter Website',
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          filled: true,
+                        ),
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: selectAddressCon,
+                          titleText: 'Address',
+                          hintText: 'Enter Address',
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          maxLine: 4,
+                          filled: true,
+                        ),
+                        const SizedBox(height: 20),
+                        GlobalButtonWidget(
+                          str: 'Submit',
+                          height: 45,
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              GlobalContainer(
-                backgroundColor: ColorRes.white,
-                elevation: 1,
-                width: Get.width,
-                borderRadius: 8, // Adjust the width if needed
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Address:',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Bogura, Dhaka, Bangladesh',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(height: 24),
-                      Text(
-                        'Phone:',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '+88 01703 030 721',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(height: 24),
-                      Text(
-                        'Email:',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'info@swapnobaj.com',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      SizedBox(height: 24),
-                      Text(
-                        'Website:',
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'www.swapnobaj.com',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
+                const SizedBox(height: 20),
+                GlobalContainer(
+                  backgroundColor: ColorRes.white,
+                  elevation: 1,
+                  width: Get.width,
+                  borderRadius: 8, // Adjust the width if needed
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Address:',
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'Bogura, Dhaka, Bangladesh',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        SizedBox(height: 24),
+                        Text(
+                          'Phone:',
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '+88 01703 030 721',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        SizedBox(height: 24),
+                        Text(
+                          'Email:',
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'info@swapnobaj.com',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        SizedBox(height: 24),
+                        Text(
+                          'Website:',
+                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'www.swapnobaj.com',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 20),
-            ],
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
