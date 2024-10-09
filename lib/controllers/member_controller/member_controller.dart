@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../global_widget/colors.dart';
 import '../../models/member_model/member_model.dart';
 
-class AdminMemberController extends GetxController {
+class MembersController extends GetxController {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  var membersData = <Member>[];
+
   final memberNameCon = TextEditingController();
   final memberFatherNameCon = TextEditingController();
   final memberMotherNameCon = TextEditingController();
@@ -11,10 +15,27 @@ class AdminMemberController extends GetxController {
   final memberEmailCon = TextEditingController();
   final memberAddressCon = TextEditingController();
 
-  var members = <Member>[].obs;
+  @override
+  void onInit() {
+    super.onInit();
+    fetchMembersData(); // Fetch data when controller initializes
+  }
 
-  Future<void> submitData() async {
-    await FirebaseFirestore.instance.collection('members').add({
+// Fetch Member Data from Firestore and sort by memberId descending
+  Future<void> fetchMembersData() async {
+    final snapshot = await _firestore.collection('membersData').get();
+    membersData.clear();
+    membersData.addAll(snapshot.docs.map((doc) => Member.fromDocument(doc.data(), doc.id)).toList());
+    update(); // Notify UI to update
+  }
+
+  Future<void> submitMemberData() async {
+    if (memberNameCon.text.isEmpty || memberFatherNameCon.text.isEmpty || memberMotherNameCon.text.isEmpty || memberPhoneCon.text.isEmpty || memberEmailCon.text.isEmpty || memberAddressCon.text.isEmpty) {
+      Get.snackbar('Error', 'All fields must be completed', colorText: ColorRes.red);
+      return;
+    }
+
+    await FirebaseFirestore.instance.collection('membersData').add({
       'name': memberNameCon.text,
       'father_name': memberFatherNameCon.text,
       'mother_name': memberMotherNameCon.text,
@@ -23,22 +44,20 @@ class AdminMemberController extends GetxController {
       'address': memberAddressCon.text,
       // file_name can be added if required
     });
+    await fetchMembersData();
 
-    clearFields();
-    await fetchMembers();
+    // Clear input fields and notify success
+    clearInputs();
+    Get.snackbar('Success', 'Member data saved successfully');
+    update();
   }
 
-  void clearFields() {
+  void clearInputs() {
     memberNameCon.clear();
     memberFatherNameCon.clear();
     memberMotherNameCon.clear();
     memberPhoneCon.clear();
     memberEmailCon.clear();
     memberAddressCon.clear();
-  }
-
-  Future<void> fetchMembers() async {
-    final snapshot = await FirebaseFirestore.instance.collection('members').get();
-    members.assignAll(snapshot.docs.map((doc) => Member.fromDocument(doc.data(), doc.id)).toList());
   }
 }

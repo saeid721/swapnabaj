@@ -12,12 +12,14 @@ import '../../../global_widget/input_decoration.dart';
 import 'component/admin_member_card_widget.dart';
 
 class AdminMemberScreen extends StatefulWidget {
+  const AdminMemberScreen({super.key});
+
   @override
   State<AdminMemberScreen> createState() => _AdminMemberScreenState();
 }
 
 class _AdminMemberScreenState extends State<AdminMemberScreen> {
-  final AdminMemberController controller = Get.put(AdminMemberController());
+  final MembersController controller = Get.put(MembersController());
   String? _fileName;
 
   Future<void> _pickFile() async {
@@ -27,12 +29,6 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
         _fileName = result.files.single.name;
       });
     }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    controller.fetchMembers(); // Fetch members on screen load
   }
 
   @override
@@ -101,6 +97,7 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                         controller: controller.memberPhoneCon,
                         titleText: 'Phone',
                         hintText: 'Enter Phone',
+                        keyboardType: TextInputType.phone,
                         decoration: inputDropDecoration,
                         isDense: true,
                         filled: true,
@@ -110,6 +107,7 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                         controller: controller.memberEmailCon,
                         titleText: 'Email',
                         hintText: 'Enter Email',
+                        keyboardType: TextInputType.emailAddress,
                         decoration: inputDropDecoration,
                         isDense: true,
                         filled: true,
@@ -154,7 +152,7 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                         str: 'Submit',
                         height: 45,
                         onTap: () async {
-                          await controller.submitData(); // Call submit data in the controller
+                          await controller.submitMemberData(); // Call submit data in the controller
                         },
                       ),
                     ],
@@ -174,16 +172,24 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                       fontWeight: FontWeight.w700,
                       color: ColorRes.primaryColor,
                     ),
-                    GlobalContainer(
-                      child: Obx(() {
-                        return controller.members.isEmpty
-                            ? const Center(child: Text('No members found.'))
-                            : ListView.builder(
-                          itemCount: controller.members.length,
+                    GetBuilder<MembersController>(builder: (controller) {
+                      if (controller.membersData.isEmpty) {
+                        return const Center(
+                          child: Text(
+                            'No Members Data Found',
+                            style: TextStyle(fontSize: 14, color: Colors.grey),
+                          ),
+                        );
+                      }
+                      return GlobalContainer(
+                        backgroundColor: ColorRes.white,
+                        width: Get.width,
+                        child: ListView.builder(
                           shrinkWrap: true,
+                          itemCount: controller.membersData.length,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (BuildContext context, int index) {
-                            var member = controller.members[index];
+                            var member = controller.membersData[index];
                             return MemberCardTableValueWidget(
                               memberId: member.memberId,
                               name: member.name,
@@ -196,13 +202,13 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                               imagePath: member.fileName ?? 'assets/images/placeholder.png',
                             );
                           },
-                        );
-                      }),
-                    ),
+                        ),
+                      );
+                    }),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
             ],
           ),
         ),

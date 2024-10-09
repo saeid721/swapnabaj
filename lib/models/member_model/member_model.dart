@@ -23,7 +23,7 @@ class Member {
 
   factory Member.fromDocument(Map<String, dynamic> data, String id) {
     return Member(
-      memberId: id, // Use the document ID
+      memberId: id,
       name: data['name'] ?? '',
       fatherName: data['father_name'] ?? '',
       motherName: data['mother_name'] ?? '',
