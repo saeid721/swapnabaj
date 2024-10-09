@@ -36,7 +36,7 @@ class MembersController extends GetxController {
   }
 
   Future<void> submitMemberData() async {
-    if (memberNameCon.text.isEmpty || memberFatherNameCon.text.isEmpty || memberMotherNameCon.text.isEmpty || memberNidCon.text.isEmpty ||  memberPhoneCon.text.isEmpty || memberEmailCon.text.isEmpty || memberAddressCon.text.isEmpty) {
+    if (memberNameCon.text.isEmpty || memberFatherNameCon.text.isEmpty || memberMotherNameCon.text.isEmpty || memberPhoneCon.text.isEmpty || memberEmailCon.text.isEmpty || memberAddressCon.text.isEmpty) {
       Get.snackbar('Error', 'All fields must be completed', colorText: ColorRes.red);
       return;
     }

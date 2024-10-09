@@ -19,7 +19,7 @@ class AdminMemberScreen extends StatefulWidget {
 
 class _AdminMemberScreenState extends State<AdminMemberScreen> {
   final MembersController controller = Get.put(MembersController());
-  String? _fileName;
+  String? fileName;
 
   Future<void> pickFile() async {
     final result = await FilePicker.platform.pickFiles(
@@ -130,6 +130,7 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                         controller: controller.memberAddressCon,
                         titleText: 'Address',
                         hintText: 'Enter Address',
+                        maxLine: 3,
                         decoration: inputDropDecoration,
                         isDense: true,
                         filled: true,
@@ -152,11 +153,11 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                         buttomColor: Colors.transparent,
                         onTap: pickFile,
                       ),
-                      if (_fileName != null)
+                      if (fileName != null)
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10.0),
                           child: Text(
-                            'Selected file: ${_fileName!.split('/').last}',
+                            'Selected file: ${fileName!.split('/').last}',
                             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                           ),
                         ),
