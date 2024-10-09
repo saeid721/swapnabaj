@@ -5,7 +5,6 @@ import '../../../controllers/member_controller/member_controller.dart';
 import '../../../global_widget/global_button.dart';
 import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_sizedbox.dart';
-import '../../../global_widget/global_text.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/input_decoration.dart';
@@ -22,15 +21,19 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
   final MembersController controller = Get.put(MembersController());
   String? _fileName;
 
-  Future<void> _pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-    if (result != null) {
-      setState(() {
-        _fileName = result.files.single.name;
-      });
+  Future<void> pickFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'jepg', 'png', 'gif'],
+    );
+    if (result != null && result.files.isNotEmpty) {
+      controller.fileName = result.files.first.path; // Get the file path
+      Get.snackbar('Success', 'File selected successfully', colorText: ColorRes.green);
+    } else {
+      Get.snackbar('Error', 'No file selected', colorText: ColorRes.red);
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,6 +97,16 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                       ),
                       sizedBoxH(10),
                       GlobalTextFormField(
+                        controller: controller.memberNidCon,
+                        titleText: 'NID',
+                        hintText: 'Enter NID',
+                        keyboardType: TextInputType.phone,
+                        decoration: inputDropDecoration,
+                        isDense: true,
+                        filled: true,
+                      ),
+                      sizedBoxH(10),
+                      GlobalTextFormField(
                         controller: controller.memberPhoneCon,
                         titleText: 'Phone',
                         hintText: 'Enter Phone',
@@ -137,82 +150,77 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                         radius: 5,
                         borderColor: ColorRes.borderColor,
                         buttomColor: Colors.transparent,
-                        onTap: _pickFile,
+                        onTap: pickFile,
                       ),
                       if (_fileName != null)
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10.0),
                           child: Text(
-                            'Selected file: $_fileName',
-                            style: const TextStyle(fontSize: 16),
+                            'Selected file: ${_fileName!.split('/').last}',
+                            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                           ),
                         ),
                       sizedBoxH(20),
                       GlobalButtonWidget(
                         str: 'Submit',
-                        height: 45,
-                        onTap: () async {
-                          await controller.submitMemberData(); // Call submit data in the controller
-                        },
+                        height: 50,
+                        width: Get.width,
+                        textSize: 14,
+                        onTap: controller.submitMemberData,
                       ),
                     ],
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              GlobalContainer(
-                width: Get.width,
-                borderRadius: 8,
-                child: Column(
-                  children: [
-                    const GlobalText(
-                      str: "Members list",
-                      fontSize: 20,
-                      textAlign: TextAlign.center,
-                      fontWeight: FontWeight.w700,
-                      color: ColorRes.primaryColor,
+              sizedBoxH(20),
+
+              buildTableHeaders(),
+              GetBuilder<MembersController>(builder: (controller) {
+                if (controller.membersData.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'No Members Data Found',
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
                     ),
-                    GetBuilder<MembersController>(builder: (controller) {
-                      if (controller.membersData.isEmpty) {
-                        return const Center(
-                          child: Text(
-                            'No Members Data Found',
-                            style: TextStyle(fontSize: 14, color: Colors.grey),
-                          ),
-                        );
-                      }
-                      return GlobalContainer(
-                        backgroundColor: ColorRes.white,
-                        width: Get.width,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: controller.membersData.length,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (BuildContext context, int index) {
-                            var member = controller.membersData[index];
-                            return MemberCardTableValueWidget(
-                              memberId: member.memberId,
-                              name: member.name,
-                              fatherName: member.fatherName,
-                              motherName: member.motherName,
-                              nid: member.nid,
-                              contact: member.phone,
-                              email: member.email,
-                              address: member.address,
-                              imagePath: member.fileName ?? 'assets/images/placeholder.png',
-                            );
-                          },
-                        ),
-                      );
-                    }),
-                    const SizedBox(height: 20),
-                  ],
-                ),
-              ),
+                  );
+                }
+                return GlobalContainer(
+                    backgroundColor: ColorRes.white,
+                    width: Get.width,
+                    child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: controller.membersData.length,
+                  itemBuilder: (context, index) {
+                    final member = controller.membersData[index];
+                    return MemberCardTableValueWidget(
+                      memberId: (index + 1).toString(),
+                      name: member.name,
+                      fatherName: member.fatherName,
+                      motherName: member.motherName,
+                      nid: member.nid,
+                      contact: member.phone,
+                      email: member.email,
+                      address: member.address,
+                      imagePath: member.fileUrl ?? 'assets/images/placeholder.png',
+                    );
+                  },
+                    ),
+                );
+              }),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget buildTableHeaders() {
+    return const Row(
+      children: [
+        MemberCardTableWidget(flex: 1, text: 'No.'),
+        MemberCardTableWidget(flex: 7, text: 'Details'),
+        MemberCardTableWidget(flex: 3, text: 'Image'),
+      ],
     );
   }
 }
