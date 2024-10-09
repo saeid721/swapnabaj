@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controllers/member_controller/member_controller.dart';
 import '../../dashboard/admin_login_screen/admin_login_screen.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
 import '../side_menu_screen.dart';
 import 'component/member_card_widget.dart';
-import 'component/member_data.dart';
 
 class MemberScreen extends StatelessWidget {
   const MemberScreen({super.key});
@@ -43,31 +43,41 @@ class MemberScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GlobalContainer(
-                child: Column(
-                  children: [
-                    buildTableHeaders(),
-                    ListView.builder(
-                      itemCount: name.length,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (BuildContext context, int index) {
-                        return MemberCardTableValueWidget(
-                          serial: sl[index],
-                          name: name[index],
-                          faterName: fatherName[index],
-                          contact: contact[index],
-                          nid: nid[index],
-                          email: email[index],
-                          address: address[index],
-                          imagePath: image[index],
-                        );
-                      },
+
+              buildTableHeaders(),
+              GetBuilder<MembersController>(builder: (controller) {
+                if (controller.membersData.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'No Members Data Found',
+                      style: TextStyle(fontSize: 14, color: Colors.grey),
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 20),
+                  );
+                }
+                return GlobalContainer(
+                  backgroundColor: ColorRes.white,
+                  width: Get.width,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.membersData.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final member = controller.membersData[index];
+                      return MemberCardTableValueWidget(
+                        memberId: (index + 1).toString(),
+                        name: member.name,
+                        fatherName: member.fatherName,
+                        motherName: member.motherName,
+                        nid: member.nid,
+                        contact: member.phone,
+                        email: member.email,
+                        address: member.address,
+                        imagePath: member.fileUrl!,
+                      );
+                    },
+                  ),
+                );
+              }),
             ],
           ),
         ),

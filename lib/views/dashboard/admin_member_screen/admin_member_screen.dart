@@ -202,7 +202,7 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                       contact: member.phone,
                       email: member.email,
                       address: member.address,
-                      imagePath: member.fileUrl ?? 'assets/images/placeholder.png',
+                      imagePath: member.fileUrl!,
                     );
                   },
                     ),

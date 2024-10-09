@@ -45,9 +45,10 @@ class MemberCardTableWidget extends StatelessWidget {
 }
 
 class MemberCardTableValueWidget extends StatelessWidget {
-  final String serial;
+  final String memberId;
   final String name;
-  final String faterName;
+  final String fatherName;
+  final String motherName;
   final String contact;
   final String nid;
   final String email;
@@ -56,9 +57,10 @@ class MemberCardTableValueWidget extends StatelessWidget {
 
   const MemberCardTableValueWidget({
     super.key,
-    required this.serial,
+    required this.memberId,
     required this.name,
-    required this.faterName,
+    required this.fatherName,
+    required this.motherName,
     required this.contact,
     required this.nid,
     required this.email,
@@ -73,7 +75,7 @@ class MemberCardTableValueWidget extends StatelessWidget {
         Expanded(
           flex: 1,
           child: buildContainer(
-            Center(child: Text(serial, style: const TextStyle(fontSize: 12))),
+            Center(child: Text(memberId, style: const TextStyle(fontSize: 12))),
           ),
         ),
         Expanded(
@@ -82,45 +84,82 @@ class MemberCardTableValueWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(name,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
-                  Text(faterName,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
-                  Text(contact,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
-                  Text(nid,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
-                  Text(email,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
-                  Text(address,
-                      style: const TextStyle(
-                        fontSize: 10,
-                        color: ColorRes.textColor,
-                      ),
-                      textAlign: TextAlign.center),
+                  Text(name, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: ColorRes.textColor)),
+                  Text.rich(
+                    textAlign: TextAlign.justify,
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: "Father: ",
+                          style: TextStyle(fontSize: 12, color: ColorRes.textColor, fontWeight: FontWeight.w500),
+                        ),
+                        TextSpan(text: fatherName, style: const TextStyle(fontSize: 12, color: ColorRes.textColor)),
+                      ],
+                    ),
+                  ),
+                  Text.rich(
+                    textAlign: TextAlign.justify,
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: "Mother: ",
+                          style: TextStyle(fontSize: 12, color: ColorRes.textColor, fontWeight: FontWeight.w500),
+                        ),
+                        TextSpan(text: motherName, style: const TextStyle(fontSize: 12, color: ColorRes.textColor)),
+                      ],
+                    ),
+                  ),
+                  Text.rich(
+                    textAlign: TextAlign.justify,
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: "Phone: ",
+                          style: TextStyle(fontSize: 12, color: ColorRes.textColor, fontWeight: FontWeight.w500),
+                        ),
+                        TextSpan(text: contact, style: const TextStyle(fontSize: 12, color: ColorRes.textColor)),
+                      ],
+                    ),
+                  ),
+                  Text.rich(
+                    textAlign: TextAlign.justify,
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: "NID: ",
+                          style: TextStyle(fontSize: 12, color: ColorRes.textColor, fontWeight: FontWeight.w500),
+                        ),
+                        TextSpan(text: nid, style: const TextStyle(fontSize: 12, color: ColorRes.textColor)),
+                      ],
+                    ),
+                  ),
+                  Text.rich(
+                    textAlign: TextAlign.justify,
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: "Email: ",
+                          style: TextStyle(fontSize: 12, color: ColorRes.textColor, fontWeight: FontWeight.w500),
+                        ),
+                        TextSpan(text: email, style: const TextStyle(fontSize: 12, color: ColorRes.textColor)),
+                      ],
+                    ),
+                  ),
+                  Text.rich(
+                    textAlign: TextAlign.justify,
+                    TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: "Address: ",
+                          style: TextStyle(fontSize: 12, color: ColorRes.textColor, fontWeight: FontWeight.w500),
+                        ),
+                        TextSpan(text: address, style: const TextStyle(fontSize: 12, color: ColorRes.textColor)),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -131,7 +170,7 @@ class MemberCardTableValueWidget extends StatelessWidget {
           child: buildContainer(
             Padding(
               padding: const EdgeInsets.all(5.0),
-              child: Image.asset(imagePath, width: 250, fit: BoxFit.contain),
+              child: imagePath.isNotEmpty ? Image.network(imagePath, fit: BoxFit.contain) : Image.asset(imagePath, fit: BoxFit.contain),
             ),
           ),
         ),
@@ -141,7 +180,7 @@ class MemberCardTableValueWidget extends StatelessWidget {
 
   Widget buildContainer(Widget child) {
     return SizedBox(
-      height: 145,
+      height: 185,
       child: Container(
         decoration: const BoxDecoration(
           border: Border(
