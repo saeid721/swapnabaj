@@ -190,6 +190,7 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                     child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: controller.membersData.length,
+                  physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     final member = controller.membersData[index];
                     return MemberCardTableValueWidget(
