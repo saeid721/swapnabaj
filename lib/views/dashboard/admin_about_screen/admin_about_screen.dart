@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controllers/about_us_controller/about_us_controller.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_button.dart';
 import '../../../global_widget/global_container.dart';
@@ -13,23 +14,27 @@ class AdminAboutScreen extends StatefulWidget {
   const AdminAboutScreen({super.key});
 
   @override
-  _AdminAboutScreenState createState() => _AdminAboutScreenState();
+  State<AdminAboutScreen> createState() => _AdminAboutScreenState();
 }
 
 class _AdminAboutScreenState extends State<AdminAboutScreen> {
+  final AboutUsController controller = Get.put(AboutUsController());
+  String? fileName;
 
-  final TextEditingController aboutTitleCon = TextEditingController();
-  final TextEditingController aboutDescriptionCon = TextEditingController();
-
-  String? _fileName;
-
-  Future<void> _pickFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-
-    if (result != null) {
+  Future<void> pickFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+    );
+    if (result != null && result.files.isNotEmpty) {
+      controller.fileName = result.files.first.path; // Get the file path
       setState(() {
-        _fileName = result.files.single.name;
+        fileName = result.files.first.path;
       });
+      Get.snackbar('Success', 'File selected successfully', colorText: ColorRes.green);
+    } else {
+      Get.snackbar('Error', 'No file selected', colorText: ColorRes.red);
     }
   }
 
@@ -53,7 +58,7 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() =>  SignInScreen());
+              Get.to(() => const SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),
@@ -77,14 +82,33 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GlobalTextFormField(
-                          controller: aboutTitleCon,
+                          controller: controller.aboutTitleCon,
                           titleText: 'Title',
-                          hintText: 'Enter Title',
+                          hintText: 'Enter Title *',
                           isDense: true,
                           decoration: inputDropDecoration,
                           filled: true,
                         ),
                         const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: controller.aboutSubTitleCon,
+                          titleText: 'Sub Title',
+                          hintText: 'Enter Sub Title ',
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          filled: true,
+                        ),
+                        sizedBoxH(10),
+                        GlobalTextFormField(
+                          controller: controller.aboutDescriptionCon,
+                          titleText: 'Description',
+                          hintText: 'Enter Description *',
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          maxLine: 5,
+                          filled: true,
+                        ),
+                        sizedBoxH(10),
                         const Text(
                           'Attachment',
                           style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
@@ -100,81 +124,91 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                           radius: 5,
                           borderColor: ColorRes.borderColor,
                           buttomColor: Colors.transparent,
-                          onTap: _pickFile,
+                          onTap: pickFile,
                         ),
-                        if (_fileName != null)
+                        if (fileName != null)
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10.0),
                             child: Text(
-                              'Selected file: $_fileName',
-                              style: const TextStyle(fontSize: 16),
+                              'Selected file: ${fileName!.split('/').last}',
+                              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                             ),
                           ),
-                        sizedBoxH(10),
-                        GlobalTextFormField(
-                          controller: aboutDescriptionCon,
-                          titleText: 'Description',
-                          hintText: 'Enter Description',
-                          isDense: true,
-                          decoration: inputDropDecoration,
-                          maxLine: 5,
-                          filled: true,
-                        ),
                         sizedBoxH(20),
                         GlobalButtonWidget(
                           str: 'Submit',
                           height: 45,
-                          onTap: () {},
+                          onTap: controller.submitAboutUsData,
                         ),
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: 20),
-                GlobalContainer(
-                  backgroundColor: ColorRes.white,
-                  elevation: 1,
-                  width: Get.width,
-                  borderRadius: 8,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/placeholder.png',
-                          width: 220,
+                GetBuilder<AboutUsController>(builder: (aboutUsController) {
+                  if (aboutUsController.aboutUsData.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No About Us Data Found',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    );
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: aboutUsController.aboutUsData.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final aboutUs = aboutUsController.aboutUsData[index];
+                      return GlobalContainer(
+                        backgroundColor: ColorRes.backgroundColor,
+                        width: Get.width,
+                        child: Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              if (aboutUs.fileUrl != null)
+                                GlobalContainer(
+                                  elevation: 3,
+                                  width: Get.width,
+                                  borderRadius: 8,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      aboutUs.fileUrl!,
+                                      height: 190,
+                                      width: Get.width,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              const SizedBox(height: 5),
+                              Text(
+                                aboutUs.title,
+                                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                aboutUs.subTitle,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                aboutUs.description,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                              ),
+                            ],
+                          ),
                         ),
-                        const SizedBox(height: 20),
-                        const Text(
-                          'Title Data',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          """Description data""",
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
+                      );
+                    },
+                  );
+                }),
               ],
             ),
           ),
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    aboutTitleCon.dispose();
-    aboutDescriptionCon.dispose();
-    super.dispose();
   }
 }

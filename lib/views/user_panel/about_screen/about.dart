@@ -1,14 +1,39 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../controllers/about_us_controller/about_us_controller.dart';
 import '../../../global_widget/colors.dart';
+import '../../../global_widget/global_container.dart';
+import '../../dashboard/admin_login_screen/admin_login_screen.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
 
   @override
-  _AboutScreenState createState() => _AboutScreenState();
+  State<AboutScreen> createState() => _AboutScreenState();
 }
 
 class _AboutScreenState extends State<AboutScreen> {
+  final AboutUsController controller = Get.put(AboutUsController());
+  String? fileName;
+
+  Future<void> pickFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+    );
+    if (result != null && result.files.isNotEmpty) {
+      controller.fileName = result.files.first.path; // Get the file path
+      setState(() {
+        fileName = result.files.first.path;
+      });
+      Get.snackbar('Success', 'File selected successfully', colorText: ColorRes.green);
+    } else {
+      Get.snackbar('Error', 'No file selected', colorText: ColorRes.red);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,60 +53,80 @@ class _AboutScreenState extends State<AboutScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.login),
+            onPressed: () {
+              Get.to(() => const SignInScreen());
+            },
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-        child: Center(
-          child: Column(
-            children: [
-              Image.asset(
-                'assets/images/logo2.png',
-                width: 220,
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                'About Us',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 10),
-              const Column(
-                children: [
-                  Text.rich(
-                    textAlign: TextAlign.justify,
-                    TextSpan(
-                      children: [TextSpan(
-                          text: "What is Lorem Ipsum? ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Center(
+            child: Column(
+              children: [
+                GetBuilder<AboutUsController>(builder: (aboutUsController) {
+                  if (aboutUsController.aboutUsData.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No About Us Data Found',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    );
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: aboutUsController.aboutUsData.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final aboutUs = aboutUsController.aboutUsData[index];
+                      return GlobalContainer(
+                        backgroundColor: ColorRes.backgroundColor,
+                        width: Get.width,
+                        child: Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              if (aboutUs.fileUrl != null)
+                                GlobalContainer(
+                                  elevation: 3,
+                                  width: Get.width,
+                                  borderRadius: 8,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      aboutUs.fileUrl!,
+                                      height: 190,
+                                      width: Get.width,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              const SizedBox(height: 5),
+                              Text(
+                                aboutUs.title,
+                                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                aboutUs.subTitle,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                aboutUs.description,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                              ),
+                            ],
+                          ),
                         ),
-                        TextSpan(
-                            text:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
-                      ],
-                    ),
-                  ),
-                  Text.rich(
-                    textAlign: TextAlign.justify,
-                    TextSpan(
-                      children: [
-                        TextSpan(
-                          text: "Organizational Structure: ",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        TextSpan(
-                            text:
-                                """Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32."""),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                ],
-              ),
-            ],
+                      );
+                    },
+                  );
+                }),
+              ],
+            ),
           ),
         ),
       ),

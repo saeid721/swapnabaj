@@ -8,6 +8,7 @@ import '../../../global_widget/global_sizedbox.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/input_decoration.dart';
+import '../admin_login_screen/admin_login_screen.dart';
 import 'component/admin_member_card_widget.dart';
 
 class AdminMemberScreen extends StatefulWidget {
@@ -51,6 +52,14 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
             color: ColorRes.primaryColor,
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(() =>  SignInScreen());
+            },
+            icon: const Icon(Icons.logout),
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
