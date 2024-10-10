@@ -3,13 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 import '../../global_widget/colors.dart';
 import '../../models/about_us_model/about_us_model.dart';
 
 class AboutUsController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance; // Firebase Storage instance
-  var aboutUsData = <AboutUs>[];
+  var aboutUsData = <AboutUsModel>[];
 
   final aboutTitleCon = TextEditingController();
   final aboutSubTitleCon = TextEditingController();
@@ -27,7 +28,7 @@ class AboutUsController extends GetxController {
   Future<void> fetchAboutUsData() async {
     final snapshot = await _firestore.collection('aboutUsData').get();
     aboutUsData.clear();
-    aboutUsData.addAll(snapshot.docs.map((doc) => AboutUs.fromDocument(doc.data(), doc.id)).toList());
+    aboutUsData.addAll(snapshot.docs.map((doc) => AboutUsModel.fromDocument(doc.data(), doc.id)).toList());
     update(); // Notify UI to update
   }
 
@@ -59,7 +60,7 @@ class AboutUsController extends GetxController {
   }
 
   Future<String> uploadFileToStorage(String filePath) async {
-    String uniqueFileName = aboutTitleCon.text; // Generate a unique file name
+    String uniqueFileName = const Uuid().v1(); // Generate a unique file name
     File file = File(filePath); // File picked by the user
 
     try {
@@ -76,5 +77,13 @@ class AboutUsController extends GetxController {
     aboutSubTitleCon.clear();
     aboutDescriptionCon.clear();
     fileName = null; // Clear the file name as well
+  }
+
+  @override
+  void dispose() {
+    aboutTitleCon.dispose();
+    aboutSubTitleCon.dispose();
+    aboutDescriptionCon.dispose();
+    super.dispose();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controllers/event_controller/event_controller.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/date_time_formator.dart';
 import '../../../global_widget/global_button.dart';
@@ -7,6 +8,7 @@ import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
 import '../../../global_widget/show_date_time_picker.dart';
+import '../../../models/event_model/event_model.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 
 class AdminEventScreen extends StatefulWidget {
@@ -17,42 +19,7 @@ class AdminEventScreen extends StatefulWidget {
 }
 
 class _AdminEventScreenState extends State<AdminEventScreen> {
-  final List<Map<String, dynamic>> events = [
-    {
-      'title': 'Event 1',
-      'date': 'April 24, 2024',
-      'location': 'Location 1',
-      'description':
-          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
-    },
-    {
-      'title': 'Event 2',
-      'date': 'April 15, 2024',
-      'location': 'Location 2',
-      'description':
-          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
-    },
-    {
-      'title': 'Event 3',
-      'date': 'April 10, 2024',
-      'location': 'Location 3',
-      'description':
-          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
-    },
-    {
-      'title': 'Event 4',
-      'date': 'April 02, 2024',
-      'location': 'Location 4',
-      'description':
-          """Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.""",
-    },
-  ];
-
-  final TextEditingController selectEventDateCon = TextEditingController();
-  final TextEditingController selectNewsDateCon = TextEditingController();
-  final TextEditingController selectTitleCon = TextEditingController();
-  final TextEditingController selectDescriptionCon = TextEditingController();
-  final TextEditingController selectLocationCon = TextEditingController();
+  final EventController controller = Get.put(EventController());
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +41,7 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() =>  SignInScreen());
+              Get.to(() => const SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),
@@ -98,48 +65,49 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GlobalTextFormField(
-                          controller: selectEventDateCon,
+                          controller: controller.selectEventDateCon,
                           titleText: 'Select Date',
-                          hintText: "Select Date".tr,
+                          hintText: "Select Date ".tr,
                           titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                           isDense: true,
                           decoration: inputDropDecoration,
                           filled: true,
                           sufixIcon: GestureDetector(
-                              onTap: () async {
-                                var pickedDate = await showDateOnlyPicker(context);
-                                if (pickedDate != null) {
-                                  String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
-                                  setState(() {
-                                    selectEventDateCon.text = formattedDate;
-                                  });
-                                }
-                              },
-                              child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20)),
+                            onTap: () async {
+                              var pickedDate = await showDateOnlyPicker(context);
+                              if (pickedDate != null) {
+                                String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
+                                setState(() {
+                                  controller.selectEventDateCon.text = formattedDate;
+                                });
+                              }
+                            },
+                            child: const Icon(Icons.calendar_month, color: ColorRes.textColor, size: 20),
+                          ),
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: selectTitleCon,
-                          titleText: 'Title',
-                          hintText: 'Enter Title',
-                          isDense: true,
-                          decoration: inputDropDecoration,
-                          filled: true,
-                        ),
-                        const SizedBox(height: 10),
-                        GlobalTextFormField(
-                          controller: selectLocationCon,
+                          controller: controller.eventLocationCon,
                           titleText: 'Location',
-                          hintText: 'Enter Location',
+                          hintText: 'Enter Location *',
                           isDense: true,
                           decoration: inputDropDecoration,
                           filled: true,
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: selectDescriptionCon,
+                          controller: controller.eventTitleCon,
+                          titleText: 'Title',
+                          hintText: 'Enter Title *',
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          filled: true,
+                        ),
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: controller.eventDescriptionCon,
                           titleText: 'Description',
-                          hintText: 'Enter Description',
+                          hintText: 'Enter Description *',
                           isDense: true,
                           decoration: inputDropDecoration,
                           maxLine: 5,
@@ -149,67 +117,78 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
                         GlobalButtonWidget(
                           str: 'Submit',
                           height: 45,
-                          onTap: () {},
+                          onTap: () {
+                            controller.submitEventsData();
+                          },
                         ),
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: 20),
-                GlobalContainer(
-                  backgroundColor: ColorRes.backgroundColor,
-                  child: Column(
-                    children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: events.length,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            color: Colors.white,
-                            child: ListTile(
-                              title: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      events[index]['title'],
-                                      style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      events[index]['date'],
-                                      style: const TextStyle(fontSize: 12.0),
-                                      textAlign: TextAlign.end,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Text(
-                                    events[index]['location'],
-                                    style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w700),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Text(
-                                    events[index]['description'],
-                                    style: const TextStyle(fontSize: 14),
-                                  ),
-                                ],
-                              ),
-                              onTap: () {
-                                _showEventDetails(context, events[index]);
-                              },
-                            ),
-                          );
-                        },
+                GetBuilder<EventController>(builder: (eventController) {
+                  if (eventController.eventsData.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No Events Found',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
                       ),
-                    ],
-                  ),
-                ),
+                    );
+                  }
+                  return GlobalContainer(
+                    backgroundColor: ColorRes.backgroundColor,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: eventController.eventsData.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        final event = eventController.eventsData[index];
+                        return Card(
+                          color: Colors.white,
+                          child: ListTile(
+                            title: Text(
+                              event.title,
+                              style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        event.location,
+                                        style: const TextStyle(fontSize: 10.0, fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        event.date,
+                                        style: const TextStyle(fontSize: 10.0, fontWeight: FontWeight.w500),
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
+                                Text(
+                                  event.description,
+                                  style: const TextStyle(fontSize: 14),
+                                  maxLines: 5,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              _showEventDetails(context, event);
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                }),
                 const SizedBox(height: 20),
               ],
             ),
@@ -218,43 +197,60 @@ class _AdminEventScreenState extends State<AdminEventScreen> {
       ),
     );
   }
-
-  void _showEventDetails(BuildContext context, Map<String, dynamic> event) {
+  void _showEventDetails(BuildContext context, EventModel event) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(event['title']),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Text('Date: ${event['date']}'),
-              Text('Location: ${event['location']}'),
-              const SizedBox(height: 10.0),
-              Text(event['description']),
-            ],
-          ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Close'),
+        return Dialog(
+          child: GlobalContainer(
+            backgroundColor: ColorRes.white,
+            width: Get.width,
+            borderRadius: 10,
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min, // Adjusts size based on content
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  event.title,
+                  style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        event.location,
+                        style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Date: ${event.date}',
+                        style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.end,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10.0),
+                Text(event.description),
+                const SizedBox(height: 10.0),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Close'),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         );
       },
     );
   }
 
-  @override
-  void dispose() {
-    selectEventDateCon.dispose();
-    selectNewsDateCon.dispose();
-    selectTitleCon.dispose();
-    selectDescriptionCon.dispose();
-    selectLocationCon.dispose();
-    super.dispose();
-  }
 }
