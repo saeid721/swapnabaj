@@ -8,7 +8,7 @@ class AdminNewsDetailsScreen extends StatelessWidget {
   final String date;
   final String newsTitle;
   final String imagePath;
-  final String details;
+  final String description;
   final int index;
 
   const AdminNewsDetailsScreen({
@@ -16,7 +16,7 @@ class AdminNewsDetailsScreen extends StatelessWidget {
     required this.newsTitle,
     required this.date,
     required this.imagePath,
-    required this.details,
+    required this.description,
     required this.index,
   });
 
@@ -66,7 +66,7 @@ class AdminNewsDetailsScreen extends StatelessWidget {
                           bottomRight: Radius.circular(20),
                         ),
                         image: DecorationImage(
-                          image: AssetImage(imagePath),
+                          image: NetworkImage(imagePath), // Corrected image provider
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -82,7 +82,8 @@ class AdminNewsDetailsScreen extends StatelessWidget {
                         date,
                         style: const TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w400, fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w400,
+                          fontStyle: FontStyle.italic,
                         ),
                       ),
                     ],
@@ -98,7 +99,7 @@ class AdminNewsDetailsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  details,
+                  description,
                   textAlign: TextAlign.left,
                   style: const TextStyle(fontSize: 14),
                 ),
