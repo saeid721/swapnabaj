@@ -7,18 +7,18 @@ import '../admin_login_screen/admin_login_screen.dart';
 class AdminCharityDetailsScreen extends StatelessWidget {
   final String date;
   final String number;
-  final String charityTitle;
+  final String title;
   final String imagePath;
-  final String details;
+  final String description;
   final int index;
 
   const AdminCharityDetailsScreen({
     super.key,
     required this.date,
     required this.number,
-    required this.charityTitle,
+    required this.title,
     required this.imagePath,
-    required this.details,
+    required this.description,
     required this.index,
   });
 
@@ -107,12 +107,12 @@ class AdminCharityDetailsScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        charityTitle,
+                        title,
                         style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: ColorRes.secondaryColor),
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        details,
+                        description,
                         textAlign: TextAlign.left,
                         style: const TextStyle(fontSize: 14),
                       ),
