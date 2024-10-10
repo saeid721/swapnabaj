@@ -17,6 +17,7 @@ class AboutUsController extends GetxController {
   final aboutDescriptionCon = TextEditingController();
 
   String? fileName; // To store the file name or URL
+  bool isSubmitting = false; // Flag to prevent multiple submissions
 
   @override
   void onInit() {
@@ -33,8 +34,12 @@ class AboutUsController extends GetxController {
   }
 
   Future<void> submitAboutUsData() async {
+    if (isSubmitting) return; // Prevent submission if a submission is in progress
+    isSubmitting = true; // Set the flag to true to block further submissions
+
     if (aboutTitleCon.text.isEmpty || aboutDescriptionCon.text.isEmpty) {
       Get.snackbar('Error', 'All  * fields must be completed', colorText: ColorRes.red);
+      isSubmitting = false; // Reset the flag if there's an error
       return;
     }
 
@@ -44,19 +49,26 @@ class AboutUsController extends GetxController {
       fileUrl = await uploadFileToStorage(fileName!);
     }
 
-    // Add About Us data to Firestore
-    await _firestore.collection('aboutUsData').add({
-      'title': aboutTitleCon.text,
-      'sub_title': aboutSubTitleCon.text,
-      'description': aboutDescriptionCon.text,
-      'file_url': fileUrl, // Store file URL in Firestore
-    });
-    await fetchAboutUsData();
+    try {
+      // Add News data to Firestore
+      await _firestore.collection('aboutUsData').add({
+        'title': aboutTitleCon.text,
+        'sub_title': aboutSubTitleCon.text,
+        'description': aboutDescriptionCon.text,
+        'file_url': fileUrl, // Store file URL in Firestore
+      });
 
-    // Clear input fields and notify success
-    clearInputs();
-    Get.snackbar('Success', 'About Us data saved successfully');
-    update();
+      await fetchAboutUsData(); // Fetch updated data
+
+      // Clear input fields, file name and notify success
+      clearInputs();
+      Get.snackbar('Success', 'About Us data saved successfully');
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to save news data');
+    } finally {
+      isSubmitting = false; // Reset the flag after the submission completes
+      update();
+    }
   }
 
   Future<String> uploadFileToStorage(String filePath) async {
@@ -76,7 +88,7 @@ class AboutUsController extends GetxController {
     aboutTitleCon.clear();
     aboutSubTitleCon.clear();
     aboutDescriptionCon.clear();
-    fileName = null; // Clear the file name as well
+    fileName = null;
   }
 
   @override

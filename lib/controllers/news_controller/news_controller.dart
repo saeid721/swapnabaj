@@ -3,12 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uuid/uuid.dart';
 import '../../global_widget/colors.dart';
-import '../../models/news_model.dart';
+import '../../models/news_model/news_model.dart';
 
 class NewsController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  final FirebaseStorage _storage = FirebaseStorage.instance; // Firebase Storage instance
+  final FirebaseStorage _storage = FirebaseStorage.instance;
   var newsData = <NewsModel>[];
 
   final newsDateCon = TextEditingController();
@@ -16,11 +17,12 @@ class NewsController extends GetxController {
   final newsDescriptionCon = TextEditingController();
 
   String? fileName; // To store the file name or URL
+  bool isSubmitting = false; // Flag to prevent multiple submissions
 
   @override
   void onInit() {
     super.onInit();
-    fetchNewsData(); // Fetch data when controller initializes
+    fetchNewsData();
   }
 
   // Fetch News Data from Firestore
@@ -30,9 +32,14 @@ class NewsController extends GetxController {
     newsData.addAll(snapshot.docs.map((doc) => NewsModel.fromDocument(doc.data(), doc.id)).toList());
     update(); // Notify UI to update
   }
+
   Future<void> submitNewsData() async {
+    if (isSubmitting) return; // Prevent submission if a submission is in progress
+    isSubmitting = true; // Set the flag to true to block further submissions
+
     if (newsDateCon.text.isEmpty || newsTitleCon.text.isEmpty || newsDescriptionCon.text.isEmpty) {
       Get.snackbar('Error', 'All fields must be completed', colorText: ColorRes.red);
+      isSubmitting = false; // Reset the flag if there's an error
       return;
     }
 
@@ -42,27 +49,34 @@ class NewsController extends GetxController {
       fileUrl = await uploadFileToStorage(fileName!);
     }
 
-    // Add News data to Firestore
-    await _firestore.collection('newsData').add({
-      'date': newsDateCon.text,
-      'title': newsTitleCon.text,
-      'description': newsDescriptionCon.text,
-      'file_url': fileUrl, // Store file URL in Firestore
-    });
-    await fetchNewsData();
+    try {
+      // Add News data to Firestore
+      await _firestore.collection('newsData').add({
+        'date': newsDateCon.text,
+        'title': newsTitleCon.text,
+        'description': newsDescriptionCon.text,
+        'file_url': fileUrl, // Store file URL in Firestore
+      });
 
-    // Clear input fields, file name and notify success
-    clearInputs();
-    Get.snackbar('Success', 'News data saved successfully');
-    update();
+      await fetchNewsData(); // Fetch updated data
+
+      // Clear input fields, file name and notify success
+      clearInputs();
+      Get.snackbar('Success', 'News data saved successfully');
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to save news data');
+    } finally {
+      isSubmitting = false; // Reset the flag after the submission completes
+      update();
+    }
   }
 
   Future<String> uploadFileToStorage(String filePath) async {
-    String uniqueFileName = newsTitleCon.text; // Generate a unique file name
+    String uniqueFileName = const Uuid().v1(); // Generate a unique file name
     File file = File(filePath); // File picked by the user
 
     try {
-      TaskSnapshot taskSnapshot = await _storage.ref('news/$uniqueFileName').putFile(file); // Upload file to Firebase Storage
+      TaskSnapshot taskSnapshot = await _storage.ref('news/$uniqueFileName').putFile(file);
       return await taskSnapshot.ref.getDownloadURL(); // Return the download URL
     } catch (e) {
       Get.snackbar('Error', 'Failed to upload file');
@@ -74,7 +88,7 @@ class NewsController extends GetxController {
     newsDateCon.clear();
     newsTitleCon.clear();
     newsDescriptionCon.clear();
-    fileName = null; // Clear the file name as well
+    fileName = null;
   }
 
   @override

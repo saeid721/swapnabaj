@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controllers/notices_controller/notices_controller.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/date_time_formator.dart';
 import '../../../global_widget/global_button.dart';
@@ -13,39 +14,11 @@ class AdminNoticesScreen extends StatefulWidget {
   const AdminNoticesScreen({super.key});
 
   @override
-  _AdminNoticesScreenState createState() => _AdminNoticesScreenState();
+  State<AdminNoticesScreen> createState() => _AdminNoticesScreenState();
 }
 
 class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
-  final List<Map<String, dynamic>> events = [
-    {
-      'title': 'Notices 1',
-      'date': 'April 10, 2024',
-      'description':
-          "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
-    },
-    {
-      'title': 'Notices 2',
-      'date': 'April 15, 2024',
-      'description': "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.",
-    },
-    {
-      'title': 'Notices 3',
-      'date': 'April 20, 2024',
-      'description':
-          "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
-    },
-    {
-      'title': 'Notices 4',
-      'date': 'April 20, 2024',
-      'description':
-          "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
-    },
-  ];
-
-  final TextEditingController selectNoticesDateCon = TextEditingController();
-  final TextEditingController selectTitleCon = TextEditingController();
-  final TextEditingController selectDescriptionCon = TextEditingController();
+  final NoticesController controller = Get.put(NoticesController());
 
   @override
   Widget build(BuildContext context) {
@@ -67,13 +40,13 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() =>  SignInScreen());
+              Get.to(() => SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),
         ],
       ),
-      body:SafeArea(
+      body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Center(
@@ -92,9 +65,10 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                       children: [
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: selectNoticesDateCon,
+                          controller: controller.selectNoticeDateCon,
                           titleText: 'Select Date',
                           hintText: "Select Date".tr,
+                          keyboardType: TextInputType.datetime,
                           titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                           isDense: true,
                           decoration: inputDropDecoration,
@@ -103,10 +77,9 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                               onTap: () async {
                                 var pickedDate = await showDateOnlyPicker(context);
                                 if (pickedDate != null) {
-
                                   String formattedDate = DateTimeFormatter.showDateOnlyYear.format(pickedDate);
                                   setState(() {
-                                    selectNoticesDateCon.text = formattedDate;
+                                    controller.selectNoticeDateCon.text = formattedDate;
                                   });
                                 }
                               },
@@ -114,7 +87,7 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: selectTitleCon,
+                          controller: controller.noticeTitleCon,
                           titleText: 'Title',
                           hintText: 'Enter Title',
                           isDense: true,
@@ -123,7 +96,7 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: selectDescriptionCon,
+                          controller: controller.noticeDescriptionCon,
                           titleText: 'Description',
                           hintText: 'Enter Description',
                           isDense: true,
@@ -135,60 +108,71 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
                         GlobalButtonWidget(
                           str: 'Submit',
                           height: 45,
-                          onTap: () {},
+                          onTap: controller.submitNoticeData,
                         ),
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: 20),
-                GlobalContainer(
-                  backgroundColor: ColorRes.backgroundColor,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: events.length,
-                        itemBuilder: (context, index) {
-                          return Card(
-                            color: Colors.white,
-                            child: ListTile(
-                              title: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      events[index]['title'],
-                                      style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
+                GetBuilder<NoticesController>(builder: (noticesController) {
+                  if (noticesController.noticesData.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No Notice Data Found',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    );
+                  }
+                  return GlobalContainer(
+                    backgroundColor: ColorRes.backgroundColor,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: controller.noticesData.length,
+                          itemBuilder: (context, index) {
+                            final notices = noticesController.noticesData[index];
+                            return Card(
+                              color: Colors.white,
+                              child: ListTile(
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        notices.title,
+                                        style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
+                                      ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      events[index]['date'],
-                                      style: const TextStyle(fontSize: 12.0),
-                                      textAlign: TextAlign.end,
+                                    Expanded(
+                                      child: Text(
+                                        notices.date,
+                                        style: const TextStyle(fontSize: 12.0),
+                                        textAlign: TextAlign.end,
+                                      ),
                                     ),
+                                  ],
+                                ),
+                                subtitle: Padding(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    notices.description,
+                                    style: const TextStyle(fontSize: 14.0),
+                                    textAlign: TextAlign.justify,
                                   ),
-                                ],
-                              ),
-                              subtitle: Padding(
-                                padding: const EdgeInsets.only(top: 5),
-                                child: Text(
-                                  events[index]['description'],
-                                  style: const TextStyle(fontSize: 14.0),
-                                  textAlign: TextAlign.justify,
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  );
+                }),
                 const SizedBox(height: 20),
               ],
             ),
@@ -196,13 +180,5 @@ class _AdminNoticesScreenState extends State<AdminNoticesScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    selectNoticesDateCon.dispose();
-    selectTitleCon.dispose();
-    selectDescriptionCon.dispose();
-    super.dispose();
   }
 }
