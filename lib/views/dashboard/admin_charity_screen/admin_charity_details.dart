@@ -69,7 +69,8 @@ class AdminCharityDetailsScreen extends StatelessWidget {
                             height: 130,
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: AssetImage(imagePath),
+                                image: NetworkImage(imagePath), // Corrected image provider
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
@@ -98,7 +99,7 @@ class AdminCharityDetailsScreen extends StatelessWidget {
                           Text(
                             "Last Update: $date",
                             style: const TextStyle(
-                              fontSize: 12,
+                              fontSize: 10,
                               fontWeight: FontWeight.w400,
                               fontStyle: FontStyle.italic,
                             ),
