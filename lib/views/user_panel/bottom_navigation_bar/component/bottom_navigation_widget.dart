@@ -78,7 +78,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                           ? ColorRes.capitalColor
                           : ColorRes.profitColor,
                       fontSize: 12,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w500,
                       textAlign: TextAlign.center,
                       fontFamily: 'Rubik',
                     ),

@@ -208,7 +208,7 @@ class ProfitTableValueWidget extends StatelessWidget {
               decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: ColorRes.borderColor, width: 1), right: BorderSide(color: ColorRes.borderColor, width: 1))),
               child: Center(
                 child: Align(
-                  alignment: Alignment.center,
+                  alignment: Alignment.centerLeft,
                   child: GlobalText(
                     str: thirdColumn,
                     color: ColorRes.textColor,
