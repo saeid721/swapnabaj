@@ -26,7 +26,7 @@ class GalleryController extends GetxController {
 
   // Fetch Gallery Data from Firestore
   Future<void> fetchGalleryData() async {
-    final snapshot = await _firestore.collection('galleryData').orderBy('date', descending: true).get();
+    final snapshot = await _firestore.collection('galleryData').orderBy('index', descending: true).get();
     galleryData.clear();
     galleryData.addAll(snapshot.docs.map((doc) => GalleryModel.fromDocument(doc.data(), doc.id)).toList());
     update(); // Notify UI to update
@@ -54,6 +54,7 @@ class GalleryController extends GetxController {
         'title': galleryImageTitleCon.text,
         'description': galleryImageDescriptionCon.text,
         'file_url': fileUrl, // Store file URL in Firestore
+        'date': DateTime.now(),
       });
 
       await fetchGalleryData(); // Fetch updated data
