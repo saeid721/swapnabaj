@@ -10,27 +10,27 @@ import '../../../global_widget/input_decoration.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 import 'admin_gallery_details_screen.dart';
 
-List<ImageDetails> _images = [
+List<ImageDetails> images = [
   ImageDetails(
-    imagePath: 'https://t3.ftcdn.net/jpg/02/09/43/80/360_F_209438048_bqYPR1SZJx583icNF2fasiwfnttqMZZn.jpg',
+    fileUrl: 'https://t3.ftcdn.net/jpg/02/09/43/80/360_F_209438048_bqYPR1SZJx583icNF2fasiwfnttqMZZn.jpg',
     imageTitle: 'Swapnobaj',
     description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   ),
   ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
+    fileUrl: 'https://t3.ftcdn.net/jpg/04/97/45/58/360_F_497455841_1TSJ07nyEcSOIzYJ4nevIGtEe0VOPWTF.jpg',
     imageTitle: 'Swapnobaj',
     description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   ),
   ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
+    fileUrl: 'https://t3.ftcdn.net/jpg/02/09/43/80/360_F_209438048_bqYPR1SZJx583icNF2fasiwfnttqMZZn.jpg',
     imageTitle: 'Swapnobaj',
     description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   ),
   ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
+    fileUrl: 'https://t3.ftcdn.net/jpg/04/97/45/58/360_F_497455841_1TSJ07nyEcSOIzYJ4nevIGtEe0VOPWTF.jpg',
     imageTitle: 'Swapnobaj',
     description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
@@ -167,24 +167,20 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
                 GlobalContainer(
                   backgroundColor: ColorRes.backgroundColor,
                   child: SizedBox(
-                    height: 400, // Set a fixed height for the GridView
+                    height: Get.height,
                     child: GridView.builder(
                       shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(), // Prevent GridView from scrolling
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                      ),
-                      itemCount: _images.length,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: images.length,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
                       itemBuilder: (context, index) {
-                        return GestureDetector(
+                        return InkWell(
                           onTap: () {
                             Get.to(
-                              () => DetailsPage(
-                                imagePath: _images[index].imagePath,
-                                imageTitle: _images[index].imageTitle,
-                                description: _images[index].description,
+                              () => AdminGalleryDetailsScreen(
+                                imagePath: images[index].fileUrl,
+                                imageTitle: images[index].imageTitle,
+                                description: images[index].description,
                                 index: index,
                               ),
                             );
@@ -195,7 +191,7 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 image: DecorationImage(
-                                  image: AssetImage(_images[index].imagePath),
+                                  image: NetworkImage(images[index].fileUrl),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -217,12 +213,12 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
 }
 
 class ImageDetails {
-  final String imagePath;
+  final String fileUrl;
   final String imageTitle;
   final String description;
 
   ImageDetails({
-    required this.imagePath,
+    required this.fileUrl,
     required this.imageTitle,
     required this.description,
   });

@@ -4,13 +4,13 @@ import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 
-class DetailsPage extends StatelessWidget {
+class AdminGalleryDetailsScreen extends StatelessWidget {
   final String imagePath;
   final String imageTitle;
   final String description;
   final int index;
 
-  const DetailsPage({
+  const AdminGalleryDetailsScreen({
     super.key,
     required this.imagePath,
     required this.imageTitle,
@@ -28,7 +28,7 @@ class DetailsPage extends StatelessWidget {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'Details',
+          'Gallery',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -62,7 +62,7 @@ class DetailsPage extends StatelessWidget {
                           bottomRight: Radius.circular(20),
                         ),
                         image: DecorationImage(
-                          image: AssetImage(imagePath),
+                          image: NetworkImage(imagePath),
                           fit: BoxFit.cover,
                         ),
                       ),
