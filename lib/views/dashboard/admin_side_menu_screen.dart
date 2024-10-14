@@ -40,8 +40,9 @@ class AdminSideBerMenuWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/logo2.png',
-                    width: 220,
+                    'assets/images/placeholder.png',
+                    width: 200,
+                    height: 100,
                   ),
                 ],
               ),

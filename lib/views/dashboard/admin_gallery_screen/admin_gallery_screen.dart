@@ -12,27 +12,27 @@ import 'admin_gallery_details_screen.dart';
 
 List<ImageDetails> _images = [
   ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
+    imagePath: 'https://t3.ftcdn.net/jpg/02/09/43/80/360_F_209438048_bqYPR1SZJx583icNF2fasiwfnttqMZZn.jpg',
+    imageTitle: 'Swapnobaj',
+    description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   ),
   ImageDetails(
     imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
+    imageTitle: 'Swapnobaj',
+    description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   ),
   ImageDetails(
     imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
+    imageTitle: 'Swapnobaj',
+    description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   ),
   ImageDetails(
     imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
+    imageTitle: 'Swapnobaj',
+    description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
   ),
   // Add more `ImageDetails` objects as needed.
@@ -46,26 +46,25 @@ class AdminGalleryScreen extends StatefulWidget {
 }
 
 class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
-  String? _fileName;
+  String? fileName;
 
   @override
   void initState() {
     super.initState();
   }
 
-  Future<void> _pickFile() async {
+  Future<void> pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
     if (result != null) {
       setState(() {
-        _fileName = result.files.single.name;
+        fileName = result.files.single.name;
       });
     }
   }
 
-  final TextEditingController selectNoticesDateCon = TextEditingController();
-  final TextEditingController selectTitleCon = TextEditingController();
-  final TextEditingController selectDescriptionCon = TextEditingController();
+  final TextEditingController galleryImageTitleCon = TextEditingController();
+  final TextEditingController galleryImageDescriptionCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +86,7 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() =>  SignInScreen());
+              Get.to(() => SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),
@@ -111,11 +110,21 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GlobalTextFormField(
-                          controller: selectTitleCon,
+                          controller: galleryImageTitleCon,
                           titleText: 'Title',
                           hintText: 'Enter Title',
                           isDense: true,
                           decoration: inputDropDecoration,
+                          filled: true,
+                        ),
+                        const SizedBox(height: 10),
+                        GlobalTextFormField(
+                          controller: galleryImageDescriptionCon,
+                          titleText: 'Description',
+                          hintText: 'Enter Description',
+                          isDense: true,
+                          decoration: inputDropDecoration,
+                          maxLine: 5,
                           filled: true,
                         ),
                         const SizedBox(height: 10),
@@ -134,26 +143,16 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
                           radius: 5,
                           borderColor: ColorRes.borderColor,
                           buttomColor: Colors.transparent,
-                          onTap: _pickFile,
+                          onTap: pickFile,
                         ),
-                        if (_fileName != null)
+                        if (fileName != null)
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 10.0),
                             child: Text(
-                              'Selected file: $_fileName',
+                              'Selected file: $fileName',
                               style: const TextStyle(fontSize: 16),
                             ),
                           ),
-                        const SizedBox(height: 10),
-                        GlobalTextFormField(
-                          controller: selectDescriptionCon,
-                          titleText: 'Description',
-                          hintText: 'Enter Description',
-                          isDense: true,
-                          decoration: inputDropDecoration,
-                          maxLine: 5,
-                          filled: true,
-                        ),
                         const SizedBox(height: 20),
                         GlobalButtonWidget(
                           str: 'Submit',
@@ -184,8 +183,8 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
                             Get.to(
                               () => DetailsPage(
                                 imagePath: _images[index].imagePath,
-                                title: _images[index].title,
-                                details: _images[index].details,
+                                imageTitle: _images[index].imageTitle,
+                                description: _images[index].description,
                                 index: index,
                               ),
                             );
@@ -215,24 +214,16 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
       ),
     );
   }
-
-  @override
-  void dispose() {
-    selectNoticesDateCon.dispose();
-    selectTitleCon.dispose();
-    selectDescriptionCon.dispose();
-    super.dispose();
-  }
 }
 
 class ImageDetails {
   final String imagePath;
-  final String title;
-  final String details;
+  final String imageTitle;
+  final String description;
 
   ImageDetails({
     required this.imagePath,
-    required this.title,
-    required this.details,
+    required this.imageTitle,
+    required this.description,
   });
 }

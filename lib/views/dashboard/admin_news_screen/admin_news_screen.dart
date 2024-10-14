@@ -113,6 +113,16 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                         filled: true,
                       ),
                       const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: controller.newsDescriptionCon,
+                        titleText: 'Description',
+                        hintText: 'Enter Description',
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        maxLine: 5,
+                        filled: true,
+                      ),
+                      const SizedBox(height: 10),
                       const Text(
                         'Attachment',
                         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
@@ -138,16 +148,6 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                           ),
                         ),
-                      const SizedBox(height: 10),
-                      GlobalTextFormField(
-                        controller: controller.newsDescriptionCon,
-                        titleText: 'Description',
-                        hintText: 'Enter Description',
-                        isDense: true,
-                        decoration: inputDropDecoration,
-                        maxLine: 5,
-                        filled: true,
-                      ),
                       const SizedBox(height: 20),
                       GlobalButtonWidget(
                         str: 'Submit',

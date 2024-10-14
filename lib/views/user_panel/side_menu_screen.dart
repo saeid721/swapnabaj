@@ -32,7 +32,7 @@ class SideMenuScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    'assets/images/logo2.png',
+                    'assets/images/placeholder.png',
                     width: 220,
                   ),
                 ],

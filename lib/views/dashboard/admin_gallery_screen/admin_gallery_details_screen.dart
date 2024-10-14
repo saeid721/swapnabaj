@@ -6,15 +6,15 @@ import '../admin_login_screen/admin_login_screen.dart';
 
 class DetailsPage extends StatelessWidget {
   final String imagePath;
-  final String title;
-  final String details;
+  final String imageTitle;
+  final String description;
   final int index;
 
   const DetailsPage({
     super.key,
     required this.imagePath,
-    required this.title,
-    required this.details,
+    required this.imageTitle,
+    required this.description,
     required this.index,
   });
 
@@ -75,7 +75,7 @@ class DetailsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        title,
+                        imageTitle,
                         style: const TextStyle(
                           color: ColorRes.primaryColor,
                           fontSize: 18,
@@ -84,7 +84,7 @@ class DetailsPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        details,
+                        description,
                         textAlign: TextAlign.justify,
                         style: const TextStyle(
                           fontSize: 14,
