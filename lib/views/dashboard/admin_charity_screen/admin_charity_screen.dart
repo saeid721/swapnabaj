@@ -117,6 +117,7 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
                         controller: controller.charityNumberCon,
                         titleText: 'Number',
                         hintText: 'Enter Number',
+                        keyboardType: TextInputType.number,
                         isDense: true,
                         decoration: inputDropDecoration,
                         filled: true,
@@ -206,7 +207,7 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
                           },
                           child: Card(
                             margin: const EdgeInsets.only(top: 10),
-                            color: Colors.white,
+                            color: ColorRes.white,
                             child: Padding(
                               padding: const EdgeInsets.all(10),
                               child: Column(
@@ -215,10 +216,11 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
                                   GlobalContainer(
                                     width: Get.width,
                                     child: Image.network(
-                                      charity.fileUrl!,
-                                      width: 60,
-                                      height: 60,
+                                      charity.fileUrl ?? 'assets/images/placeholder.png',
+                                      width: Get.width,
+                                      fit: BoxFit.cover,
                                     ),
+
                                   ),
                                   Text(
                                     charity.number,
