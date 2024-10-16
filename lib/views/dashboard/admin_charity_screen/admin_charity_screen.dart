@@ -216,8 +216,8 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
                                     width: Get.width,
                                     child: Image.network(
                                       charity.fileUrl!,
-                                      width: Get.width,
-                                      fit: BoxFit.cover,
+                                      width: 60,
+                                      height: 60,
                                     ),
                                   ),
                                   Text(
