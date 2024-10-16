@@ -12,9 +12,11 @@ class AboutUsController extends GetxController {
   final FirebaseStorage _storage = FirebaseStorage.instance; // Firebase Storage instance
   var aboutUsData = <AboutUsModel>[];
 
-  final aboutTitleCon = TextEditingController();
-  final aboutSubTitleCon = TextEditingController();
-  final aboutDescriptionCon = TextEditingController();
+  final aboutUsDescriptionCon = TextEditingController();
+  final ourVisionDescriptionCon = TextEditingController();
+  final howWeOperateDescriptionCon = TextEditingController();
+  final ourCommunityDescriptionCon = TextEditingController();
+  final buildingLegacyDescriptionCon = TextEditingController();
 
   String? fileName; // To store the file name or URL
   bool isSubmitting = false; // Flag to prevent multiple submissions
@@ -37,7 +39,7 @@ class AboutUsController extends GetxController {
     if (isSubmitting) return; // Prevent submission if a submission is in progress
     isSubmitting = true; // Set the flag to true to block further submissions
 
-    if (aboutTitleCon.text.isEmpty || aboutDescriptionCon.text.isEmpty) {
+    if (aboutUsDescriptionCon.text.isEmpty) {
       Get.snackbar('Error', 'All  * fields must be completed', colorText: ColorRes.red);
       isSubmitting = false; // Reset the flag if there's an error
       return;
@@ -52,9 +54,11 @@ class AboutUsController extends GetxController {
     try {
       // Add News data to Firestore
       await _firestore.collection('aboutUsData').add({
-        'title': aboutTitleCon.text,
-        'sub_title': aboutSubTitleCon.text,
-        'description': aboutDescriptionCon.text,
+        'aboutUsDescription': aboutUsDescriptionCon.text,
+        'ourVisionDescription': ourVisionDescriptionCon.text,
+        'howWeOperateDescription': howWeOperateDescriptionCon.text,
+        'ourCommunityDescription': ourCommunityDescriptionCon.text,
+        'buildingLegacyDescription': buildingLegacyDescriptionCon.text,
         'file_url': fileUrl, // Store file URL in Firestore
       });
 
@@ -85,17 +89,21 @@ class AboutUsController extends GetxController {
   }
 
   void clearInputs() {
-    aboutTitleCon.clear();
-    aboutSubTitleCon.clear();
-    aboutDescriptionCon.clear();
+    aboutUsDescriptionCon.clear();
+    ourVisionDescriptionCon.clear();
+    howWeOperateDescriptionCon.clear();
+    ourCommunityDescriptionCon.clear();
+    buildingLegacyDescriptionCon.clear();
     fileName = null;
   }
 
   @override
   void dispose() {
-    aboutTitleCon.dispose();
-    aboutSubTitleCon.dispose();
-    aboutDescriptionCon.dispose();
+    aboutUsDescriptionCon.dispose();
+    ourVisionDescriptionCon.dispose();
+    howWeOperateDescriptionCon.dispose();
+    ourCommunityDescriptionCon.dispose();
+    buildingLegacyDescriptionCon.dispose();
     super.dispose();
   }
 }

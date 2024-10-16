@@ -1,21 +1,27 @@
 class AboutUsModel {
-  final String title;
-  final String subTitle;
-  final String description;
+  final String aboutUsDescription;
+  final String ourVisionDescription;
+  final String howWeOperateDescription;
+  final String ourCommunityDescription;
+  final String buildingLegacyDescription;
   final String? fileUrl;
 
   AboutUsModel({
-    required this.title,
-    required this.subTitle,
-    required this.description,
+    required this.aboutUsDescription,
+    required this.ourVisionDescription,
+    required this.howWeOperateDescription,
+    required this.ourCommunityDescription,
+    required this.buildingLegacyDescription,
     this.fileUrl,
   });
 
   factory AboutUsModel.fromDocument(Map<String, dynamic> data, String id) {
     return AboutUsModel(
-      title: data['title'] ?? '',
-      subTitle: data['sub_title'] ?? '',
-      description: data['description'] ?? '',
+      aboutUsDescription: data['aboutUsDescription'] ?? '',
+      ourVisionDescription: data['ourVisionDescription'] ?? '',
+      howWeOperateDescription: data['howWeOperateDescription'] ?? '',
+      ourCommunityDescription: data['ourCommunityDescription'] ?? '',
+      buildingLegacyDescription: data['buildingLegacyDescription'] ?? '',
       fileUrl: data['file_url'], // Fetching image URL from Firestore
     );
   }

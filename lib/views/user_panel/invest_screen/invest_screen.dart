@@ -50,37 +50,37 @@ class _InvestScreenState extends State<InvestScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
             children: [
-              GetBuilder<InvestmentController>(builder: (controller) {
-                return GlobalContainer(
-                  backgroundColor: ColorRes.white,
-                  padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 8),
-                  bottomBorderColor: ColorRes.borderColor,
-                  borderCornerRadius: const BorderRadius.all(Radius.circular(5)),
-                  elevation: 2,
-                  height: 40,
-                  width: Get.width,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const GlobalText(
-                        str: "Total Invest =",
-                        fontSize: 16,
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w600,
-                        color: ColorRes.textColor,
-                      ),
-                      GlobalText(
-                        str: '৳ ${controller.totalInvestAmount.toStringAsFixed(2)}',
-                        fontSize: 16,
-                        textAlign: TextAlign.center,
-                        fontWeight: FontWeight.w600,
-                        color: ColorRes.textColor,
-                      ),
-                    ],
-                  ),
-                );
-              }),
-              const SizedBox(height: 10),
+              // GetBuilder<InvestmentController>(builder: (controller) {
+              //   return GlobalContainer(
+              //     backgroundColor: ColorRes.white,
+              //     padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 8),
+              //     bottomBorderColor: ColorRes.borderColor,
+              //     borderCornerRadius: const BorderRadius.all(Radius.circular(5)),
+              //     elevation: 2,
+              //     height: 40,
+              //     width: Get.width,
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         const GlobalText(
+              //           str: "Total Invest =",
+              //           fontSize: 16,
+              //           textAlign: TextAlign.center,
+              //           fontWeight: FontWeight.w600,
+              //           color: ColorRes.textColor,
+              //         ),
+              //         GlobalText(
+              //           str: '৳ ${controller.totalInvestAmount.toStringAsFixed(2)}',
+              //           fontSize: 16,
+              //           textAlign: TextAlign.center,
+              //           fontWeight: FontWeight.w600,
+              //           color: ColorRes.textColor,
+              //         ),
+              //       ],
+              //     ),
+              //   );
+              // }),
+              // const SizedBox(height: 10),
               // Table Header
               const InvestTableWidget(
                 firstRow: 'SL',

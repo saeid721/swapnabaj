@@ -1,36 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controllers/notices_controller/notices_controller.dart';
 import '../../../global_widget/colors.dart';
+import '../../../global_widget/global_container.dart';
+import '../../dashboard/admin_login_screen/admin_login_screen.dart';
 
 class NoticesScreen extends StatelessWidget {
-  final List<Map<String, dynamic>> events = [
-    {
-      'title': 'Notices 1',
-      'date': 'April 10, 2024',
-      'description':
-          "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
-    },
-    {
-      'title': 'Notices 2',
-      'date': 'April 15, 2024',
-      'description':
-          "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.",
-    },
-    {
-      'title': 'Notices 3',
-      'date': 'April 20, 2024',
-      'description':
-          "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
-    },
-    {
-      'title': 'Notices 4',
-      'date': 'April 20, 2024',
-      'description':
-          "No one can escape the responsibility for the fire incident at Green Cozy Cottage on Bailey Road in the capital. Building owners, restaurant owners and restaurant owner associations or related government offices are all responsible.\n Bangladesh Restaurant Owners' Association Secretary General Md Imran Hasan said this during the inspection of the burnt building on Bailey Road on Sunday.",
-    },
-  ];
 
   NoticesScreen({super.key});
+
+  final NoticesController controller = Get.put(NoticesController());
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +21,7 @@ class NoticesScreen extends StatelessWidget {
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
         centerTitle: true,
         title: const Text(
-          'Notice',
+          'Notices',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -51,52 +30,79 @@ class NoticesScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.login),
+            onPressed: () {
+              Get.to(() => SignInScreen());
+            },
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: SizedBox(
-            height: Get.height,
-            child: ListView.builder(
-              itemCount: events.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  color: Colors.white,
-                  child: ListTile(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: Center(
+            child: Column(
+              children: [
+                GetBuilder<NoticesController>(builder: (noticesController) {
+                  if (noticesController.noticesData.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No Notice Data Found',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    );
+                  }
+                  return GlobalContainer(
+                    backgroundColor: ColorRes.backgroundColor,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Expanded(
-                          child: Text(
-                            events[index]['title'],
-                            style: const TextStyle(
-                                fontSize: 16.0, fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
-                            events[index]['date'],
-                            style: const TextStyle(fontSize: 12.0),
-                            textAlign: TextAlign.end,
-                          ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: controller.noticesData.length,
+                          itemBuilder: (context, index) {
+                            final notices = noticesController.noticesData[index];
+                            return Card(
+                              color: Colors.white,
+                              child: ListTile(
+                                title: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        notices.title,
+                                        style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        notices.date,
+                                        style: const TextStyle(fontSize: 12.0),
+                                        textAlign: TextAlign.end,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                subtitle: Padding(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    notices.description,
+                                    style: const TextStyle(fontSize: 14.0),
+                                    textAlign: TextAlign.justify,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Text(
-                        events[index]['description'],
-                        style: const TextStyle(fontSize: 14.0),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ),
-                  ),
-                );
-              },
+                  );
+                }),
+                const SizedBox(height: 20),
+              ],
             ),
           ),
         ),

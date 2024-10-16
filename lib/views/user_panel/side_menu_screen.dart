@@ -33,7 +33,7 @@ class SideMenuScreen extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/images/placeholder.png',
-                    width: 220,
+                    width: 120,
                   ),
                 ],
               ),

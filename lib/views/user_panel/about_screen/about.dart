@@ -104,18 +104,58 @@ class _AboutScreenState extends State<AboutScreen> {
                                   ),
                                 ),
                               const SizedBox(height: 5),
-                              Text(
-                                aboutUs.title,
-                                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                              const Text(
+                                'About Us',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                               ),
                               const SizedBox(height: 5),
                               Text(
-                                aboutUs.subTitle,
+                                aboutUs.aboutUsDescription,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500,),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'Our Vision',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                aboutUs.ourVisionDescription,
+                                textAlign: TextAlign.justify,
                                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                               ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'How We Operate',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
                               const SizedBox(height: 5),
                               Text(
-                                aboutUs.description,
+                                aboutUs.howWeOperateDescription,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'Our Community and Collective Strength',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                aboutUs.ourCommunityDescription,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'Building a Legacy',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                aboutUs.buildingLegacyDescription,
+                                textAlign: TextAlign.justify,
                                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
                               ),
                             ],
