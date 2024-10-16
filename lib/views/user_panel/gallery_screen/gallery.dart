@@ -1,73 +1,41 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controllers/gallery_controller/gallery_controller.dart';
 import '../../../global_widget/colors.dart';
+import '../../../global_widget/global_container.dart';
+import '../../dashboard/admin_gallery_screen/data.dart';
+import '../../dashboard/admin_login_screen/admin_login_screen.dart';
 import 'gallery_details.dart';
 
-List<ImageDetails> _images = [
-  ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  ),
-  ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  ),
-  ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  ),
-  ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  ),
-  ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  ),
-  ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  ),
-  ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  ),
-  ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  ),
-  ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  ),
-  ImageDetails(
-    imagePath: 'assets/images/saeid.jpg',
-    title: 'Swapnobaj',
-    details:
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-  ),
-];
 
-class GalleryScreen extends StatelessWidget {
+class GalleryScreen extends StatefulWidget {
   const GalleryScreen({super.key});
+
+  @override
+  State<GalleryScreen> createState() => _GalleryScreenState();
+}
+
+class _GalleryScreenState extends State<GalleryScreen> {
+  final GalleryController controller = Get.put(GalleryController());
+  String? fileName;
+
+  Future<void> pickFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: FileType.custom,
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+    );
+    if (result != null && result.files.isNotEmpty) {
+      controller.fileName = result.files.first.path; // Get the file path
+      setState(() {
+        fileName = result.files.first.path;
+      });
+      Get.snackbar('Success', 'File selected successfully', colorText: ColorRes.green);
+    } else {
+      Get.snackbar('Error', 'No file selected', colorText: ColorRes.red);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,55 +56,58 @@ class GalleryScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.login),
+            onPressed: () {
+              Get.to(() => SignInScreen());
+            },
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: SizedBox(
-            height: Get.height,
+          child: Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Expanded(
-                  child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                    ),
-                    itemBuilder: (context, index) {
-                      return RawMaterialButton(
-                        onPressed: () {
-                          Get.to(
-                            () => DetailsPage(
-                              imagePath: _images[index].imagePath,
-                              title: _images[index].title,
-                              details: _images[index].details,
-                              index: index,
-                            ),
-                          );
-                        },
-                        child: Hero(
-                          tag: 'logo$index',
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              image: DecorationImage(
-                                image: AssetImage(_images[index].imagePath),
-                                fit: BoxFit.cover,
+              children: [
+                GlobalContainer(
+                  backgroundColor: ColorRes.backgroundColor,
+                  child: SizedBox(
+                    height: Get.height,
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: images.length,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Get.to(
+                                  () => GalleryDetailsScreen(
+                                imagePath: images[index].fileUrl,
+                                imageTitle: images[index].imageTitle,
+                                description: images[index].description,
+                                index: index,
+                              ),
+                            );
+                          },
+                          child: Hero(
+                            tag: 'logo$index',
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                  image: NetworkImage(images[index].fileUrl),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      );
-                    },
-                    itemCount: _images.length,
+                        );
+                      },
+                    ),
                   ),
-                )
+                ),
+                const SizedBox(height: 20),
               ],
             ),
           ),
@@ -146,13 +117,3 @@ class GalleryScreen extends StatelessWidget {
   }
 }
 
-class ImageDetails {
-  final String imagePath;
-  final String title;
-  final String details;
-  ImageDetails({
-    required this.imagePath,
-    required this.title,
-    required this.details,
-  });
-}

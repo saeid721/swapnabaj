@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../global_widget/colors.dart';
+import '../../../global_widget/global_container.dart';
+import '../../dashboard/admin_login_screen/admin_login_screen.dart';
 
-class DetailsPage extends StatelessWidget {
+class GalleryDetailsScreen extends StatelessWidget {
   final String imagePath;
-  final String title;
-  final String details;
+  final String imageTitle;
+  final String description;
   final int index;
-  const DetailsPage(
-      {super.key,
-      required this.imagePath,
-      required this.title,
-      required this.details,
-      required this.index});
+
+  const GalleryDetailsScreen({
+    super.key,
+    required this.imagePath,
+    required this.imageTitle,
+    required this.description,
+    required this.index,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +26,9 @@ class DetailsPage extends StatelessWidget {
         shadowColor: ColorRes.borderColor,
         backgroundColor: ColorRes.white,
         iconTheme: const IconThemeData(color: ColorRes.primaryColor),
-        centerTitle: false,
+        centerTitle: true,
         title: const Text(
-          'Swapnobaj',
+          'Gallery',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -31,61 +37,67 @@ class DetailsPage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.login),
+            onPressed: () {
+              Get.to(() =>  SignInScreen());
+            },
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Hero(
-              tag: 'logo$index',
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20)),
-                  image: DecorationImage(
-                    image: AssetImage(imagePath),
-                    fit: BoxFit.cover,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                GlobalContainer(
+                  backgroundColor: ColorRes.backgroundColor,
+                  child: Hero(
+                    tag: 'logo$index',
+                    child: Container(
+                      height: 270, // Set a fixed height for the image container
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                        image: DecorationImage(
+                          image: NetworkImage(imagePath),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-            child: SizedBox(
-              height: 500,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        color: ColorRes.primaryColor,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w600,
+                GlobalContainer(
+                  backgroundColor: ColorRes.backgroundColor,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        imageTitle,
+                        style: const TextStyle(
+                          color: ColorRes.primaryColor,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      details,
-                      textAlign: TextAlign.justify,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      const SizedBox(height: 10),
+                      Text(
+                        description,
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(
+                          fontSize: 14,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+                const SizedBox(height: 20),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

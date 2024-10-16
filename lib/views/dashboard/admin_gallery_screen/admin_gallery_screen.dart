@@ -27,7 +27,7 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
     final result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
     );
     if (result != null && result.files.isNotEmpty) {
       controller.fileName = result.files.first.path; // Get the file path

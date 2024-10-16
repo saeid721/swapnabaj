@@ -108,7 +108,7 @@ class _CharityScreenState extends State<CharityScreen> {
                                   GlobalContainer(
                                     width: Get.width,
                                     child: Image.network(
-                                      charity.fileUrl ?? 'assets/images/placeholder.png', // Use a placeholder if fileUrl is null
+                                      charity.fileUrl ?? 'assets/images/placeholder.png',
                                       width: Get.width,
                                       fit: BoxFit.cover,
                                     ),
