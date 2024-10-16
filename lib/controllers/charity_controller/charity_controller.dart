@@ -14,6 +14,7 @@ class CharityController extends GetxController {
 
   final selectCharityDateCon = TextEditingController();
   final charityTitleCon = TextEditingController();
+  final charityNumberCon = TextEditingController();
   final charityDescriptionCon = TextEditingController();
 
   String? fileName; // To store the file name or URL
@@ -37,7 +38,7 @@ class CharityController extends GetxController {
     if (isSubmitting) return; // Prevent submission if a submission is in progress
     isSubmitting = true; // Set the flag to true to block further submissions
 
-    if (selectCharityDateCon.text.isEmpty || charityTitleCon.text.isEmpty || charityDescriptionCon.text.isEmpty) {
+    if (selectCharityDateCon.text.isEmpty || charityTitleCon.text.isEmpty || charityNumberCon.text.isEmpty || charityDescriptionCon.text.isEmpty) {
       Get.snackbar('Error', 'All fields must be completed', colorText: ColorRes.red);
       isSubmitting = false; // Reset the flag if there's an error
       return;
@@ -54,6 +55,7 @@ class CharityController extends GetxController {
       await _firestore.collection('charityData').add({
         'date': selectCharityDateCon.text,
         'title': charityTitleCon.text,
+        'number': charityNumberCon.text,
         'description': charityDescriptionCon.text,
         'file_url': fileUrl, // Store file URL in Firestore
       });
@@ -87,6 +89,7 @@ class CharityController extends GetxController {
   void clearInputs() {
     selectCharityDateCon.clear();
     charityTitleCon.clear();
+    charityNumberCon.clear();
     charityDescriptionCon.clear();
     fileName = null;
   }
@@ -95,6 +98,7 @@ class CharityController extends GetxController {
   void dispose() {
     selectCharityDateCon.dispose();
     charityTitleCon.dispose();
+    charityNumberCon.dispose();
     charityDescriptionCon.dispose();
     super.dispose();
   }

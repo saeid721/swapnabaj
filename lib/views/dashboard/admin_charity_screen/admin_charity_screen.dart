@@ -28,7 +28,7 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
     final result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
     );
     if (result != null && result.files.isNotEmpty) {
       controller.fileName = result.files.first.path; // Get the file path
@@ -86,6 +86,7 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
                         controller: controller.selectCharityDateCon,
                         titleText: 'Select Date',
                         hintText: "Select Date".tr,
+                        keyboardType: TextInputType.datetime,
                         titleStyle: const TextStyle(color: ColorRes.textColor, fontSize: 12, fontWeight: FontWeight.w400, fontFamily: 'Roboto'),
                         isDense: true,
                         decoration: inputDropDecoration,
@@ -107,6 +108,15 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
                         controller: controller.charityTitleCon,
                         titleText: 'Title',
                         hintText: 'Enter Title',
+                        isDense: true,
+                        decoration: inputDropDecoration,
+                        filled: true,
+                      ),
+                      const SizedBox(height: 10),
+                      GlobalTextFormField(
+                        controller: controller.charityNumberCon,
+                        titleText: 'Number',
+                        hintText: 'Enter Number',
                         isDense: true,
                         decoration: inputDropDecoration,
                         filled: true,
@@ -151,7 +161,12 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
                       GlobalButtonWidget(
                         str: 'Submit',
                         height: 45,
-                        onTap: () {},
+                        onTap: () {
+                          controller.submitCharityData();
+                          setState(() {
+                            fileName = null; // Clear selected file after submission
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -178,14 +193,16 @@ class _AdminCharityScreenState extends State<AdminCharityScreen> {
                       return Stack(children: [
                         InkWell(
                           onTap: () {
-                            Get.to(() => AdminCharityDetailsScreen(
-                                  imagePath: charity.fileUrl ?? 'assets/images/placeholder.png', // Added null check
-                                  number: charity.number,
-                                  title: charity.title,
-                                  date: charity.date,
-                                  description: charity.description,
-                                  index: index,
-                                ));
+                            Get.to(
+                              () => AdminCharityDetailsScreen(
+                                imagePath: charity.fileUrl ?? 'assets/images/placeholder.png', // Added null check
+                                number: charity.number,
+                                title: charity.title,
+                                date: charity.date,
+                                description: charity.description,
+                                index: index,
+                              ),
+                            );
                           },
                           child: Card(
                             margin: const EdgeInsets.only(top: 10),
