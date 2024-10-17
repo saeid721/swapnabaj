@@ -13,7 +13,7 @@ class GalleryModel {
     return GalleryModel(
       imageTitle: data['title'] ?? '',
       description: data['description'] ?? '',
-      fileUrl: data['file_url'] ?? 'assets/images/placeholder.png', // Use a default placeholder if URL is missing
+      fileUrl: data['file_url'] ?? 'assets/images/placeholder.png',
     );
   }
 }

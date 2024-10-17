@@ -188,10 +188,10 @@ class _AdminNewsScreenState extends State<AdminNewsScreen> {
                             onTap: () {
                               Get.to(
                                 () => AdminNewsDetailsScreen(
-                                  imagePath: newsItems.fileUrl ?? 'assets/images/placeholder.png', // Added null check
-                                  newsTitle: newsItems.title,
                                   date: newsItems.date,
+                                  newsTitle: newsItems.title,
                                   description: newsItems.description,
+                                  imagePath: newsItems.fileUrl ?? 'assets/images/placeholder.png',
                                   index: index,
                                 ),
                               );

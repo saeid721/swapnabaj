@@ -10,7 +10,8 @@ import '../../models/news_model/news_model.dart';
 class NewsController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
-  var newsData = <NewsModel>[];
+  //var newsData = <NewsModel>[];
+  List<NewsModel> newsData = [];
 
   final newsDateCon = TextEditingController();
   final newsTitleCon = TextEditingController();

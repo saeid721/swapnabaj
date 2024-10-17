@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import '../../../controllers/gallery_controller/gallery_controller.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
-import '../../dashboard/admin_gallery_screen/data.dart';
 import '../../dashboard/admin_login_screen/admin_login_screen.dart';
 import 'gallery_details.dart';
 
@@ -69,44 +68,55 @@ class _GalleryScreenState extends State<GalleryScreen> {
           child: Center(
             child: Column(
               children: [
-                GlobalContainer(
-                  backgroundColor: ColorRes.backgroundColor,
-                  child: SizedBox(
-                    height: Get.height,
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: images.length,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Get.to(
-                                  () => GalleryDetailsScreen(
-                                imagePath: images[index].fileUrl,
-                                imageTitle: images[index].imageTitle,
-                                description: images[index].description,
-                                index: index,
-                              ),
-                            );
-                          },
-                          child: Hero(
-                            tag: 'logo$index',
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                image: DecorationImage(
-                                  image: NetworkImage(images[index].fileUrl),
-                                  fit: BoxFit.cover,
+                GetBuilder<GalleryController>(builder: (galleryController) {
+                  if (galleryController.galleryData.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No Images Found',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    );
+                  }
+                  return GlobalContainer(
+                    backgroundColor: ColorRes.backgroundColor,
+                    child: SizedBox(
+                      height: Get.height,
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: galleryController.galleryData.length,
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                        itemBuilder: (context, index) {
+                          final images = galleryController.galleryData[index];
+                          return InkWell(
+                            onTap: () {
+                              Get.to(
+                                    () => GalleryDetailsScreen(
+                                  imageTitle: images.imageTitle,
+                                  description: images.description,
+                                  imagePath: images.fileUrl ?? 'assets/images/placeholder.png',
+                                  index: index,
+                                ),
+                              );
+                            },
+                            child: Hero(
+                              tag: 'logo$index',
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  image: DecorationImage(
+                                    image: NetworkImage(images.fileUrl ?? 'assets/images/placeholder.png'),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                }),
                 const SizedBox(height: 20),
               ],
             ),

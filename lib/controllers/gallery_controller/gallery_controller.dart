@@ -10,7 +10,8 @@ import '../../models/gallery_model/gallery_model.dart';
 class GalleryController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance;
-  var galleryData = <GalleryModel>[];
+
+  List<GalleryModel> galleryData = [];
 
   final galleryImageTitleCon = TextEditingController();
   final galleryImageDescriptionCon = TextEditingController();
@@ -21,15 +22,18 @@ class GalleryController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchGalleryData();
+    fetchGalleryData(); // Fetch gallery data when the controller is initialized
   }
 
   // Fetch Gallery Data from Firestore
   Future<void> fetchGalleryData() async {
-    final snapshot = await _firestore.collection('galleryData').orderBy('index', descending: true).get();
-    galleryData.clear();
-    galleryData.addAll(snapshot.docs.map((doc) => GalleryModel.fromDocument(doc.data(), doc.id)).toList());
-    update(); // Notify UI to update
+    try {
+      final snapshot = await _firestore.collection('galleryData').orderBy('date', descending: true).get();
+      galleryData = snapshot.docs.map((doc) => GalleryModel.fromDocument(doc.data(), doc.id)).toList();
+      update(); // Notify UI to update
+    } catch (e) {
+      Get.snackbar('Error', 'Failed to fetch gallery data');
+    }
   }
 
   Future<void> submitGalleryData() async {
@@ -51,10 +55,10 @@ class GalleryController extends GetxController {
     try {
       // Add Gallery data to Firestore
       await _firestore.collection('galleryData').add({
+        'date': DateTime.now(),
         'title': galleryImageTitleCon.text,
         'description': galleryImageDescriptionCon.text,
         'file_url': fileUrl, // Store file URL in Firestore
-        'date': DateTime.now(),
       });
 
       await fetchGalleryData(); // Fetch updated data

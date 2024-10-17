@@ -10,7 +10,6 @@ import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
 import '../admin_login_screen/admin_login_screen.dart';
 import 'admin_gallery_details_screen.dart';
-import 'data.dart';
 
 class AdminGalleryScreen extends StatefulWidget {
   const AdminGalleryScreen({super.key});
@@ -143,45 +142,53 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                  GlobalContainer(
-                    backgroundColor: ColorRes.backgroundColor,
-                    child: SizedBox(
-                      height: Get.height,
-                      child: GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: images.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
-                        itemBuilder: (context, index) {
-                          return InkWell(
-                            onTap: () {
-                              Get.to(
-                                () => AdminGalleryDetailsScreen(
-                                  imagePath: images[index].fileUrl,
-                                  imageTitle: images[index].imageTitle,
-                                  description: images[index].description,
-                                  index: index,
-                                ),
-                              );
-                            },
-                            child: Hero(
-                              tag: 'logo$index',
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  image: DecorationImage(
-                                    image: NetworkImage(images[index].fileUrl),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
+                GetBuilder<GalleryController>(builder: (galleryController) {
+                  if (galleryController.galleryData.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No Images Found',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    );
+                  }
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: galleryController.galleryData.length,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                    ),
+                    itemBuilder: (context, index) {
+                      final images = galleryController.galleryData[index];
+                      return InkWell(
+                        onTap: () {
+                          Get.to(
+                            () => AdminGalleryDetailsScreen(
+                              imageTitle: images.imageTitle,
+                              description: images.description,
+                              imagePath: images.fileUrl ?? 'assets/images/placeholder.png',
+                              index: index,
                             ),
                           );
                         },
-                      ),
-                    ),
-                  ),
-                const SizedBox(height: 20),
+                        child: Hero(
+                          tag: 'logo$index',
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                image: NetworkImage(images.fileUrl ?? 'assets/images/placeholder.png'),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }),
               ],
             ),
           ),
@@ -190,4 +197,3 @@ class _AdminGalleryScreenState extends State<AdminGalleryScreen> {
     );
   }
 }
-

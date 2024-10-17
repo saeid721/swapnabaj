@@ -16,7 +16,7 @@ class NewsModel {
       date: data['date'] ?? '',
       title: data['title'] ?? '',
       description: data['description'] ?? '',
-      fileUrl: data['file_url'], // Fetching image URL from Firestore
+      fileUrl: data['file_url'] ?? 'assets/images/placeholder.png',
     );
   }
 }
