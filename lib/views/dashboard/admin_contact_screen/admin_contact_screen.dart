@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controllers/contact_controller/contact_controller.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_button.dart';
 import '../../../global_widget/global_container.dart';
@@ -15,10 +16,7 @@ class AdminContactUsScreen extends StatefulWidget {
 }
 
 class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
-  final TextEditingController selectPhoneCon = TextEditingController();
-  final TextEditingController selectEmailCon = TextEditingController();
-  final TextEditingController selectWebsiteCon = TextEditingController();
-  final TextEditingController selectAddressCon = TextEditingController();
+  final ContactController controller = Get.put(ContactController());
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +38,7 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() =>  SignInScreen());
+              Get.to(() => const SignInScreen());
             },
             icon: const Icon(Icons.logout),
           ),
@@ -65,7 +63,7 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
                       children: [
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: selectPhoneCon,
+                          controller: controller.phoneCon,
                           titleText: 'Phone',
                           hintText: 'Enter Phone',
                           isDense: true,
@@ -75,7 +73,7 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: selectEmailCon,
+                          controller: controller.emailCon,
                           titleText: 'Email',
                           hintText: 'Enter Email',
                           isDense: true,
@@ -84,7 +82,7 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: selectWebsiteCon,
+                          controller: controller.websiteCon,
                           titleText: 'Website',
                           hintText: 'Enter Website',
                           isDense: true,
@@ -93,7 +91,7 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
                         ),
                         const SizedBox(height: 10),
                         GlobalTextFormField(
-                          controller: selectAddressCon,
+                          controller: controller.addressCon,
                           titleText: 'Address',
                           hintText: 'Enter Address',
                           isDense: true,
@@ -105,63 +103,92 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
                         GlobalButtonWidget(
                           str: 'Submit',
                           height: 45,
-                          onTap: () {},
+                          onTap: controller.submitContactData,
                         ),
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: 20),
-                GlobalContainer(
-                  backgroundColor: ColorRes.white,
-                  elevation: 1,
-                  width: Get.width,
-                  borderRadius: 8, // Adjust the width if needed
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Address:',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                GetBuilder<ContactController>(builder: (contactController) {
+                  if (contactController.contactData.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No Contact Us Data Found',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    );
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: contactController.contactData.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final contact = contactController.contactData[index];
+                      return GlobalContainer(
+                        backgroundColor: ColorRes.white,
+                        elevation: 1,
+                        width: Get.width,
+                        borderRadius: 8,
+                        padding: const EdgeInsets.only(top: 10, bottom: 10),
+                        child: Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Phone',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                contact.phone,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'Email',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                contact.email,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'Website',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                contact.website,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'Address',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                contact.address,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                              ),
+                              const SizedBox(height: 10),
+                            ],
+                          ),
                         ),
-                        Text(
-                          'Bogura, Dhaka, Bangladesh',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(height: 24),
-                        Text(
-                          'Phone:',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          '+88 01703 030 721',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(height: 24),
-                        Text(
-                          'Email:',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'info@swapnobaj.com',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(height: 24),
-                        Text(
-                          'Website:',
-                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'www.swapnobaj.com',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                      );
+                    },
+                  );
+                }),
                 const SizedBox(height: 20),
               ],
             ),
@@ -169,15 +196,5 @@ class _AdminContactUsScreenState extends State<AdminContactUsScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    // Dispose of controllers to free up resources
-    selectPhoneCon.dispose();
-    selectEmailCon.dispose();
-    selectWebsiteCon.dispose();
-    selectAddressCon.dispose();
-    super.dispose();
   }
 }

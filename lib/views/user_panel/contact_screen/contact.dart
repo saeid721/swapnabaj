@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../controllers/contact_controller/contact_controller.dart';
 import '../../../global_widget/colors.dart';
+import '../../../global_widget/global_container.dart';
+import '../../dashboard/admin_login_screen/admin_login_screen.dart';
 import '../bottom_navigation_bar/component/bottom_navigation_widget.dart'; // Import the path correctly
 
-class ContactUsScreen extends StatelessWidget {
+class ContactUsScreen extends StatefulWidget {
   const ContactUsScreen({super.key});
+
+  @override
+  State<ContactUsScreen> createState() => _ContactUsScreenState();
+}
+
+class _ContactUsScreenState extends State<ContactUsScreen> {
+  final ContactController controller = Get.put(ContactController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,78 +35,103 @@ class ContactUsScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.login),
+            onPressed: () {
+              Get.to(() => const SignInScreen());
+            },
+            icon: const Icon(Icons.logout),
           ),
         ],
       ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.only(left: 10, right: 10, top: 15),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Address:',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'Bogura, Dhaka, Bangladesh',
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 24),
-              Text(
-                'Phone:',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                '+88 01703 030 721',
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 24),
-              Text(
-                'Email:',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'info@swapnobaj.com',
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 24),
-              Text(
-                'Website:',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'www.swapnobaj.com',
-                style: TextStyle(fontSize: 16),
-              ),
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: Center(
+            child: Column(
+              children: [
+                GetBuilder<ContactController>(builder: (contactController) {
+                  if (contactController.contactData.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No Contact Us Data Found',
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+                    );
+                  }
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: contactController.contactData.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      final contact = contactController.contactData[index];
+                      return GlobalContainer(
+                        backgroundColor: ColorRes.white,
+                        elevation: 1,
+                        width: Get.width,
+                        borderRadius: 8,
+                        padding: const EdgeInsets.only(top: 10, bottom: 10),
+                        child: Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Phone',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                contact.phone,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'Email',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                contact.email,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'Website',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                contact.website,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                'Address',
+                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(height: 5),
+                              Text(
+                                contact.address,
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+                              ),
+                              const SizedBox(height: 10),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                }),
+                const SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationWidget(
-        onPress: (index) {
-          // Handle navigation based on the selected index
-          switch (index) {
-            case 0:
-              Navigator.pushReplacementNamed(context, '/homeScreen');
-              break;
-            case 1:
-              Navigator.pushReplacementNamed(context, '/memberScreen');
-              break;
-            case 2:
-              Navigator.pushReplacementNamed(context, '/investScreen');
-              break;
-            case 3:
-              Navigator.pushReplacementNamed(context, '/profitScreen');
-              break;
-            case 4:
-              Navigator.pushReplacementNamed(context, '/sideMenuScreen');
-              break;
-          }
-        },
       ),
     );
   }
