@@ -26,7 +26,7 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
     final result = await FilePicker.platform.pickFiles(
       allowMultiple: false,
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'jepg', 'png', 'gif'],
+      allowedExtensions: ['jpg', 'jepg', 'png', 'gif', 'webp'],
     );
     if (result != null && result.files.isNotEmpty) {
       controller.fileName = result.files.first.path; // Get the file path
@@ -212,7 +212,7 @@ class _AdminMemberScreenState extends State<AdminMemberScreen> {
                       contact: member.phone,
                       email: member.email,
                       address: member.address,
-                      imagePath: member.fileUrl!,
+                      imagePath: member.fileUrl ?? 'assets/images/placeholder.png',
                     );
                   },
                     ),

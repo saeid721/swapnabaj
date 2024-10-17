@@ -1,4 +1,4 @@
-class Members {
+class MemberModel {
   final String name;
   final String fatherName;
   final String motherName;
@@ -8,7 +8,7 @@ class Members {
   final String address;
   final String? fileUrl;
 
-  Members({
+  MemberModel({
     required this.name,
     required this.fatherName,
     required this.motherName,
@@ -19,8 +19,8 @@ class Members {
     this.fileUrl,
   });
 
-  factory Members.fromDocument(Map<String, dynamic> data, String id) {
-    return Members(
+  factory MemberModel.fromDocument(Map<String, dynamic> data, String id) {
+    return MemberModel(
       name: data['name'] ?? '',
       fatherName: data['father_name'] ?? '',
       motherName: data['mother_name'] ?? '',

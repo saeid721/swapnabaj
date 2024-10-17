@@ -66,11 +66,12 @@ class CharityDetailsScreen extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
-                            height: 100,
+                            height: 160,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: NetworkImage(imagePath), // Corrected image provider
                                 fit: BoxFit.cover,
+
                               ),
                             ),
                           ),

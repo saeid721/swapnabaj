@@ -72,7 +72,7 @@ class MemberScreen extends StatelessWidget {
                         contact: member.phone,
                         email: member.email,
                         address: member.address,
-                        imagePath: member.fileUrl!,
+                        imagePath: member.fileUrl ?? 'assets/images/placeholder.png',
                       );
                     },
                   ),

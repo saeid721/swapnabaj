@@ -9,7 +9,9 @@ import '../../models/member_model/member_model.dart';
 class MembersController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseStorage _storage = FirebaseStorage.instance; // Firebase Storage instance
-  var membersData = <Members>[];
+  //var membersData = <MemberModel>[];
+  List<MemberModel> membersData = [];
+
 
   final memberNameCon = TextEditingController();
   final memberFatherNameCon = TextEditingController();
@@ -31,7 +33,7 @@ class MembersController extends GetxController {
   Future<void> fetchMembersData() async {
     final snapshot = await _firestore.collection('membersData').get();
     membersData.clear();
-    membersData.addAll(snapshot.docs.map((doc) => Members.fromDocument(doc.data(), doc.id)).toList());
+    membersData.addAll(snapshot.docs.map((doc) => MemberModel.fromDocument(doc.data(), doc.id)).toList());
     update(); // Notify UI to update
   }
 
