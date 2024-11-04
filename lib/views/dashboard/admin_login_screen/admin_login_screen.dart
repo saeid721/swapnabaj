@@ -33,28 +33,22 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
-          child: Container(
+          child: GlobalContainer(
             height: Get.height,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                colors: [Color(0xFF007142), Color(0xFF35C147)],
-              ),
-            ),
+            backgroundColor: ColorRes.backgroundColor,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
                   'assets/images/placeholder.png',
-                  width: 250,
+                  width: 190,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10, right: 10, top: 30),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
                   child: GlobalContainer(
                     backgroundColor: ColorRes.white,
-                    elevation: 1,
+                    elevation: 2,
                     width: Get.width,
                     borderRadius: 8,
                     child: Padding(

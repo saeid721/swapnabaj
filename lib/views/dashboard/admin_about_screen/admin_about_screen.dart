@@ -1,17 +1,21 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../controllers/about_us_controller/about_us_controller.dart';
+import '../../../controllers/about_us_controller/edit_update.dart';
 import '../../../global_widget/colors.dart';
+import '../../../global_widget/enum.dart';
 import '../../../global_widget/global_button.dart';
 import '../../../global_widget/global_container.dart';
+import '../../../global_widget/global_image_loader.dart';
+import '../../../global_widget/global_progress_hub.dart';
 import '../../../global_widget/global_sizedbox.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
 import '../admin_login_screen/admin_login_screen.dart';
+import 'update_admin_about_screen.dart';
 
 class AdminAboutScreen extends StatefulWidget {
-  const AdminAboutScreen({super.key});
+  const AdminAboutScreen({Key? key}) : super(key: key);
 
   @override
   State<AdminAboutScreen> createState() => _AdminAboutScreenState();
@@ -20,6 +24,7 @@ class AdminAboutScreen extends StatefulWidget {
 class _AdminAboutScreenState extends State<AdminAboutScreen> {
   final AboutUsController controller = Get.put(AboutUsController());
   String? fileName;
+  String? previewFile;
 
   Future<void> pickFile() async {
     final result = await FilePicker.platform.pickFiles(
@@ -31,12 +36,14 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
       controller.fileName = result.files.first.path; // Get the file path
       setState(() {
         fileName = result.files.first.path;
+        previewFile = result.files.first.path; // Update preview file for display
       });
       Get.snackbar('Success', 'File selected successfully', colorText: ColorRes.green);
     } else {
       Get.snackbar('Error', 'No file selected', colorText: ColorRes.red);
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,13 +71,17 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
           ),
         ],
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: Center(
-            child: Column(
-              children: [
-                GlobalContainer(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        child: Center(
+          child: Column(
+            children: [
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: 0,
+                  maxHeight: MediaQuery.of(context).size.height - 100, // Adjust the max height as needed
+                ),
+                child: GlobalContainer(
                   backgroundColor: ColorRes.white,
                   elevation: 1,
                   width: Get.width,
@@ -90,11 +101,11 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                           decoration: inputDropDecoration,
                           filled: true,
                         ),
-                        const SizedBox(height: 10),
+                        sizedBoxH(10),
                         GlobalTextFormField(
                           controller: controller.ourVisionDescriptionCon,
                           titleText: 'Our Vision',
-                          hintText: 'Enter Description ',
+                          hintText: 'Enter Description',
                           isDense: true,
                           maxLine: 2,
                           decoration: inputDropDecoration,
@@ -106,8 +117,8 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                           titleText: 'How We Operate',
                           hintText: 'Enter Description',
                           isDense: true,
-                          decoration: inputDropDecoration,
                           maxLine: 2,
+                          decoration: inputDropDecoration,
                           filled: true,
                         ),
                         sizedBoxH(10),
@@ -116,8 +127,8 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                           titleText: 'Our Community',
                           hintText: 'Enter Description',
                           isDense: true,
-                          decoration: inputDropDecoration,
                           maxLine: 2,
+                          decoration: inputDropDecoration,
                           filled: true,
                         ),
                         sizedBoxH(10),
@@ -126,36 +137,46 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                           titleText: 'Building a Legacy',
                           hintText: 'Enter Description',
                           isDense: true,
-                          decoration: inputDropDecoration,
                           maxLine: 3,
+                          decoration: inputDropDecoration,
                           filled: true,
                         ),
                         sizedBoxH(10),
                         const Text(
                           'Attachment',
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor, fontFamily: 'Rubik'),
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: ColorRes.textColor),
                           textAlign: TextAlign.left,
                         ),
                         sizedBoxH(5),
-                        GlobalButtonWidget(
-                          str: 'Choose File',
-                          height: 50,
-                          width: Get.width,
-                          textSize: 14,
-                          textColor: ColorRes.textColor,
-                          radius: 5,
-                          borderColor: ColorRes.borderColor,
-                          buttomColor: Colors.transparent,
-                          onTap: pickFile,
-                        ),
-                        if (fileName != null)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 10.0),
-                            child: Text(
-                              'Selected file: ${fileName!.split('/').last}',
-                              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: GlobalButtonWidget(
+                                str: 'Choose File',
+                                height: 50,
+                                width: Get.width,
+                                textSize: 14,
+                                textColor: ColorRes.textColor,
+                                radius: 5,
+                                borderColor: ColorRes.borderColor,
+                                buttomColor: Colors.transparent,
+                                onTap: pickFile,
+                              ),
                             ),
-                          ),
+                            if (fileName != null)
+                              Expanded(
+                                flex: 1,
+                                child: GlobalImageLoader(
+                                  imagePath: fileName ?? '',
+                                  height: 80,
+                                  width: 80,
+                                  fit: BoxFit.fill,
+                                  imageFor: ImageFor.network,
+                                ),
+                              ),
+                          ],
+                        ),
                         sizedBoxH(20),
                         GlobalButtonWidget(
                           str: 'Submit',
@@ -166,110 +187,119 @@ class _AdminAboutScreenState extends State<AdminAboutScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
-                GetBuilder<AboutUsController>(builder: (aboutUsController) {
-                  if (aboutUsController.aboutUsData.isEmpty) {
-                    return const Center(
-                      child: Text(
-                        'No About Us Data Found',
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
-                      ),
-                    );
-                  }
-                  return ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: aboutUsController.aboutUsData.length,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      final aboutUs = aboutUsController.aboutUsData[index];
-                      return GlobalContainer(
-                        backgroundColor: ColorRes.backgroundColor,
-                        width: Get.width,
+              ),
+              const SizedBox(height: 20),
+              GetBuilder<AboutUsController>(builder: (aboutUsController) {
+                  final aboutUs = aboutUsController.aboutUsData;
+                  return ProgressHub(
+                    inAsyncCall: aboutUsController.isLoading,
+                    child: GlobalContainer(
+                      backgroundColor: ColorRes.white,
+                      borderRadius: 8,
+                      elevation: 2,
+                      width: Get.width,
+                      child: ProgressHub(
+                        inAsyncCall: aboutUsController.isLoading,
                         child: Center(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              if (aboutUs.fileUrl != null)
-                                GlobalContainer(
-                                  elevation: 3,
-                                  width: Get.width,
-                                  borderRadius: 8,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image.network(
-                                      aboutUs.fileUrl!,
-                                      height: 190,
-                                      width: Get.width,
-                                      fit: BoxFit.cover,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                if (aboutUs?.fileUrl != null)
+                                  GlobalContainer(
+                                    elevation: 2,
+                                    width: Get.width,
+                                    borderRadius: 8,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: GlobalImageLoader(
+                                        imagePath: aboutUs?.fileUrl ?? '',
+                                        height: 190,
+                                        width: Get.width,
+                                        fit: BoxFit.cover,
+                                        imageFor: ImageFor.network,
+                                      ),
                                     ),
                                   ),
+                                const SizedBox(height: 5),
+                                const Text(
+                                  'About Us',
+                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                                 ),
-                              const SizedBox(height: 5),
-                              const Text(
-                                'About Us',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                aboutUs.aboutUsDescription,
-                                textAlign: TextAlign.justify,
-                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500,),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                'Our Vision',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                aboutUs.ourVisionDescription,
-                                textAlign: TextAlign.justify,
-                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                'How We Operate',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                aboutUs.howWeOperateDescription,
-                                textAlign: TextAlign.justify,
-                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                'Our Community and Collective Strength',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                aboutUs.ourCommunityDescription,
-                                textAlign: TextAlign.justify,
-                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
-                              ),
-                              const SizedBox(height: 10),
-                              const Text(
-                                'Building a Legacy',
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                aboutUs.buildingLegacyDescription,
-                                textAlign: TextAlign.justify,
-                                style: const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
-                              ),
-                            ],
+                                const SizedBox(height: 5),
+                                Text(
+                                  aboutUs?.aboutUsDescription ?? '',
+                                  textAlign: TextAlign.justify,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  'Our Vision',
+                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  aboutUs?.ourVisionDescription ?? '',
+                                  textAlign: TextAlign.justify,
+                                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                                ),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  'How We Operate',
+                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  aboutUs?.howWeOperateDescription ?? '',
+                                  textAlign: TextAlign.justify,
+                                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                                ),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  'Our Community',
+                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  aboutUs?.ourCommunityDescription ?? '',
+                                  textAlign: TextAlign.justify,
+                                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                                ),
+                                const SizedBox(height: 10),
+                                const Text(
+                                  'Building a Legacy',
+                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  aboutUs?.buildingLegacyDescription ?? '',
+                                  textAlign: TextAlign.justify,
+                                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      );
-                    },
+                      ),
+                    ),
                   );
-                }),
-              ],
-            ),
+                },
+              ),
+              const SizedBox(height: 65),
+            ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.to(() => const UpdateAdminAboutScreen());
+        },
+        backgroundColor: ColorRes.secondaryColor,
+        child: const Icon(Icons.edit, color: ColorRes.white),
       ),
     );
   }
