@@ -28,7 +28,7 @@ class UserCustomDrawerWidget extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
-                  colors: [Color(0xFF007142), Color(0xFF35C147)],
+                  colors: [Color(0xFFa8e2a8), Color(0xFFcfe7b7)],
                 ),
               ),
               child: Column(
