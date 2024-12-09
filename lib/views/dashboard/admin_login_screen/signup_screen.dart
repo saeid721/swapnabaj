@@ -155,7 +155,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         textAlign: TextAlign.left,
                                       ),
                                       onTap: () {
-                                        Get.to(() => SignInScreen());
+                                        Get.to(() => const SignInScreen());
                                       },
                                     ),
                                   ],

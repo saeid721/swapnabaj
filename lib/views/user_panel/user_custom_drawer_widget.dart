@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../global_widget/chapter_item_widget.dart';
+import '../../global_widget/global_image_loader.dart';
+import '../../global_widget/images.dart';
+import '../dashboard/admin_login_screen/change_password_screen.dart';
 import 'about_screen/about.dart';
 import 'charity_screen/charity_screen.dart';
 import 'contact_screen/contact.dart';
@@ -9,8 +12,8 @@ import 'gallery_screen/gallery.dart';
 import 'news_screen/news_screen.dart';
 import 'notices_screen/notices_screen.dart';
 
-class SideMenuScreen extends StatelessWidget {
-  const SideMenuScreen({super.key});
+class UserCustomDrawerWidget extends StatelessWidget {
+  const UserCustomDrawerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +21,10 @@ class SideMenuScreen extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             height: 170,
             child: DrawerHeader(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
@@ -31,9 +34,10 @@ class SideMenuScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/placeholder.png',
-                    width: 120,
+                  GlobalImageLoader(
+                    imagePath: Images.appLogo,
+                    width: 220,
+                    fit: BoxFit.fill,
                   ),
                 ],
               ),
@@ -64,7 +68,7 @@ class SideMenuScreen extends StatelessWidget {
             leadingImage: 'assets/icons/event.png',
             title: "Event",
             onTap: () {
-              Get.to(() => EventScreen());
+              Get.to(() => const EventScreen());
             },
           ),
           ChapterItem(
@@ -86,6 +90,13 @@ class SideMenuScreen extends StatelessWidget {
             title: "Contact Us",
             onTap: () {
               Get.to(() => const ContactUsScreen());
+            },
+          ),
+          ChapterItem(
+            leadingImage: 'assets/icons/reset-password.png',
+            title: "Change Password",
+            onTap: () {
+              Get.to(() => const ChangePasswordScreen());
             },
           ),
         ],

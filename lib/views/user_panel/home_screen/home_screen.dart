@@ -7,14 +7,14 @@ import '../../../controllers/investment_controller/investment_controller.dart';
 import '../../../controllers/profit_controller/profit_controller.dart';
 import '../../dashboard/admin_home_screen/pie_chart_section.dart';
 import '../../dashboard/admin_login_screen/login_screen.dart';
-import '../../dashboard/admin_side_menu_screen.dart';
+import '../../dashboard/admin_custom_drawer_widget.dart';
 import '../capital_screen/capital_screen.dart';
 import '../expense_screen/expense_screen.dart';
 import '../invest_screen/invest_screen.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
 import '../profit_screen/profit_screen.dart';
-import '../side_menu_screen.dart';
+import '../user_custom_drawer_widget.dart';
 import 'component/home_member_widget.dart';
 import 'component/home_summery_chapter_item_widget.dart';
 
@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: const SideMenuScreen(),
+      drawer: const UserCustomDrawerWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),

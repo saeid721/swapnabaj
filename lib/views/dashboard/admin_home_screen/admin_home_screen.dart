@@ -17,7 +17,7 @@ import '../admin_expense_screen/admin_expense_screen.dart';
 import '../admin_invest_screen/admin_invest_screen.dart';
 import '../admin_login_screen/login_screen.dart';
 import '../admin_profit_screen/admin_profit_screen.dart';
-import '../admin_side_menu_screen.dart';
+import '../admin_custom_drawer_widget.dart';
 import 'component/admin_home_member_widget.dart';
 import 'component/catagory_card.dart';
 import 'component/home_summery_chapter_item_widget.dart';
@@ -58,7 +58,7 @@ class _AdminHomeScreenState extends State<AdminHomeScreen> {
           ),
         ],
       ),
-      drawer: const AdminSideBerMenuWidget(),
+      drawer: const AdminCustomDrawerWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),

@@ -5,7 +5,7 @@ import '../../dashboard/admin_login_screen/login_screen.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_text.dart';
-import '../side_menu_screen.dart';
+import '../user_custom_drawer_widget.dart';
 import 'component/expense_widget.dart';
 
 class ExpenseScreen extends StatelessWidget {
@@ -39,7 +39,7 @@ class ExpenseScreen extends StatelessWidget {
           ),
         ],
       ),
-      drawer: const SideMenuScreen(),
+      drawer: const UserCustomDrawerWidget(),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

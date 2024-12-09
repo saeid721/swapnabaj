@@ -5,7 +5,7 @@ import '../home_screen/home_screen.dart';
 import '../profit_screen/profit_screen.dart';
 import '../invest_screen/invest_screen.dart';
 import '../member_screen/member_screen.dart';
-import '../side_menu_screen.dart';
+import '../user_custom_drawer_widget.dart';
 import 'component/bottom_navigation_widget.dart';
 
 class BottomNavigation extends StatefulWidget {

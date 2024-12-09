@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../global_widget/chapter_item_widget.dart';
-import '../../global_widget/colors.dart';
+import '../../global_widget/global_image_loader.dart';
+import '../../global_widget/images.dart';
 import 'admin_about_screen/admin_about_screen.dart';
 import 'admin_capital_screen/admin_capital_screen.dart';
 import 'admin_charity_screen/admin_charity_screen.dart';
@@ -10,13 +11,14 @@ import 'admin_event_screen/admin_event_screen.dart';
 import 'admin_expense_screen/admin_expense_screen.dart';
 import 'admin_gallery_screen/admin_gallery_screen.dart';
 import 'admin_invest_screen/admin_invest_screen.dart';
+import 'admin_login_screen/change_password_screen.dart';
 import 'admin_member_screen/admin_member_screen.dart';
 import 'admin_news_screen/admin_news_screen.dart';
 import 'admin_notices_screen/admin_notices_screen.dart';
 import 'admin_profit_screen/admin_profit_screen.dart';
 
-class AdminSideBerMenuWidget extends StatelessWidget {
-  const AdminSideBerMenuWidget({
+class AdminCustomDrawerWidget extends StatelessWidget {
+  const AdminCustomDrawerWidget({
     super.key,
   });
 
@@ -26,10 +28,10 @@ class AdminSideBerMenuWidget extends StatelessWidget {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             height: 170,
             child: DrawerHeader(
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
@@ -39,10 +41,10 @@ class AdminSideBerMenuWidget extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/placeholder.png',
-                    width: 200,
-                    height: 100,
+                  GlobalImageLoader(
+                    imagePath: Images.appLogo,
+                    width: 220,
+                    fit: BoxFit.fill,
                   ),
                 ],
               ),
@@ -59,7 +61,7 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             leadingImage: 'assets/icons/profit.png',
             title: "Profit",
             onTap: () {
-              Get.to(() =>  AdminProfitScreen());
+              Get.to(() => AdminProfitScreen());
             },
           ),
           ChapterItem(
@@ -80,56 +82,63 @@ class AdminSideBerMenuWidget extends StatelessWidget {
             leadingImage: 'assets/icons/charity.png',
             title: "Charity",
             onTap: () {
-              Get.to(() => AdminCharityScreen());
+              Get.to(() => const AdminCharityScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/gallery.png',
             title: "Gallery",
             onTap: () {
-              Get.to(() => AdminGalleryScreen());
+              Get.to(() => const AdminGalleryScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/news.png',
             title: "News",
             onTap: () {
-              Get.to(() => AdminNewsScreen());
+              Get.to(() => const AdminNewsScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/event.png',
             title: "Event",
             onTap: () {
-              Get.to(() => AdminEventScreen());
+              Get.to(() => const AdminEventScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/notice.png',
             title: "Notice",
             onTap: () {
-              Get.to(() => AdminNoticesScreen());
+              Get.to(() => const AdminNoticesScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/about.png',
             title: "Members",
             onTap: () {
-              Get.to(() => AdminMemberScreen());
+              Get.to(() => const AdminMemberScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/about.png',
             title: "About Us",
             onTap: () {
-              Get.to(() => AdminAboutScreen());
+              Get.to(() => const AdminAboutScreen());
             },
           ),
           ChapterItem(
             leadingImage: 'assets/icons/contact.png',
             title: "Contact Us",
             onTap: () {
-              Get.to(() => AdminContactUsScreen());
+              Get.to(() => const AdminContactUsScreen());
+            },
+          ),
+          ChapterItem(
+            leadingImage: 'assets/icons/reset-password.png',
+            title: "Change Password",
+            onTap: () {
+              Get.to(() => const ChangePasswordScreen());
             },
           ),
         ],
