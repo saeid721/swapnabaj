@@ -8,7 +8,7 @@ import '../../../global_widget/global_text.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
 import '../../../global_widget/show_date_time_picker.dart';
-import '../admin_login_screen/admin_login_screen.dart';
+import '../admin_login_screen/login_screen.dart';
 import 'component/admin_profit_widget.dart';
 
 class AdminProfitScreen extends StatefulWidget {

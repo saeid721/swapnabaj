@@ -67,7 +67,7 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
           widget.titleText ?? "",
           style: widget.titleStyle ?? const TextStyle(
             color: ColorRes.textColor,
-            fontSize: 12,
+            fontSize: 14,
             fontWeight: FontWeight.w400,
             fontFamily: 'Roboto',
           ),
@@ -86,7 +86,7 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
                 style: const TextStyle(
                   color: ColorRes.textColor,
                   fontWeight: FontWeight.w400,
-                  fontSize: 12,
+                  fontSize: 14,
                   fontFamily: 'Rubik',
                 ),
               ),
@@ -100,7 +100,7 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
             isDense: widget.isDense,
             hintText: widget.hintText,
             hintStyle: widget.hintTextStyle ?? const TextStyle(
-              fontSize: 12,
+              fontSize: 14,
               color: ColorRes.textColor,
               fontWeight: FontWeight.w400,
               fontFamily: 'Rubik',
@@ -116,7 +116,7 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
                 isDense: widget.isDense,
                 hintText: widget.hintText,
                 hintStyle: widget.hintTextStyle ?? const TextStyle(
-                  fontSize: 12,
+                  fontSize: 14,
                   color: ColorRes.textColor,
                   fontWeight: FontWeight.w400,
                   fontFamily: 'Rubik',
@@ -146,7 +146,7 @@ class _CustomDropDownFormFieldState extends State<CustomDropDownFormField> {
           style: const TextStyle(
             color: ColorRes.textColor,
             fontWeight: FontWeight.w400,
-            fontSize: 13,
+            fontSize: 14,
             fontFamily: 'Rubik',
           ),
         ),

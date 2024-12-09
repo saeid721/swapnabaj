@@ -19,4 +19,5 @@ class Images {
   static const String groupUsers = 'assets/icons/groupUsers.png';
   static const String menu = 'assets/icons/menu.png';
   static const String splash = 'assets/images/SplashScreen.jpg';
+  static const String background = 'assets/images/background.jpg';
 }

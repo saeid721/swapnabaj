@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../../controllers/notices_controller/notices_controller.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
-import '../../dashboard/admin_login_screen/admin_login_screen.dart';
+import '../../dashboard/admin_login_screen/login_screen.dart';
 
 class NoticesScreen extends StatelessWidget {
 

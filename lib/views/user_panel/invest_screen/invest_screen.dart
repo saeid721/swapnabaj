@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controllers/investment_controller/investment_controller.dart';
-import '../../dashboard/admin_login_screen/admin_login_screen.dart';
+import '../../dashboard/admin_login_screen/login_screen.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_text.dart';

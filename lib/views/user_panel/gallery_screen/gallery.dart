@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../controllers/gallery_controller/gallery_controller.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
-import '../../dashboard/admin_login_screen/admin_login_screen.dart';
+import '../../dashboard/admin_login_screen/login_screen.dart';
 import 'gallery_details.dart';
 
 

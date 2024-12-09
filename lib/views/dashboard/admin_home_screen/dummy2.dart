@@ -14,7 +14,7 @@
 // import '../admin_capital_screen/admin_capital_screen.dart';
 // import '../admin_expense_screen/admin_expense_screen.dart';
 // import '../admin_invest_screen/admin_invest_screen.dart';
-// import '../admin_login_screen/admin_login_screen.dart';
+// import '../admin_login_screen/login_screen.dart';
 // import '../admin_profit_screen/admin_profit_screen.dart';
 // import '../admin_side_menu_screen.dart';
 // import 'component/admin_home_member_widget.dart';

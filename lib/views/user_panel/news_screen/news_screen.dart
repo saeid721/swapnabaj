@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controllers/news_controller/news_controller.dart';
 import '../../../global_widget/global_container.dart';
-import '../../dashboard/admin_login_screen/admin_login_screen.dart';
+import '../../dashboard/admin_login_screen/login_screen.dart';
 import 'news_details.dart';
 import '../../../global_widget/colors.dart';
 

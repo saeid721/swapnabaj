@@ -96,7 +96,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
           widget.titleText ?? "",
           style: widget.titleStyle ?? const TextStyle(
             color: ColorRes.textColor,
-            fontSize: 12,
+            fontSize: 14,
             fontWeight: FontWeight.w400,
             fontFamily: 'Rubik',
           ),
@@ -110,7 +110,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                 widget.titleText ?? "",
                 style: widget.titleStyle ?? const TextStyle(
                   color: ColorRes.textColor,
-                  fontSize: 12,
+                  fontSize: 14,
                   fontWeight: FontWeight.w400,
                   fontFamily: 'Rubik',
                 ),
@@ -120,7 +120,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                 "*",
                 style: TextStyle(
                   color: ColorRes.red,
-                  fontSize: 12,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Rubik',
                 ),
@@ -143,7 +143,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
           style: const TextStyle(
             color: ColorRes.textColor,
             fontWeight: FontWeight.w400,
-            fontSize: 13,
+            fontSize: 14,
             fontFamily: 'Rubik',
           ),
           decoration: widget.decoration?.copyWith(
@@ -151,7 +151,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
             isDense: widget.isDense,
             hintText: widget.hintText,
             hintStyle: widget.hintTextStyle ?? const TextStyle(
-              fontSize: 12,
+              fontSize: 14,
               color: ColorRes.textColor,
               fontWeight: FontWeight.w400,
               fontFamily: 'Rubik',
@@ -167,7 +167,7 @@ class _GlobalTextFormFieldState extends State<GlobalTextFormField> {
                 isDense: widget.isDense,
                 hintText: widget.hintText,
                 hintStyle: widget.hintTextStyle ?? const TextStyle(
-                  fontSize: 12,
+                  fontSize: 14,
                   color: ColorRes.textColor,
                   fontWeight: FontWeight.w400,
                   fontFamily: 'Rubik',

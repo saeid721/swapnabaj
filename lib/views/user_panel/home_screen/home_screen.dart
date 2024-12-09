@@ -6,7 +6,7 @@ import '../../../controllers/expense_controller/expense_controller.dart';
 import '../../../controllers/investment_controller/investment_controller.dart';
 import '../../../controllers/profit_controller/profit_controller.dart';
 import '../../dashboard/admin_home_screen/pie_chart_section.dart';
-import '../../dashboard/admin_login_screen/admin_login_screen.dart';
+import '../../dashboard/admin_login_screen/login_screen.dart';
 import '../../dashboard/admin_side_menu_screen.dart';
 import '../capital_screen/capital_screen.dart';
 import '../expense_screen/expense_screen.dart';

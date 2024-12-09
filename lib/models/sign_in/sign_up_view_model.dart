@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../services/sign_in/firebase_auth_service.dart';
-import '../../views/dashboard/admin_login_screen/admin_login_screen.dart';
+import '../../views/dashboard/admin_login_screen/login_screen.dart';
 import 'user_model.dart';
 
 class SignUpViewModel extends GetxController {

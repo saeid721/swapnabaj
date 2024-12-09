@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-
-import 'dashboard/admin_login_screen/login.dart';
-//import 'dashboard/admin_login_screen/admin_login_screen.dart';
+import 'dashboard/admin_login_screen/login_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => SignInScreen()),
       );
@@ -20,7 +18,7 @@ class SplashScreen extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/placeholder.png'),
+            image: AssetImage('assets/images/SplashScreen.jpg'),
             fit: BoxFit.cover,
           ),
         ),

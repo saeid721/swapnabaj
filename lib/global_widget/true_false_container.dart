@@ -27,7 +27,7 @@ class TrueFalseContainer extends StatelessWidget {
       padding: const EdgeInsets.only(left: 5, right: 5, top: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-          color: ColorRes.black.withOpacity(0.5)
+          color: ColorRes.white.withOpacity(0.5)
       ),
       child: Row(
         children: [
@@ -38,19 +38,19 @@ class TrueFalseContainer extends StatelessWidget {
                 children: [
                   GlobalText(
                     str: trueText,
-                    color: ColorRes.white,
+                    color: ColorRes.primaryColor,
                     fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                     textAlign: TextAlign.center,
                     fontFamily: 'Rubik',
                   ),
                   sizedBoxH(3),
                   Container(
-                    height: 5,
+                    height: 4,
                     width: Get.width,
                     margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                     decoration: BoxDecoration(
-                        color: currentValue ? ColorRes.textColor.withOpacity(0.7) : Colors.transparent,
+                        color: currentValue ? ColorRes.primaryColor.withOpacity(0.5) : Colors.transparent,
                         borderRadius: BorderRadius.circular(4)
                     ),
                   )
@@ -61,14 +61,14 @@ class TrueFalseContainer extends StatelessWidget {
           Expanded(
             child: InkWell(
               onTap: () => onChange(false),
-              highlightColor: Colors.black38,
+              highlightColor: ColorRes.primaryColor,
               child: Column(
                 children: [
                   GlobalText(
                     str: falseText,
-                    color: ColorRes.white,
+                    color: ColorRes.primaryColor,
                     fontSize: 14,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                     textAlign: TextAlign.center,
                     fontFamily: 'Rubik',
                   ),
@@ -79,7 +79,7 @@ class TrueFalseContainer extends StatelessWidget {
                     width: Get.width,
                     margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                     decoration: BoxDecoration(
-                        color: currentValue ? Colors.transparent : ColorRes.textColor.withOpacity(0.7),
+                        color: currentValue ? Colors.transparent : ColorRes.primaryColor.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(4)
                     ),
                   )

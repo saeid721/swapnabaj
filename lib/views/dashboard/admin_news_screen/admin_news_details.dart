@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
-import '../admin_login_screen/admin_login_screen.dart';
+import '../admin_login_screen/login_screen.dart';
 
 class AdminNewsDetailsScreen extends StatelessWidget {
   final String date;

@@ -6,7 +6,7 @@ import '../../../global_widget/global_button.dart';
 import '../../../global_widget/global_container.dart';
 import '../../../global_widget/global_textform_field.dart';
 import '../../../global_widget/input_decoration.dart';
-import '../dashboard/admin_login_screen/admin_login_screen.dart';
+import '../dashboard/admin_login_screen/login_screen.dart';
 
 class SuperAdminHomeScreen extends StatefulWidget {
   const SuperAdminHomeScreen({super.key});

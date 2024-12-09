@@ -5,7 +5,7 @@
 // import '../../super_admin_panel/Super_admin_home_screen.dart';
 // import '../../user_panel/bottom_navigation_bar/bottom_navigation.dart';
 // import '../admin_home_screen/admin_home_screen.dart';
-// import 'admin_forget_password.dart';
+// import 'forget_password_screen.dart';
 // import 'component/build_custom_text_field.dart';
 // import 'component/custom_drop_down_form_field.dart';
 //

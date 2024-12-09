@@ -4,7 +4,7 @@ import '../../../controllers/event_controller/event_controller.dart';
 import '../../../global_widget/colors.dart';
 import '../../../global_widget/global_container.dart';
 import '../../../models/event_model/event_model.dart';
-import '../../dashboard/admin_login_screen/admin_login_screen.dart';
+import '../../dashboard/admin_login_screen/login_screen.dart';
 
 class EventScreen extends StatefulWidget {
   const EventScreen({super.key});
