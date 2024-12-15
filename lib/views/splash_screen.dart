@@ -29,7 +29,7 @@ class SplashScreen extends StatelessWidget {
             imagePath: Images.splash,
             height: size(context).height,
             width: size(context).width,
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
       ),

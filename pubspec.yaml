@@ -29,7 +29,7 @@ dependencies:
 
   # Localization!
   image_picker: ^1.1.2
-  file_picker: ^8.1.5
+  file_picker: ^5.0.0
   flutter_image_compress: ^2.3.0
 
 dev_dependencies:
