@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import '../global_widget/colors.dart';
+import '../global_widget/global_image_loader.dart';
+import '../global_widget/global_sizedbox.dart';
+import '../global_widget/images.dart';
 import 'dashboard/admin_login_screen/login_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -6,7 +10,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const SignInScreen()),
       );
@@ -14,12 +18,18 @@ class SplashScreen extends StatelessWidget {
 
     return Scaffold(
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        height: size(context).height,
+        width: size(context).width,
+        padding: const EdgeInsets.symmetric(horizontal: 60),
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/SplashScreen.jpg'),
-            fit: BoxFit.cover,
+          color: ColorRes.backgroundColor,
+        ),
+        child: Center(
+          child: GlobalImageLoader(
+            imagePath: Images.splash,
+            height: size(context).height,
+            width: size(context).width,
+            fit: BoxFit.fill,
           ),
         ),
       ),
