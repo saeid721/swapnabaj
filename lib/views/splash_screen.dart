@@ -17,20 +17,12 @@ class SplashScreen extends StatelessWidget {
     });
 
     return Scaffold(
-      body: Container(
-        height: size(context).height,
-        width: size(context).width,
-        padding: const EdgeInsets.symmetric(horizontal: 60),
-        decoration: const BoxDecoration(
-          color: ColorRes.backgroundColor,
-        ),
-        child: Center(
-          child: GlobalImageLoader(
-            imagePath: Images.splash,
-            height: size(context).height,
-            width: size(context).width,
-            fit: BoxFit.cover,
-          ),
+      body: Center(
+        child: GlobalImageLoader(
+          imagePath: Images.splash,
+          height: size(context).height,
+          width: size(context).width,
+          fit: BoxFit.fill,
         ),
       ),
     );

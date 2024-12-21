@@ -61,7 +61,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         children: [
                           GlobalTextFormField(
                             controller: oldPasswordCon,
-                            prefixIcon: const Icon(Icons.password, size: 18),
+                            prefixIcon: const Icon(Icons.lock, size: 18),
                             //titleText: 'Old Password',
                             hintText: 'Enter Your Old Password',
                             decoration: borderDecoration,
@@ -69,7 +69,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           sizedBoxH(10),
                           GlobalTextFormField(
                             controller: newPasswordCon,
-                            prefixIcon: const Icon(Icons.password, size: 18),
+                            prefixIcon: const Icon(Icons.lock, size: 18),
                             //titleText: 'New Password',
                             hintText: 'Enter Your New Password',
                             decoration: borderDecoration,

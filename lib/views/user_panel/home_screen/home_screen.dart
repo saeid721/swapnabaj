@@ -7,7 +7,6 @@ import '../../../controllers/investment_controller/investment_controller.dart';
 import '../../../controllers/profit_controller/profit_controller.dart';
 import '../../dashboard/admin_home_screen/pie_chart_section.dart';
 import '../../dashboard/admin_login_screen/login_screen.dart';
-import '../../dashboard/admin_custom_drawer_widget.dart';
 import '../capital_screen/capital_screen.dart';
 import '../expense_screen/expense_screen.dart';
 import '../invest_screen/invest_screen.dart';
@@ -221,9 +220,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (ctx, index) {
                             var data = controller.capitalData[index];
-                            final depositAmount = data.totalDepositAmount; // Assuming data has totalDepositAmount
-                            final profitAmount = Get.find<ProfitController>().totalProfitAmount / 16; // Corrected here
-                            final balance = (depositAmount + (profitAmount)).toStringAsFixed(1); // Calculate balance
+                            final depositAmount = data.totalDepositAmount;
+                            final profitAmount = Get.find<ProfitController>().totalProfitAmount / 16;
+                            final balance = (depositAmount + (profitAmount)).toStringAsFixed(1);
 
                             return HomeMemberTableValueWidget(
                               firstColumn: data.memberId, // Ensure this displays correctly

@@ -136,7 +136,7 @@ class UserLogInWidget extends StatelessWidget {
         sizedBoxH(10),
         GlobalTextFormField(
           controller: passCon,
-          prefixIcon: const Icon(Icons.password, size: 18),
+          prefixIcon: const Icon(Icons.lock, size: 18),
           //titleText: 'Password',
           hintText: 'Enter Your Password',
           decoration: borderDecoration,
@@ -245,7 +245,7 @@ class AdminLogInWidget extends StatelessWidget {
         GlobalTextFormField(
           controller: passCon,
           //titleText: 'Password',
-          prefixIcon: const Icon(Icons.password, size: 18),
+          prefixIcon: const Icon(Icons.lock, size: 18),
           hintText: 'Enter Your Password',
           decoration: borderDecoration,
           isDense: true,
