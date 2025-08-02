@@ -26,7 +26,7 @@ class ChapterItem extends StatelessWidget {
       child: Material(
         color: Colors.transparent, // Use transparent color in Material
         elevation: 2.0, // Add elevation to create a shadow effect
-        shadowColor: Colors.black.withOpacity(0.25), // Optional: Adjust shadow color and opacity
+        shadowColor: Colors.black.withValues(alpha: 0.25), // Optional: Adjust shadow color and opacity
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(15.0),
           bottomLeft: Radius.circular(15.0),

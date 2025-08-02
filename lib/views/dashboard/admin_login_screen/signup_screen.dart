@@ -43,7 +43,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           Container(
             height: size(context).height,
             width: size(context).width,
-            decoration: BoxDecoration(color: ColorRes.black.withOpacity(0.3)),
+            decoration: BoxDecoration(color: ColorRes.black.withValues(alpha: 0.3)),
           ),
           Center(
             child: Form(
@@ -62,7 +62,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const SizedBox(height: 30),
                     Container(
                       width: size(context).width,
-                      decoration: BoxDecoration(color: ColorRes.white.withOpacity(0.5), borderRadius: BorderRadius.circular(8)),
+                      decoration: BoxDecoration(color: ColorRes.white.withValues(alpha: 0.5), borderRadius: BorderRadius.circular(8)),
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       child: Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 5),

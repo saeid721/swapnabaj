@@ -116,7 +116,7 @@ class _NewsScreenState extends State<NewsScreen> {
                             child: Container(
                               padding: const EdgeInsets.all(3),
                               decoration: BoxDecoration(
-                                color: ColorRes.primaryColor.withOpacity(0.05),
+                                color: ColorRes.primaryColor.withValues(alpha: 0.05),
                                 borderRadius: const BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
                                   topRight: Radius.circular(10),

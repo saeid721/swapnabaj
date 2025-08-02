@@ -12,31 +12,31 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  get: ^4.6.6 # State Management!
-  get_it: ^8.0.3
+  get: ^4.7.2 # State Management!
+  get_it: ^8.0.3 # locator
   uuid: ^4.5.1
-  intl: ^0.20.1
-  shared_preferences: ^2.3.3 # Local Storage!
-  cloud_firestore: ^5.5.1 # server Storage!
-  firebase_storage: ^12.3.7
-  firebase_core: ^3.8.1
-  firebase_auth: ^5.3.4
+  intl: ^0.20.2
+  shared_preferences: ^2.5.3 # Local Storage!
+  cloud_firestore: ^6.0.0 # server Storage!
+  firebase_storage: ^13.0.0
+  firebase_core: ^4.0.0
+  firebase_auth: ^6.0.0
 
   # UI Helpers!
-  fl_chart: ^0.69.2
+  fl_chart: ^1.0.0
   pin_code_fields: ^8.0.1
   shimmer: ^3.0.0
 
   # Localization!
   image_picker: ^1.1.2
-  file_picker: ^5.0.0
-  flutter_image_compress: ^2.3.0
+  file_picker: ^10.2.1
+  flutter_image_compress: ^2.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
 

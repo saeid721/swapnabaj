@@ -4,7 +4,7 @@ import 'colors.dart';
 
 InputDecoration inputDecoration = InputDecoration(
   filled: true,
-  fillColor: ColorRes.secondaryColor.withOpacity(0.2),
+  fillColor: ColorRes.secondaryColor.withValues(alpha: 0.2),
   border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
   errorBorder: OutlineInputBorder(

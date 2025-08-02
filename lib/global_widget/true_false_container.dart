@@ -27,7 +27,7 @@ class TrueFalseContainer extends StatelessWidget {
       padding: const EdgeInsets.only(left: 5, right: 5, top: 12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-          color: ColorRes.white.withOpacity(0.5)
+          color: ColorRes.white.withValues(alpha: 0.5)
       ),
       child: Row(
         children: [
@@ -50,7 +50,7 @@ class TrueFalseContainer extends StatelessWidget {
                     width: Get.width,
                     margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                     decoration: BoxDecoration(
-                        color: currentValue ? ColorRes.primaryColor.withOpacity(0.5) : Colors.transparent,
+                        color: currentValue ? ColorRes.primaryColor.withValues(alpha: 0.5) : Colors.transparent,
                         borderRadius: BorderRadius.circular(4)
                     ),
                   )
@@ -79,7 +79,7 @@ class TrueFalseContainer extends StatelessWidget {
                     width: Get.width,
                     margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
                     decoration: BoxDecoration(
-                        color: currentValue ? Colors.transparent : ColorRes.primaryColor.withOpacity(0.5),
+                        color: currentValue ? Colors.transparent : ColorRes.primaryColor.withValues(alpha: 0.5),
                         borderRadius: BorderRadius.circular(4)
                     ),
                   )

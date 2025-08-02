@@ -23,7 +23,7 @@ class SignUpViewModel extends GetxController {
       }
     } catch (e) {
       errorMessage.value = e.toString();
-      Get.snackbar('Error', 'Sign in failed', backgroundColor: Colors.red.withOpacity(0.8),  colorText: Colors.white);
+      Get.snackbar('Error', 'Sign in failed', backgroundColor: Colors.red.withValues(alpha: 0.8),  colorText: Colors.white);
     } finally {
       isLoading.value = false;
     }
@@ -41,7 +41,7 @@ class SignUpViewModel extends GetxController {
       }
     } catch (e) {
       errorMessage.value = e.toString();
-      Get.snackbar('Error', 'Sign in failed', backgroundColor: Colors.red.withOpacity(0.8),  colorText: Colors.white);
+      Get.snackbar('Error', 'Sign in failed', backgroundColor: Colors.red.withValues(alpha: 0.8),  colorText: Colors.white);
     } finally {
       isLoading.value = false;
     }

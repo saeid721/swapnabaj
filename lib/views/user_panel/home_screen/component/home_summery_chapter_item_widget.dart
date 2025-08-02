@@ -29,7 +29,7 @@ class HomeSummeryChapterItem extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         elevation: 1.0,
-        shadowColor: Colors.black.withOpacity(0.25),
+        shadowColor: Colors.black.withValues(alpha: 0.25),
         borderRadius: const BorderRadius.only(
           topRight: Radius.circular(15.0),
           bottomLeft: Radius.circular(15.0),

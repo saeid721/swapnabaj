@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../global_widget/colors.dart';
 import '../global_widget/global_image_loader.dart';
 import '../global_widget/global_sizedbox.dart';
 import '../global_widget/images.dart';
@@ -22,7 +21,7 @@ class SplashScreen extends StatelessWidget {
           imagePath: Images.splash,
           height: size(context).height,
           width: size(context).width,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
         ),
       ),
     );
